@@ -1,0 +1,8 @@
+{
+  "name": "@further-ventures/fv-react-ui-components.theme",
+  "version": "0.0.5",
+  "peerDependencies": {
+    "react-native": ">=0.68.0",
+    "react": ">=17.0.2"
+  }
+}
