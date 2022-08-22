@@ -1,10 +1,9 @@
 import * as React from 'react';
 import {ThemeType, useTheme} from '../../../components/Theme';
 import Button from '../../../components/Button';
-import {Text, ScrollView} from 'react-native';
+import {ScrollView} from 'react-native';
 import Title from '../Title';
 import Divider from '../Divider';
-import Form from '../../../components/Form';
 import Input from '../../../components/Input';
 import {useEffect} from 'react';
 
@@ -13,10 +12,12 @@ const ThemePreview = ({theme}: {theme: ThemeType}) => {
 
   useEffect(() => {
     updateTheme(theme);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [theme]);
 
   return (
     <ScrollView
+      // eslint-disable-next-line react-native/no-inline-styles
       contentContainerStyle={{
         paddingHorizontal: 20,
         paddingVertical: 40,

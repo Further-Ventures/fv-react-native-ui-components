@@ -10,7 +10,9 @@ export default {
   title: 'Button',
   component: Button,
   argTypes: {
-    onPress: {action: 'pressed the button'},
+    onPress: {
+      action: 'pressed the button',
+    },
   },
   decorators: Platform.OS === 'web' ? null : [CenterView],
   args: {
