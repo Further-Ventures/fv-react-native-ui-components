@@ -38,6 +38,7 @@ const Template: ComponentStory<typeof Form> = ({
   return (
     <Form {...rest}>
       <ScrollView
+        // eslint-disable-next-line react-native/no-inline-styles
         contentContainerStyle={{paddingHorizontal: 8}}
         nestedScrollEnabled
       >
@@ -187,6 +188,7 @@ export const ExternalControl = () => {
         <Button type="reset">Reset</Button>
       </View>
       <View
+        // eslint-disable-next-line react-native/no-inline-styles
         style={{
           marginTop: 20,
           flexDirection: 'row',
