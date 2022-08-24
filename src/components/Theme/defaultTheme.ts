@@ -43,7 +43,7 @@ export const defaultTheme = {
   },
   background: {
     white: '#ffffff',
-    // TODO: remove the line below after components ready
+    // TODO: remove the line below after the current component design is ready
     disabled: '#FCFCFD',
   },
   gradient: {
@@ -64,7 +64,7 @@ export const defaultTheme = {
     },
   },
 
-  // TODO: remove all vars below after components ready
+  // TODO: remove all vars below after the current component design is ready
   default: {
     dark: '#667085',
     main: '#C7CCD3',
