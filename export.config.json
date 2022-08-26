@@ -4,6 +4,7 @@
     "Button": "button",
     "Theme": "theme",
     "Form": "form",
-    "Input": "input"
+    "Input": "input",
+    "Text": "text"
   }
 }
