@@ -42,7 +42,7 @@ export const defaultTheme = {
     hint: '#667085',
   },
   background: {
-    white: '#ffffff',
+    main: '#ffffff',
     // TODO: remove the line below after the current component design is ready
     disabled: '#FCFCFD',
   },
