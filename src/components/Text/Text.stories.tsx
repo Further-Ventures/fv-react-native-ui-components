@@ -26,3 +26,15 @@ H1Bold.args = {
   children: 'H1 Bold',
   variant: 'h1-bold',
 };
+
+export const H1Medium = Template.bind({});
+H1Medium.args = {
+  children: 'H1 Medium',
+  variant: 'h1-medium',
+};
+
+export const H1Regular = Template.bind({});
+H1Regular.args = {
+  children: 'H1 Regular',
+  variant: 'h1-regular',
+};
