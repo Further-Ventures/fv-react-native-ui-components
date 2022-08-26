@@ -18,6 +18,6 @@ export default createUseStyles(theme => ({
   prefix: {
     height: 17,
     color: theme.text.primary,
-    fontFamily: theme.fontFamily,
+    fontFamily: theme.fontFamily.regular,
   },
 }));
