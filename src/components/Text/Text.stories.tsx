@@ -21,6 +21,22 @@ export default {
 
 const Template: ComponentStory<typeof Text> = args => <Text {...args} />;
 
+export const Manual = Template.bind({});
+Manual.args = {
+  children: `You can manually set 'weight', 
+  'size' and 'height'. \n
+  If you don't assign 'height' and 'weight' props, 
+  a proper value will be assigned automatically.\n
+  Use 'variant' or manual sizing. But not both.`,
+  size: 32,
+  weight: '700',
+  style: {
+    flex: 1,
+    textAlign: 'center',
+    flexWrap: 'wrap',
+  },
+};
+
 const figmaNameMap = {
   'h1-bold': 'Mobile/H1_ 48px/Bold',
   'h1-medium': 'Mobile/H1_ 48px/Medium',
