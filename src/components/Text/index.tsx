@@ -1,6 +1,6 @@
 import React from 'react';
 import useStyles, {sizeToHeightMap} from './styles';
-import {Text as RNText, TextProps, StyleProp, TextStyle} from 'react-native';
+import {Text as RNText, TextProps, TextStyle} from 'react-native';
 
 interface IVariantBaseProps extends TextProps {
   variant: keyof ReturnType<typeof useStyles>;

@@ -4,7 +4,6 @@ import Text from '.';
 import CenterView from '../../storybook/preview/CenterView';
 import {Platform} from 'react-native';
 import pkg from './package.json';
-import useStyles from './styles';
 
 export default {
   title: 'Text',
