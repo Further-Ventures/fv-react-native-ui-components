@@ -1,6 +1,6 @@
+/*eslint-disable */
 import * as React from 'react';
 import {ThemeType, useTheme} from '../../../components/Theme';
-import Button from '../../../components/Button';
 import {ScrollView, View} from 'react-native';
 import Divider from '../Divider';
 import Text from '../../../components/Text';
@@ -65,3 +65,4 @@ const ThemePreview = ({theme}: {theme: ThemeType}) => {
 };
 
 export default ThemePreview;
+/*eslint-enable */
