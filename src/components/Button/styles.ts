@@ -63,7 +63,7 @@ export const useStyles = createUseStyles(
       },
       text: {
         fontSize: size === 'mini' ? 10 : 16,
-        fontFamily: theme.fontFamily,
+        fontFamily: theme.fontFamily.regular,
         fontWeight: '700',
         ...buttonVariantStyle().text,
       },

@@ -4,7 +4,7 @@ export default createUseStyles(theme => ({
   hint: {
     marginTop: 4,
     color: theme.text.hint,
-    fontFamily: theme.fontFamily,
+    fontFamily: theme.fontFamily.regular,
   },
   disabledHint: {
     color: theme.text.disabled,

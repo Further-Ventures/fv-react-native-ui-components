@@ -4,6 +4,6 @@ export default createUseStyles(theme => ({
   error: {
     color: theme.error.dark,
     marginTop: 4,
-    fontFamily: theme.fontFamily,
+    fontFamily: theme.fontFamily.regular,
   },
 }));

@@ -4,7 +4,22 @@ const GRADIENT_DEGREE = {
 export const defaultTheme = {
   //Will apply default font for ios and android(San Francisco on iOS and Roboto on Android)
   //Change this font in your project to apply changes on all components
-  fontFamily: 'System',
+  fontFamily: {
+    black: 'PPObjectSans-Black',
+    blackSlanted: 'PPObjectSans-BlackSlanted',
+    bold: 'PPObjectSans-Bold',
+    boldSlanted: 'PPObjectSans-BoldSlanted',
+    heavy: 'PPObjectSans-Heavy',
+    heavySlanted: 'PPObjectSans-HeavySlanted',
+    light: 'PPObjectSans-Light',
+    lightSlanted: 'PPObjectSans-LightSlanted',
+    medium: 'PPObjectSans-Medium',
+    mediumSlanted: 'PPObjectSans-MediumSlanted',
+    regular: 'PPObjectSans-Regular',
+    slanted: 'PPObjectSans-Slanted',
+    thin: 'PPObjectSans-Thin',
+    thinSlanted: 'PPObjectSans-ThinSlanted',
+  },
   primary: {
     main: '#2400ff',
     light: '#D1D3FD',

@@ -25,7 +25,7 @@ export default createUseStyles(
     },
     label: {
       color: theme.text.secondary,
-      fontFamily: theme.fontFamily,
+      fontFamily: theme.fontFamily.regular,
     },
     focusedOutline: {
       position: 'absolute',
