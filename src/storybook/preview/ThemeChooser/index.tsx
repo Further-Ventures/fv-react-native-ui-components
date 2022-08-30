@@ -56,13 +56,10 @@ const ThemePreview = ({theme}: {theme: ThemeType}) => {
                 </>
               ))}
             </View>
+            <Divider />
           </>
         );
       })}
-
-      <Divider />
-
-      <Divider />
     </ScrollView>
   );
 };
