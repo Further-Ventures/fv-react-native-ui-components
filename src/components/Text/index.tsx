@@ -8,6 +8,7 @@ interface IVariantBaseProps extends TextProps {
   size?: never;
   weight?: never;
   height?: never;
+  color?: TextStyle['color'];
 }
 
 interface IManualControlProps extends TextProps {
@@ -16,14 +17,25 @@ interface IManualControlProps extends TextProps {
   size: TextStyle['fontSize'];
   weight?: TextStyle['fontWeight'];
   height?: TextStyle['lineHeight'];
+  color?: TextStyle['color'];
 }
 
 type IConditionalTextProps = IVariantBaseProps | IManualControlProps;
 
 const Text: React.FC<IConditionalTextProps> = props => {
-  const {variant, style, size, weight, height, children, ...rest} = props;
+  const {
+    variant,
+    style,
+    size,
+    weight,
+    height,
+    color,
+    children,
+    ...rest
+  } = props;
   const styles = useStyles();
   const variantStyles = variant ? styles[variant] : {};
+  const colorStyle = color ? {color} : {};
   const manualControlPropsToStyles = variant
     ? {}
     : {
@@ -38,7 +50,7 @@ const Text: React.FC<IConditionalTextProps> = props => {
 
   return (
     <RNText
-      style={[variantStyles, manualControlPropsToStyles, style]}
+      style={[variantStyles, manualControlPropsToStyles, colorStyle, style]}
       {...rest}
     >
       {children}

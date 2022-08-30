@@ -1,10 +1,8 @@
 import * as React from 'react';
 import {ThemeType, useTheme} from '../../../components/Theme';
-import Button from '../../../components/Button';
-import {ScrollView} from 'react-native';
-import Title from '../Title';
+import {ScrollView, View} from 'react-native';
 import Divider from '../Divider';
-import Input from '../../../components/Input';
+import Text from '../../../components/Text';
 import {useEffect} from 'react';
 
 const ThemePreview = ({theme}: {theme: ThemeType}) => {
@@ -24,36 +22,47 @@ const ThemePreview = ({theme}: {theme: ThemeType}) => {
         paddingBottom: 200,
       }}
     >
-      {/* Button */}
-      <Title>Button</Title>
-      <Button>Button</Button>
-      <Divider />
-      <Button color="secondary">Button</Button>
-      <Divider />
-      <Button variant="outlined">Button</Button>
-      <Divider />
-      <Button variant="outlined" color="secondary">
-        Button
-      </Button>
-      <Divider />
+      {Object.entries(theme).map(t => {
+        const [header, colors] = t;
+        if (
+          ['fontFamily', 'gradient', 'default', 'secondary'].includes(header)
+        ) {
+          return null;
+        }
+        return (
+          <>
+            <Text variant="h3-bold">{header}</Text>
+            {Object.entries(colors).map(c => (
+              <>
+                {/* eslint-disable-next-line react-native/no-inline-styles */}
+                <View style={{marginTop: 10}}>
+                  <Text variant="h4-medium" color={'grey'}>
+                    {c[0]}: {JSON.stringify(c[1])}
+                  </Text>
+                  <View
+                    // eslint-disable-next-line react-native/no-inline-styles
+                    style={{
+                      width: 30,
+                      height: 20,
+                      backgroundColor: c[1] as string,
+                      shadowColor: '#000',
+                      shadowOffset: {
+                        width: 0,
+                        height: 2,
+                      },
+                      shadowOpacity: 0.25,
+                      shadowRadius: 3.84,
 
-      {/* Input */}
-      <Title>Input</Title>
-      <Input label="Color primary" placeholder="some@mail.com" />
-      <Divider />
-      <Input
-        label="Color secondary"
-        placeholder="some@mail.com"
-        color="secondary"
-      />
-      <Divider />
-      <Input
-        label="Error state"
-        placeholder="some@mail.com"
-        error="This is an error"
-      />
-      <Divider />
-      <Input label="Hint" placeholder="some@mail.com" hint="This is a hint" />
+                      elevation: 5,
+                    }}
+                  />
+                </View>
+              </>
+            ))}
+            <Divider />
+          </>
+        );
+      })}
     </ScrollView>
   );
 };
