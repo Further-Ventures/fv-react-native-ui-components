@@ -76,7 +76,7 @@ const Button: React.FC<IButtonProps> = ({
       {...rest}
     >
       {renderIcon('leftIcon', iconLeft)}
-      <Text style={[styles.text, textStyle]}>{children}</Text>
+      <Text style={[styles.text, textStyle]}>Hello</Text>
       {renderIcon('rightIcon', iconRight)}
     </Pressable>
   );
