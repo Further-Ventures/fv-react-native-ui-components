@@ -1,7 +1,7 @@
 import React, {Suspense} from 'react';
 import {Text, View} from 'react-native';
 import {SvgProps} from 'react-native-svg';
-// @ts-ignore
+import useStyles from './styles';
 
 export interface IIconProps extends SvgProps {
   filled?: boolean;
@@ -16,22 +16,15 @@ const Icon: React.FC<IIconProps> = ({
   color = '#000',
   ...rest
 }) => {
+  const styles = useStyles(width, height);
+
   const SvgRoot = filled
     ? require('./material-symbols/filled')
     : require('./material-symbols/unfilled');
   const SvgContent = SvgRoot[name];
 
   return (
-    <View
-      style={{
-        width,
-        height,
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        aspectRatio: 1,
-      }}
-    >
+    <View style={styles.wrapper}>
       <SvgContent
         width="100%"
         height="100%"
