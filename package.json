@@ -26,10 +26,15 @@
     "start": "react-native start",
     "test": "jest",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "lint:fix": "npm run lint -- --fix",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "tsc-compile": "tsc --noemit",
-    "build": "webpack --config webpack.config.js && node postBuild.js"
+    "build": "webpack --config webpack.config.js && node postBuild.js",
+    "prepare": "husky install"
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": "eslint --fix"
   },
   "react-native-builder-bob": {
     "source": "src",
@@ -87,7 +92,9 @@
     "eslint": "^7.32.0",
     "eslint-plugin-prettier": "^4.0.0",
     "fs-extra": "^10.1.0",
+    "husky": "^8.0.1",
     "jest": "^26.6.3",
+    "lint-staged": "^13.0.3",
     "metro-react-native-babel-preset": "^0.67.0",
     "prettier": "~2.2.1",
     "react-dom": "^17.0.2",
