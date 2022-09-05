@@ -1,30 +1,45 @@
 import React, {Suspense} from 'react';
-import {Text} from 'react-native';
+import {Text, View} from 'react-native';
 import {SvgProps} from 'react-native-svg';
 // @ts-ignore
-import loadable from '@loadable/component';
 
 export interface IIconProps extends SvgProps {
-  variant?: 'filled' | 'outlined' | 'round' | 'sharp' | 'two-tone';
+  filled?: boolean;
   name: string;
 }
 
 const Icon: React.FC<IIconProps> = ({
-  variant,
+  filled,
   name,
   width = 24,
   height = 24,
-  fill = '#000',
+  color = '#000',
   ...rest
 }) => {
-  const SvgContent = React.lazy(
-    () => import(`@material-design-icons/svg/filled/home.svg`),
-  );
+  const SvgRoot = filled
+    ? require('./material-symbols/filled')
+    : require('./material-symbols/unfilled');
+  const SvgContent = SvgRoot[name];
 
   return (
-    <Suspense fallback={<Text>?</Text>}>
-      <SvgContent width={width} height={height} fill={fill} {...rest} />
-    </Suspense>
+    <View
+      style={{
+        width,
+        height,
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        aspectRatio: 1,
+      }}
+    >
+      <SvgContent
+        width="100%"
+        height="100%"
+        viewBox="0 0 48 48"
+        fill={color}
+        {...rest}
+      />
+    </View>
   );
 };
 

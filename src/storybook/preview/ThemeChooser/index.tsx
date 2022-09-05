@@ -27,7 +27,7 @@ const ThemePreview = ({theme}: {theme: ThemeType}) => {
         if (
           ['fontFamily', 'gradient', 'default', 'secondary'].includes(header)
         ) {
-          return null;
+          return <React.Fragment key={header} />;
         }
         return (
           <React.Fragment key={header}>
