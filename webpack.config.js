@@ -9,8 +9,14 @@ module.exports = {
     rules: [
       {
         test: /\.tsx?$/,
-        use: 'ts-loader',
+        loader: 'ts-loader',
         exclude: /node_modules/,
+      },
+      {
+        test: /\.svg$/,
+        use: {
+          loader: 'babel-loader',
+        },
       },
     ],
   },
