@@ -1,11 +1,7 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "declaration": true,
     "declarationDir": "dist",
     "allowJs": true,
@@ -21,11 +17,10 @@
     "isolatedModules": true,
     "noEmit": false,
     "jsx": "react",
-    "outDir": "build/",
+    "outDir": "build/"
   },
-  "include": [
-    "src"
-  ],
+  "include": ["src"],
+  "files": ["declarations.d.ts"],
   "exclude": [
     "src/components/**/*.test.tsx",
     "src/components/**/*.stories.tsx",

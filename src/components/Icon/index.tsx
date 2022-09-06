@@ -2,8 +2,6 @@ import React from 'react';
 import {View} from 'react-native';
 import {SvgProps} from 'react-native-svg';
 import useStyles from './styles';
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import * as svg from '*.svg';
 
 export interface IIconProps extends SvgProps {
   filled?: boolean;
