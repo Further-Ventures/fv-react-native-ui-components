@@ -25,7 +25,7 @@
     "pod": "npx pod-install",
     "start": "react-native start",
     "test": "jest",
-    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "lint": "eslint ./src --ext .js,.jsx,.ts,.tsx",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "tsc-compile": "tsc --noemit",

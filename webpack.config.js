@@ -12,6 +12,14 @@ module.exports = {
         use: 'ts-loader',
         exclude: /node_modules/,
       },
+
+      {
+        test: /\.svg$/,
+        // include: [path.resolve(__dirname, 'declarations.d.ts')],
+        use: {
+          loader: 'babel-loader',
+        },
+      },
     ],
   },
   resolve: {

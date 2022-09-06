@@ -17,7 +17,7 @@ const IconPreview = ({filled = false}: {filled?: boolean}) => {
         // eslint-disable-next-line react-native/no-inline-styles
         style={{flexDirection: 'row'}}
       >
-        {Object.keys(FilledIcons).map((name, i) => (
+        {Object.keys(FilledIcons).map(name => (
           <Icon name={name} key={name} filled={filled} />
         ))}
       </View>
