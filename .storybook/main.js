@@ -1,16 +1,18 @@
 module.exports = {
   core: {
-    builder: "webpack5",
+    builder: 'webpack5',
   },
-  "stories": [
-    "../src/components/**/*.stories.tsx"
+  stories: [
+    '../src/components/Icon/*.stories.tsx',
+    '../src/components/Theme/*.stories.tsx',
+    '../src/components/Text/*.stories.tsx',
   ],
-  "addons": [
-    "@storybook/addon-links",
-    "@storybook/addon-essentials",
-    "@storybook/addon-actions",
-    "@storybook/addon-react-native-web",
-    "./customAddons/yarnInstall/preset.ts",
+  addons: [
+    '@storybook/addon-links',
+    '@storybook/addon-essentials',
+    '@storybook/addon-actions',
+    '@storybook/addon-react-native-web',
+    './customAddons/yarnInstall/preset.ts',
   ],
-  "framework": "@storybook/react"
-}
+  framework: '@storybook/react',
+};

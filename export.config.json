@@ -1,10 +1,7 @@
 {
   "name": "@further-ventures/fv-react-ui-components",
   "components": {
-    "Button": "button",
     "Theme": "theme",
-    "Form": "form",
-    "Input": "input",
     "Icon": "Icon",
     "Text": "text"
   }
