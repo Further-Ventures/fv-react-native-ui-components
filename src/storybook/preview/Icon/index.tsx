@@ -1,9 +1,9 @@
 import React from 'react';
 import {ScrollView, View} from 'react-native';
-import Icon from '../../../components/Icon';
+import Icon, {IIconProps} from '../../../components/Icon';
 import * as FilledIcons from '../../../components/Icon/material-symbols/filled';
 
-const IconPreview = ({filled = false}: {filled?: boolean}) => {
+const IconPreview = (props: IIconProps) => {
   return (
     <ScrollView
       // eslint-disable-next-line react-native/no-inline-styles
@@ -15,10 +15,10 @@ const IconPreview = ({filled = false}: {filled?: boolean}) => {
     >
       <View
         // eslint-disable-next-line react-native/no-inline-styles
-        style={{flexDirection: 'row'}}
+        style={{flexDirection: 'row', flexWrap: 'wrap'}}
       >
         {Object.keys(FilledIcons).map(name => (
-          <Icon name={name} key={name} filled={filled} />
+          <Icon name={name} key={name} {...props} />
         ))}
       </View>
     </ScrollView>

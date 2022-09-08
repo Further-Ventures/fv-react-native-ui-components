@@ -16,6 +16,9 @@ export default {
   },
   parameters: {
     pkg,
+    controls: {
+      include: ['width', 'filled', 'height', 'color'],
+    },
   },
 } as ComponentMeta<typeof Icon>;
 
@@ -24,7 +27,15 @@ const Template: ComponentStory<typeof Icon> = args => <IconView {...args} />;
 export const Filled = Template.bind({});
 Filled.args = {
   filled: true,
+  width: 24,
+  height: 24,
+  color: 'gray',
 };
 
 export const Unfilled = Template.bind({});
-Unfilled.args = {};
+Unfilled.args = {
+  filled: false,
+  width: 24,
+  height: 24,
+  color: 'gray',
+};
