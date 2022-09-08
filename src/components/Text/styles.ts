@@ -12,23 +12,23 @@ export const sizeToHeightMap: Record<number, number> = {
   10: 15,
 };
 
-export default createUseStyles(theme => ({
+export default createUseStyles((theme, color) => ({
   'h1-bold': {
-    color: theme.text.primary,
+    color: color,
     fontFamily: theme.fontFamily.bold,
     fontWeight: '700',
     fontSize: 48,
     lineHeight: sizeToHeightMap[48],
   },
   'h1-medium': {
-    color: theme.text.primary,
+    color: color,
     fontFamily: theme.fontFamily.medium,
     fontWeight: '500',
     fontSize: 48,
     lineHeight: sizeToHeightMap[48],
   },
   'h1-regular': {
-    color: theme.text.primary,
+    color: color,
     fontFamily: theme.fontFamily.regular,
     fontWeight: '400',
     fontSize: 48,
@@ -36,21 +36,21 @@ export default createUseStyles(theme => ({
   },
 
   'h2-bold': {
-    color: theme.text.primary,
+    color: color,
     fontFamily: theme.fontFamily.bold,
     fontWeight: '700',
     fontSize: 32,
     lineHeight: sizeToHeightMap[32],
   },
   'h2-medium': {
-    color: theme.text.primary,
+    color: color,
     fontFamily: theme.fontFamily.medium,
     fontWeight: '500',
     fontSize: 32,
     lineHeight: sizeToHeightMap[32],
   },
   'h2-regular': {
-    color: theme.text.primary,
+    color: color,
     fontFamily: theme.fontFamily.regular,
     fontWeight: '400',
     fontSize: 32,
@@ -58,21 +58,21 @@ export default createUseStyles(theme => ({
   },
 
   'h3-bold': {
-    color: theme.text.primary,
+    color: color,
     fontFamily: theme.fontFamily.bold,
     fontWeight: '700',
     fontSize: 24,
     lineHeight: sizeToHeightMap[24],
   },
   'h3-medium': {
-    color: theme.text.primary,
+    color: color,
     fontFamily: theme.fontFamily.medium,
     fontWeight: '500',
     fontSize: 24,
     lineHeight: sizeToHeightMap[24],
   },
   'h3-regular': {
-    color: theme.text.primary,
+    color: color,
     fontFamily: theme.fontFamily.regular,
     fontWeight: '400',
     fontSize: 24,
@@ -80,21 +80,21 @@ export default createUseStyles(theme => ({
   },
 
   'h4-bold': {
-    color: theme.text.primary,
+    color: color,
     fontFamily: theme.fontFamily.bold,
     fontWeight: '700',
     fontSize: 20,
     lineHeight: sizeToHeightMap[20],
   },
   'h4-medium': {
-    color: theme.text.primary,
+    color: color,
     fontFamily: theme.fontFamily.medium,
     fontWeight: '500',
     fontSize: 20,
     lineHeight: sizeToHeightMap[20],
   },
   'h4-regular': {
-    color: theme.text.primary,
+    color: color,
     fontFamily: theme.fontFamily.regular,
     fontWeight: '400',
     fontSize: 20,
@@ -102,21 +102,21 @@ export default createUseStyles(theme => ({
   },
 
   'p1-bold': {
-    color: theme.text.primary,
+    color: color,
     fontFamily: theme.fontFamily.bold,
     fontWeight: '700',
     fontSize: 18,
     lineHeight: sizeToHeightMap[18],
   },
   'p1-medium': {
-    color: theme.text.primary,
+    color: color,
     fontFamily: theme.fontFamily.medium,
     fontWeight: '500',
     fontSize: 18,
     lineHeight: sizeToHeightMap[18],
   },
   'p1-regular': {
-    color: theme.text.primary,
+    color: color,
     fontFamily: theme.fontFamily.regular,
     fontWeight: '400',
     fontSize: 18,
@@ -124,21 +124,21 @@ export default createUseStyles(theme => ({
   },
 
   'p2-bold': {
-    color: theme.text.primary,
+    color: color,
     fontFamily: theme.fontFamily.bold,
     fontWeight: '700',
     fontSize: 16,
     lineHeight: sizeToHeightMap[16],
   },
   'p2-medium': {
-    color: theme.text.primary,
+    color: color,
     fontFamily: theme.fontFamily.medium,
     fontWeight: '500',
     fontSize: 16,
     lineHeight: sizeToHeightMap[16],
   },
   'p2-regular': {
-    color: theme.text.primary,
+    color: color,
     fontFamily: theme.fontFamily.regular,
     fontWeight: '400',
     fontSize: 16,
@@ -146,28 +146,28 @@ export default createUseStyles(theme => ({
   },
 
   'description-bold': {
-    color: theme.text.primary,
+    color: color,
     fontFamily: theme.fontFamily.bold,
     fontWeight: '700',
     fontSize: 12,
     lineHeight: sizeToHeightMap[12],
   },
   'description-medium': {
-    color: theme.text.primary,
+    color: color,
     fontFamily: theme.fontFamily.medium,
     fontWeight: '500',
     fontSize: 12,
     lineHeight: sizeToHeightMap[12],
   },
   'caption-regular': {
-    color: theme.text.primary,
+    color: color,
     fontFamily: theme.fontFamily.regular,
     fontWeight: '400',
     fontSize: 12,
     lineHeight: sizeToHeightMap[12],
   },
   'small-regular': {
-    color: theme.text.primary,
+    color: color,
     fontFamily: theme.fontFamily.regular,
     fontWeight: '400',
     fontSize: 10,
@@ -175,35 +175,35 @@ export default createUseStyles(theme => ({
   },
 
   'label-16-medium': {
-    color: theme.text.primary,
+    color: color,
     fontFamily: theme.fontFamily.medium,
     fontWeight: '500',
     fontSize: 16,
     lineHeight: sizeToHeightMap[16],
   },
   'label-14-medium': {
-    color: theme.text.primary,
+    color: color,
     fontFamily: theme.fontFamily.medium,
     fontWeight: '500',
     fontSize: 14,
     lineHeight: sizeToHeightMap[14],
   },
   'label-10-medium': {
-    color: theme.text.primary,
+    color: color,
     fontFamily: theme.fontFamily.medium,
     fontWeight: '500',
     fontSize: 10,
     lineHeight: sizeToHeightMap[10],
   },
   'label-14-regular': {
-    color: theme.text.primary,
+    color: color,
     fontFamily: theme.fontFamily.regular,
     fontWeight: '400',
     fontSize: 14,
     lineHeight: sizeToHeightMap[14],
   },
   'label-14-bold': {
-    color: theme.text.primary,
+    color: color,
     fontFamily: theme.fontFamily.bold,
     fontWeight: '700',
     fontSize: 14,
