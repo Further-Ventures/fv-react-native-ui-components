@@ -16,6 +16,9 @@ export default {
   },
   parameters: {
     pkg,
+    controls: {
+      exclude: ['variant'],
+    },
   },
 } as ComponentMeta<typeof Text>;
 
