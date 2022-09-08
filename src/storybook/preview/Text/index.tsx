@@ -32,7 +32,7 @@ const figmaNameMap: Record<Readonly<IVariantBaseProps['variant']>, string> = {
   'label-14-regular': 'UI Components/Label_14px/Regular',
   'label-14-bold': 'UI Components/Label_14px/Bold',
 };
-const TextPreview = () => {
+const TextPreview = ({color}: {color?: any}) => {
   return (
     <ScrollView
       // eslint-disable-next-line react-native/no-inline-styles
@@ -45,7 +45,7 @@ const TextPreview = () => {
       <View>
         {Object.entries(figmaNameMap).map(([k, v]) => (
           <View key={k}>
-            <Text variant={k as IVariantBaseProps['variant']}>
+            <Text variant={k as IVariantBaseProps['variant']} color={color}>
               {k}: {v}
             </Text>
             <Divider />

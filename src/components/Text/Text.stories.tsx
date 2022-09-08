@@ -22,7 +22,7 @@ export default {
   },
 } as ComponentMeta<typeof Text>;
 
-const Template: ComponentStory<typeof Text> = () => <TextView />;
+const Template: ComponentStory<typeof Text> = args => <TextView {...args} />;
 const TemplateManual: ComponentStory<typeof Text> = args => <Text {...args} />;
 
 export const Manual = TemplateManual.bind({});
@@ -35,6 +35,12 @@ Use 'variant' or manual sizing. But not both.`,
   weight: '700',
   color: 'gray',
 };
+Manual.parameters = {controls: {exclude: ['variant']}};
 
 export const Variants = Template.bind({});
 Variants.args = {};
+Variants.parameters = {
+  controls: {
+    include: 'color',
+  },
+};
