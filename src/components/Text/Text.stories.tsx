@@ -38,7 +38,9 @@ Use 'variant' or manual sizing. But not both.`,
 Manual.parameters = {controls: {exclude: ['variant']}};
 
 export const Variants = Template.bind({});
-Variants.args = {};
+Variants.args = {
+  color: 'black',
+};
 Variants.parameters = {
   controls: {
     include: 'color',
