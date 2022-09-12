@@ -2,7 +2,7 @@ import React from 'react';
 import {ComponentStory, ComponentMeta} from '@storybook/react-native';
 import Elevation from '.';
 import CenterView from '../../storybook/preview/CenterView';
-import {Platform, Text} from 'react-native';
+import {Platform, Text, View} from 'react-native';
 import pkg from './package.json';
 
 export default {
@@ -18,41 +18,44 @@ export default {
   },
 } as ComponentMeta<typeof Elevation>;
 
-const Template: ComponentStory<typeof Elevation> = args => (
-  <Elevation
-    {...args}
-    style={{
-      margin: 20,
-      width: 216,
-      height: 216,
-      justifyContent: 'center',
-      alignItems: 'center',
-      borderRadius: 10,
-    }}
-  />
-);
+const Template: ComponentStory<typeof Elevation> = ({children}) => {
+  const customStyle = {
+    marginTop: 25,
+    marginBottom: 25,
+    width: '75%',
+    height: 216,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 10,
+  };
 
-export const ElevationExtraLight = Template.bind({});
-ElevationExtraLight.args = {
-  variant: 'extraLight',
+  return (
+    <View
+      // eslint-disable-next-line react-native/no-inline-styles
+
+      style={{
+        alignItems: 'center',
+        paddingTop: 20,
+        paddingBottom: 20,
+      }}
+    >
+      <Elevation variant="extraLight" style={customStyle}>
+        {children}
+      </Elevation>
+      <Elevation variant="light" style={customStyle}>
+        {children}
+      </Elevation>
+      <Elevation variant="medium" style={customStyle}>
+        {children}
+      </Elevation>
+      <Elevation variant="heavy" style={customStyle}>
+        {children}
+      </Elevation>
+      <Elevation variant="extraHeavy" style={customStyle}>
+        {children}
+      </Elevation>
+    </View>
+  );
 };
 
-export const ElevationLight = Template.bind({});
-ElevationLight.args = {
-  variant: 'light',
-};
-
-export const ElevationMedium = Template.bind({});
-ElevationMedium.args = {
-  variant: 'medium',
-};
-
-export const ElevationHeavy = Template.bind({});
-ElevationHeavy.args = {
-  variant: 'heavy',
-};
-
-export const ElevationExtraHeavy = Template.bind({});
-ElevationExtraHeavy.args = {
-  variant: 'extraHeavy',
-};
+export const ElevationComponent = Template.bind({});

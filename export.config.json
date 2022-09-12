@@ -2,7 +2,8 @@
   "name": "@further-ventures/fv-react-ui-components",
   "components": {
     "Theme": "theme",
+    "Elevation": "elevation",
     "Icon": "Icon",
-    "Text": "text"
+    "Text": "text",
   }
 }
