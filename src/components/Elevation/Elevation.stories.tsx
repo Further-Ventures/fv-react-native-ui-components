@@ -18,44 +18,71 @@ export default {
   },
 } as ComponentMeta<typeof Elevation>;
 
-const Template: ComponentStory<typeof Elevation> = ({children}) => {
-  const customStyle = {
-    marginTop: 25,
-    marginBottom: 25,
-    width: '75%',
-    height: 216,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 10,
-  };
-
-  return (
-    <View
-      // eslint-disable-next-line react-native/no-inline-styles
-
-      style={{
-        alignItems: 'center',
-        paddingTop: 20,
-        paddingBottom: 20,
-      }}
+const Template: ComponentStory<typeof Elevation> = ({children}) => (
+  <View
+    // eslint-disable-next-line react-native/no-inline-styles
+    style={{
+      alignItems: 'center',
+      paddingTop: 20,
+      paddingBottom: 20,
+    }}
+  >
+    <Elevation
+      variant="extraLight"
+      margin={25}
+      width={216}
+      height={216}
+      justifyContent="center"
+      alignItems="center"
+      borderRadius={10}
     >
-      <Elevation variant="extraLight" style={customStyle}>
-        {children}
-      </Elevation>
-      <Elevation variant="light" style={customStyle}>
-        {children}
-      </Elevation>
-      <Elevation variant="medium" style={customStyle}>
-        {children}
-      </Elevation>
-      <Elevation variant="heavy" style={customStyle}>
-        {children}
-      </Elevation>
-      <Elevation variant="extraHeavy" style={customStyle}>
-        {children}
-      </Elevation>
-    </View>
-  );
-};
+      {children}
+    </Elevation>
+    <Elevation
+      variant="light"
+      margin={25}
+      width={216}
+      height={216}
+      justifyContent="center"
+      alignItems="center"
+      borderRadius={10}
+    >
+      {children}
+    </Elevation>
+    <Elevation
+      variant="medium"
+      margin={25}
+      width={216}
+      height={216}
+      justifyContent="center"
+      alignItems="center"
+      borderRadius={10}
+    >
+      {children}
+    </Elevation>
+    <Elevation
+      variant="heavy"
+      margin={25}
+      width={216}
+      height={216}
+      justifyContent="center"
+      alignItems="center"
+      borderRadius={10}
+    >
+      {children}
+    </Elevation>
+    <Elevation
+      variant="extraHeavy"
+      margin={25}
+      width={216}
+      height={216}
+      justifyContent="center"
+      alignItems="center"
+      borderRadius={10}
+    >
+      {children}
+    </Elevation>
+  </View>
+);
 
 export const ElevationComponent = Template.bind({});
