@@ -25,24 +25,28 @@ export const defaultTheme = {
     light: '#D1D3FD',
     dark: '#17019C',
     contrast: '#000000',
+    medium: '#1E00D3',
   },
   error: {
     main: '#CC2418',
     light: '#FBDCDA',
     dark: '#B91D12',
     contrast: '#000000',
+    medium: '#D8281C',
   },
   success: {
     main: '#088940',
     light: '#B3DFCA',
     dark: '#007133',
     contrast: '#FFFFFF',
+    medium: '#049D49',
   },
   warning: {
     main: '#FE9E34',
     light: '#FFDDB3',
     dark: '#EB621C',
     contrast: '#000000',
+    medium: '#E57942',
   },
   grey: {
     main: '#C7CCD3',
@@ -57,7 +61,8 @@ export const defaultTheme = {
     hint: '#667085',
   },
   background: {
-    main: '#ffffff',
+    primary: '#ffffff',
+    secondary: '#F9F9FA',
     // TODO: remove the line below after the current component design is ready
     disabled: '#FCFCFD',
   },

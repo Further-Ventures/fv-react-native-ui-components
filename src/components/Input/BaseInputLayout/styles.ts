@@ -14,7 +14,7 @@ export default createUseStyles(
       borderRadius: 4,
       paddingHorizontal: 8,
       paddingVertical: 5,
-      backgroundColor: theme.background.main,
+      backgroundColor: theme.background.primary,
       zIndex: 2,
       flexDirection: 'row',
       justifyContent: 'space-between',

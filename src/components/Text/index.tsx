@@ -2,55 +2,60 @@ import React from 'react';
 import useStyles, {sizeToHeightMap} from './styles';
 import {Text as RNText, TextProps, TextStyle} from 'react-native';
 
-interface IVariantBaseProps extends TextProps {
+export interface IVariantBaseProps extends TextProps {
   variant: keyof ReturnType<typeof useStyles>;
-  wrapped?: boolean;
   size?: never;
   weight?: never;
   height?: never;
   color?: TextStyle['color'];
 }
 
-interface IManualControlProps extends TextProps {
+export interface IManualControlProps extends TextProps {
   variant?: never;
-  wrapped?: boolean;
   size: TextStyle['fontSize'];
   weight?: TextStyle['fontWeight'];
   height?: TextStyle['lineHeight'];
   color?: TextStyle['color'];
 }
 
-type IConditionalTextProps = IVariantBaseProps | IManualControlProps;
+export type IConditionalTextProps = IVariantBaseProps | IManualControlProps;
 
 const Text: React.FC<IConditionalTextProps> = props => {
   const {
     variant,
     style,
     size,
-    weight,
+    weight = '500',
     height,
-    color,
+    color = '#000',
     children,
     ...rest
   } = props;
-  const styles = useStyles();
+  const styles = useStyles(color);
   const variantStyles = variant ? styles[variant] : {};
-  const colorStyle = color ? {color} : {};
+  const wrapStyle = {flex: 1, flexWrap: 'wrap'} as const;
   const manualControlPropsToStyles = variant
     ? {}
     : {
         fontSize: size,
-        fontWeight: weight || '500',
-        height:
+        fontWeight: weight,
+        lineHeight:
           height ||
           (size && size in sizeToHeightMap
             ? sizeToHeightMap[size]
-            : sizeToHeightMap[48]),
+            : size
+            ? size + Math.trunc(size / 2)
+            : 10),
       };
 
   return (
     <RNText
-      style={[variantStyles, manualControlPropsToStyles, colorStyle, style]}
+      style={[
+        variantStyles,
+        manualControlPropsToStyles,
+        wrapStyle,
+        style || {},
+      ]}
       {...rest}
     >
       {children}
