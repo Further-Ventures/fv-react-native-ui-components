@@ -33,9 +33,9 @@ const ThemePreview = ({theme}: {theme: ThemeType}) => {
           <React.Fragment key={header}>
             <Text variant="h3-bold">{header}</Text>
             {Object.entries(colors).map((c, i) => (
-              <>
+              <React.Fragment key={i}>
                 {/* eslint-disable-next-line react-native/no-inline-styles */}
-                <View key={i} style={{marginTop: 10}}>
+                <View style={{marginTop: 10}}>
                   <Text variant="h4-medium" color={'grey'}>
                     {c[0]}: {JSON.stringify(c[1])}
                   </Text>
@@ -57,7 +57,7 @@ const ThemePreview = ({theme}: {theme: ThemeType}) => {
                     }}
                   />
                 </View>
-              </>
+              </React.Fragment>
             ))}
             <Divider />
           </React.Fragment>

@@ -1,53 +1,55 @@
-import {TextStyle, ViewStyle} from 'react-native';
+import {ViewStyle} from 'react-native';
 import {createUseStyles} from '../Theme';
-import {IButtonProps} from './index';
+import {IButtonProps, TSize} from './index';
 
 interface IButtonTypeStyle {
   button: ViewStyle;
   buttonPressed: ViewStyle;
-  text: TextStyle;
+  buttonDisabled: ViewStyle;
 }
 
+const curvedRadius = {
+  mini: 4,
+  small: 6,
+  medium: 8,
+  large: 10,
+};
+
 export const useStyles = createUseStyles(
-  (
-    theme,
-    color: IButtonProps['color'],
-    size: IButtonProps['size'],
-    variant: IButtonProps['variant'],
-  ) => {
+  (theme, size: TSize, variant: IButtonProps['variant'], error: boolean) => {
     //Generate different styles based on button type
     const buttonVariantStyle = (): IButtonTypeStyle => {
-      const containedStyle: IButtonTypeStyle = {
+      const primaryStyle: IButtonTypeStyle = {
         button: {
-          backgroundColor: theme[color!].main,
+          backgroundColor: error ? theme.error.main : theme.primary.main,
         },
         buttonPressed: {
-          backgroundColor: theme[color!].dark,
+          backgroundColor: error ? theme.error.dark : theme.primary.dark,
         },
-        text: {
-          color: theme.primary.contrast,
+        buttonDisabled: {
+          backgroundColor: theme.grey.extraLight,
         },
       };
+
       switch (variant) {
-        case 'contained':
-          return containedStyle;
-        case 'outlined':
+        case 'primary':
+          return primaryStyle;
+        case 'secondary':
           return {
             button: {
-              backgroundColor: 'transparent',
+              backgroundColor: theme.background.primary,
               borderWidth: 2,
-              borderColor: theme[color!].main,
+              borderColor: error ? theme.error.main : theme.primary.main,
             },
             buttonPressed: {
-              backgroundColor: theme[color!].light,
-              borderWidth: 0,
+              backgroundColor: error ? theme.error.light : theme.primary.light,
             },
-            text: {
-              color: theme[color!].main,
+            buttonDisabled: {
+              borderColor: theme.grey.light,
             },
           };
         default:
-          return containedStyle;
+          return primaryStyle;
       }
     };
 
@@ -55,20 +57,16 @@ export const useStyles = createUseStyles(
       button: {
         alignItems: 'center',
         justifyContent: 'center',
+        alignSelf: 'baseline',
         flexDirection: 'row',
         ...buttonVariantStyle().button,
       },
       buttonPressed: {
         ...buttonVariantStyle().buttonPressed,
       },
-      text: {
-        fontSize: size === 'mini' ? 10 : 16,
-        fontFamily: theme.fontFamily.regular,
-        fontWeight: '700',
-        ...buttonVariantStyle().text,
-      },
+
       disabled: {
-        opacity: 0.3,
+        ...buttonVariantStyle().buttonDisabled,
       },
       mini: {
         paddingHorizontal: 8,
@@ -96,14 +94,14 @@ export const useStyles = createUseStyles(
         height: size === 'mini' ? 14 : 20,
         marginLeft: 10,
       },
-      flat: {
-        borderRadius: 0,
+      curved: {
+        borderRadius: curvedRadius[size],
       },
       round: {
-        borderRadius: 4,
-      },
-      circle: {
         borderRadius: 100,
+      },
+      flat: {
+        borderRadius: 0,
       },
     };
   },
