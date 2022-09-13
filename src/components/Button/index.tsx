@@ -18,13 +18,12 @@ export interface IButtonProps extends PressableProps {
   label?: string;
   size?: TSize;
   shape?: 'curved' | 'round' | 'flat';
-  variant?: 'primary' | 'secondary';
+  variant?: 'contained' | 'outlined' | 'empty';
   error?: boolean;
   type?: 'submit' | 'reset';
   disabled?: boolean;
   icon?: IIconProps['name'];
   iconPosition?: 'left' | 'right';
-  outline?: boolean;
   style?: StyleProp<ViewStyle>;
 }
 
@@ -33,16 +32,15 @@ const getTextColor = ({
   variant,
   disabled,
   error,
-  outline,
   pressed,
 }: IButtonProps & {theme: ThemeType; pressed?: boolean}) => {
   if (disabled) {
     return theme.text.disabled;
   }
-  if (variant === 'primary') {
+  if (variant === 'contained') {
     return theme.primary.contrast2;
   }
-  if (variant === 'secondary') {
+  if (variant === 'outlined') {
     if (pressed) {
       if (error) {
         return theme.error.dark;
@@ -53,10 +51,14 @@ const getTextColor = ({
     if (error) {
       return theme.error.main;
     }
-    if (!outline) {
-      return theme.primary.contrast;
-    }
+
     return theme.primary.main;
+  }
+  if (variant === 'empty') {
+    if (error) {
+      return theme.error.main;
+    }
+    return theme.primary.contrast;
   }
 };
 
@@ -72,8 +74,7 @@ const Button: React.FC<IButtonProps> = ({
   label,
   icon,
   iconPosition = 'right',
-  outline = true,
-  variant = 'primary',
+  variant = 'contained',
   error = false,
   size = 'medium',
   shape = 'round',
@@ -85,7 +86,7 @@ const Button: React.FC<IButtonProps> = ({
   const {
     formActions: {submit, reset},
   } = useFormContext();
-  const styles = useStyles(size, variant, error, !label, outline);
+  const styles = useStyles(size, variant, error, !label);
   const {theme} = useTheme();
 
   const handlePress = (e: GestureResponderEvent) => {
@@ -101,7 +102,7 @@ const Button: React.FC<IButtonProps> = ({
 
   const allIconsStyle = (pressed: boolean) => ({
     name: icon || '',
-    color: getTextColor({theme, variant, disabled, error, outline, pressed}),
+    color: getTextColor({theme, variant, disabled, error, pressed}),
     width: size === 'mini' ? 13 : 20,
     style: label ? styles[iconPosition] : {},
   });

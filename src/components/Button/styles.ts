@@ -22,7 +22,6 @@ export const useStyles = createUseStyles(
     variant: IButtonProps['variant'],
     error: boolean,
     onlyIcon: boolean,
-    outline: boolean,
   ) => {
     //Generate different styles based on button type
     const buttonVariantStyle = (): IButtonTypeStyle => {
@@ -39,21 +38,31 @@ export const useStyles = createUseStyles(
       };
 
       switch (variant) {
-        case 'primary':
+        case 'contained':
           return primaryStyle;
-        case 'secondary':
+        case 'outlined':
           return {
             button: {
               backgroundColor: theme.background.primary,
-              borderWidth: outline ? 2 : 0,
+              borderWidth: 2,
               borderColor: error ? theme.error.main : theme.primary.main,
             },
             buttonPressed: {
-              backgroundColor: error
-                ? theme.error.light
-                : outline
-                ? theme.primary.light
-                : theme.grey.main,
+              backgroundColor: error ? theme.error.light : theme.primary.light,
+            },
+            buttonDisabled: {
+              borderColor: theme.grey.light,
+            },
+          };
+        case 'empty':
+          return {
+            button: {
+              backgroundColor: theme.background.primary,
+              borderWidth: 0,
+              borderColor: error ? theme.error.main : theme.primary.main,
+            },
+            buttonPressed: {
+              backgroundColor: error ? theme.error.light : theme.grey.main,
             },
             buttonDisabled: {
               borderColor: theme.grey.light,

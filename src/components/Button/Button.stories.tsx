@@ -16,18 +16,16 @@ export default {
       options: ['mini', 'small', 'medium', 'large'],
       control: {
         type: 'select',
-        labels: ['mini', 'small', 'medium', 'large'],
       },
     },
     icon: {
       options: ['', 'info', 'settings'],
       control: {
         type: 'select',
-        labels: ['none', 'info', 'settings'],
       },
     },
     variant: {
-      options: ['primary', 'secondary'],
+      options: ['contained', 'outlined', 'empty'],
       control: {
         type: 'select',
       },
@@ -48,23 +46,23 @@ export default {
 
 const Template: ComponentStory<typeof Button> = args => <Button {...args} />;
 
-export const Primary = Template.bind({});
-Primary.args = {
+export const Contained = Template.bind({});
+Contained.args = {
   label: 'Button CTA',
   size: 'medium',
   shape: 'flat',
-  variant: 'primary',
+  variant: 'contained',
   icon: 'info',
   error: false,
   disabled: false,
 };
 
-export const Secondary = Template.bind({});
-Secondary.args = {
+export const Outlined = Template.bind({});
+Outlined.args = {
   label: 'Button CTA',
   size: 'medium',
   shape: 'flat',
-  variant: 'secondary',
+  variant: 'outlined',
   icon: 'info',
   error: false,
   disabled: false,
@@ -74,9 +72,8 @@ export const OnlyIcon = Template.bind({});
 OnlyIcon.args = {
   size: 'medium',
   shape: 'flat',
-  variant: 'primary',
+  variant: 'contained',
   icon: 'info',
   error: false,
   disabled: false,
-  outline: true,
 };
