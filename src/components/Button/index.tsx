@@ -33,6 +33,7 @@ const getTextColor = ({
   variant,
   disabled,
   error,
+  outline,
   pressed,
 }: IButtonProps & {theme: ThemeType; pressed?: boolean}) => {
   if (disabled) {
@@ -46,10 +47,14 @@ const getTextColor = ({
       if (error) {
         return theme.error.dark;
       }
+
       return theme.primary.dark;
     }
     if (error) {
       return theme.error.main;
+    }
+    if (!outline) {
+      return theme.primary.contrast;
     }
     return theme.primary.main;
   }
@@ -96,10 +101,7 @@ const Button: React.FC<IButtonProps> = ({
 
   const allIconsStyle = (pressed: boolean) => ({
     name: icon || '',
-    color:
-      variant === 'secondary' && !outline
-        ? theme.primary.contrast
-        : getTextColor({theme, variant, disabled, error, pressed}),
+    color: getTextColor({theme, variant, disabled, error, outline, pressed}),
     width: size === 'mini' ? 13 : 20,
     style: label ? styles[iconPosition] : {},
   });

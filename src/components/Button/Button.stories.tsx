@@ -30,7 +30,12 @@ export default {
       options: ['primary', 'secondary'],
       control: {
         type: 'select',
-        labels: ['primary', 'secondary'],
+      },
+    },
+    shape: {
+      options: ['curved', 'round', 'flat'],
+      control: {
+        type: 'select',
       },
     },
   },
@@ -47,6 +52,7 @@ export const Primary = Template.bind({});
 Primary.args = {
   label: 'Button CTA',
   size: 'medium',
+  shape: 'flat',
   variant: 'primary',
   icon: 'info',
   error: false,
@@ -57,6 +63,7 @@ export const Secondary = Template.bind({});
 Secondary.args = {
   label: 'Button CTA',
   size: 'medium',
+  shape: 'flat',
   variant: 'secondary',
   icon: 'info',
   error: false,
@@ -66,6 +73,7 @@ Secondary.args = {
 export const OnlyIcon = Template.bind({});
 OnlyIcon.args = {
   size: 'medium',
+  shape: 'flat',
   variant: 'primary',
   icon: 'info',
   error: false,
