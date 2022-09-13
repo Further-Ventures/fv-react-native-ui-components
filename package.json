@@ -46,7 +46,7 @@
     ]
   },
   "dependencies": {
-    "@material-symbols/svg-100": "^0.2.9",
+    "@material-symbols/svg-400": "^0.2.10",
     "@storybook/builder-webpack5": "^6.4.22",
     "@storybook/manager-webpack5": "^6.4.22",
     "@stryberventures/gaia-react.tooltip": "^0.0.1",
