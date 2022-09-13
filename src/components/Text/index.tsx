@@ -48,12 +48,7 @@ const Text: React.FC<IConditionalTextProps> = props => {
             ? size + Math.trunc(size / 2)
             : 10),
       };
-  console.log(
-    variantStyles,
-    manualControlPropsToStyles,
-    wrapStyle,
-    style || {},
-  );
+
   return (
     <RNText
       style={[

@@ -5,7 +5,9 @@ import Button from '../Button';
 
 it('should render child', () => {
   const label = 'Button';
-  const screen = render(<Button>{label}</Button>, {wrapper: ThemeProvider});
+  const screen = render(<Button label={label} />, {
+    wrapper: ThemeProvider,
+  });
   expect(screen.getByText(label)).toBeTruthy();
 });
 
@@ -15,9 +17,7 @@ it('should pass theme colors', () => {
   const buttonTestId = 'test-button';
   const screen = render(
     <ThemeProvider initial={newTheme}>
-      <Button variant="contained" testID={buttonTestId}>
-        Button
-      </Button>
+      <Button testID={buttonTestId}>Button</Button>
     </ThemeProvider>,
   );
   const button = screen.getByTestId(buttonTestId);

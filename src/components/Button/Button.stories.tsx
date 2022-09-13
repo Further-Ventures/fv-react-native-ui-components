@@ -24,7 +24,7 @@ const Template: ComponentStory<typeof Button> = args => <Button {...args} />;
 
 export const Primary = Template.bind({});
 Primary.args = {
-  children: 'Button CTA',
+  label: 'Button CTA',
   size: 'medium',
   variant: 'primary',
   icon: 'info',
@@ -33,7 +33,7 @@ Primary.args = {
 
 export const Secondary = Template.bind({});
 Secondary.args = {
-  children: 'Button CTA',
+  label: 'Button CTA',
   size: 'medium',
   variant: 'secondary',
   icon: 'info',
@@ -41,7 +41,7 @@ Secondary.args = {
 
 export const Error = Template.bind({});
 Error.args = {
-  children: 'Button CTA',
+  label: 'Button CTA',
   size: 'medium',
   icon: 'info',
   error: true,
@@ -54,7 +54,7 @@ OnlyIcon.args = {
 
 export const Disabled = Template.bind({});
 Disabled.args = {
-  children: 'Button CTA',
+  label: 'Button CTA',
   size: 'medium',
   icon: 'info',
   disabled: true,

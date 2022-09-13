@@ -15,6 +15,7 @@ import Icon, {IIconProps} from '../Icon';
 export type TSize = 'mini' | 'small' | 'medium' | 'large';
 
 export interface IButtonProps extends PressableProps {
+  label?: string;
   size?: TSize;
   shape?: 'curved' | 'round' | 'flat';
   variant?: 'primary' | 'secondary';
@@ -63,7 +64,7 @@ const textSize: Record<TSize, number> = {
 
 const Button: React.FC<IButtonProps> = ({
   style,
-  children,
+  label,
   icon,
   iconPosition = 'right',
   outline = true,
@@ -79,7 +80,7 @@ const Button: React.FC<IButtonProps> = ({
   const {
     formActions: {submit, reset},
   } = useFormContext();
-  const styles = useStyles(size, variant, error, !children, outline);
+  const styles = useStyles(size, variant, error, !label, outline);
   const {theme} = useTheme();
 
   const handlePress = (e: GestureResponderEvent) => {
@@ -100,7 +101,7 @@ const Button: React.FC<IButtonProps> = ({
         ? theme.primary.contrast
         : getTextColor({theme, variant, disabled, error, pressed}),
     width: size === 'mini' ? 13 : 20,
-    style: children ? styles[iconPosition] : {},
+    style: label ? styles[iconPosition] : {},
   });
 
   return (
@@ -122,13 +123,13 @@ const Button: React.FC<IButtonProps> = ({
           {icon && iconPosition === 'left' && (
             <Icon {...allIconsStyle(pressed)} />
           )}
-          {children ? (
+          {label ? (
             <Text
               size={textSize[size]}
               weight="500"
               color={getTextColor({theme, variant, disabled, error, pressed})}
             >
-              {children}
+              {label}
             </Text>
           ) : null}
           {icon && iconPosition === 'right' && (
