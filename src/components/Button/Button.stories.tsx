@@ -4,7 +4,6 @@ import Button from '.';
 import CenterView from '../../storybook/preview/CenterView';
 import {Platform} from 'react-native';
 import pkg from './package.json';
-import InfoIcon from '../../storybook/preview/Icons/InfoIcon';
 
 export default {
   title: 'Button',
@@ -13,11 +12,33 @@ export default {
     onPress: {
       action: 'pressed the button',
     },
+    size: {
+      options: ['mini', 'small', 'medium', 'large'],
+      control: {
+        type: 'select',
+      },
+    },
+    icon: {
+      options: ['', 'info', 'settings'],
+      control: {
+        type: 'select',
+      },
+    },
+    variant: {
+      options: ['contained', 'outlined', 'empty'],
+      control: {
+        type: 'select',
+      },
+    },
+    shape: {
+      options: ['curved', 'round', 'flat'],
+      control: {
+        type: 'select',
+      },
+    },
   },
   decorators: Platform.OS === 'web' ? null : [CenterView],
-  args: {
-    children: 'Button',
-  },
+  args: {},
   parameters: {
     pkg,
   },
@@ -27,66 +48,32 @@ const Template: ComponentStory<typeof Button> = args => <Button {...args} />;
 
 export const Contained = Template.bind({});
 Contained.args = {
-  children: 'Primary',
-  color: 'primary',
+  label: 'Button CTA',
   size: 'medium',
-  shape: 'round',
+  shape: 'flat',
   variant: 'contained',
+  icon: 'info',
+  error: false,
+  disabled: false,
 };
 
 export const Outlined = Template.bind({});
 Outlined.args = {
-  children: 'Outlined',
-  variant: 'outlined',
-};
-
-export const Secondary = Template.bind({});
-Secondary.args = {
-  children: 'Secondary',
-  color: 'secondary',
-};
-
-export const Mini = Template.bind({});
-Mini.args = {
-  children: 'Mini',
-  size: 'mini',
-};
-
-export const Small = Template.bind({});
-Small.args = {
-  children: 'Small',
-  size: 'small',
-};
-
-export const Large = Template.bind({});
-Large.args = {
-  children: 'Large',
-  size: 'large',
-};
-
-export const Circle = Template.bind({});
-Circle.args = {
-  children: 'Circle',
-  shape: 'circle',
-};
-
-export const Flat = Template.bind({});
-Flat.args = {
-  children: 'Flat',
+  label: 'Button CTA',
+  size: 'medium',
   shape: 'flat',
+  variant: 'outlined',
+  icon: 'info',
+  error: false,
+  disabled: false,
 };
 
-export const LeftIcon = Template.bind({});
-LeftIcon.args = {
-  iconLeft: <InfoIcon />,
-};
-
-export const RightIcon = Template.bind({});
-RightIcon.args = {
-  iconRight: <InfoIcon />,
-};
-
-export const Disabled = Template.bind({});
-Disabled.args = {
-  disabled: true,
+export const OnlyIcon = Template.bind({});
+OnlyIcon.args = {
+  size: 'medium',
+  shape: 'flat',
+  variant: 'contained',
+  icon: 'info',
+  error: false,
+  disabled: false,
 };

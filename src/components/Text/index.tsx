@@ -33,10 +33,11 @@ const Text: React.FC<IConditionalTextProps> = props => {
   } = props;
   const styles = useStyles(color);
   const variantStyles = variant ? styles[variant] : {};
-  const wrapStyle = {flex: 1, flexWrap: 'wrap'} as const;
+  const wrapStyle = {flexShrink: 1} as const;
   const manualControlPropsToStyles = variant
     ? {}
     : {
+        color,
         fontSize: size,
         fontWeight: weight,
         lineHeight:
