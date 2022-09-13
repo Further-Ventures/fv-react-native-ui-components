@@ -3,6 +3,7 @@
   "components": {
     "Theme": "theme",
     "Icon": "Icon",
-    "Text": "text"
+    "Text": "text",
+    "TextArea": "texaArea"
   }
 }
