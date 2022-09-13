@@ -3,17 +3,17 @@ import {
   Pressable,
   PressableProps,
   ViewStyle,
-  TextStyle,
   StyleProp,
-  View,
   GestureResponderEvent,
 } from 'react-native';
 import {useStyles} from './styles';
 import {useTheme, ThemeType} from '../Theme';
 import {useFormContext} from '../Form';
 import Text from '../Text';
+import Icon, {IIconProps} from '../Icon';
 
 export type TSize = 'mini' | 'small' | 'medium' | 'large';
+
 export interface IButtonProps extends PressableProps {
   size?: TSize;
   shape?: 'curved' | 'round' | 'flat';
@@ -21,10 +21,10 @@ export interface IButtonProps extends PressableProps {
   error?: boolean;
   type?: 'submit' | 'reset';
   disabled?: boolean;
-  iconLeft?: React.ReactNode;
-  iconRight?: React.ReactNode;
+  icon?: IIconProps['name'];
+  iconPosition?: 'left' | 'right';
+  outline?: boolean;
   style?: StyleProp<ViewStyle>;
-  textStyle?: StyleProp<TextStyle>;
 }
 
 const getTextColor = ({
@@ -64,13 +64,13 @@ const textSize: Record<TSize, number> = {
 const Button: React.FC<IButtonProps> = ({
   style,
   children,
-  iconLeft,
-  iconRight,
+  icon,
+  iconPosition = 'right',
+  outline = true,
   variant = 'primary',
   error = false,
   size = 'medium',
   shape = 'round',
-  textStyle,
   disabled = false,
   onPress,
   type,
@@ -79,13 +79,8 @@ const Button: React.FC<IButtonProps> = ({
   const {
     formActions: {submit, reset},
   } = useFormContext();
-  const styles = useStyles(size, variant, error);
+  const styles = useStyles(size, variant, error, !children, outline);
   const {theme} = useTheme();
-
-  const renderIcon = (
-    position: 'leftIcon' | 'rightIcon',
-    icon?: React.ReactNode,
-  ) => icon && <View style={styles[position]}>{icon}</View>;
 
   const handlePress = (e: GestureResponderEvent) => {
     switch (type) {
@@ -97,6 +92,16 @@ const Button: React.FC<IButtonProps> = ({
         return onPress && onPress(e);
     }
   };
+
+  const allIconsStyle = (pressed: boolean) => ({
+    name: icon || '',
+    color:
+      variant === 'secondary' && !outline
+        ? theme.primary.contrast
+        : getTextColor({theme, variant, disabled, error, pressed}),
+    width: size === 'mini' ? 13 : 20,
+    style: children ? styles[iconPosition] : {},
+  });
 
   return (
     <Pressable
@@ -114,17 +119,21 @@ const Button: React.FC<IButtonProps> = ({
     >
       {({pressed}) => (
         <>
-          {renderIcon('leftIcon', iconLeft)}
-
-          <Text
-            size={textSize[size]}
-            weight="500"
-            color={getTextColor({theme, variant, disabled, error, pressed})}
-            style={[textStyle]}
-          >
-            {children}
-          </Text>
-          {renderIcon('rightIcon', iconRight)}
+          {icon && iconPosition === 'left' && (
+            <Icon {...allIconsStyle(pressed)} />
+          )}
+          {children ? (
+            <Text
+              size={textSize[size]}
+              weight="500"
+              color={getTextColor({theme, variant, disabled, error, pressed})}
+            >
+              {children}
+            </Text>
+          ) : null}
+          {icon && iconPosition === 'right' && (
+            <Icon {...allIconsStyle(pressed)} />
+          )}
         </>
       )}
     </Pressable>

@@ -16,7 +16,14 @@ const curvedRadius = {
 };
 
 export const useStyles = createUseStyles(
-  (theme, size: TSize, variant: IButtonProps['variant'], error: boolean) => {
+  (
+    theme,
+    size: TSize,
+    variant: IButtonProps['variant'],
+    error: boolean,
+    onlyIcon: boolean,
+    outline: boolean,
+  ) => {
     //Generate different styles based on button type
     const buttonVariantStyle = (): IButtonTypeStyle => {
       const primaryStyle: IButtonTypeStyle = {
@@ -38,11 +45,15 @@ export const useStyles = createUseStyles(
           return {
             button: {
               backgroundColor: theme.background.primary,
-              borderWidth: 2,
+              borderWidth: outline ? 2 : 0,
               borderColor: error ? theme.error.main : theme.primary.main,
             },
             buttonPressed: {
-              backgroundColor: error ? theme.error.light : theme.primary.light,
+              backgroundColor: error
+                ? theme.error.light
+                : outline
+                ? theme.primary.light
+                : theme.grey.main,
             },
             buttonDisabled: {
               borderColor: theme.grey.light,
@@ -69,29 +80,41 @@ export const useStyles = createUseStyles(
         ...buttonVariantStyle().buttonDisabled,
       },
       mini: {
-        paddingHorizontal: 8,
-        paddingVertical: 4,
+        ...(onlyIcon
+          ? {width: 24, height: 24}
+          : {
+              paddingHorizontal: 8,
+              paddingVertical: 4,
+            }),
       },
       small: {
-        paddingHorizontal: 16,
-        paddingVertical: 8,
+        ...(onlyIcon
+          ? {width: 40, height: 40}
+          : {
+              paddingHorizontal: 16,
+              paddingVertical: 8,
+            }),
       },
       medium: {
-        paddingHorizontal: 24,
-        paddingVertical: 16,
+        ...(onlyIcon
+          ? {width: 56, height: 56}
+          : {
+              paddingHorizontal: 24,
+              paddingVertical: 16,
+            }),
       },
       large: {
-        paddingHorizontal: 32,
-        paddingVertical: 24,
+        ...(onlyIcon
+          ? {width: 72, height: 72}
+          : {
+              paddingHorizontal: 32,
+              paddingVertical: 24,
+            }),
       },
-      leftIcon: {
-        width: size === 'mini' ? 14 : 20,
-        height: size === 'mini' ? 14 : 20,
+      left: {
         marginRight: 10,
       },
-      rightIcon: {
-        width: size === 'mini' ? 14 : 20,
-        height: size === 'mini' ? 14 : 20,
+      right: {
         marginLeft: 10,
       },
       curved: {

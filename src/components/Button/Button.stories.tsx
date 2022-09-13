@@ -14,9 +14,7 @@ export default {
     },
   },
   decorators: Platform.OS === 'web' ? null : [CenterView],
-  args: {
-    children: 'Button',
-  },
+  args: {},
   parameters: {
     pkg,
   },
@@ -24,69 +22,40 @@ export default {
 
 const Template: ComponentStory<typeof Button> = args => <Button {...args} />;
 
-export const Work = Template.bind({});
-Work.args = {
+export const Primary = Template.bind({});
+Primary.args = {
   children: 'Button CTA',
-  size: 'large',
-  shape: 'flat',
+  size: 'medium',
   variant: 'primary',
-  // disabled: true,
-  // error: true,
+  icon: 'info',
+  outline: false,
 };
 
-// export const Outlined = Template.bind({});
-// Outlined.args = {
-//   children: 'Outlined',
-//   variant: 'outlined',
-// };
+export const Secondary = Template.bind({});
+Secondary.args = {
+  children: 'Button CTA',
+  size: 'medium',
+  variant: 'secondary',
+  icon: 'info',
+};
 
-// export const Secondary = Template.bind({});
-// Secondary.args = {
-//   children: 'Secondary',
-//   color: 'secondary',
-// };
+export const Error = Template.bind({});
+Error.args = {
+  children: 'Button CTA',
+  size: 'medium',
+  icon: 'info',
+  error: true,
+};
+export const OnlyIcon = Template.bind({});
+OnlyIcon.args = {
+  size: 'medium',
+  icon: 'info',
+};
 
-// export const Mini = Template.bind({});
-// Mini.args = {
-//   children: 'Mini',
-//   size: 'mini',
-// };
-
-// export const Small = Template.bind({});
-// Small.args = {
-//   children: 'Small',
-//   size: 'small',
-// };
-
-// export const Large = Template.bind({});
-// Large.args = {
-//   children: 'Large',
-//   size: 'large',
-// };
-
-// export const Circle = Template.bind({});
-// Circle.args = {
-//   children: 'Circle',
-//   shape: 'circle',
-// };
-
-// export const Flat = Template.bind({});
-// Flat.args = {
-//   children: 'Flat',
-//   shape: 'flat',
-// };
-
-// export const LeftIcon = Template.bind({});
-// LeftIcon.args = {
-//   iconLeft: <InfoIcon />,
-// };
-
-// export const RightIcon = Template.bind({});
-// RightIcon.args = {
-//   iconRight: <InfoIcon />,
-// };
-
-// export const Disabled = Template.bind({});
-// Disabled.args = {
-//   disabled: true,
-// };
+export const Disabled = Template.bind({});
+Disabled.args = {
+  children: 'Button CTA',
+  size: 'medium',
+  icon: 'info',
+  disabled: true,
+};

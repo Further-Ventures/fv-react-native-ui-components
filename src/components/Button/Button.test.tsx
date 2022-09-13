@@ -1,7 +1,6 @@
 import React from 'react';
 import {render, fireEvent} from '@testing-library/react-native';
 import Button from '.';
-import InfoIcon from '../../storybook/preview/Icons/InfoIcon';
 
 it('should be rendered', () => {
   const label = 'Test button';
@@ -29,12 +28,4 @@ it('should not call onPress handler when disabled', () => {
   const button = screen.getByText(label);
   fireEvent.press(button);
   expect(onPress).not.toHaveBeenCalled();
-});
-
-it('should contain the icon', () => {
-  const screen = render(
-    <Button iconRight={<InfoIcon testID="test-svg" />}>Button</Button>,
-  );
-  const icon = screen.getByTestId('test-svg');
-  expect(icon).toBeTruthy();
 });
