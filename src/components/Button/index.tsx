@@ -120,7 +120,7 @@ const Button: React.FC<IButtonProps> = ({
     >
       {({pressed}) => (
         <>
-          {icon && iconPosition === 'left' && (
+          {!!icon && iconPosition === 'left' && (
             <Icon {...allIconsStyle(pressed)} />
           )}
           {label ? (
@@ -132,7 +132,7 @@ const Button: React.FC<IButtonProps> = ({
               {label}
             </Text>
           ) : null}
-          {icon && iconPosition === 'right' && (
+          {!!icon && iconPosition === 'right' && (
             <Icon {...allIconsStyle(pressed)} />
           )}
         </>

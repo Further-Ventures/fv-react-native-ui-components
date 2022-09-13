@@ -12,6 +12,27 @@ export default {
     onPress: {
       action: 'pressed the button',
     },
+    size: {
+      options: ['mini', 'small', 'medium', 'large'],
+      control: {
+        type: 'select',
+        labels: ['mini', 'small', 'medium', 'large'],
+      },
+    },
+    icon: {
+      options: ['', 'info', 'settings'],
+      control: {
+        type: 'select',
+        labels: ['none', 'info', 'settings'],
+      },
+    },
+    variant: {
+      options: ['primary', 'secondary'],
+      control: {
+        type: 'select',
+        labels: ['primary', 'secondary'],
+      },
+    },
   },
   decorators: Platform.OS === 'web' ? null : [CenterView],
   args: {},
@@ -28,7 +49,8 @@ Primary.args = {
   size: 'medium',
   variant: 'primary',
   icon: 'info',
-  outline: false,
+  error: false,
+  disabled: false,
 };
 
 export const Secondary = Template.bind({});
@@ -37,25 +59,16 @@ Secondary.args = {
   size: 'medium',
   variant: 'secondary',
   icon: 'info',
+  error: false,
+  disabled: false,
 };
 
-export const Error = Template.bind({});
-Error.args = {
-  label: 'Button CTA',
-  size: 'medium',
-  icon: 'info',
-  error: true,
-};
 export const OnlyIcon = Template.bind({});
 OnlyIcon.args = {
   size: 'medium',
+  variant: 'primary',
   icon: 'info',
-};
-
-export const Disabled = Template.bind({});
-Disabled.args = {
-  label: 'Button CTA',
-  size: 'medium',
-  icon: 'info',
-  disabled: true,
+  error: false,
+  disabled: false,
+  outline: true,
 };
