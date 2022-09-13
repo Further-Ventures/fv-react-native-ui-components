@@ -35,7 +35,6 @@ export interface IInputProps extends TextInputProps {
   disabled?: boolean;
   controlled?: boolean;
   rightContent?: IBaseInputLayoutProps['rightContent'];
-  color?: IBaseInputLayoutProps['color'];
   mask?: string;
   prefix?: string;
   prefixStyle?: StyleProp<TextStyle>;
@@ -63,7 +62,6 @@ const Input = forwardRef<TextInput, IInputProps>(
       controlled,
       maxLength,
       rightContent,
-      color,
       mask,
       prefix,
       prefixStyle,
@@ -147,7 +145,6 @@ const Input = forwardRef<TextInput, IInputProps>(
         showLength={showLength}
         currentValueLength={controlled ? value?.length : internalValue?.length}
         rightContent={rightContent}
-        color={color}
         hintStyle={hintStyle}
         errorStyle={errorStyle}
       >

@@ -19,7 +19,6 @@ export interface IBaseInputLayoutProps extends PressableProps {
   hintStyle?: StyleProp<TextStyle>;
   errorStyle?: StyleProp<TextStyle>;
   wrapperStyle?: StyleProp<ViewStyle>;
-  color?: 'primary' | 'secondary';
   error?: string;
   disabled?: boolean;
   hint?: string;
@@ -45,7 +44,6 @@ const BaseInputLayout = React.forwardRef<View, IBaseInputLayoutProps>(
       wrapperStyle,
       disabled,
       hint,
-      color = 'primary',
       rightContent,
       currentValueLength = 0,
       maxValueLength,
@@ -60,7 +58,7 @@ const BaseInputLayout = React.forwardRef<View, IBaseInputLayoutProps>(
       width: 0,
       height: 0,
     });
-    const styles = useStyles(inputSize, color);
+    const styles = useStyles(inputSize);
     return (
       <View style={style}>
         <Pressable
