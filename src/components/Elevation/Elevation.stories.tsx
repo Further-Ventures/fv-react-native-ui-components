@@ -29,56 +29,71 @@ const Template: ComponentStory<typeof Elevation> = ({children}) => (
   >
     <Elevation
       variant="extraLight"
-      margin={25}
-      width={216}
-      height={216}
-      justifyContent="center"
-      alignItems="center"
-      borderRadius={10}
+      // eslint-disable-next-line react-native/no-inline-styles
+      style={{
+        margin: 25,
+        width: 216,
+        height: 216,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 10,
+      }}
     >
       {children}
     </Elevation>
     <Elevation
       variant="light"
-      margin={25}
-      width={216}
-      height={216}
-      justifyContent="center"
-      alignItems="center"
-      borderRadius={10}
+      // eslint-disable-next-line react-native/no-inline-styles
+      style={{
+        margin: 25,
+        width: 216,
+        height: 216,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 10,
+      }}
     >
       {children}
     </Elevation>
     <Elevation
       variant="medium"
-      margin={25}
-      width={216}
-      height={216}
-      justifyContent="center"
-      alignItems="center"
-      borderRadius={10}
+      // eslint-disable-next-line react-native/no-inline-styles
+      style={{
+        margin: 25,
+        width: 216,
+        height: 216,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 10,
+      }}
     >
       {children}
     </Elevation>
     <Elevation
       variant="heavy"
-      margin={25}
-      width={216}
-      height={216}
-      justifyContent="center"
-      alignItems="center"
-      borderRadius={10}
+      // eslint-disable-next-line react-native/no-inline-styles
+      style={{
+        margin: 25,
+        width: 216,
+        height: 216,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 10,
+      }}
     >
       {children}
     </Elevation>
     <Elevation
       variant="extraHeavy"
-      margin={25}
-      width={216}
-      height={216}
-      justifyContent="center"
-      alignItems="center"
-      borderRadius={10}
+      // eslint-disable-next-line react-native/no-inline-styles
+      style={{
+        margin: 25,
+        width: 216,
+        height: 216,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 10,
+      }}
     >
       {children}
     </Elevation>

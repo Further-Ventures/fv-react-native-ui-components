@@ -2,8 +2,8 @@ import {createUseStyles} from '../Theme';
 
 export default createUseStyles(theme => ({
   wrapper: {
-    shadowColor: theme.default.dark,
-    backgroundColor: theme.background.main,
+    shadowColor: theme.text.hint,
+    backgroundColor: theme.background.primary,
   },
   extraLight: {
     shadowOffset: {width: 0, height: 1},

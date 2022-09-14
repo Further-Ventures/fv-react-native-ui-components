@@ -13,7 +13,7 @@ it('should render medium', () => {
 
   const element = getByText(label).parent;
   expect(element?.props.style[1].shadowRadius).toBe(9);
-  expect(element?.props.style[1].elevetion).toBe(9);
+  expect(element?.props.style[1].elevation).toBe(13);
 });
 it('should render extraLight', () => {
   const label = 'Some Text';
@@ -25,7 +25,7 @@ it('should render extraLight', () => {
 
   const element = getByText(label).parent;
   expect(element?.props.style[1].shadowRadius).toBe(3);
-  expect(element?.props.style[1].elevetion).toBe(3);
+  expect(element?.props.style[1].elevation).toBe(3);
 });
 it('should render light', () => {
   const label = 'Some Text';
@@ -37,7 +37,7 @@ it('should render light', () => {
 
   const element = getByText(label).parent;
   expect(element?.props.style[1].shadowRadius).toBe(7);
-  expect(element?.props.style[1].elevetion).toBe(6);
+  expect(element?.props.style[1].elevation).toBe(8);
 });
 it('should render heavy', () => {
   const label = 'Some Text';
@@ -49,7 +49,7 @@ it('should render heavy', () => {
 
   const element = getByText(label).parent;
   expect(element?.props.style[1].shadowRadius).toBe(13);
-  expect(element?.props.style[1].elevetion).toBe(12);
+  expect(element?.props.style[1].elevation).toBe(18);
 });
 it('should render extraHeavy', () => {
   const label = 'Some Text';
@@ -61,5 +61,5 @@ it('should render extraHeavy', () => {
 
   const element = getByText(label).parent;
   expect(element?.props.style[1].shadowRadius).toBe(16);
-  expect(element?.props.style[1].elevetion).toBe(16);
+  expect(element?.props.style[1].elevation).toBe(23);
 });
