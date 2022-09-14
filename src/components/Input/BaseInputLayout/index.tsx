@@ -17,7 +17,6 @@ export interface IBaseInputLayoutProps extends PressableProps {
   label?: string;
   isFocused?: boolean;
   style?: StyleProp<ViewStyle>;
-  color?: 'primary' | 'secondary';
   error?: string;
   disabled?: boolean;
   hint?: string;
@@ -45,7 +44,6 @@ const BaseInputLayout = React.forwardRef<View, IBaseInputLayoutProps>(
       style,
       disabled,
       hint,
-      color = 'primary',
       sideContent,
       currentValueLength = 0,
       maxValueLength,
@@ -69,7 +67,7 @@ const BaseInputLayout = React.forwardRef<View, IBaseInputLayoutProps>(
 
     const {theme} = useTheme();
 
-    const styles = useStyles(inputSize, color);
+    const styles = useStyles();
 
     useEffect(() => {
       if (React.isValidElement(sideContent) && sideContent?.type === Button) {
@@ -77,12 +75,13 @@ const BaseInputLayout = React.forwardRef<View, IBaseInputLayoutProps>(
         if (error) {
           borderColor = theme.error.dark;
         } else if (disabled) {
-          borderColor = theme.default.light;
+          borderColor = theme.grey.light;
         }
 
         const updatedContent = React.cloneElement(sideContent, {
           style: {borderColor: borderColor},
-          textStyle: {color: borderColor},
+          error: Boolean(error),
+          disabled: Boolean(disabled),
         });
         setRightContent(updatedContent);
       }

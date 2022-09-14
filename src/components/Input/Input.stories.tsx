@@ -74,27 +74,10 @@ export const Default = () => {
         error={'This is an error text to help user.'}
       />
       <View style={{height: 20}} />
-      <Text>{'E.2. Error Default with hint text'}</Text>
-      <Input
-        label={'Label'}
-        placeholder={'Type something...'}
-        hint={'This is a hint text to help user.'}
-        error={'This is an error text to help user.'}
-      />
-      <View style={{height: 20}} />
       <Text>{'E.3. Error Filled'}</Text>
       <Input
         label={'Label'}
         placeholder={'Type something...'}
-        value={'Text Input'}
-        error={'This is an error text to help user.'}
-      />
-      <View style={{height: 20}} />
-      <Text>{'E.4. Error Filled with hint text'}</Text>
-      <Input
-        label={'Label'}
-        placeholder={'Type something...'}
-        hint={'This is a hint text to help user.'}
         value={'Text Input'}
         error={'This is an error text to help user.'}
       />
@@ -171,29 +154,10 @@ export const WithIcon = () => {
         sideContent={<Icon name="info" height={20} width={20} />}
       />
       <View style={{height: 20}} />
-      <Text>{'E.2. Error Default with hint text'}</Text>
-      <Input
-        label={'Label'}
-        placeholder={'Type something...'}
-        hint={'This is a hint text to help user.'}
-        error={'This is an error text to help user.'}
-        sideContent={<Icon name="info" height={20} width={20} />}
-      />
-      <View style={{height: 20}} />
       <Text>{'E.3. Error Filled'}</Text>
       <Input
         label={'Label'}
         placeholder={'Type something...'}
-        value={'Text Input'}
-        error={'This is an error text to help user.'}
-        sideContent={<Icon name="info" height={20} width={20} />}
-      />
-      <View style={{height: 20}} />
-      <Text>{'E.4. Error Filled with hint text'}</Text>
-      <Input
-        label={'Label'}
-        placeholder={'Type something...'}
-        hint={'This is a hint text to help user.'}
         value={'Text Input'}
         error={'This is an error text to help user.'}
         sideContent={<Icon name="info" height={20} width={20} />}
@@ -211,9 +175,12 @@ export const WithButtons = () => {
         label={'Label'}
         placeholder={'Type something...'}
         sideContent={
-          <Button variant={'outlined'} size={'mini'}>
-            Button CTA
-          </Button>
+          <Button
+            variant={'outlined'}
+            shape={'curved'}
+            label={'Button CTA'}
+            size={'mini'}
+          />
         }
       />
       <View style={{height: 20}} />
@@ -223,9 +190,12 @@ export const WithButtons = () => {
         placeholder={'Type something...'}
         hint={'This is a hint text to help user.'}
         sideContent={
-          <Button variant={'outlined'} size={'mini'}>
-            Button CTA
-          </Button>
+          <Button
+            variant={'outlined'}
+            shape={'curved'}
+            label={'Button CTA'}
+            size={'mini'}
+          />
         }
       />
       <View style={{height: 20}} />
@@ -235,9 +205,12 @@ export const WithButtons = () => {
         placeholder={'Type something...'}
         autoFocus={true}
         sideContent={
-          <Button variant={'outlined'} size={'mini'}>
-            Button CTA
-          </Button>
+          <Button
+            variant={'outlined'}
+            shape={'curved'}
+            label={'Button CTA'}
+            size={'mini'}
+          />
         }
       />
       <View style={{height: 20}} />
@@ -247,9 +220,12 @@ export const WithButtons = () => {
         placeholder={'Type something...'}
         value={'Text Input'}
         sideContent={
-          <Button variant={'outlined'} size={'mini'}>
-            Button CTA
-          </Button>
+          <Button
+            variant={'outlined'}
+            shape={'curved'}
+            label={'Button CTA'}
+            size={'mini'}
+          />
         }
       />
       <View style={{height: 20}} />
@@ -260,9 +236,12 @@ export const WithButtons = () => {
         value={'Text Input'}
         hint={'This is a hint text to help user.'}
         sideContent={
-          <Button variant={'outlined'} size={'mini'}>
-            Button CTA
-          </Button>
+          <Button
+            variant={'outlined'}
+            shape={'curved'}
+            label={'Button CTA'}
+            size={'mini'}
+          />
         }
       />
       <View style={{height: 20}} />
@@ -272,9 +251,12 @@ export const WithButtons = () => {
         placeholder={'Type something...'}
         disabled={true}
         sideContent={
-          <Button variant={'outlined'} size={'mini'}>
-            Button CTA
-          </Button>
+          <Button
+            variant={'outlined'}
+            shape={'curved'}
+            label={'Button CTA'}
+            size={'mini'}
+          />
         }
       />
       <View style={{height: 20}} />
@@ -285,9 +267,12 @@ export const WithButtons = () => {
         hint={'This is a hint text to help user.'}
         disabled={true}
         sideContent={
-          <Button variant={'outlined'} size={'mini'}>
-            Button CTA
-          </Button>
+          <Button
+            variant={'outlined'}
+            shape={'curved'}
+            label={'Button CTA'}
+            size={'mini'}
+          />
         }
       />
       <View style={{height: 20}} />
@@ -297,22 +282,12 @@ export const WithButtons = () => {
         placeholder={'Type something...'}
         error={'This is an error text to help user.'}
         sideContent={
-          <Button variant={'outlined'} size={'mini'}>
-            Button CTA
-          </Button>
-        }
-      />
-      <View style={{height: 20}} />
-      <Text>{'E.2. Error Default with hint text'}</Text>
-      <Input
-        label={'Label'}
-        placeholder={'Type something...'}
-        hint={'This is a hint text to help user.'}
-        error={'This is an error text to help user.'}
-        sideContent={
-          <Button variant={'outlined'} size={'mini'}>
-            Button CTA
-          </Button>
+          <Button
+            variant={'outlined'}
+            shape={'curved'}
+            label={'Button CTA'}
+            size={'mini'}
+          />
         }
       />
       <View style={{height: 20}} />
@@ -323,23 +298,12 @@ export const WithButtons = () => {
         value={'Text Input'}
         error={'This is an error text to help user.'}
         sideContent={
-          <Button variant={'outlined'} size={'mini'}>
-            Button CTA
-          </Button>
-        }
-      />
-      <View style={{height: 20}} />
-      <Text>{'E.4. Error Filled with hint text'}</Text>
-      <Input
-        label={'Label'}
-        placeholder={'Type something...'}
-        hint={'This is a hint text to help user.'}
-        value={'Text Input'}
-        error={'This is an error text to help user.'}
-        sideContent={
-          <Button variant={'outlined'} size={'mini'}>
-            Button CTA
-          </Button>
+          <Button
+            variant={'outlined'}
+            shape={'curved'}
+            label={'Button CTA'}
+            size={'mini'}
+          />
         }
       />
     </ScrollView>
