@@ -50,4 +50,9 @@ export default createUseStyles(theme => ({
     fontFamily: theme.fontFamily.regular,
     fontSize: 12,
   },
+  textArea: {
+    padding: 0,
+    height: 170,
+    textAlignVertical: 'top',
+  },
 }));

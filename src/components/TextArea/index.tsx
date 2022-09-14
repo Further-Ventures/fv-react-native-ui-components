@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import {useTheme} from '../Theme';
 import ErrorMessage from '../ErrorMessage';
-import IconWarning from './IconWarning';
+import Icon from '../Icon';
 
 export interface IManualControlProps extends TextInputProps {
   error?: string;
@@ -70,6 +70,7 @@ const TextArea: React.FC<IManualControlProps> = props => {
           placeholderTextColor={theme.text.disabled}
           placeholder="Type something..."
           multiline
+          style={styles.textArea}
           editable={!disabled}
           onChangeText={onChangeTextWrapper}
           {...other}
@@ -83,7 +84,14 @@ const TextArea: React.FC<IManualControlProps> = props => {
       >
         {error && !disabled && (
           <View style={styles.errorContainer}>
-            <IconWarning />
+            <Icon
+              width={20}
+              height={20}
+              name="error"
+              filled
+              color={theme.error.main}
+            />
+
             {errorText && (
               <ErrorMessage style={styles.errorMessage} error={errorText} />
             )}
