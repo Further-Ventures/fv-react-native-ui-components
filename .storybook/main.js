@@ -7,6 +7,7 @@ module.exports = {
     '../src/components/Icon/*.stories.tsx',
     '../src/components/Theme/*.stories.tsx',
     '../src/components/Text/*.stories.tsx',
+    '../src/components/Button/*.stories.tsx',
   ],
   addons: [
     '@storybook/addon-links',

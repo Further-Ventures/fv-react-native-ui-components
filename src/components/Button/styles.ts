@@ -1,53 +1,75 @@
-import {TextStyle, ViewStyle} from 'react-native';
+import {ViewStyle} from 'react-native';
 import {createUseStyles} from '../Theme';
-import {IButtonProps} from './index';
+import {IButtonProps, TSize} from './index';
 
 interface IButtonTypeStyle {
   button: ViewStyle;
   buttonPressed: ViewStyle;
-  text: TextStyle;
+  buttonDisabled: ViewStyle;
 }
+
+const curvedRadius = {
+  mini: 4,
+  small: 6,
+  medium: 8,
+  large: 10,
+};
 
 export const useStyles = createUseStyles(
   (
     theme,
-    color: IButtonProps['color'],
-    size: IButtonProps['size'],
+    size: TSize,
     variant: IButtonProps['variant'],
+    error: boolean,
+    onlyIcon: boolean,
   ) => {
     //Generate different styles based on button type
     const buttonVariantStyle = (): IButtonTypeStyle => {
-      const containedStyle: IButtonTypeStyle = {
+      const primaryStyle: IButtonTypeStyle = {
         button: {
-          backgroundColor: theme[color!].main,
+          backgroundColor: error ? theme.error.main : theme.primary.main,
         },
         buttonPressed: {
-          backgroundColor: theme[color!].dark,
+          backgroundColor: error ? theme.error.dark : theme.primary.dark,
         },
-        text: {
-          color: theme.primary.contrast,
+        buttonDisabled: {
+          backgroundColor: theme.grey.extraLight,
         },
       };
+
       switch (variant) {
         case 'contained':
-          return containedStyle;
+          return primaryStyle;
         case 'outlined':
           return {
             button: {
-              backgroundColor: 'transparent',
+              backgroundColor: theme.background.primary,
               borderWidth: 2,
-              borderColor: theme[color!].main,
+              borderColor: error ? theme.error.main : theme.primary.main,
             },
             buttonPressed: {
-              backgroundColor: theme[color!].light,
-              borderWidth: 0,
+              backgroundColor: error ? theme.error.light : theme.primary.light,
             },
-            text: {
-              color: theme[color!].main,
+            buttonDisabled: {
+              borderColor: theme.grey.light,
+            },
+          };
+        case 'empty':
+          return {
+            button: {
+              backgroundColor: theme.background.primary,
+              borderWidth: 0,
+              borderColor: error ? theme.error.main : theme.primary.main,
+            },
+            buttonPressed: {
+              backgroundColor: error ? theme.error.light : theme.grey.main,
+            },
+            buttonDisabled: {
+              borderColor: theme.grey.light,
             },
           };
         default:
-          return containedStyle;
+          return primaryStyle;
       }
     };
 
@@ -55,55 +77,63 @@ export const useStyles = createUseStyles(
       button: {
         alignItems: 'center',
         justifyContent: 'center',
+        alignSelf: 'baseline',
         flexDirection: 'row',
         ...buttonVariantStyle().button,
       },
       buttonPressed: {
         ...buttonVariantStyle().buttonPressed,
       },
-      text: {
-        fontSize: size === 'mini' ? 10 : 16,
-        fontFamily: theme.fontFamily.regular,
-        fontWeight: '700',
-        ...buttonVariantStyle().text,
-      },
+
       disabled: {
-        opacity: 0.3,
+        ...buttonVariantStyle().buttonDisabled,
       },
       mini: {
-        paddingHorizontal: 8,
-        paddingVertical: 4,
+        ...(onlyIcon
+          ? {width: 24, height: 24}
+          : {
+              paddingHorizontal: 8,
+              paddingVertical: 4,
+            }),
       },
       small: {
-        paddingHorizontal: 16,
-        paddingVertical: 8,
+        ...(onlyIcon
+          ? {width: 40, height: 40}
+          : {
+              paddingHorizontal: 16,
+              paddingVertical: 8,
+            }),
       },
       medium: {
-        paddingHorizontal: 24,
-        paddingVertical: 16,
+        ...(onlyIcon
+          ? {width: 56, height: 56}
+          : {
+              paddingHorizontal: 24,
+              paddingVertical: 16,
+            }),
       },
       large: {
-        paddingHorizontal: 32,
-        paddingVertical: 24,
+        ...(onlyIcon
+          ? {width: 72, height: 72}
+          : {
+              paddingHorizontal: 32,
+              paddingVertical: 24,
+            }),
       },
-      leftIcon: {
-        width: size === 'mini' ? 14 : 20,
-        height: size === 'mini' ? 14 : 20,
+      left: {
         marginRight: 10,
       },
-      rightIcon: {
-        width: size === 'mini' ? 14 : 20,
-        height: size === 'mini' ? 14 : 20,
+      right: {
         marginLeft: 10,
+      },
+      curved: {
+        borderRadius: curvedRadius[size],
+      },
+      round: {
+        borderRadius: 100,
       },
       flat: {
         borderRadius: 0,
-      },
-      round: {
-        borderRadius: 4,
-      },
-      circle: {
-        borderRadius: 100,
       },
     };
   },
