@@ -1627,10 +1627,10 @@
     "@jridgewell/resolve-uri" "^3.0.3"
     "@jridgewell/sourcemap-codec" "^1.4.10"
 
-"@material-symbols/svg-100@^0.2.9":
-  version "0.2.9"
-  resolved "https://registry.yarnpkg.com/@material-symbols/svg-100/-/svg-100-0.2.9.tgz#7451f6bd43e3a1f8213e44a50ee9c82d1c5a5f3c"
-  integrity sha512-7A+/xrjz/FAM2F61F7rK40uZFvQgPqhkVsrsbZ31RejqeG+yoF/KC96AiG6OOMHTfgNMOTYs4PrCrtohSLU33Q==
+"@material-symbols/svg-400@^0.2.10":
+  version "0.2.10"
+  resolved "https://registry.yarnpkg.com/@material-symbols/svg-400/-/svg-400-0.2.10.tgz#c1435e388a09d87266b2acc2d0d35117f7be3643"
+  integrity sha512-OnIR/zH2d7WOOW6nhBy1WbHouwDDQlxz7aB1Crm6C8YKwEXOsjjHzSl7c4UHOC0WI8yUnx9HvT+4VMaZbubBng==
 
 "@mdx-js/loader@^1.6.22":
   version "1.6.22"

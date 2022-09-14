@@ -25,26 +25,28 @@ const Text: React.FC<IConditionalTextProps> = props => {
     variant,
     style,
     size,
-    weight,
+    weight = '500',
     height,
     color = '#000',
     children,
     ...rest
   } = props;
-  const styles = useStyles();
+  const styles = useStyles(color);
   const variantStyles = variant ? styles[variant] : {};
-  const colorStyle = {color};
-  const wrapStyle = {flex: 1, flexWrap: 'wrap'} as const;
+  const wrapStyle = {flexShrink: 1} as const;
   const manualControlPropsToStyles = variant
     ? {}
     : {
+        color,
         fontSize: size,
-        fontWeight: weight || '500',
+        fontWeight: weight,
         lineHeight:
           height ||
           (size && size in sizeToHeightMap
             ? sizeToHeightMap[size]
-            : sizeToHeightMap[48]),
+            : size
+            ? size + Math.trunc(size / 2)
+            : 10),
       };
 
   return (
@@ -52,9 +54,8 @@ const Text: React.FC<IConditionalTextProps> = props => {
       style={[
         variantStyles,
         manualControlPropsToStyles,
-        colorStyle,
         wrapStyle,
-        style,
+        style || {},
       ]}
       {...rest}
     >

@@ -4,6 +4,7 @@
     "Theme": "theme",
     "Icon": "Icon",
     "Text": "text",
-    "TextArea": "texaArea"
+    "TextArea": "texaArea",
+    "Button": "button"
   }
 }

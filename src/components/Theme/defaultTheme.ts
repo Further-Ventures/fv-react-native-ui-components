@@ -25,6 +25,7 @@ export const defaultTheme = {
     light: '#D1D3FD',
     dark: '#17019C',
     contrast: '#000000',
+    contrast2: '#FFFFFF',
     medium: '#1E00D3',
   },
   error: {
@@ -85,17 +86,17 @@ export const defaultTheme = {
   },
 
   // TODO: remove all vars below after the current component design is ready
-  default: {
-    dark: '#667085',
-    main: '#C7CCD3',
-    light: '#E4E7EC',
-    extraLight: '#EFF1F3',
-  },
+  // default: {
+  //   dark: '#667085',
+  //   main: '#C7CCD3',
+  //   light: '#E4E7EC',
+  //   extraLight: '#EFF1F3',
+  // },
 
-  secondary: {
-    main: '#58329A',
-    light: '#EDE7F4',
-    dark: '#3D2181',
-    contrast: '#FFF',
-  },
+  // secondary: {
+  //   main: '#58329A',
+  //   light: '#EDE7F4',
+  //   dark: '#3D2181',
+  //   contrast: '#FFF',
+  // },
 };
