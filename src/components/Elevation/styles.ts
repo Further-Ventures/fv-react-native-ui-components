@@ -2,7 +2,7 @@ import {createUseStyles} from '../Theme';
 
 export default createUseStyles(theme => ({
   wrapper: {
-    shadowColor: theme.text.hint,
+    shadowColor: theme.grey.dark,
     backgroundColor: theme.background.primary,
   },
   extraLight: {
