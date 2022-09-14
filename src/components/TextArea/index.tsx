@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import useStyles from './styles';
 import {
   NativeSyntheticEvent,
@@ -13,41 +13,40 @@ import ErrorMessage from '../ErrorMessage';
 import Icon from '../Icon';
 
 export interface IManualControlProps extends TextInputProps {
-  error?: string;
+  error?: boolean;
   errorText?: string;
   disabled?: boolean;
   textLimit?: number;
+  name?: string;
 }
 
 const TextArea: React.FC<IManualControlProps> = props => {
   const {
-    error = false,
     errorText,
     disabled = false,
     textLimit,
+    name = 'Label',
     onChangeText,
     onFocus,
     onBlur,
+    value,
     ...other
   } = props;
   const [focused, setFocused] = useState(false);
-  const [limit, setLimit] = useState(0);
   const styles = useStyles();
   const {theme} = useTheme();
 
   const onFocusWrapper = (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
     setFocused(true);
-    onFocus && onFocus(e);
+    onFocus?.(e);
   };
   const onBlurWrapper = (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
     setFocused(false);
-    onBlur && onBlur(e);
+    onBlur?.(e);
   };
 
   const onChangeTextWrapper = (text: string) => {
-    setLimit(text?.length ?? 0);
-
-    onChangeText && onChangeText(text);
+    onChangeText?.(text);
   };
 
   return (
@@ -56,12 +55,12 @@ const TextArea: React.FC<IManualControlProps> = props => {
         style={[
           styles.container,
           focused && styles.focused,
-          !!error && styles.error,
+          !!errorText && styles.error,
           disabled && styles.disabled,
         ]}
       >
         <Text style={[styles.label, disabled && styles.textDisabled]}>
-          Label
+          {name}
         </Text>
         <RNTextInput
           maxLength={textLimit}
@@ -73,16 +72,17 @@ const TextArea: React.FC<IManualControlProps> = props => {
           style={styles.textArea}
           editable={!disabled}
           onChangeText={onChangeTextWrapper}
+          value={value}
           {...other}
         />
       </View>
       <View
         style={[
           styles.bottomContainer,
-          (disabled || (!disabled && !error)) && styles.bottomContainerEnd,
+          (disabled || (!disabled && !errorText)) && styles.bottomContainerEnd,
         ]}
       >
-        {error && !disabled && (
+        {(errorText?.length ?? 0) > 0 && !disabled && (
           <View style={styles.errorContainer}>
             <Icon
               width={20}
@@ -92,14 +92,17 @@ const TextArea: React.FC<IManualControlProps> = props => {
               color={theme.error.main}
             />
 
-            {errorText && (
-              <ErrorMessage style={styles.errorMessage} error={errorText} />
+            {(errorText?.length ?? 0) > 0 && (
+              <ErrorMessage
+                style={styles.errorMessage}
+                error={errorText || ''}
+              />
             )}
           </View>
         )}
-        {textLimit && (
+        {textLimit && !errorText && (
           <Text style={[styles.limit, disabled && styles.disabled]}>
-            {limit}/{textLimit}
+            {value?.length ?? 0}/{textLimit}
           </Text>
         )}
       </View>

@@ -25,11 +25,12 @@ const TemplateManual: ComponentStory<typeof TextArea> = args => (
 
 export const Manual = TemplateManual.bind({});
 Manual.args = {
+  name: 'Name',
   disabled: false,
   errorText: 'Sample error',
-  error: false,
+  placeholder: 'Placeholder',
   value: '',
-  textLimit: 100,
+  textLimit: 10,
 };
 
 export const WithValue = Template.bind({});
@@ -45,13 +46,6 @@ WithValueHint.args = {
 
 export const WithError = Template.bind({});
 WithError.args = {
-  error: true,
-  errorText: 'Sample error',
-};
-
-export const WithErrorHint = Template.bind({});
-WithErrorHint.args = {
-  error: true,
   errorText: 'Sample error',
   textLimit: 100,
 };
