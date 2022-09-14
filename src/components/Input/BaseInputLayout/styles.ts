@@ -37,6 +37,9 @@ export default createUseStyles(theme => ({
     top: 16,
     textAlignVertical: 'center',
   },
+  labelSmall: {
+    color: theme.text.hint,
+  },
   error: {
     borderColor: theme.error.main,
   },

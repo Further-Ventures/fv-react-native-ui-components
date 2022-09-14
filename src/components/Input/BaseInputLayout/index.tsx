@@ -125,6 +125,7 @@ const BaseInputLayout = React.forwardRef<View, IBaseInputLayoutProps>(
                 style={[
                   styles.label,
                   disabled && styles.labelDisabled,
+                  displaySmallLabel && styles.labelSmall,
                   {
                     transform: [
                       {translateY: interpolate([0, -10])},

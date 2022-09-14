@@ -84,20 +84,20 @@ const Input = forwardRef<TextInput, IInputProps>(
       });
 
       updateFormValue(name, nextValue);
-      onChangeText && onChangeText(nextValue);
+      onChangeText?.(nextValue);
     };
     const onFocusWrapper = (
       e: NativeSyntheticEvent<TextInputFocusEventData>,
     ) => {
       setIsFocused(true);
-      onFocus && onFocus(e);
+      onFocus?.(e);
     };
     const onBlurWrapper = (
       e: NativeSyntheticEvent<TextInputFocusEventData>,
     ) => {
       setIsFocused(false);
       updateFormTouched(name, true);
-      onBlur && onBlur(e);
+      onBlur?.(e);
     };
 
     useEffect(() => {

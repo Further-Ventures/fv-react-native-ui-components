@@ -14,6 +14,24 @@ export default {
   parameters: {
     pkg,
   },
+  argTypes: {
+    label: {
+      type: 'string',
+    },
+    hint: {
+      type: 'string',
+    },
+    error: {
+      type: 'string',
+    },
+    disabled: {
+      type: 'boolean',
+    },
+    sideContent: {
+      control: {},
+    },
+    showLength: {},
+  },
 } as ComponentMeta<typeof Input>;
 
 export const Default = () => {
