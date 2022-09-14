@@ -24,6 +24,7 @@
     "ios": "react-native run-ios & yarn storybook-watcher",
     "pod": "npx pod-install",
     "start": "react-native start",
+    "start:clean": "watchman watch-del-all && react-native start --reset-cache",
     "test": "jest",
     "lint": "eslint ./src --ext .js,.jsx,.ts,.tsx",
     "lint:fix": "npm run lint -- --fix",
