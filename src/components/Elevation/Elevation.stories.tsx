@@ -17,7 +17,7 @@ export default {
   parameters: {
     pkg,
   },
-  argTypes: buildExcludeArgTypes(['style', 'variant']),
+  argTypes: buildExcludeArgTypes(['variant']),
 } as ComponentMeta<typeof Elevation>;
 
 const Template: ComponentStory<typeof Elevation> = ({children}) => (
