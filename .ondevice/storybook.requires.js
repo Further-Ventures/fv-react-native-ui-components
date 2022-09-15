@@ -23,6 +23,7 @@ if (parameters) {
 
 const getStories = () => {
   return [
+    require("../src/components/Elevation/Elevation.stories.tsx"),
     require("../src/components/Icon/Icon.stories.tsx"),
     require("../src/components/Theme/Theme.stories.tsx"),
     require("../src/components/Text/Text.stories.tsx"),
