@@ -28,6 +28,7 @@ const getStories = () => {
     require("../src/components/Text/Text.stories.tsx"),
     require("../src/components/Button/Button.stories.tsx"),
     require("../src/components/Chip/Chip.stories.tsx"),
+    require("../src/components/Tag/Tag.stories.tsx"),
   ];
 };
 

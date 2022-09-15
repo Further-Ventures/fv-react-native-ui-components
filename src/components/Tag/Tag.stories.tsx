@@ -1,13 +1,13 @@
 import React from 'react';
 import {ComponentStory, ComponentMeta} from '@storybook/react-native';
-import Chip from '.';
+import Tag from '.';
 import CenterView from '../../storybook/preview/CenterView';
 import {Platform} from 'react-native';
 import pkg from './package.json';
 
 export default {
-  title: 'Chip',
-  component: Chip,
+  title: 'Tag',
+  component: Tag,
   argTypes: {
     onPress: {
       action: 'pressed the chip',
@@ -43,9 +43,9 @@ export default {
   parameters: {
     pkg,
   },
-} as ComponentMeta<typeof Chip>;
+} as ComponentMeta<typeof Tag>;
 
-const Template: ComponentStory<typeof Chip> = args => <Chip {...args} />;
+const Template: ComponentStory<typeof Tag> = args => <Tag {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {

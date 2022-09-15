@@ -129,6 +129,7 @@ const Button: React.FC<IButtonProps> = ({
     name: string | undefined,
     position: 'left' | 'right',
     pressed: boolean,
+    locationProps: Omit<IIconProps, 'name'> | undefined,
   ) => {
     if (
       (name && iconPosition === position) ||
@@ -140,8 +141,7 @@ const Button: React.FC<IButtonProps> = ({
         (position === 'left' && iconLeft) ||
         (position === 'right' && iconRight) ||
         '';
-      const locationProps =
-        position === 'left' ? iconLeftProps : iconRightProps;
+
       return (
         <Icon
           {...allIconsStyle(newName, pressed, position)}
@@ -158,10 +158,10 @@ const Button: React.FC<IButtonProps> = ({
         styles.button,
         styles[size],
         styles[shape],
-        style,
-        pressed && styles.buttonPressed,
-        pressed && pressedStyle,
         disabled && styles.disabled,
+        pressed && styles.buttonPressed,
+        style,
+        pressed && pressedStyle,
       ]}
       disabled={disabled}
       onPress={handlePress}
@@ -169,7 +169,7 @@ const Button: React.FC<IButtonProps> = ({
     >
       {({pressed}) => (
         <>
-          {generateIcon(icon, 'left', pressed)}
+          {generateIcon(icon, 'left', pressed, iconLeftProps)}
           {label ? (
             <Text
               size={textSize[size]}
@@ -180,7 +180,7 @@ const Button: React.FC<IButtonProps> = ({
               {label}
             </Text>
           ) : null}
-          {generateIcon(icon, 'right', pressed)}
+          {generateIcon(icon, 'right', pressed, iconRightProps)}
         </>
       )}
     </Pressable>

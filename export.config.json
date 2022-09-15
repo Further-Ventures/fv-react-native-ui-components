@@ -5,6 +5,7 @@
     "Icon": "Icon",
     "Text": "text",
     "Button": "button",
-    "Chip": "chip"
+    "Chip": "chip",
+    "Tag": "tag"
   }
 }
