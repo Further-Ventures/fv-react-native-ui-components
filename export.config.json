@@ -5,6 +5,8 @@
     "Elevation": "elevation",
     "Icon": "Icon",
     "Text": "text",
-    "Button": "button"
+    "Button": "button",
+    "Chip": "chip",
+    "Tag": "tag"
   }
 }

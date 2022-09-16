@@ -2,7 +2,6 @@ import React from 'react';
 import {ComponentStory, ComponentMeta} from '@storybook/react-native';
 import Button from '.';
 import CenterView from '../../storybook/preview/CenterView';
-import {Platform} from 'react-native';
 import pkg from './package.json';
 
 export default {
@@ -37,7 +36,7 @@ export default {
       },
     },
   },
-  decorators: Platform.OS === 'web' ? null : [CenterView],
+  decorators: [CenterView],
   args: {},
   parameters: {
     pkg,

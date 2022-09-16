@@ -1,6 +1,6 @@
 import {ViewStyle} from 'react-native';
 import {createUseStyles} from '../Theme';
-import {IButtonProps, TSize} from './index';
+import {IButton, TSize} from './index';
 
 interface IButtonTypeStyle {
   button: ViewStyle;
@@ -19,7 +19,7 @@ export const useStyles = createUseStyles(
   (
     theme,
     size: TSize,
-    variant: IButtonProps['variant'],
+    variant: IButton['variant'],
     error: boolean,
     onlyIcon: boolean,
   ) => {
@@ -79,6 +79,7 @@ export const useStyles = createUseStyles(
         justifyContent: 'center',
         alignSelf: 'baseline',
         flexDirection: 'row',
+        flexWrap: 'wrap',
         ...buttonVariantStyle().button,
       },
       buttonPressed: {
@@ -120,12 +121,7 @@ export const useStyles = createUseStyles(
               paddingVertical: 24,
             }),
       },
-      left: {
-        marginRight: 10,
-      },
-      right: {
-        marginLeft: 10,
-      },
+
       curved: {
         borderRadius: curvedRadius[size],
       },
