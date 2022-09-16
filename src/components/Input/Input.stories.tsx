@@ -3,7 +3,7 @@ import {ComponentMeta} from '@storybook/react-native';
 import Input from '.';
 import Button from '../Button';
 import CenterView from '../../storybook/preview/CenterView';
-import {Platform, ScrollView, Text, View} from 'react-native';
+import {Platform, ScrollView, Text} from 'react-native';
 import pkg from './package.json';
 import Icon from '../Icon';
 
@@ -16,16 +16,24 @@ export default {
   },
   argTypes: {
     label: {
-      type: 'string',
+      control: {
+        type: 'string',
+      },
     },
     hint: {
-      type: 'string',
+      control: {
+        type: 'string',
+      },
     },
     error: {
-      type: 'string',
+      control: {
+        type: 'string',
+      },
     },
     disabled: {
-      type: 'boolean',
+      control: {
+        type: 'boolean',
+      },
     },
     sideContent: {
       control: {},
@@ -37,31 +45,26 @@ export default {
 export const Default = () => {
   return (
     <ScrollView>
-      <View style={{height: 20}} />
       <Text>{'A.2. Default'}</Text>
       <Input label={'Label'} placeholder={'Type something...'} />
-      <View style={{height: 20}} />
       <Text>{'A.1. Default with hint text'}</Text>
       <Input
         label={'Label'}
         placeholder={'Type something...'}
         hint={'This is a hint text to help user.'}
       />
-      <View style={{height: 20}} />
       <Text>{'B.1. Focus(Mobile)'}</Text>
       <Input
         label={'Label'}
         placeholder={'Type something...'}
         autoFocus={true}
       />
-      <View style={{height: 20}} />
       <Text>{'C.1. Filled'}</Text>
       <Input
         label={'Label'}
         placeholder={'Type something...'}
         value={'Text Input'}
       />
-      <View style={{height: 20}} />
       <Text>{'C.2. Filled with hint text'}</Text>
       <Input
         label={'Label'}
@@ -69,14 +72,13 @@ export const Default = () => {
         value={'Text Input'}
         hint={'This is a hint text to help user.'}
       />
-      <View style={{height: 20}} />
       <Text>{'D.1.Disabled'}</Text>
       <Input
         label={'Label'}
         placeholder={'Type something...'}
         disabled={true}
       />
-      <View style={{height: 20}} />
+
       <Text>{'D.2.Disabled with hint text'}</Text>
       <Input
         label={'Label'}
@@ -84,19 +86,36 @@ export const Default = () => {
         hint={'This is a hint text to help user.'}
         disabled={true}
       />
-      <View style={{height: 20}} />
+
       <Text>{'E.1. Error Default'}</Text>
       <Input
         label={'Label'}
         placeholder={'Type something...'}
         error={'This is an error text to help user.'}
       />
-      <View style={{height: 20}} />
+
+      <Text>{'E.2. Error Default with hint text'}</Text>
+      <Input
+        label={'Label'}
+        placeholder={'Type something...'}
+        hint={'This is a hint text to help user.'}
+        error={'This is an error text to help user.'}
+      />
+
       <Text>{'E.3. Error Filled'}</Text>
       <Input
         label={'Label'}
         placeholder={'Type something...'}
         value={'Text Input'}
+        error={'This is an error text to help user.'}
+      />
+
+      <Text>{'E.4. Error Filled with hint text'}</Text>
+      <Input
+        label={'Label'}
+        placeholder={'Type something...'}
+        value={'Text Input'}
+        hint={'This is a hint text to help user.'}
         error={'This is an error text to help user.'}
       />
     </ScrollView>
@@ -106,14 +125,13 @@ export const Default = () => {
 export const WithIcon = () => {
   return (
     <ScrollView>
-      <View style={{height: 20}} />
       <Text>{'A.2. Default'}</Text>
       <Input
         label={'Label'}
         placeholder={'Type something...'}
         sideContent={<Icon name="info" height={20} width={20} />}
       />
-      <View style={{height: 20}} />
+
       <Text>{'A.1. Default with hint text'}</Text>
       <Input
         label={'Label'}
@@ -121,7 +139,7 @@ export const WithIcon = () => {
         hint={'This is a hint text to help user.'}
         sideContent={<Icon name="info" height={20} width={20} />}
       />
-      <View style={{height: 20}} />
+
       <Text>{'B.1. Focus(Mobile)'}</Text>
       <Input
         label={'Label'}
@@ -129,7 +147,7 @@ export const WithIcon = () => {
         autoFocus={true}
         sideContent={<Icon name="info" height={20} width={20} />}
       />
-      <View style={{height: 20}} />
+
       <Text>{'C.1. Filled'}</Text>
       <Input
         label={'Label'}
@@ -137,7 +155,7 @@ export const WithIcon = () => {
         value={'Text Input'}
         sideContent={<Icon name="info" height={20} width={20} />}
       />
-      <View style={{height: 20}} />
+
       <Text>{'C.2. Filled with hint text'}</Text>
       <Input
         label={'Label'}
@@ -146,7 +164,7 @@ export const WithIcon = () => {
         hint={'This is a hint text to help user.'}
         sideContent={<Icon name="info" height={20} width={20} />}
       />
-      <View style={{height: 20}} />
+
       <Text>{'D.1.Disabled'}</Text>
       <Input
         label={'Label'}
@@ -154,7 +172,7 @@ export const WithIcon = () => {
         disabled={true}
         sideContent={<Icon name="info" height={20} width={20} />}
       />
-      <View style={{height: 20}} />
+
       <Text>{'D.2.Disabled with hint text'}</Text>
       <Input
         label={'Label'}
@@ -163,7 +181,7 @@ export const WithIcon = () => {
         disabled={true}
         sideContent={<Icon name="info" height={20} width={20} />}
       />
-      <View style={{height: 20}} />
+
       <Text>{'E.1. Error Default'}</Text>
       <Input
         label={'Label'}
@@ -171,12 +189,31 @@ export const WithIcon = () => {
         error={'This is an error text to help user.'}
         sideContent={<Icon name="info" height={20} width={20} />}
       />
-      <View style={{height: 20}} />
+
+      <Text>{'E.2. Error Default with hint text'}</Text>
+      <Input
+        label={'Label'}
+        placeholder={'Type something...'}
+        hint={'This is a hint text to help user.'}
+        error={'This is an error text to help user.'}
+        sideContent={<Icon name="info" height={20} width={20} />}
+      />
+
       <Text>{'E.3. Error Filled'}</Text>
       <Input
         label={'Label'}
         placeholder={'Type something...'}
         value={'Text Input'}
+        error={'This is an error text to help user.'}
+        sideContent={<Icon name="info" height={20} width={20} />}
+      />
+
+      <Text>{'E.4. Error Filled with hint text'}</Text>
+      <Input
+        label={'Label'}
+        placeholder={'Type something...'}
+        value={'Text Input'}
+        hint={'This is a hint text to help user.'}
         error={'This is an error text to help user.'}
         sideContent={<Icon name="info" height={20} width={20} />}
       />
@@ -187,7 +224,6 @@ export const WithIcon = () => {
 export const WithButtons = () => {
   return (
     <ScrollView>
-      <View style={{height: 20}} />
       <Text>{'A.2. Default'}</Text>
       <Input
         label={'Label'}
@@ -201,7 +237,7 @@ export const WithButtons = () => {
           />
         }
       />
-      <View style={{height: 20}} />
+
       <Text>{'A.1. Default with hint text'}</Text>
       <Input
         label={'Label'}
@@ -216,7 +252,7 @@ export const WithButtons = () => {
           />
         }
       />
-      <View style={{height: 20}} />
+
       <Text>{'B.1. Focus(Mobile)'}</Text>
       <Input
         label={'Label'}
@@ -231,7 +267,7 @@ export const WithButtons = () => {
           />
         }
       />
-      <View style={{height: 20}} />
+
       <Text>{'C.1. Filled'}</Text>
       <Input
         label={'Label'}
@@ -246,7 +282,7 @@ export const WithButtons = () => {
           />
         }
       />
-      <View style={{height: 20}} />
+
       <Text>{'C.2. Filled with hint text'}</Text>
       <Input
         label={'Label'}
@@ -262,7 +298,7 @@ export const WithButtons = () => {
           />
         }
       />
-      <View style={{height: 20}} />
+
       <Text>{'D.1.Disabled'}</Text>
       <Input
         label={'Label'}
@@ -277,7 +313,7 @@ export const WithButtons = () => {
           />
         }
       />
-      <View style={{height: 20}} />
+
       <Text>{'D.2.Disabled with hint text'}</Text>
       <Input
         label={'Label'}
@@ -293,7 +329,7 @@ export const WithButtons = () => {
           />
         }
       />
-      <View style={{height: 20}} />
+
       <Text>{'E.1. Error Default'}</Text>
       <Input
         label={'Label'}
@@ -308,12 +344,45 @@ export const WithButtons = () => {
           />
         }
       />
-      <View style={{height: 20}} />
+
+      <Text>{'E.2. Error Default with hint text'}</Text>
+      <Input
+        label={'Label'}
+        placeholder={'Type something...'}
+        hint={'This is a hint text to help user.'}
+        error={'This is an error text to help user.'}
+        sideContent={
+          <Button
+            variant={'outlined'}
+            shape={'curved'}
+            label={'Button CTA'}
+            size={'mini'}
+          />
+        }
+      />
+
       <Text>{'E.3. Error Filled'}</Text>
       <Input
         label={'Label'}
         placeholder={'Type something...'}
         value={'Text Input'}
+        error={'This is an error text to help user.'}
+        sideContent={
+          <Button
+            variant={'outlined'}
+            shape={'curved'}
+            label={'Button CTA'}
+            size={'mini'}
+          />
+        }
+      />
+
+      <Text>{'E.4. Error Filled with hint text'}</Text>
+      <Input
+        label={'Label'}
+        placeholder={'Type something...'}
+        value={'Text Input'}
+        hint={'This is a hint text to help user.'}
         error={'This is an error text to help user.'}
         sideContent={
           <Button

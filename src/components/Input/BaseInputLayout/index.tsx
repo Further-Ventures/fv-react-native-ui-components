@@ -85,7 +85,7 @@ const BaseInputLayout = React.forwardRef<View, IBaseInputLayoutProps>(
         });
         setRightContent(updatedContent);
       }
-    }, [sideContent]);
+    }, [sideContent, disabled, error, theme]);
 
     useEffect(() => {
       Animated.timing(labelAnim, {
@@ -98,7 +98,7 @@ const BaseInputLayout = React.forwardRef<View, IBaseInputLayoutProps>(
         toValue: displaySmallLabel ? 1 : 0,
         duration: 100,
       }).start();
-    }, [isFocused]);
+    }, [labelAnim, inputAnim, displaySmallLabel]);
 
     const interpolate = (outputRange: number[] | string[]) =>
       labelAnim.interpolate({
