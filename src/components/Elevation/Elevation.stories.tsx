@@ -4,6 +4,7 @@ import Elevation from '.';
 import CenterView from '../../storybook/preview/CenterView';
 import {Platform, Text, View} from 'react-native';
 import pkg from './package.json';
+import {buildExcludeArgTypes} from '../../storybook/utils';
 
 export default {
   title: 'Elevation',
@@ -16,6 +17,7 @@ export default {
   parameters: {
     pkg,
   },
+  argTypes: buildExcludeArgTypes(['variant']),
 } as ComponentMeta<typeof Elevation>;
 
 const Template: ComponentStory<typeof Elevation> = ({children}) => (
