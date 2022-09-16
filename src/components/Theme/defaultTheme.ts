@@ -58,7 +58,7 @@ export const defaultTheme = {
   text: {
     primary: '#000000',
     secondary: '#344054',
-    disabled: '#D2D2D2',
+    disabled: '#C7CCD3',
     hint: '#667085',
   },
   background: {
