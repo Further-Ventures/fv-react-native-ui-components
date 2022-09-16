@@ -134,9 +134,6 @@
     ],
     "moduleNameMapper": {
       "\\.svg": "<rootDir>/__mocks__/svgMock.js"
-    },
-    "transform": {
-      "^.+\\.tsx?$": "babel-jest"
     }
   }
 }
