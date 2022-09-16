@@ -26,21 +26,16 @@ it('shows hint input message', () => {
   getByText(hint);
 });
 
+it('shows hint & error input message', () => {
+  const hint = 'Hint message';
+  const error = 'Invalid input';
+  const {getByText} = render(<Input hint={hint} error={error} />);
+  getByText(hint);
+  getByText(error);
+});
+
 it('shows input value', () => {
   const value = 'Test value';
   const {getByDisplayValue} = render(<Input value={value} />);
   getByDisplayValue(value);
-});
-
-it('should use the mask', () => {
-  const {getByDisplayValue} = render(
-    <Input label="Input" mask="+X(X)-XX" value="1234" />,
-  );
-  getByDisplayValue('+1(2)-34');
-});
-
-it('should display the prefix', () => {
-  const prefix = '+380';
-  const {getByText} = render(<Input label="Input" prefix={prefix} />);
-  getByText(prefix);
 });

@@ -12,14 +12,11 @@ import {
   TextInputProps,
   StyleProp,
   ViewStyle,
-  TextStyle,
-  Text,
   View,
 } from 'react-native';
 import {useFormContext} from '../Form';
 import BaseInputLayout, {IBaseInputLayoutProps} from './BaseInputLayout';
 import {useTheme} from '../Theme';
-import {applyDigitMask} from './utils';
 
 export interface IInputProps extends TextInputProps {
   name?: string;
@@ -28,16 +25,9 @@ export interface IInputProps extends TextInputProps {
   hint?: string;
   error?: string | boolean;
   style?: StyleProp<ViewStyle>;
-  inputWrapperStyle?: StyleProp<ViewStyle>;
-  inputStyle?: StyleProp<TextStyle>;
-  hintStyle?: IBaseInputLayoutProps['hintStyle'];
-  errorStyle?: IBaseInputLayoutProps['errorStyle'];
   disabled?: boolean;
   controlled?: boolean;
-  rightContent?: IBaseInputLayoutProps['rightContent'];
-  mask?: string;
-  prefix?: string;
-  prefixStyle?: StyleProp<TextStyle>;
+  sideContent?: IBaseInputLayoutProps['sideContent'];
   showLength?: boolean;
 }
 
@@ -54,17 +44,10 @@ const Input = forwardRef<TextInput, IInputProps>(
       label,
       hint,
       style,
-      inputWrapperStyle,
-      inputStyle,
-      hintStyle,
-      errorStyle,
       disabled,
       controlled,
       maxLength,
-      rightContent,
-      mask,
-      prefix,
-      prefixStyle,
+      sideContent,
       showLength,
       ...rest
     },
@@ -90,37 +73,31 @@ const Input = forwardRef<TextInput, IInputProps>(
 
     const initValue = fieldValue || value;
     const errorMessage = fieldError || error;
-    const [internalValue, setInternalValue] = React.useState<string>(
-      mask && initValue ? applyDigitMask(initValue, mask) : initValue,
-    );
+    const [internalValue, setInternalValue] = React.useState<string>(initValue);
 
     /** Wrappers to merge form and props methods */
     const onChangeTextWrapper = (text: string) => {
       let nextValue = text;
 
-      setInternalValue(prevValue => {
-        if (mask) {
-          nextValue =
-            prevValue.length >= text.length ? text : applyDigitMask(text, mask);
-        }
+      setInternalValue(() => {
         return nextValue;
       });
 
       updateFormValue(name, nextValue);
-      onChangeText && onChangeText(nextValue);
+      onChangeText?.(nextValue);
     };
     const onFocusWrapper = (
       e: NativeSyntheticEvent<TextInputFocusEventData>,
     ) => {
       setIsFocused(true);
-      onFocus && onFocus(e);
+      onFocus?.(e);
     };
     const onBlurWrapper = (
       e: NativeSyntheticEvent<TextInputFocusEventData>,
     ) => {
       setIsFocused(false);
       updateFormTouched(name, true);
-      onBlur && onBlur(e);
+      onBlur?.(e);
     };
 
     useEffect(() => {
@@ -138,29 +115,23 @@ const Input = forwardRef<TextInput, IInputProps>(
         isFocused={isFocused}
         onPress={handleFocus}
         error={errorMessage}
-        wrapperStyle={inputWrapperStyle}
         disabled={disabled}
         hint={hint}
         maxValueLength={maxLength}
         showLength={showLength}
         currentValueLength={controlled ? value?.length : internalValue?.length}
-        rightContent={rightContent}
-        hintStyle={hintStyle}
-        errorStyle={errorStyle}
+        sideContent={sideContent}
       >
         <View style={styles.inputContainer}>
-          {prefix && <Text style={[styles.prefix, prefixStyle]}>{prefix}</Text>}
           <TextInput
-            style={[styles.input, disabled && styles.disabledInput, inputStyle]}
+            ref={inputRef}
+            style={[styles.input, disabled && styles.disabledInput]}
             value={controlled ? value : internalValue}
             onBlur={onBlurWrapper}
             onChangeText={onChangeTextWrapper}
             onFocus={onFocusWrapper}
-            placeholderTextColor={
-              disabled ? theme.text.disabled : theme.text.hint
-            }
-            ref={inputRef}
-            maxLength={mask?.length || maxLength}
+            placeholderTextColor={theme.text.disabled}
+            maxLength={maxLength}
             editable={!disabled}
             {...rest}
           />
