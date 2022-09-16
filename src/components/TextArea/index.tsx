@@ -30,7 +30,7 @@ const TextArea: React.FC<IManualControlProps> = props => {
     onFocus,
     onBlur,
     value,
-    ...other
+    ...rest
   } = props;
   const [focused, setFocused] = useState(false);
   const styles = useStyles();
@@ -73,7 +73,7 @@ const TextArea: React.FC<IManualControlProps> = props => {
           editable={!disabled}
           onChangeText={onChangeTextWrapper}
           value={value}
-          {...other}
+          {...rest}
         />
       </View>
       <View
@@ -82,7 +82,7 @@ const TextArea: React.FC<IManualControlProps> = props => {
           (disabled || (!disabled && !errorText)) && styles.bottomContainerEnd,
         ]}
       >
-        {(errorText?.length ?? 0) > 0 && !disabled && (
+        {!!errorText && !disabled && (
           <View style={styles.errorContainer}>
             <Icon
               width={20}
@@ -91,13 +91,7 @@ const TextArea: React.FC<IManualControlProps> = props => {
               filled
               color={theme.error.main}
             />
-
-            {(errorText?.length ?? 0) > 0 && (
-              <ErrorMessage
-                style={styles.errorMessage}
-                error={errorText || ''}
-              />
-            )}
+            <ErrorMessage style={styles.errorMessage} error={errorText || ''} />
           </View>
         )}
         {textLimit && !errorText && (
