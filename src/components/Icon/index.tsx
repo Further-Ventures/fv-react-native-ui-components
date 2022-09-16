@@ -1,4 +1,5 @@
 import React from 'react';
+import {View} from 'react-native';
 import {SvgProps} from 'react-native-svg';
 
 export interface IIconProps extends SvgProps {
@@ -20,13 +21,14 @@ const Icon: React.FC<IIconProps> = ({
   const SvgContent = SvgRoot[name];
 
   return (
-    <SvgContent
-      width={width}
-      height={height || width}
-      viewBox={'0 0 48 48'}
-      fill={color}
-      {...rest}
-    />
+    <View {...rest}>
+      <SvgContent
+        width={width}
+        height={height || width}
+        viewBox={'0 0 48 48'}
+        fill={color}
+      />
+    </View>
   );
 };
 

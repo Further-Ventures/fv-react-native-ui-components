@@ -118,12 +118,22 @@ const Button: React.FC<IButtonProps> = ({
     name: string,
     pressed: boolean,
     position: 'left' | 'right',
-  ) => ({
-    name: name || '',
-    color: getTextColor({theme, variant, disabled, error, pressed}),
-    width: size === 'mini' ? 13 : 20,
-    style: label ? styles[position] : {},
-  });
+  ) => {
+    const margins = {
+      left: {
+        marginRight: 10,
+      },
+      right: {
+        marginLeft: 10,
+      },
+    };
+    return {
+      name: name || '',
+      color: getTextColor({theme, variant, disabled, error, pressed}),
+      width: size === 'mini' ? 13 : 20,
+      style: label ? margins[position] : {},
+    };
+  };
 
   const generateIcon = (
     name: string | undefined,

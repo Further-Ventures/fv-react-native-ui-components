@@ -79,6 +79,7 @@ export const useStyles = createUseStyles(
         justifyContent: 'center',
         alignSelf: 'baseline',
         flexDirection: 'row',
+        flexWrap: 'wrap',
         ...buttonVariantStyle().button,
       },
       buttonPressed: {
@@ -120,12 +121,7 @@ export const useStyles = createUseStyles(
               paddingVertical: 24,
             }),
       },
-      left: {
-        marginRight: 10,
-      },
-      right: {
-        marginLeft: 10,
-      },
+
       curved: {
         borderRadius: curvedRadius[size],
       },
