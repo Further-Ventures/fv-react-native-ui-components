@@ -5,6 +5,7 @@
     "Icon": "Icon",
     "Text": "text",
     "TextArea": "texaArea",
-    "Button": "button"
+    "Button": "button",
+    "TextLink": "textLink"
   }
 }

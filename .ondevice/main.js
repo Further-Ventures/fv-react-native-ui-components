@@ -5,6 +5,7 @@ module.exports = {
     '../src/components/Text/*.stories.tsx',
     '../src/components/TextArea/*.stories.tsx',
     '../src/components/Button/*.stories.tsx',
+    '../src/components/TextLink/*.stories.tsx',
   ],
   addons: [
     '@storybook/addon-ondevice-notes',
