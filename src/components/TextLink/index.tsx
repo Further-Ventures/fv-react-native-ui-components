@@ -5,7 +5,6 @@ import {useTheme} from '../Theme';
 import Icon from '../Icon';
 
 export interface IManualControlProps extends TextProps {
-  variation?: 'large' | 'default' | 'description' | 'caption';
   icon?: 'default' | 'left' | 'right';
   disabled?: boolean;
   children: React.ReactNode;
@@ -13,14 +12,7 @@ export interface IManualControlProps extends TextProps {
 }
 
 const TextLink: React.FC<IManualControlProps> = props => {
-  const {
-    disabled = false,
-    variation,
-    icon,
-    onPress,
-    children,
-    ...other
-  } = props;
+  const {disabled = false, icon, onPress, children, ...other} = props;
   const [showUnderline, setShowUnderline] = useState(false);
   const styles = useStyles();
   const {theme} = useTheme();
@@ -35,11 +27,15 @@ const TextLink: React.FC<IManualControlProps> = props => {
 
   return (
     <TouchableOpacity
+      style={styles.container}
+      disabled={disabled}
       onPressIn={onPressIn}
       onPressOut={onPressOut}
       onPress={onPress}
     >
-      {icon === 'left' ? <Icon name="west" color={theme.text.primary} /> : null}
+      {icon === 'left' ? (
+        <Icon name="west" color={theme.primary.main} height={20} />
+      ) : null}
       <Text
         style={[
           styles.text,
@@ -51,7 +47,7 @@ const TextLink: React.FC<IManualControlProps> = props => {
         {children}
       </Text>
       {icon === 'right' ? (
-        <Icon name="east" color={theme.text.primary} />
+        <Icon name="east" color={theme.primary.main} height={20} />
       ) : null}
     </TouchableOpacity>
   );

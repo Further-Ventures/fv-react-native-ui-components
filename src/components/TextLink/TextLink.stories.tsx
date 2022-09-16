@@ -11,6 +11,14 @@ export default {
 
   decorators: Platform.OS === 'web' ? null : [CenterView],
   args: {},
+  argTypes: {
+    icon: {
+      options: ['default', 'left', 'right'],
+      control: {
+        type: 'select',
+      },
+    },
+  },
   parameters: {
     pkg,
   },
@@ -25,15 +33,30 @@ const TemplateManual: ComponentStory<typeof TextLink> = args => (
 
 export const Manual = TemplateManual.bind({});
 Manual.args = {
-  name: 'Name',
+  children: 'Name',
   disabled: false,
-  errorText: 'Sample error',
-  placeholder: 'Placeholder',
-  value: '',
-  textLimit: 10,
+  icon: 'default',
 };
 
 export const Default = Template.bind({});
 Default.args = {
-  children: 'Some sample link',
+  children: 'Text link',
+};
+
+export const Disabled = Template.bind({});
+Disabled.args = {
+  disabled: true,
+  children: 'Text link',
+};
+
+export const WithIconLeft = Template.bind({});
+WithIconLeft.args = {
+  icon: 'left',
+  children: 'Text link',
+};
+
+export const WithIconRight = Template.bind({});
+WithIconRight.args = {
+  icon: 'right',
+  children: 'Text link',
 };

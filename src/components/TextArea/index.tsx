@@ -84,14 +84,6 @@ const TextArea: React.FC<IManualControlProps> = props => {
       >
         {(errorText?.length ?? 0) > 0 && !disabled && (
           <View style={styles.errorContainer}>
-            <Icon
-              width={20}
-              height={20}
-              name="error"
-              filled
-              color={theme.error.main}
-            />
-
             {(errorText?.length ?? 0) > 0 && (
               <ErrorMessage
                 style={styles.errorMessage}
