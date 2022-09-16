@@ -2,10 +2,14 @@ import {createUseStyles} from '../Theme';
 
 export default createUseStyles(theme => ({
   input: {
+    fontFamily: theme.fontFamily.regular,
+    fontWeight: '400',
+    fontSize: 16,
+    lineHeight: 24,
     color: theme.text.primary,
     padding: 0,
+    flex: 1,
     textAlignVertical: 'top',
-    height: 17,
     width: '100%',
   },
   disabledInput: {
