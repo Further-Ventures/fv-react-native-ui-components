@@ -14,7 +14,7 @@ import Icon, {IIconProps} from '../Icon';
 
 export type TSize = 'mini' | 'small' | 'medium' | 'large';
 
-export interface IButtonProps extends PressableProps {
+export interface IButton extends PressableProps {
   label?: string;
   size?: TSize;
   shape?: 'curved' | 'round' | 'flat';
@@ -40,7 +40,7 @@ const getTextColor = ({
   disabled,
   error,
   pressed,
-}: IButtonProps & {theme: ThemeType; pressed?: boolean}) => {
+}: IButton & {theme: ThemeType; pressed?: boolean}) => {
   if (disabled) {
     return theme.text.disabled;
   }
@@ -76,7 +76,7 @@ const textSize: Record<TSize, number> = {
   large: 16,
 };
 
-const Button: React.FC<IButtonProps> = ({
+const Button: React.FC<IButton> = ({
   style,
   label,
   icon,

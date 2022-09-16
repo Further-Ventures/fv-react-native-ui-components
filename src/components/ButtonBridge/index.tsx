@@ -2,12 +2,12 @@
 
 import React from 'react';
 import useStyles from './styles';
-import Button, {IButtonProps} from '../Button';
+import Button, {IButton} from '../Button';
 import {useTheme} from '../Theme';
 
 export interface IButtonBridge
   extends Omit<
-    IButtonProps,
+    IButton,
     'size' | 'variant' | 'icon' | 'iconPosition' | 'iconProps' | 'error'
   > {
   size?: 'small' | 'large';

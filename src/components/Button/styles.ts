@@ -1,6 +1,6 @@
 import {ViewStyle} from 'react-native';
 import {createUseStyles} from '../Theme';
-import {IButtonProps, TSize} from './index';
+import {IButton, TSize} from './index';
 
 interface IButtonTypeStyle {
   button: ViewStyle;
@@ -19,7 +19,7 @@ export const useStyles = createUseStyles(
   (
     theme,
     size: TSize,
-    variant: IButtonProps['variant'],
+    variant: IButton['variant'],
     error: boolean,
     onlyIcon: boolean,
   ) => {

@@ -2,12 +2,7 @@ import React from 'react';
 import ButtonBridge, {IButtonBridge} from '../ButtonBridge';
 import useStyles from './styles';
 
-const Chip = (
-  props: Pick<
-    IButtonBridge,
-    'label' | 'size' | 'variant' | 'iconLeft' | 'iconRight' | 'disabled'
-  >,
-) => {
+const Chip = (props: IButtonBridge) => {
   const styles = useStyles();
   return <ButtonBridge {...props} shape="curved" style={styles.default} />;
 };
