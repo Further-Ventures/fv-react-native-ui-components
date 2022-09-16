@@ -10,7 +10,6 @@ import {
 } from 'react-native';
 import {useTheme} from '../Theme';
 import ErrorMessage from '../ErrorMessage';
-import Icon from '../Icon';
 
 export interface IManualControlProps extends TextInputProps {
   error?: boolean;
