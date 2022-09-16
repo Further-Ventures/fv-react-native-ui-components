@@ -5,6 +5,7 @@
     "Elevation": "elevation",
     "Icon": "Icon",
     "Text": "text",
+    "TextArea": "texaArea",
     "Button": "button",
     "Chip": "chip",
     "Tag": "tag"
