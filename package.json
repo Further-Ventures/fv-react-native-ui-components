@@ -89,7 +89,7 @@
     "@types/react-test-renderer": "^17.0.1",
     "@typescript-eslint/eslint-plugin": "^5.17.0",
     "@typescript-eslint/parser": "^5.17.0",
-    "babel-jest": "^26.6.3",
+    "babel-jest": "^29.0.3",
     "babel-loader": "^8.2.4",
     "babel-plugin-inline-import": "^3.0.0",
     "babel-plugin-react-native-web": "^0.17.7",
@@ -98,6 +98,7 @@
     "fs-extra": "^10.1.0",
     "husky": "^8.0.1",
     "jest": "^26.6.3",
+    "jest-svg-transformer": "^1.0.0",
     "lint-staged": "^13.0.3",
     "metro-react-native-babel-preset": "^0.67.0",
     "prettier": "~2.2.1",
@@ -107,6 +108,7 @@
     "react-native-web": "^0.17.7",
     "react-test-renderer": "17.0.2",
     "replace-in-file": "^6.3.2",
+    "ts-jest": "26.4.2",
     "ts-loader": "^9.3.0",
     "typescript": "~4.3.5",
     "webpack-cli": "^4.9.2"
@@ -129,6 +131,9 @@
     ],
     "modulePathIgnorePatterns": [
       "<rootDir>/lib/"
-    ]
+    ],
+    "moduleNameMapper": {
+      "\\.svg": "<rootDir>/__mocks__/svgMock.js"
+    }
   }
 }

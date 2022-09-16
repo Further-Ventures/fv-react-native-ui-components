@@ -1,6 +1,8 @@
 import React from 'react';
 import useStyles from './styles';
-import {Text, TextProps} from 'react-native';
+import {Text, TextProps, View} from 'react-native';
+import Icon from '../Icon';
+import {useTheme} from '../Theme';
 
 interface IErrorMessageProps extends TextProps {
   error: string;
@@ -12,11 +14,21 @@ const ErrorMessage: React.FC<IErrorMessageProps> = ({
   ...rest
 }) => {
   const styles = useStyles();
+  const {theme} = useTheme();
 
   return (
-    <Text style={[styles.error, style]} {...rest}>
-      {error}
-    </Text>
+    <View style={styles.container}>
+      <Icon
+        name="error"
+        filled={true}
+        color={theme.error.main}
+        height={16}
+        width={16}
+      />
+      <Text style={[styles.error, style]} {...rest}>
+        {error}
+      </Text>
+    </View>
   );
 };
 

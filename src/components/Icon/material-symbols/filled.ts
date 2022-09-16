@@ -8,3 +8,4 @@ export {default as arrow_right} from '@material-symbols/svg-400/rounded/arrow_ri
 export {default as cancel} from '@material-symbols/svg-400/rounded/cancel-fill.svg';
 export {default as check_circle} from '@material-symbols/svg-400/rounded/check_circle-fill.svg';
 export {default as account_circle} from '@material-symbols/svg-400/rounded/account_circle-fill.svg';
+export {default as error} from '@material-symbols/svg-400/rounded/error-fill.svg';

@@ -1,9 +1,11 @@
 import React from 'react';
-import {ComponentStory, ComponentMeta} from '@storybook/react-native';
+import {ComponentMeta} from '@storybook/react-native';
 import Input from '.';
+import Button from '../Button';
 import CenterView from '../../storybook/preview/CenterView';
-import {Platform} from 'react-native';
+import {Platform, ScrollView, Text} from 'react-native';
 import pkg from './package.json';
+import Icon from '../Icon';
 
 export default {
   title: 'Input',
@@ -12,69 +14,385 @@ export default {
   parameters: {
     pkg,
   },
+  argTypes: {
+    label: {
+      control: {
+        type: 'string',
+      },
+    },
+    hint: {
+      control: {
+        type: 'string',
+      },
+    },
+    error: {
+      control: {
+        type: 'string',
+      },
+    },
+    disabled: {
+      control: {
+        type: 'boolean',
+      },
+    },
+    sideContent: {
+      control: {},
+    },
+    showLength: {},
+  },
 } as ComponentMeta<typeof Input>;
 
-const Template: ComponentStory<typeof Input> = args => <Input {...args} />;
+export const Default = () => {
+  return (
+    <ScrollView>
+      <Text>{'A.2. Default'}</Text>
+      <Input label={'Label'} placeholder={'Type something...'} />
+      <Text>{'A.1. Default with hint text'}</Text>
+      <Input
+        label={'Label'}
+        placeholder={'Type something...'}
+        hint={'This is a hint text to help user.'}
+      />
+      <Text>{'B.1. Focus(Mobile)'}</Text>
+      <Input
+        label={'Label'}
+        placeholder={'Type something...'}
+        autoFocus={true}
+      />
+      <Text>{'C.1. Filled'}</Text>
+      <Input
+        label={'Label'}
+        placeholder={'Type something...'}
+        value={'Text Input'}
+      />
+      <Text>{'C.2. Filled with hint text'}</Text>
+      <Input
+        label={'Label'}
+        placeholder={'Type something...'}
+        value={'Text Input'}
+        hint={'This is a hint text to help user.'}
+      />
+      <Text>{'D.1.Disabled'}</Text>
+      <Input
+        label={'Label'}
+        placeholder={'Type something...'}
+        disabled={true}
+      />
 
-export const Primary = Template.bind({});
-Primary.args = {
-  label: 'Email',
-  placeholder: 'Email',
+      <Text>{'D.2.Disabled with hint text'}</Text>
+      <Input
+        label={'Label'}
+        placeholder={'Type something...'}
+        hint={'This is a hint text to help user.'}
+        disabled={true}
+      />
+
+      <Text>{'E.1. Error Default'}</Text>
+      <Input
+        label={'Label'}
+        placeholder={'Type something...'}
+        error={'This is an error text to help user.'}
+      />
+
+      <Text>{'E.2. Error Default with hint text'}</Text>
+      <Input
+        label={'Label'}
+        placeholder={'Type something...'}
+        hint={'This is a hint text to help user.'}
+        error={'This is an error text to help user.'}
+      />
+
+      <Text>{'E.3. Error Filled'}</Text>
+      <Input
+        label={'Label'}
+        placeholder={'Type something...'}
+        value={'Text Input'}
+        error={'This is an error text to help user.'}
+      />
+
+      <Text>{'E.4. Error Filled with hint text'}</Text>
+      <Input
+        label={'Label'}
+        placeholder={'Type something...'}
+        value={'Text Input'}
+        hint={'This is a hint text to help user.'}
+        error={'This is an error text to help user.'}
+      />
+    </ScrollView>
+  );
 };
 
-export const Secondary = Template.bind({});
-Secondary.args = {
-  label: 'Email',
-  placeholder: 'Email',
-  color: 'secondary',
+export const WithIcon = () => {
+  return (
+    <ScrollView>
+      <Text>{'A.2. Default'}</Text>
+      <Input
+        label={'Label'}
+        placeholder={'Type something...'}
+        sideContent={<Icon name="info" height={20} width={20} />}
+      />
+
+      <Text>{'A.1. Default with hint text'}</Text>
+      <Input
+        label={'Label'}
+        placeholder={'Type something...'}
+        hint={'This is a hint text to help user.'}
+        sideContent={<Icon name="info" height={20} width={20} />}
+      />
+
+      <Text>{'B.1. Focus(Mobile)'}</Text>
+      <Input
+        label={'Label'}
+        placeholder={'Type something...'}
+        autoFocus={true}
+        sideContent={<Icon name="info" height={20} width={20} />}
+      />
+
+      <Text>{'C.1. Filled'}</Text>
+      <Input
+        label={'Label'}
+        placeholder={'Type something...'}
+        value={'Text Input'}
+        sideContent={<Icon name="info" height={20} width={20} />}
+      />
+
+      <Text>{'C.2. Filled with hint text'}</Text>
+      <Input
+        label={'Label'}
+        placeholder={'Type something...'}
+        value={'Text Input'}
+        hint={'This is a hint text to help user.'}
+        sideContent={<Icon name="info" height={20} width={20} />}
+      />
+
+      <Text>{'D.1.Disabled'}</Text>
+      <Input
+        label={'Label'}
+        placeholder={'Type something...'}
+        disabled={true}
+        sideContent={<Icon name="info" height={20} width={20} />}
+      />
+
+      <Text>{'D.2.Disabled with hint text'}</Text>
+      <Input
+        label={'Label'}
+        placeholder={'Type something...'}
+        hint={'This is a hint text to help user.'}
+        disabled={true}
+        sideContent={<Icon name="info" height={20} width={20} />}
+      />
+
+      <Text>{'E.1. Error Default'}</Text>
+      <Input
+        label={'Label'}
+        placeholder={'Type something...'}
+        error={'This is an error text to help user.'}
+        sideContent={<Icon name="info" height={20} width={20} />}
+      />
+
+      <Text>{'E.2. Error Default with hint text'}</Text>
+      <Input
+        label={'Label'}
+        placeholder={'Type something...'}
+        hint={'This is a hint text to help user.'}
+        error={'This is an error text to help user.'}
+        sideContent={<Icon name="info" height={20} width={20} />}
+      />
+
+      <Text>{'E.3. Error Filled'}</Text>
+      <Input
+        label={'Label'}
+        placeholder={'Type something...'}
+        value={'Text Input'}
+        error={'This is an error text to help user.'}
+        sideContent={<Icon name="info" height={20} width={20} />}
+      />
+
+      <Text>{'E.4. Error Filled with hint text'}</Text>
+      <Input
+        label={'Label'}
+        placeholder={'Type something...'}
+        value={'Text Input'}
+        hint={'This is a hint text to help user.'}
+        error={'This is an error text to help user.'}
+        sideContent={<Icon name="info" height={20} width={20} />}
+      />
+    </ScrollView>
+  );
 };
 
-export const WithValue = Template.bind({});
-WithValue.args = {
-  label: 'Email',
-  placeholder: 'Email',
-  value: 'example@test.com',
-};
+export const WithButtons = () => {
+  return (
+    <ScrollView>
+      <Text>{'A.2. Default'}</Text>
+      <Input
+        label={'Label'}
+        placeholder={'Type something...'}
+        sideContent={
+          <Button
+            variant={'outlined'}
+            shape={'curved'}
+            label={'Button CTA'}
+            size={'mini'}
+          />
+        }
+      />
 
-export const Hint = Template.bind({});
-Hint.args = {
-  label: 'Hint',
-  placeholder: 'Hint',
-  hint: 'Hint message',
-};
+      <Text>{'A.1. Default with hint text'}</Text>
+      <Input
+        label={'Label'}
+        placeholder={'Type something...'}
+        hint={'This is a hint text to help user.'}
+        sideContent={
+          <Button
+            variant={'outlined'}
+            shape={'curved'}
+            label={'Button CTA'}
+            size={'mini'}
+          />
+        }
+      />
 
-export const Error = Template.bind({});
-Error.args = {
-  label: 'Error',
-  placeholder: 'Error',
-  error: 'Error message',
-};
+      <Text>{'B.1. Focus(Mobile)'}</Text>
+      <Input
+        label={'Label'}
+        placeholder={'Type something...'}
+        autoFocus={true}
+        sideContent={
+          <Button
+            variant={'outlined'}
+            shape={'curved'}
+            label={'Button CTA'}
+            size={'mini'}
+          />
+        }
+      />
 
-export const Disabled = Template.bind({});
-Disabled.args = {
-  label: 'Disabled',
-  placeholder: 'Disabled',
-  disabled: true,
-};
+      <Text>{'C.1. Filled'}</Text>
+      <Input
+        label={'Label'}
+        placeholder={'Type something...'}
+        value={'Text Input'}
+        sideContent={
+          <Button
+            variant={'outlined'}
+            shape={'curved'}
+            label={'Button CTA'}
+            size={'mini'}
+          />
+        }
+      />
 
-export const Mask = Template.bind({});
-Mask.args = {
-  label: 'Digit mask',
-  mask: '+X(XXX) XX-XX-XXX',
-  placeholder: '+X(XXX) XX-XX-XXX',
-};
+      <Text>{'C.2. Filled with hint text'}</Text>
+      <Input
+        label={'Label'}
+        placeholder={'Type something...'}
+        value={'Text Input'}
+        hint={'This is a hint text to help user.'}
+        sideContent={
+          <Button
+            variant={'outlined'}
+            shape={'curved'}
+            label={'Button CTA'}
+            size={'mini'}
+          />
+        }
+      />
 
-export const Prefix = Template.bind({});
-Prefix.args = {
-  label: 'Prefix',
-  prefix: 'G-',
-  mask: 'XXX-XXX',
-  placeholder: 'XXX-XXX',
-};
+      <Text>{'D.1.Disabled'}</Text>
+      <Input
+        label={'Label'}
+        placeholder={'Type something...'}
+        disabled={true}
+        sideContent={
+          <Button
+            variant={'outlined'}
+            shape={'curved'}
+            label={'Button CTA'}
+            size={'mini'}
+          />
+        }
+      />
 
-export const ReadOnly = Template.bind({});
-ReadOnly.args = {
-  label: 'Read only',
-  value: 'example@test.com',
-  editable: false,
+      <Text>{'D.2.Disabled with hint text'}</Text>
+      <Input
+        label={'Label'}
+        placeholder={'Type something...'}
+        hint={'This is a hint text to help user.'}
+        disabled={true}
+        sideContent={
+          <Button
+            variant={'outlined'}
+            shape={'curved'}
+            label={'Button CTA'}
+            size={'mini'}
+          />
+        }
+      />
+
+      <Text>{'E.1. Error Default'}</Text>
+      <Input
+        label={'Label'}
+        placeholder={'Type something...'}
+        error={'This is an error text to help user.'}
+        sideContent={
+          <Button
+            variant={'outlined'}
+            shape={'curved'}
+            label={'Button CTA'}
+            size={'mini'}
+          />
+        }
+      />
+
+      <Text>{'E.2. Error Default with hint text'}</Text>
+      <Input
+        label={'Label'}
+        placeholder={'Type something...'}
+        hint={'This is a hint text to help user.'}
+        error={'This is an error text to help user.'}
+        sideContent={
+          <Button
+            variant={'outlined'}
+            shape={'curved'}
+            label={'Button CTA'}
+            size={'mini'}
+          />
+        }
+      />
+
+      <Text>{'E.3. Error Filled'}</Text>
+      <Input
+        label={'Label'}
+        placeholder={'Type something...'}
+        value={'Text Input'}
+        error={'This is an error text to help user.'}
+        sideContent={
+          <Button
+            variant={'outlined'}
+            shape={'curved'}
+            label={'Button CTA'}
+            size={'mini'}
+          />
+        }
+      />
+
+      <Text>{'E.4. Error Filled with hint text'}</Text>
+      <Input
+        label={'Label'}
+        placeholder={'Type something...'}
+        value={'Text Input'}
+        hint={'This is a hint text to help user.'}
+        error={'This is an error text to help user.'}
+        sideContent={
+          <Button
+            variant={'outlined'}
+            shape={'curved'}
+            label={'Button CTA'}
+            size={'mini'}
+          />
+        }
+      />
+    </ScrollView>
+  );
 };
