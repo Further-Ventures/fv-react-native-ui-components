@@ -13,6 +13,7 @@ const Icon: React.FC<IIconProps> = ({
   width = 24,
   height = 24,
   color = '#000',
+  style,
   ...rest
 }) => {
   const SvgRoot = filled
@@ -21,12 +22,13 @@ const Icon: React.FC<IIconProps> = ({
   const SvgContent = SvgRoot[name];
 
   return (
-    <View {...rest}>
+    <View style={style}>
       <SvgContent
         width={width}
         height={height || width}
         viewBox={'0 0 48 48'}
         fill={color}
+        {...rest}
       />
     </View>
   );
