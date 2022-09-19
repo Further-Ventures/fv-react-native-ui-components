@@ -1,5 +1,5 @@
 {
   "replaceAttrValues": {
-    "#000": "{props.fill}"
+    "currentColor": "{props.fill}"
   }
 }
