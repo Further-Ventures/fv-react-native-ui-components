@@ -1,5 +1,5 @@
 {
-  "name": "@further-ventures/fv-react-ui-components",
+  "name": "@further-ventures/fv-react-native-ui-components",
   "components": {
     "Theme": "theme",
     "Elevation": "elevation",
