@@ -5,6 +5,7 @@ import Divider from '../Divider';
 import * as filledIcons from '../../../components/Icon/material-symbols/filled';
 import * as social from '../../../components/Icon/custom/social/colorfull';
 import * as payment from '../../../components/Icon/custom/payment';
+import * as other from '../../../components/Icon/custom/other';
 
 const IconPreview = (props: IIconProps) => {
   return (
@@ -43,6 +44,15 @@ const IconPreview = (props: IIconProps) => {
       <View style={styles.row}>
         {Object.keys(payment).map(name => (
           <Icon name={name} key={name} width={34} height={24} />
+        ))}
+      </View>
+
+      <Divider />
+      <Text>Other icons</Text>
+
+      <View style={styles.row}>
+        {Object.keys(other).map(name => (
+          <Icon name={name} key={name} />
         ))}
       </View>
     </ScrollView>
