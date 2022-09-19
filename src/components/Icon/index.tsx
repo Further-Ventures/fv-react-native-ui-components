@@ -24,7 +24,8 @@ const Icon: React.FC<IIconProps> = ({
     (color
       ? require('./custom/social/dull')[name]
       : require('./custom/social/colorfull')[name]) ||
-    require('./custom/payment')[name];
+    require('./custom/payment')[name] ||
+    require('./custom/other')[name];
 
   return (
     <View style={style}>
