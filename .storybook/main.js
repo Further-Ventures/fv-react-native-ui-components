@@ -10,6 +10,7 @@ module.exports = {
     '../src/components/Button/*.stories.tsx',
     '../src/components/Chip/*.stories.tsx',
     '../src/components/Tag/*.stories.tsx',
+    '../src/components/Switch/*.stories.tsx',
   ],
   addons: [
     '@storybook/addon-links',
