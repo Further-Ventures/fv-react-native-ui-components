@@ -24,18 +24,10 @@ export default {
 
 const Template: ComponentStory<typeof Icon> = args => <IconView {...args} />;
 
-export const Filled = Template.bind({});
-Filled.args = {
+export const Preview = Template.bind({});
+Preview.args = {
   filled: true,
   width: 24,
   height: 24,
-  color: 'gray',
-};
-
-export const Unfilled = Template.bind({});
-Unfilled.args = {
-  filled: false,
-  width: 24,
-  height: 24,
-  color: 'gray',
+  color: 'maroon',
 };

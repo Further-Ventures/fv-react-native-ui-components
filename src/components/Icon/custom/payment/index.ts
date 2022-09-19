@@ -1,0 +1,11 @@
+export {default as amazon} from './amazon.svg';
+export {default as apple_pay} from './apple_pay.svg';
+export {default as google_pay} from './google_pay.svg';
+export {default as klarna} from './klarna.svg';
+export {default as maestro} from './maestro.svg';
+export {default as mastercard} from './mastercard.svg';
+export {default as paypal} from './paypal.svg';
+export {default as shop_pay} from './shop_pay.svg';
+export {default as sofort} from './sofort.svg';
+export {default as stripe} from './stripe.svg';
+export {default as visa} from './visa.svg';
