@@ -4,6 +4,7 @@
     "Theme": "theme",
     "Elevation": "elevation",
     "Icon": "Icon",
+    "Loader": "loader",
     "Text": "text",
     "TextArea": "texaArea",
     "Button": "button",
