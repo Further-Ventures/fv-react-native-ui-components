@@ -1,22 +1,9 @@
-import React, {
-  forwardRef,
-  useEffect,
-  useImperativeHandle,
-  useState,
-} from 'react';
+import React, { forwardRef, useEffect, useImperativeHandle, useState } from 'react';
 import useStyles from './styles';
-import {
-  TextInput,
-  NativeSyntheticEvent,
-  TextInputFocusEventData,
-  TextInputProps,
-  StyleProp,
-  ViewStyle,
-  View,
-} from 'react-native';
-import {useFormContext} from '../Form';
-import BaseInputLayout, {IBaseInputLayoutProps} from './BaseInputLayout';
-import {useTheme} from '../Theme';
+import { TextInput, NativeSyntheticEvent, TextInputFocusEventData, TextInputProps, StyleProp, ViewStyle, View } from 'react-native';
+import { useFormContext } from '../Form';
+import BaseInputLayout, { IBaseInputLayoutProps } from './BaseInputLayout';
+import { useTheme } from '../Theme';
 
 export interface IInputProps extends TextInputProps {
   name?: string;
@@ -51,11 +38,11 @@ const Input = forwardRef<TextInput, IInputProps>(
       showLength,
       ...rest
     },
-    ref,
+    ref
   ) => {
     const [isFocused, setIsFocused] = useState(false);
     const inputRef = React.createRef<TextInput>();
-    const {theme} = useTheme();
+    const { theme } = useTheme();
 
     const styles = useStyles();
 
@@ -63,13 +50,7 @@ const Input = forwardRef<TextInput, IInputProps>(
 
     useImperativeHandle(ref, () => inputRef.current as TextInput);
 
-    const {
-      fieldError,
-      fieldValue,
-      unsetFormValue,
-      updateFormValue,
-      updateFormTouched,
-    } = useFormContext(name);
+    const { fieldError, fieldValue, unsetFormValue, updateFormValue, updateFormTouched } = useFormContext(name);
 
     const initValue = fieldValue || value;
     const errorMessage = fieldError || error;
@@ -77,7 +58,7 @@ const Input = forwardRef<TextInput, IInputProps>(
 
     /** Wrappers to merge form and props methods */
     const onChangeTextWrapper = (text: string) => {
-      let nextValue = text;
+      const nextValue = text;
 
       setInternalValue(() => {
         return nextValue;
@@ -86,15 +67,11 @@ const Input = forwardRef<TextInput, IInputProps>(
       updateFormValue(name, nextValue);
       onChangeText?.(nextValue);
     };
-    const onFocusWrapper = (
-      e: NativeSyntheticEvent<TextInputFocusEventData>,
-    ) => {
+    const onFocusWrapper = (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
       setIsFocused(true);
       onFocus?.(e);
     };
-    const onBlurWrapper = (
-      e: NativeSyntheticEvent<TextInputFocusEventData>,
-    ) => {
+    const onBlurWrapper = (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
       setIsFocused(false);
       updateFormTouched(name, true);
       onBlur?.(e);
@@ -105,7 +82,6 @@ const Input = forwardRef<TextInput, IInputProps>(
       return () => {
         clearFormValueOnUnmount && unsetFormValue(name);
       };
-      // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (
@@ -138,7 +114,9 @@ const Input = forwardRef<TextInput, IInputProps>(
         </View>
       </BaseInputLayout>
     );
-  },
+  }
 );
+
+Input.displayName = 'Input';
 
 export default Input;

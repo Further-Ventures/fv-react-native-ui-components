@@ -1,6 +1,6 @@
 import React from 'react';
-import {render} from '@testing-library/react-native';
-import {ThemeProvider} from '.';
+import { render } from '@testing-library/react-native';
+import { ThemeProvider } from '.';
 import Button from '../Button';
 
 it('should render child', () => {
@@ -13,12 +13,12 @@ it('should render child', () => {
 
 it('should pass theme colors', () => {
   const newPrimaryMainColor = 'red';
-  const newTheme = {primary: {main: newPrimaryMainColor}};
+  const newTheme = { primary: { main: newPrimaryMainColor } };
   const buttonTestId = 'test-button';
   const screen = render(
     <ThemeProvider initial={newTheme}>
       <Button testID={buttonTestId}>Button</Button>
-    </ThemeProvider>,
+    </ThemeProvider>
   );
   const button = screen.getByTestId(buttonTestId);
   //Get initial button styles

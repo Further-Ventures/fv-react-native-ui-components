@@ -1,4 +1,4 @@
-import {createUseStyles} from '../Theme';
+import { createUseStyles } from '../Theme';
 
 export const sizeToHeightMap: Record<number, number> = {
   48: 60,

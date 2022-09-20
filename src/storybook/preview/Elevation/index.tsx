@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleProp, ViewStyle} from 'react-native';
+import { StyleProp, ViewStyle } from 'react-native';
 import Elevation from '../../../components/Elevation';
 
 export interface IElevationProps {
@@ -8,11 +8,10 @@ export interface IElevationProps {
   style?: StyleProp<ViewStyle>;
 }
 
-const ElevationView: React.FC<IElevationProps> = args => {
+const ElevationView: React.FC<IElevationProps> = (args) => {
   return (
     <Elevation
       {...args}
-      // eslint-disable-next-line react-native/no-inline-styles
       style={{
         margin: 20,
         width: 216,

@@ -1,11 +1,11 @@
-import React, {useRef, useState} from 'react';
-import {ScrollView, View} from 'react-native';
+import React, { useRef, useState } from 'react';
+import { ScrollView, View } from 'react-native';
 import * as yup from 'yup';
-import {ComponentStory, ComponentMeta} from '@storybook/react-native';
+import { ComponentStory, ComponentMeta } from '@storybook/react-native';
 import Input from '../Input';
 import CenterView from '../../storybook/preview/CenterView';
-import {Platform} from 'react-native';
-import Form, {IFormRef} from '.';
+import { Platform } from 'react-native';
+import Form, { IFormRef } from '.';
 import Button from '../Button';
 import pkg from './package.json';
 
@@ -31,34 +31,25 @@ const validationSchema = yup.object({
 
 const Template: ComponentStory<typeof Form> = ({
   // removed onValidateAsync from props(web storybook error)
+  // eslint-disable-next-line react/prop-types
   onValidateAsync: _,
+  // eslint-disable-next-line react/prop-types
   onValidate: _1,
   ...rest
 }) => {
   return (
     <Form {...rest}>
-      <ScrollView
-        // eslint-disable-next-line react-native/no-inline-styles
-        contentContainerStyle={{paddingHorizontal: 8}}
-        nestedScrollEnabled
-      >
-        <Input
-          name="email"
-          placeholder="Email"
-          label="Email"
-          // eslint-disable-next-line react-native/no-inline-styles
-          style={{marginVertical: 20}}
-        />
+      <ScrollView contentContainerStyle={{ paddingHorizontal: 8 }} nestedScrollEnabled>
+        <Input name='email' placeholder='Email' label='Email' style={{ marginVertical: 20 }} />
         <View
-          // eslint-disable-next-line react-native/no-inline-styles
           style={{
             marginTop: 20,
             flexDirection: 'row',
             justifyContent: 'space-around',
           }}
         >
-          <Button type="submit">Submit</Button>
-          <Button type="reset">Reset</Button>
+          <Button type='submit'>Submit</Button>
+          <Button type='reset'>Reset</Button>
         </View>
       </ScrollView>
     </Form>
@@ -117,22 +108,22 @@ WithOnChangeValidation.args = {
   onReset: (formData: any) => {
     console.log('onReset external', formData);
   },
-  onChange: (_, {isValid}) => console.log(isValid),
+  onChange: (_, { isValid }) => console.log(isValid),
   validationSchema,
 };
 
 export const ErrorOnSubmit = Template.bind({});
 ErrorOnSubmit.args = {
-  onSubmit: (formData: any, {setErrors}) => {
+  onSubmit: (formData: any, { setErrors }) => {
     console.log('onSubmit external', formData);
-    setErrors({email: 'This email is already taken'});
+    setErrors({ email: 'This email is already taken' });
   },
   validationSchema,
 };
 
 export const ResetOnSubmit = Template.bind({});
 ResetOnSubmit.args = {
-  onSubmit: (formData: any, {reset}) => {
+  onSubmit: (formData: any, { reset }) => {
     console.log('onSubmit external', formData);
     reset();
   },
@@ -143,7 +134,7 @@ export const ExternalControl = () => {
   const [currentFormState, updateFormState]: [any, any] = useState({});
 
   const handleSetError = () => {
-    formRef.current!.setErrors({email: 'This email is already taken'});
+    formRef.current!.setErrors({ email: 'This email is already taken' });
   };
 
   const handleResetForm = () => {
@@ -158,37 +149,25 @@ export const ExternalControl = () => {
         console.log('onChange external', formData);
         updateFormState(formData);
       }}
-      onError={(errorData: any, formData: any) =>
-        console.log('onError external', errorData, formData)
-      }
+      onError={(errorData: any, formData: any) => console.log('onError external', errorData, formData)}
       validationSchema={yup.object({
         email: yup.string().email().required(),
         password: yup.string().required(),
       })}
     >
-      <Input
-        name="email"
-        placeholder="Email"
-        label="Email"
-        // eslint-disable-next-line react-native/no-inline-styles
-        style={{marginBottom: 20}}
-      />
-      {!!currentFormState.email && (
-        <Input name="password" placeholder="Password" label="Password" />
-      )}
+      <Input name='email' placeholder='Email' label='Email' style={{ marginBottom: 20 }} />
+      {!!currentFormState.email && <Input name='password' placeholder='Password' label='Password' />}
       <View
-        // eslint-disable-next-line react-native/no-inline-styles
         style={{
           marginTop: 20,
           flexDirection: 'row',
           justifyContent: 'space-around',
         }}
       >
-        <Button type="submit">Login</Button>
-        <Button type="reset">Reset</Button>
+        <Button type='submit'>Login</Button>
+        <Button type='reset'>Reset</Button>
       </View>
       <View
-        // eslint-disable-next-line react-native/no-inline-styles
         style={{
           marginTop: 20,
           flexDirection: 'row',
@@ -209,39 +188,30 @@ export const DisabledSubmitButton = () => {
       onSubmit={(formData: any) => {
         console.log('onSubmit: ', formData);
       }}
-      onChange={(formData: any, {isValid}) => {
+      onChange={(formData: any, { isValid }) => {
         console.log('onChange: ', formData);
         console.log('isFormValid: ', isValid);
         setDisabled(!isValid);
       }}
-      onError={(errorData: any, formData: any) =>
-        console.log('onError: ', errorData, formData)
-      }
+      onError={(errorData: any, formData: any) => console.log('onError: ', errorData, formData)}
       validationSchema={yup.object({
         email: yup.string().email().required(),
         password: yup.string().required(),
       })}
     >
-      <Input
-        name="email"
-        placeholder="Email"
-        label="Email"
-        // eslint-disable-next-line react-native/no-inline-styles
-        style={{marginBottom: 20}}
-      />
-      <Input name="password" placeholder="Password" label="Password" />
+      <Input name='email' placeholder='Email' label='Email' style={{ marginBottom: 20 }} />
+      <Input name='password' placeholder='Password' label='Password' />
       <View
-        // eslint-disable-next-line react-native/no-inline-styles
         style={{
           marginTop: 20,
           flexDirection: 'row',
           justifyContent: 'space-around',
         }}
       >
-        <Button type="submit" disabled={disabled}>
+        <Button type='submit' disabled={disabled}>
           Login
         </Button>
-        <Button type="reset">Reset</Button>
+        <Button type='reset'>Reset</Button>
       </View>
     </Form>
   );
