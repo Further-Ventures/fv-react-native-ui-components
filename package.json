@@ -25,7 +25,7 @@
     "pod": "npx pod-install",
     "start": "react-native start",
     "test": "jest",
-    "lint": "eslint ./src --ext .js,.jsx,.ts,.tsx",
+    "lint": "eslint . --ext .js,.ts,.tsx",
     "lint:fix": "npm run lint -- --fix",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
@@ -34,7 +34,7 @@
     "prepare": "husky install"
   },
   "lint-staged": {
-    "*.{ts,tsx}": "eslint --fix"
+    "*.{js,ts,tsx}": "eslint --fix"
   },
   "react-native-builder-bob": {
     "source": "src",

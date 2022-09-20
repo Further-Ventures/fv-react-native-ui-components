@@ -1,5 +1,5 @@
 {
-  "name": "@further-ventures/fv-react-ui-components",
+  "name": "@further-ventures/fv-react-native-ui-components",
   "components": {
     "Theme": "theme",
     "Elevation": "elevation",
@@ -9,6 +9,7 @@
     "TextArea": "texaArea",
     "Button": "button",
     "Chip": "chip",
-    "Tag": "tag"
+    "Tag": "tag",
+    "TextLink": "textLink"
   }
 }

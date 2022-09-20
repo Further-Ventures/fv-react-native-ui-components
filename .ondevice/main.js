@@ -10,6 +10,7 @@ module.exports = {
     '../src/components/Chip/*.stories.tsx',
     '../src/components/Tag/*.stories.tsx',
     '../src/components/Input/*.stories.tsx',
+    '../src/components/TextLink/*.stories.tsx',
   ],
   addons: [
     '@storybook/addon-ondevice-notes',

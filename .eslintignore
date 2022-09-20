@@ -1,2 +1,9 @@
+build/*
+preBuild.js
+postBuild.js
+webpack.config.js
+deploy.js
+buildConstants.js
+
 # generated files by bob
 lib/
