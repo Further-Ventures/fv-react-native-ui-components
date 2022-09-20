@@ -1,7 +1,11 @@
 import React from 'react';
-import {ScrollView, View} from 'react-native';
+import {ScrollView, View, StyleSheet, Text} from 'react-native';
 import Icon, {IIconProps} from '../../../components/Icon';
-import * as FilledIcons from '../../../components/Icon/material-symbols/filled';
+import Divider from '../Divider';
+import * as filledIcons from '../../../components/Icon/material-symbols/filled';
+import * as social from '../../../components/Icon/custom/social/colorfull';
+import * as payment from '../../../components/Icon/custom/payment';
+import * as other from '../../../components/Icon/custom/other';
 
 const IconPreview = (props: IIconProps) => {
   return (
@@ -13,16 +17,48 @@ const IconPreview = (props: IIconProps) => {
         paddingBottom: 200,
       }}
     >
-      <View
-        // eslint-disable-next-line react-native/no-inline-styles
-        style={{flexDirection: 'row', flexWrap: 'wrap'}}
-      >
-        {Object.keys(FilledIcons).map(name => (
+      <Text>Material Symbols</Text>
+      <View style={styles.row}>
+        {Object.keys(filledIcons).map(name => (
           <Icon name={name} key={name} {...props} />
+        ))}
+      </View>
+      <Divider />
+      <Text>Social icons (with color prop)</Text>
+      <View style={styles.row}>
+        {Object.keys(social).map(name => (
+          <Icon name={name} key={name} {...props} />
+        ))}
+      </View>
+      <Divider />
+      <Text>Social icons (without color prop)</Text>
+
+      <View style={styles.row}>
+        {Object.keys(social).map(name => (
+          <Icon name={name} key={name} />
+        ))}
+      </View>
+      <Divider />
+      <Text>Payment icons</Text>
+
+      <View style={styles.row}>
+        {Object.keys(payment).map(name => (
+          <Icon name={name} key={name} width={34} height={24} />
+        ))}
+      </View>
+
+      <Divider />
+      <Text>Other icons</Text>
+
+      <View style={styles.row}>
+        {Object.keys(other).map(name => (
+          <Icon name={name} key={name} />
         ))}
       </View>
     </ScrollView>
   );
 };
-
+const styles = StyleSheet.create({
+  row: {flexDirection: 'row', flexWrap: 'wrap', marginTop: 5},
+});
 export default IconPreview;
