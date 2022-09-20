@@ -83,12 +83,7 @@ const TextArea: React.FC<IManualControlProps> = props => {
       >
         {!!errorText && !disabled && (
           <View style={styles.errorContainer}>
-            {(errorText?.length ?? 0) > 0 && (
-              <ErrorMessage
-                style={styles.errorMessage}
-                error={errorText || ''}
-              />
-            )}
+            <ErrorMessage style={styles.errorMessage} error={errorText || ''} />
           </View>
         )}
         {textLimit && !errorText && (
