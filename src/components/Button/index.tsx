@@ -1,5 +1,11 @@
 import * as React from 'react';
-import { Pressable, PressableProps, ViewStyle, StyleProp, GestureResponderEvent } from 'react-native';
+import {
+  Pressable,
+  PressableProps,
+  ViewStyle,
+  StyleProp,
+  GestureResponderEvent,
+} from 'react-native';
 import { useStyles } from './styles';
 import { useTheme, ThemeType } from '../Theme';
 import { useFormContext } from '../Form';
@@ -28,7 +34,13 @@ export interface IButton extends PressableProps {
   iconRightProps?: Omit<IIconProps, 'name'>;
 }
 
-const getTextColor = ({ theme, variant, disabled, error, pressed }: IButton & { theme: ThemeType; pressed?: boolean }) => {
+const getTextColor = ({
+  theme,
+  variant,
+  disabled,
+  error,
+  pressed,
+}: IButton & { theme: ThemeType; pressed?: boolean }) => {
   if (disabled) {
     return theme.text.disabled;
   }
@@ -125,10 +137,17 @@ const Button: React.FC<IButton> = ({
     pressed: boolean,
     locationProps: Omit<IIconProps, 'name'> | undefined
   ) => {
-    if ((name && iconPosition === position) || (position === 'left' && iconLeft) || (position === 'right' && iconRight)) {
-      const newName = name || (position === 'left' && iconLeft) || (position === 'right' && iconRight) || '';
+    if (
+      (name && iconPosition === position) ||
+      (position === 'left' && iconLeft) ||
+      (position === 'right' && iconRight)
+    ) {
+      const newName =
+        name || (position === 'left' && iconLeft) || (position === 'right' && iconRight) || '';
 
-      return <Icon {...allIconsStyle(newName, pressed, position)} {...iconProps} {...locationProps} />;
+      return (
+        <Icon {...allIconsStyle(newName, pressed, position)} {...iconProps} {...locationProps} />
+      );
     }
     return null;
   };
@@ -151,7 +170,12 @@ const Button: React.FC<IButton> = ({
         <>
           {generateIcon(icon, 'left', pressed, iconLeftProps)}
           {label ? (
-            <Text size={textSize[size]} weight='500' color={getTextColor({ theme, variant, disabled, error, pressed })} {...textProps}>
+            <Text
+              size={textSize[size]}
+              weight='500'
+              color={getTextColor({ theme, variant, disabled, error, pressed })}
+              {...textProps}
+            >
               {label}
             </Text>
           ) : null}

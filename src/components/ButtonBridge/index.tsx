@@ -5,7 +5,8 @@ import useStyles from './styles';
 import Button, { IButton } from '../Button';
 import { useTheme } from '../Theme';
 
-export interface IButtonBridge extends Omit<IButton, 'size' | 'variant' | 'icon' | 'iconPosition' | 'iconProps' | 'error'> {
+export interface IButtonBridge
+  extends Omit<IButton, 'size' | 'variant' | 'icon' | 'iconPosition' | 'iconProps' | 'error'> {
   size?: 'small' | 'large';
   variant?: 'contained' | 'outlined';
 }

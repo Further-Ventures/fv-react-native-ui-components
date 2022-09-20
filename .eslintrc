@@ -28,7 +28,7 @@
       "useTabs": false,
       "singleQuote": true,
       "jsxSingleQuote": true,
-      "printWidth": 150
+      "printWidth": 100
     }],
     "object-curly-spacing": ["warn", "always"],
     "object-curly-newline": ["warn", {"multiline": true, "consistent": true}],

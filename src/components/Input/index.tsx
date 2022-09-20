@@ -1,6 +1,14 @@
 import React, { forwardRef, useEffect, useImperativeHandle, useState } from 'react';
 import useStyles from './styles';
-import { TextInput, NativeSyntheticEvent, TextInputFocusEventData, TextInputProps, StyleProp, ViewStyle, View } from 'react-native';
+import {
+  TextInput,
+  NativeSyntheticEvent,
+  TextInputFocusEventData,
+  TextInputProps,
+  StyleProp,
+  ViewStyle,
+  View,
+} from 'react-native';
 import { useFormContext } from '../Form';
 import BaseInputLayout, { IBaseInputLayoutProps } from './BaseInputLayout';
 import { useTheme } from '../Theme';
@@ -50,7 +58,8 @@ const Input = forwardRef<TextInput, IInputProps>(
 
     useImperativeHandle(ref, () => inputRef.current as TextInput);
 
-    const { fieldError, fieldValue, unsetFormValue, updateFormValue, updateFormTouched } = useFormContext(name);
+    const { fieldError, fieldValue, unsetFormValue, updateFormValue, updateFormTouched } =
+      useFormContext(name);
 
     const initValue = fieldValue || value;
     const errorMessage = fieldError || error;

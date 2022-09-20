@@ -1,6 +1,13 @@
 import React, { useState } from 'react';
 import useStyles from './styles';
-import { NativeSyntheticEvent, TextInput as RNTextInput, TextInputFocusEventData, TextInputProps, Text, View } from 'react-native';
+import {
+  NativeSyntheticEvent,
+  TextInput as RNTextInput,
+  TextInputFocusEventData,
+  TextInputProps,
+  Text,
+  View,
+} from 'react-native';
 import { useTheme } from '../Theme';
 import ErrorMessage from '../ErrorMessage';
 
@@ -13,7 +20,17 @@ export interface IManualControlProps extends TextInputProps {
 }
 
 const TextArea: React.FC<IManualControlProps> = (props) => {
-  const { errorText, disabled = false, textLimit, name = 'Label', onChangeText, onFocus, onBlur, value, ...rest } = props;
+  const {
+    errorText,
+    disabled = false,
+    textLimit,
+    name = 'Label',
+    onChangeText,
+    onFocus,
+    onBlur,
+    value,
+    ...rest
+  } = props;
   const [focused, setFocused] = useState(false);
   const styles = useStyles();
   const { theme } = useTheme();
@@ -33,7 +50,14 @@ const TextArea: React.FC<IManualControlProps> = (props) => {
 
   return (
     <View>
-      <View style={[styles.container, focused && styles.focused, !!errorText && styles.error, disabled && styles.disabled]}>
+      <View
+        style={[
+          styles.container,
+          focused && styles.focused,
+          !!errorText && styles.error,
+          disabled && styles.disabled,
+        ]}
+      >
         <Text style={[styles.label, disabled && styles.textDisabled]}>{name}</Text>
         <RNTextInput
           maxLength={textLimit}
@@ -49,7 +73,12 @@ const TextArea: React.FC<IManualControlProps> = (props) => {
           {...rest}
         />
       </View>
-      <View style={[styles.bottomContainer, (disabled || (!disabled && !errorText)) && styles.bottomContainerEnd]}>
+      <View
+        style={[
+          styles.bottomContainer,
+          (disabled || (!disabled && !errorText)) && styles.bottomContainerEnd,
+        ]}
+      >
         {!!errorText && !disabled && (
           <View style={styles.errorContainer}>
             <ErrorMessage style={styles.errorMessage} error={errorText || ''} />

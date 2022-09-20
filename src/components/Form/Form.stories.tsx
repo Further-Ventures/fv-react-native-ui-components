@@ -149,14 +149,18 @@ export const ExternalControl = () => {
         console.log('onChange external', formData);
         updateFormState(formData);
       }}
-      onError={(errorData: any, formData: any) => console.log('onError external', errorData, formData)}
+      onError={(errorData: any, formData: any) =>
+        console.log('onError external', errorData, formData)
+      }
       validationSchema={yup.object({
         email: yup.string().email().required(),
         password: yup.string().required(),
       })}
     >
       <Input name='email' placeholder='Email' label='Email' style={{ marginBottom: 20 }} />
-      {!!currentFormState.email && <Input name='password' placeholder='Password' label='Password' />}
+      {!!currentFormState.email && (
+        <Input name='password' placeholder='Password' label='Password' />
+      )}
       <View
         style={{
           marginTop: 20,

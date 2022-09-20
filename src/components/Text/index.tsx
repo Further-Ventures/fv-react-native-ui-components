@@ -31,7 +31,13 @@ const Text: React.FC<IConditionalTextProps> = (props) => {
         color,
         fontSize: size,
         fontWeight: weight,
-        lineHeight: height || (size && size in sizeToHeightMap ? sizeToHeightMap[size] : size ? size + Math.trunc(size / 2) : 10),
+        lineHeight:
+          height ||
+          (size && size in sizeToHeightMap
+            ? sizeToHeightMap[size]
+            : size
+            ? size + Math.trunc(size / 2)
+            : 10),
       };
 
   return (

@@ -26,9 +26,18 @@ const TextLink: React.FC<IManualControlProps> = (props) => {
   };
 
   return (
-    <TouchableOpacity style={styles.container} disabled={disabled} onPressIn={onPressIn} onPressOut={onPressOut} onPress={onPress}>
+    <TouchableOpacity
+      style={styles.container}
+      disabled={disabled}
+      onPressIn={onPressIn}
+      onPressOut={onPressOut}
+      onPress={onPress}
+    >
       {icon === 'left' ? <Icon name='west' color={theme.primary.main} height={20} /> : null}
-      <Text style={[styles.text, showUnderline && styles.underline, disabled && styles.disabled]} {...other}>
+      <Text
+        style={[styles.text, showUnderline && styles.underline, disabled && styles.disabled]}
+        {...other}
+      >
         {children}
       </Text>
       {icon === 'right' ? <Icon name='east' color={theme.primary.main} height={20} /> : null}

@@ -16,7 +16,9 @@ type RecursivePartial<T> = {
 
 export type ThemeType = typeof defaultTheme & DesignSystem.IProjectTheme;
 
-export type CustomTheme = RecursivePartial<ThemeType> & RecursivePartial<DesignSystem.IProjectTheme> & Record<string, any>;
+export type CustomTheme = RecursivePartial<ThemeType> &
+  RecursivePartial<DesignSystem.IProjectTheme> &
+  Record<string, any>;
 interface IThemeContext {
   theme: ThemeType;
   updateTheme: (updatedTheme: CustomTheme) => void;
@@ -54,7 +56,10 @@ ThemeProvider.displayName = 'ThemeProvider';
 
 export const useTheme = () => useContext(Context);
 
-export const createUseStyles = <T extends StyleSheet.NamedStyles<T> | StyleSheet.NamedStyles<any>, P extends any[]>(
+export const createUseStyles = <
+  T extends StyleSheet.NamedStyles<T> | StyleSheet.NamedStyles<any>,
+  P extends any[]
+>(
   styles: ((theme: ThemeType, ...args: P) => T) | T
 ) => {
   const useStyles = (...args: P): T | StyleSheet.NamedStyles<T> => {
