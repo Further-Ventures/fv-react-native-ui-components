@@ -1,11 +1,11 @@
-import {createUseStyles} from '../../Theme';
+import { createUseStyles } from '../../Theme';
 
 const inputConstants = {
   OUTLINE_SIZE: 8,
   BORDER_WIDTH: 1,
 };
 
-export default createUseStyles(theme => ({
+export default createUseStyles((theme) => ({
   baseInput: {
     borderWidth: inputConstants.BORDER_WIDTH,
     borderColor: theme.grey.main,

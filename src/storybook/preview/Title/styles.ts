@@ -1,4 +1,4 @@
-import {createUseStyles} from '../../../components/Theme';
+import { createUseStyles } from '../../../components/Theme';
 
 export default createUseStyles({
   title: {

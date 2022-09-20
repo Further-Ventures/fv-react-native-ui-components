@@ -1,14 +1,7 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import useStyles from './styles';
-import {
-  NativeSyntheticEvent,
-  TextInput as RNTextInput,
-  TextInputFocusEventData,
-  TextInputProps,
-  Text,
-  View,
-} from 'react-native';
-import {useTheme} from '../Theme';
+import { NativeSyntheticEvent, TextInput as RNTextInput, TextInputFocusEventData, TextInputProps, Text, View } from 'react-native';
+import { useTheme } from '../Theme';
 import ErrorMessage from '../ErrorMessage';
 
 export interface IManualControlProps extends TextInputProps {
@@ -19,21 +12,11 @@ export interface IManualControlProps extends TextInputProps {
   name?: string;
 }
 
-const TextArea: React.FC<IManualControlProps> = props => {
-  const {
-    errorText,
-    disabled = false,
-    textLimit,
-    name = 'Label',
-    onChangeText,
-    onFocus,
-    onBlur,
-    value,
-    ...rest
-  } = props;
+const TextArea: React.FC<IManualControlProps> = (props) => {
+  const { errorText, disabled = false, textLimit, name = 'Label', onChangeText, onFocus, onBlur, value, ...rest } = props;
   const [focused, setFocused] = useState(false);
   const styles = useStyles();
-  const {theme} = useTheme();
+  const { theme } = useTheme();
 
   const onFocusWrapper = (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
     setFocused(true);
@@ -50,23 +33,14 @@ const TextArea: React.FC<IManualControlProps> = props => {
 
   return (
     <View>
-      <View
-        style={[
-          styles.container,
-          focused && styles.focused,
-          !!errorText && styles.error,
-          disabled && styles.disabled,
-        ]}
-      >
-        <Text style={[styles.label, disabled && styles.textDisabled]}>
-          {name}
-        </Text>
+      <View style={[styles.container, focused && styles.focused, !!errorText && styles.error, disabled && styles.disabled]}>
+        <Text style={[styles.label, disabled && styles.textDisabled]}>{name}</Text>
         <RNTextInput
           maxLength={textLimit}
           onFocus={onFocusWrapper}
           onBlur={onBlurWrapper}
           placeholderTextColor={theme.text.disabled}
-          placeholder="Type something..."
+          placeholder='Type something...'
           multiline
           style={styles.textArea}
           editable={!disabled}
@@ -75,12 +49,7 @@ const TextArea: React.FC<IManualControlProps> = props => {
           {...rest}
         />
       </View>
-      <View
-        style={[
-          styles.bottomContainer,
-          (disabled || (!disabled && !errorText)) && styles.bottomContainerEnd,
-        ]}
-      >
+      <View style={[styles.bottomContainer, (disabled || (!disabled && !errorText)) && styles.bottomContainerEnd]}>
         {!!errorText && !disabled && (
           <View style={styles.errorContainer}>
             <ErrorMessage style={styles.errorMessage} error={errorText || ''} />
