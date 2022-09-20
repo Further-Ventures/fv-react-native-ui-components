@@ -8,6 +8,7 @@
     "TextArea": "texaArea",
     "Button": "button",
     "Chip": "chip",
-    "Tag": "tag"
+    "Tag": "tag",
+    "TextLink": "textLink"
   }
 }

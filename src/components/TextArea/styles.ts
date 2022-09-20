@@ -30,8 +30,6 @@ export default createUseStyles(theme => ({
     borderColor: theme.error.main,
   },
   bottomContainer: {
-    paddingLeft: 12,
-    marginTop: 8,
     flexDirection: 'row',
     justifyContent: 'space-between',
   },

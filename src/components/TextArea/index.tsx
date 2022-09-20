@@ -10,7 +10,6 @@ import {
 } from 'react-native';
 import {useTheme} from '../Theme';
 import ErrorMessage from '../ErrorMessage';
-import Icon from '../Icon';
 
 export interface IManualControlProps extends TextInputProps {
   error?: boolean;
@@ -84,13 +83,6 @@ const TextArea: React.FC<IManualControlProps> = props => {
       >
         {!!errorText && !disabled && (
           <View style={styles.errorContainer}>
-            <Icon
-              width={20}
-              height={20}
-              name="error"
-              filled
-              color={theme.error.main}
-            />
             <ErrorMessage style={styles.errorMessage} error={errorText || ''} />
           </View>
         )}

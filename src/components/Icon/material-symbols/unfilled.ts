@@ -9,3 +9,5 @@ export {default as cancel} from '@material-symbols/svg-400/rounded/cancel.svg';
 export {default as check_circle} from '@material-symbols/svg-400/rounded/check_circle.svg';
 export {default as account_circle} from '@material-symbols/svg-400/rounded/account_circle.svg';
 export {default as error} from '@material-symbols/svg-400/rounded/error.svg';
+export {default as west} from '@material-symbols/svg-400/rounded/west.svg';
+export {default as east} from '@material-symbols/svg-400/rounded/east.svg';
