@@ -8,10 +8,13 @@ import {
   StyleProp,
   ViewStyle,
   View,
+  TextStyle,
+  Text,
 } from 'react-native';
 import { useFormContext } from '../Form';
 import BaseInputLayout, { IBaseInputLayoutProps } from './BaseInputLayout';
 import { useTheme } from '../Theme';
+import { applyDigitMask } from './utils';
 
 export interface IInputProps extends TextInputProps {
   name?: string;
@@ -22,8 +25,12 @@ export interface IInputProps extends TextInputProps {
   style?: StyleProp<ViewStyle>;
   disabled?: boolean;
   controlled?: boolean;
-  sideContent?: IBaseInputLayoutProps['sideContent'];
+  rightContent?: IBaseInputLayoutProps['rightContent'];
+  leftContent?: IBaseInputLayoutProps['leftContent'];
   showLength?: boolean;
+  mask?: string;
+  prefix?: string;
+  prefixStyle?: StyleProp<TextStyle>;
 }
 
 const Input = forwardRef<TextInput, IInputProps>(
@@ -42,8 +49,12 @@ const Input = forwardRef<TextInput, IInputProps>(
       disabled,
       controlled,
       maxLength,
-      sideContent,
+      rightContent,
+      leftContent,
       showLength,
+      mask,
+      prefix,
+      prefixStyle,
       ...rest
     },
     ref
@@ -63,13 +74,18 @@ const Input = forwardRef<TextInput, IInputProps>(
 
     const initValue = fieldValue || value;
     const errorMessage = fieldError || error;
-    const [internalValue, setInternalValue] = React.useState<string>(initValue);
+    const [internalValue, setInternalValue] = React.useState<string>(
+      mask && initValue ? applyDigitMask(initValue, mask) : initValue
+    );
 
     /** Wrappers to merge form and props methods */
     const onChangeTextWrapper = (text: string) => {
-      const nextValue = text;
+      let nextValue = text;
 
-      setInternalValue(() => {
+      setInternalValue((prevValue) => {
+        if (mask) {
+          nextValue = prevValue.length >= text.length ? text : applyDigitMask(text, mask);
+        }
         return nextValue;
       });
 
@@ -105,9 +121,11 @@ const Input = forwardRef<TextInput, IInputProps>(
         maxValueLength={maxLength}
         showLength={showLength}
         currentValueLength={controlled ? value?.length : internalValue?.length}
-        sideContent={sideContent}
+        rightContent={rightContent}
+        leftContent={leftContent}
       >
         <View style={styles.inputContainer}>
+          {prefix && <Text style={[styles.prefix, prefixStyle]}>{prefix}</Text>}
           <TextInput
             ref={inputRef}
             style={[styles.input, disabled && styles.disabledInput]}
@@ -116,7 +134,7 @@ const Input = forwardRef<TextInput, IInputProps>(
             onChangeText={onChangeTextWrapper}
             onFocus={onFocusWrapper}
             placeholderTextColor={theme.text.disabled}
-            maxLength={maxLength}
+            maxLength={mask?.length || maxLength}
             editable={!disabled}
             {...rest}
           />

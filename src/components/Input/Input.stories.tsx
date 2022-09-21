@@ -118,7 +118,7 @@ export const WithIcon = () => {
       <Input
         label={'Label'}
         placeholder={'Type something...'}
-        sideContent={<Icon name='info' height={20} width={20} color='grey' />}
+        rightContent={<Icon name='info' height={20} width={20} color='grey' />}
       />
 
       <Text>{'A.1. Default with hint text'}</Text>
@@ -126,7 +126,7 @@ export const WithIcon = () => {
         label={'Label'}
         placeholder={'Type something...'}
         hint={'This is a hint text to help user.'}
-        sideContent={<Icon name='info' height={20} width={20} color='grey' />}
+        rightContent={<Icon name='info' height={20} width={20} color='grey' />}
       />
 
       <Text>{'B.1. Focus(Mobile)'}</Text>
@@ -135,7 +135,7 @@ export const WithIcon = () => {
         placeholder={'Type something...'}
         /* eslint-disable-next-line jsx-a11y/no-autofocus */
         autoFocus={true}
-        sideContent={<Icon name='info' height={20} width={20} color='grey' />}
+        rightContent={<Icon name='info' height={20} width={20} color='grey' />}
       />
 
       <Text>{'C.1. Filled'}</Text>
@@ -143,7 +143,7 @@ export const WithIcon = () => {
         label={'Label'}
         placeholder={'Type something...'}
         value={'Text Input'}
-        sideContent={<Icon name='info' height={20} width={20} color='grey' />}
+        rightContent={<Icon name='info' height={20} width={20} color='grey' />}
       />
 
       <Text>{'C.2. Filled with hint text'}</Text>
@@ -152,7 +152,7 @@ export const WithIcon = () => {
         placeholder={'Type something...'}
         value={'Text Input'}
         hint={'This is a hint text to help user.'}
-        sideContent={<Icon name='info' height={20} width={20} color='grey' />}
+        rightContent={<Icon name='info' height={20} width={20} color='grey' />}
       />
 
       <Text>{'D.1.Disabled'}</Text>
@@ -160,7 +160,7 @@ export const WithIcon = () => {
         label={'Label'}
         placeholder={'Type something...'}
         disabled={true}
-        sideContent={<Icon name='info' height={20} width={20} color='grey' />}
+        rightContent={<Icon name='info' height={20} width={20} color='grey' />}
       />
 
       <Text>{'D.2.Disabled with hint text'}</Text>
@@ -169,7 +169,7 @@ export const WithIcon = () => {
         placeholder={'Type something...'}
         hint={'This is a hint text to help user.'}
         disabled={true}
-        sideContent={<Icon name='info' height={20} width={20} color='grey' />}
+        rightContent={<Icon name='info' height={20} width={20} color='grey' />}
       />
 
       <Text>{'E.1. Error Default'}</Text>
@@ -177,7 +177,7 @@ export const WithIcon = () => {
         label={'Label'}
         placeholder={'Type something...'}
         error={'This is an error text to help user.'}
-        sideContent={<Icon name='info' height={20} width={20} color='grey' />}
+        rightContent={<Icon name='info' height={20} width={20} color='grey' />}
       />
 
       <Text>{'E.2. Error Default with hint text'}</Text>
@@ -186,7 +186,7 @@ export const WithIcon = () => {
         placeholder={'Type something...'}
         hint={'This is a hint text to help user.'}
         error={'This is an error text to help user.'}
-        sideContent={<Icon name='info' height={20} width={20} color='grey' />}
+        rightContent={<Icon name='info' height={20} width={20} color='grey' />}
       />
 
       <Text>{'E.3. Error Filled'}</Text>
@@ -195,7 +195,7 @@ export const WithIcon = () => {
         placeholder={'Type something...'}
         value={'Text Input'}
         error={'This is an error text to help user.'}
-        sideContent={<Icon name='info' height={20} width={20} color='grey' />}
+        rightContent={<Icon name='info' height={20} width={20} color='grey' />}
       />
 
       <Text>{'E.4. Error Filled with hint text'}</Text>
@@ -205,7 +205,7 @@ export const WithIcon = () => {
         value={'Text Input'}
         hint={'This is a hint text to help user.'}
         error={'This is an error text to help user.'}
-        sideContent={<Icon name='info' height={20} width={20} color='grey' />}
+        leftContent={<Icon name='info' height={20} width={20} color='grey' />}
       />
     </ScrollView>
   );
@@ -218,7 +218,7 @@ export const WithButtons = () => {
       <Input
         label={'Label'}
         placeholder={'Type something...'}
-        sideContent={
+        rightContent={
           <Button variant={'outlined'} shape={'curved'} label={'Button CTA'} size={'mini'} />
         }
       />
@@ -228,7 +228,7 @@ export const WithButtons = () => {
         label={'Label'}
         placeholder={'Type something...'}
         hint={'This is a hint text to help user.'}
-        sideContent={
+        rightContent={
           <Button variant={'outlined'} shape={'curved'} label={'Button CTA'} size={'mini'} />
         }
       />
@@ -239,7 +239,7 @@ export const WithButtons = () => {
         placeholder={'Type something...'}
         /* eslint-disable-next-line jsx-a11y/no-autofocus */
         autoFocus={true}
-        sideContent={
+        rightContent={
           <Button variant={'outlined'} shape={'curved'} label={'Button CTA'} size={'mini'} />
         }
       />
@@ -249,7 +249,7 @@ export const WithButtons = () => {
         label={'Label'}
         placeholder={'Type something...'}
         value={'Text Input'}
-        sideContent={
+        rightContent={
           <Button variant={'outlined'} shape={'curved'} label={'Button CTA'} size={'mini'} />
         }
       />
@@ -260,7 +260,7 @@ export const WithButtons = () => {
         placeholder={'Type something...'}
         value={'Text Input'}
         hint={'This is a hint text to help user.'}
-        sideContent={
+        rightContent={
           <Button variant={'outlined'} shape={'curved'} label={'Button CTA'} size={'mini'} />
         }
       />
@@ -270,9 +270,16 @@ export const WithButtons = () => {
         label={'Label'}
         placeholder={'Type something...'}
         disabled={true}
-        sideContent={
-          <Button variant={'outlined'} shape={'curved'} label={'Button CTA'} size={'mini'} />
-        }
+        rightContent={(hasError, disabled) => (
+          <Button
+            variant={'outlined'}
+            shape={'curved'}
+            label={'Button CTA'}
+            size={'mini'}
+            error={hasError}
+            disabled={disabled}
+          />
+        )}
       />
 
       <Text>{'D.2.Disabled with hint text'}</Text>
@@ -281,9 +288,16 @@ export const WithButtons = () => {
         placeholder={'Type something...'}
         hint={'This is a hint text to help user.'}
         disabled={true}
-        sideContent={
-          <Button variant={'outlined'} shape={'curved'} label={'Button CTA'} size={'mini'} />
-        }
+        rightContent={(hasError, disabled) => (
+          <Button
+            variant={'outlined'}
+            shape={'curved'}
+            label={'Button CTA'}
+            size={'mini'}
+            error={hasError}
+            disabled={disabled}
+          />
+        )}
       />
 
       <Text>{'E.1. Error Default'}</Text>
@@ -291,9 +305,16 @@ export const WithButtons = () => {
         label={'Label'}
         placeholder={'Type something...'}
         error={'This is an error text to help user.'}
-        sideContent={
-          <Button variant={'outlined'} shape={'curved'} label={'Button CTA'} size={'mini'} />
-        }
+        rightContent={(hasError, disabled) => (
+          <Button
+            variant={'outlined'}
+            shape={'curved'}
+            label={'Button CTA'}
+            size={'mini'}
+            error={hasError}
+            disabled={disabled}
+          />
+        )}
       />
 
       <Text>{'E.2. Error Default with hint text'}</Text>
@@ -302,9 +323,16 @@ export const WithButtons = () => {
         placeholder={'Type something...'}
         hint={'This is a hint text to help user.'}
         error={'This is an error text to help user.'}
-        sideContent={
-          <Button variant={'outlined'} shape={'curved'} label={'Button CTA'} size={'mini'} />
-        }
+        rightContent={(hasError, disabled) => (
+          <Button
+            variant={'outlined'}
+            shape={'curved'}
+            label={'Button CTA'}
+            size={'mini'}
+            error={hasError}
+            disabled={disabled}
+          />
+        )}
       />
 
       <Text>{'E.3. Error Filled'}</Text>
@@ -313,9 +341,16 @@ export const WithButtons = () => {
         placeholder={'Type something...'}
         value={'Text Input'}
         error={'This is an error text to help user.'}
-        sideContent={
-          <Button variant={'outlined'} shape={'curved'} label={'Button CTA'} size={'mini'} />
-        }
+        rightContent={(hasError, disabled) => (
+          <Button
+            variant={'outlined'}
+            shape={'curved'}
+            label={'Button CTA'}
+            size={'mini'}
+            error={hasError}
+            disabled={disabled}
+          />
+        )}
       />
 
       <Text>{'E.4. Error Filled with hint text'}</Text>
@@ -325,10 +360,41 @@ export const WithButtons = () => {
         value={'Text Input'}
         hint={'This is a hint text to help user.'}
         error={'This is an error text to help user.'}
-        sideContent={
-          <Button variant={'outlined'} shape={'curved'} label={'Button CTA'} size={'mini'} />
-        }
+        rightContent={(hasError, disabled) => (
+          <Button
+            variant={'outlined'}
+            shape={'curved'}
+            label={'Button CTA'}
+            size={'mini'}
+            error={hasError}
+            disabled={disabled}
+          />
+        )}
       />
     </ScrollView>
   );
 };
+
+export const WithMask = () => (
+  <ScrollView>
+    <Text>{'Numeric Input'}</Text>
+    <Input
+      label={'Card Number'}
+      placeholder={'XXXX XXXX XXXX XXXX'}
+      mask={'XXXX XXXX XXXX XXXX'}
+      leftContent={<Icon name='mastercard' height={24} width={35} />}
+      rightContent={<Icon name='info' height={20} width={20} color='grey' />}
+    />
+    <Text>{'Date Input'}</Text>
+    <Input label={'Expiration date'} placeholder={'MM/YY'} mask={'XX/XX'} />
+    <Text>{'Prefix'}</Text>
+    <Input
+      prefix={'AE'}
+      label={'IBAN'}
+      placeholder={'XX XXX XXXX XXXX XXXX'}
+      mask={'XX XXX XXXX XXXX XXXX'}
+    />
+    <Text>{'Phone number prefix'}</Text>
+    <Input prefix={'+971'} label={'Phone number'} placeholder={'0000 0000'} mask={'XXXX XXXX'} />
+  </ScrollView>
+);

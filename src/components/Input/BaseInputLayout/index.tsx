@@ -1,10 +1,10 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { ReactElement, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import useStyles from './styles';
 import { Pressable, PressableProps, View, StyleProp, ViewStyle, Animated } from 'react-native';
 import HintMessage from '../../HintMessage';
 import ErrorMessage from '../../ErrorMessage';
-import Button from '../../Button';
-import { useTheme } from '../../Theme';
+
+type ContentFunc = (hasError: boolean, disabled?: boolean) => React.ReactElement;
 
 export interface IBaseInputLayoutProps extends PressableProps {
   label?: string;
@@ -13,7 +13,8 @@ export interface IBaseInputLayoutProps extends PressableProps {
   error?: string;
   disabled?: boolean;
   hint?: string;
-  sideContent?: React.ReactElement;
+  rightContent?: React.ReactElement | ContentFunc;
+  leftContent?: React.ReactElement | ContentFunc;
   maxValueLength?: number;
   currentValueLength?: number;
   showLength?: boolean;
@@ -37,7 +38,8 @@ const BaseInputLayout = React.forwardRef<View, IBaseInputLayoutProps>(
       style,
       disabled,
       hint,
-      sideContent,
+      rightContent,
+      leftContent,
       currentValueLength = 0,
       maxValueLength,
       showLength,
@@ -54,29 +56,23 @@ const BaseInputLayout = React.forwardRef<View, IBaseInputLayoutProps>(
       height: 0,
     });
 
-    const [rightContent, setRightContent] = useState(sideContent);
-
-    const { theme } = useTheme();
+    const hasError = Boolean(error);
 
     const styles = useStyles();
 
-    useEffect(() => {
-      if (React.isValidElement(sideContent) && sideContent?.type === Button) {
-        let borderColor = theme.primary.main;
-        if (error) {
-          borderColor = theme.error.dark;
-        } else if (disabled) {
-          borderColor = theme.grey.light;
-        }
+    const getSideContent = useCallback(
+      (sideContent?: ReactElement | ContentFunc): ReactElement | null => {
+        if (!sideContent) return null;
+        return typeof sideContent === 'function' ? sideContent(hasError, disabled) : sideContent;
+      },
+      [disabled, hasError]
+    );
 
-        const updatedContent = React.cloneElement(sideContent, {
-          style: { borderColor: borderColor },
-          error: Boolean(error),
-          disabled: Boolean(disabled),
-        });
-        setRightContent(updatedContent);
-      }
-    }, [sideContent, disabled, error, theme]);
+    const leftElement = useMemo(() => getSideContent(leftContent), [getSideContent, leftContent]);
+    const rightElement = useMemo(
+      () => getSideContent(rightContent),
+      [getSideContent, rightContent]
+    );
 
     useEffect(() => {
       Animated.timing(labelAnim, {
@@ -110,6 +106,7 @@ const BaseInputLayout = React.forwardRef<View, IBaseInputLayoutProps>(
           ref={ref}
           {...rest}
         >
+          {!!leftElement && <View style={styles.leftContent}>{leftElement}</View>}
           <View style={styles.mainContent}>
             {label && (
               <Animated.Text
@@ -142,7 +139,7 @@ const BaseInputLayout = React.forwardRef<View, IBaseInputLayoutProps>(
               {children}
             </Animated.View>
           </View>
-          <View style={styles.sideContent}>{rightContent}</View>
+          {!!rightElement && <View style={styles.rightContent}>{rightElement}</View>}
         </Pressable>
         {!!hint && <HintMessage message={hint} disabled={disabled} />}
         {!!showLength && (
