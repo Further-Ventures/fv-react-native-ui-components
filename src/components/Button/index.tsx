@@ -6,11 +6,11 @@ import {
   StyleProp,
   GestureResponderEvent,
 } from 'react-native';
-import {useStyles} from './styles';
-import {useTheme, ThemeType} from '../Theme';
-import {useFormContext} from '../Form';
-import Text, {IManualControlProps} from '../Text';
-import Icon, {IIconProps} from '../Icon';
+import { useStyles } from './styles';
+import { useTheme, ThemeType } from '../Theme';
+import { useFormContext } from '../Form';
+import Text, { IManualControlProps } from '../Text';
+import Icon, { IIconProps } from '../Icon';
 
 export type TSize = 'mini' | 'small' | 'medium' | 'large';
 
@@ -40,7 +40,7 @@ const getTextColor = ({
   disabled,
   error,
   pressed,
-}: IButton & {theme: ThemeType; pressed?: boolean}) => {
+}: IButton & { theme: ThemeType; pressed?: boolean }) => {
   if (disabled) {
     return theme.text.disabled;
   }
@@ -98,10 +98,10 @@ const Button: React.FC<IButton> = ({
   ...rest
 }) => {
   const {
-    formActions: {submit, reset},
+    formActions: { submit, reset },
   } = useFormContext();
   const styles = useStyles(size, variant, error, !label);
-  const {theme} = useTheme();
+  const { theme } = useTheme();
 
   const handlePress = (e: GestureResponderEvent) => {
     switch (type) {
@@ -110,15 +110,11 @@ const Button: React.FC<IButton> = ({
       case 'reset':
         return reset();
       default:
-        return onPress && onPress(e);
+        return onPress?.(e);
     }
   };
 
-  const allIconsStyle = (
-    name: string,
-    pressed: boolean,
-    position: 'left' | 'right',
-  ) => {
+  const allIconsStyle = (name: string, pressed: boolean, position: 'left' | 'right') => {
     const margins = {
       left: {
         marginRight: 10,
@@ -129,7 +125,7 @@ const Button: React.FC<IButton> = ({
     };
     return {
       name: name || '',
-      color: getTextColor({theme, variant, disabled, error, pressed}),
+      color: getTextColor({ theme, variant, disabled, error, pressed }),
       width: size === 'mini' ? 13 : 20,
       style: label ? margins[position] : {},
     };
@@ -139,32 +135,25 @@ const Button: React.FC<IButton> = ({
     name: string | undefined,
     position: 'left' | 'right',
     pressed: boolean,
-    locationProps: Omit<IIconProps, 'name'> | undefined,
+    locationProps: Omit<IIconProps, 'name'> | undefined
   ) => {
     if (
       (name && iconPosition === position) ||
       (position === 'left' && iconLeft) ||
       (position === 'right' && iconRight)
     ) {
-      let newName =
-        name ||
-        (position === 'left' && iconLeft) ||
-        (position === 'right' && iconRight) ||
-        '';
+      const newName =
+        name || (position === 'left' && iconLeft) || (position === 'right' && iconRight) || '';
 
       return (
-        <Icon
-          {...allIconsStyle(newName, pressed, position)}
-          {...iconProps}
-          {...locationProps}
-        />
+        <Icon {...allIconsStyle(newName, pressed, position)} {...iconProps} {...locationProps} />
       );
     }
     return null;
   };
   return (
     <Pressable
-      style={({pressed}) => [
+      style={({ pressed }) => [
         styles.button,
         styles[size],
         styles[shape],
@@ -177,14 +166,14 @@ const Button: React.FC<IButton> = ({
       onPress={handlePress}
       {...rest}
     >
-      {({pressed}) => (
+      {({ pressed }) => (
         <>
           {generateIcon(icon, 'left', pressed, iconLeftProps)}
           {label ? (
             <Text
               size={textSize[size]}
-              weight="500"
-              color={getTextColor({theme, variant, disabled, error, pressed})}
+              weight='500'
+              color={getTextColor({ theme, variant, disabled, error, pressed })}
               {...textProps}
             >
               {label}

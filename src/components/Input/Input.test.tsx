@@ -1,13 +1,13 @@
 import React from 'react';
-import {render} from '@testing-library/react-native';
+import { render } from '@testing-library/react-native';
 
 import Input from '.';
 
 it('renders with placeholder', () => {
   const label = 'Email';
   const placeholder = 'Type your email';
-  const {getByText, getByPlaceholderText} = render(
-    <Input label={label} placeholder={placeholder} />,
+  const { getByText, getByPlaceholderText } = render(
+    <Input label={label} placeholder={placeholder} />
   );
 
   getByText(label);
@@ -16,26 +16,26 @@ it('renders with placeholder', () => {
 
 it('shows invalid input message', () => {
   const error = 'Invalid input';
-  const {getByText} = render(<Input error={error} />);
+  const { getByText } = render(<Input error={error} />);
   getByText(error);
 });
 
 it('shows hint input message', () => {
   const hint = 'Hint message';
-  const {getByText} = render(<Input hint={hint} />);
+  const { getByText } = render(<Input hint={hint} />);
   getByText(hint);
 });
 
 it('shows hint & error input message', () => {
   const hint = 'Hint message';
   const error = 'Invalid input';
-  const {getByText} = render(<Input hint={hint} error={error} />);
+  const { getByText } = render(<Input hint={hint} error={error} />);
   getByText(hint);
   getByText(error);
 });
 
 it('shows input value', () => {
   const value = 'Test value';
-  const {getByDisplayValue} = render(<Input value={value} />);
+  const { getByDisplayValue } = render(<Input value={value} />);
   getByDisplayValue(value);
 });

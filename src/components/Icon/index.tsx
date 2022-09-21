@@ -1,6 +1,6 @@
 import React from 'react';
-import {View} from 'react-native';
-import {SvgProps} from 'react-native-svg';
+import { View } from 'react-native';
+import { SvgProps } from 'react-native-svg';
 
 export interface IIconProps extends SvgProps {
   filled?: boolean;
@@ -21,9 +21,7 @@ const Icon: React.FC<IIconProps> = ({
     : require('./material-symbols/unfilled');
   const SvgContent =
     SvgRoot[name] ||
-    (color
-      ? require('./custom/social/dull')[name]
-      : require('./custom/social/colorfull')[name]) ||
+    (color ? require('./custom/social/dull')[name] : require('./custom/social/colorfull')[name]) ||
     require('./custom/payment')[name] ||
     require('./custom/other')[name];
 

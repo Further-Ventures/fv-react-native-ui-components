@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import useStyles from './styles';
 import {
   NativeSyntheticEvent,
@@ -8,7 +8,7 @@ import {
   Text,
   View,
 } from 'react-native';
-import {useTheme} from '../Theme';
+import { useTheme } from '../Theme';
 import ErrorMessage from '../ErrorMessage';
 
 export interface IManualControlProps extends TextInputProps {
@@ -19,7 +19,7 @@ export interface IManualControlProps extends TextInputProps {
   name?: string;
 }
 
-const TextArea: React.FC<IManualControlProps> = props => {
+const TextArea: React.FC<IManualControlProps> = (props) => {
   const {
     errorText,
     disabled = false,
@@ -33,7 +33,7 @@ const TextArea: React.FC<IManualControlProps> = props => {
   } = props;
   const [focused, setFocused] = useState(false);
   const styles = useStyles();
-  const {theme} = useTheme();
+  const { theme } = useTheme();
 
   const onFocusWrapper = (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
     setFocused(true);
@@ -58,15 +58,13 @@ const TextArea: React.FC<IManualControlProps> = props => {
           disabled && styles.disabled,
         ]}
       >
-        <Text style={[styles.label, disabled && styles.textDisabled]}>
-          {name}
-        </Text>
+        <Text style={[styles.label, disabled && styles.textDisabled]}>{name}</Text>
         <RNTextInput
           maxLength={textLimit}
           onFocus={onFocusWrapper}
           onBlur={onBlurWrapper}
           placeholderTextColor={theme.text.disabled}
-          placeholder="Type something..."
+          placeholder='Type something...'
           multiline
           style={styles.textArea}
           editable={!disabled}

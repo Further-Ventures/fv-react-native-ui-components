@@ -1,9 +1,9 @@
 import React from 'react';
-import {ComponentStory, ComponentMeta} from '@storybook/react-native';
+import { ComponentStory, ComponentMeta } from '@storybook/react-native';
 import Text from '.';
 import CenterView from '../../storybook/preview/CenterView';
 import TextView from '../../storybook/preview/Text';
-import {Platform} from 'react-native';
+import { Platform } from 'react-native';
 import pkg from './package.json';
 
 export default {
@@ -22,8 +22,8 @@ export default {
   },
 } as ComponentMeta<typeof Text>;
 
-const Template: ComponentStory<typeof Text> = args => <TextView {...args} />;
-const TemplateManual: ComponentStory<typeof Text> = args => <Text {...args} />;
+const Template: ComponentStory<typeof Text> = (args) => <TextView {...args} />;
+const TemplateManual: ComponentStory<typeof Text> = (args) => <Text {...args} />;
 
 export const Manual = TemplateManual.bind({});
 Manual.args = {
@@ -35,7 +35,7 @@ Use 'variant' or manual sizing. But not both.`,
   weight: '700',
   color: 'gray',
 };
-Manual.parameters = {controls: {exclude: ['variant']}};
+Manual.parameters = { controls: { exclude: ['variant'] } };
 
 export const Variants = Template.bind({});
 Variants.args = {

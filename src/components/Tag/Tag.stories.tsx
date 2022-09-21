@@ -1,5 +1,5 @@
 import React from 'react';
-import {ComponentStory, ComponentMeta} from '@storybook/react-native';
+import { ComponentStory, ComponentMeta } from '@storybook/react-native';
 import Tag from '.';
 import CenterView from '../../storybook/preview/CenterView';
 import pkg from './package.json';
@@ -44,7 +44,7 @@ export default {
   },
 } as ComponentMeta<typeof Tag>;
 
-const Template: ComponentStory<typeof Tag> = args => <Tag {...args} />;
+const Template: ComponentStory<typeof Tag> = (args) => <Tag {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {

@@ -1,9 +1,9 @@
 import React from 'react';
-import {ComponentStory, ComponentMeta} from '@storybook/react-native';
+import { ComponentStory, ComponentMeta } from '@storybook/react-native';
 import Icon from '.';
 import CenterView from '../../storybook/preview/CenterView';
 import IconView from '../../storybook/preview/Icon';
-import {Platform} from 'react-native';
+import { Platform } from 'react-native';
 import pkg from './package.json';
 
 export default {
@@ -22,7 +22,7 @@ export default {
   },
 } as ComponentMeta<typeof Icon>;
 
-const Template: ComponentStory<typeof Icon> = args => <IconView {...args} />;
+const Template: ComponentStory<typeof Icon> = (args) => <IconView {...args} />;
 
 export const Preview = Template.bind({});
 Preview.args = {

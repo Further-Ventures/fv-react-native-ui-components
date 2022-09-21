@@ -1,5 +1,5 @@
 import React from 'react';
-import {ComponentStory, ComponentMeta} from '@storybook/react-native';
+import { ComponentStory, ComponentMeta } from '@storybook/react-native';
 import Chip from '.';
 import CenterView from '../../storybook/preview/CenterView';
 import pkg from './package.json';
@@ -44,7 +44,7 @@ export default {
   },
 } as ComponentMeta<typeof Chip>;
 
-const Template: ComponentStory<typeof Chip> = args => <Chip {...args} />;
+const Template: ComponentStory<typeof Chip> = (args) => <Chip {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
