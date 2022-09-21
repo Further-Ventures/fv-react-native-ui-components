@@ -270,9 +270,16 @@ export const WithButtons = () => {
         label={'Label'}
         placeholder={'Type something...'}
         disabled={true}
-        rightContent={
-          <Button variant={'outlined'} shape={'curved'} label={'Button CTA'} size={'mini'} />
-        }
+        rightContent={(hasError, disabled) => (
+          <Button
+            variant={'outlined'}
+            shape={'curved'}
+            label={'Button CTA'}
+            size={'mini'}
+            error={hasError}
+            disabled={disabled}
+          />
+        )}
       />
 
       <Text>{'D.2.Disabled with hint text'}</Text>
@@ -281,9 +288,16 @@ export const WithButtons = () => {
         placeholder={'Type something...'}
         hint={'This is a hint text to help user.'}
         disabled={true}
-        rightContent={
-          <Button variant={'outlined'} shape={'curved'} label={'Button CTA'} size={'mini'} />
-        }
+        rightContent={(hasError, disabled) => (
+          <Button
+            variant={'outlined'}
+            shape={'curved'}
+            label={'Button CTA'}
+            size={'mini'}
+            error={hasError}
+            disabled={disabled}
+          />
+        )}
       />
 
       <Text>{'E.1. Error Default'}</Text>
@@ -291,9 +305,16 @@ export const WithButtons = () => {
         label={'Label'}
         placeholder={'Type something...'}
         error={'This is an error text to help user.'}
-        rightContent={
-          <Button variant={'outlined'} shape={'curved'} label={'Button CTA'} size={'mini'} />
-        }
+        rightContent={(hasError, disabled) => (
+          <Button
+            variant={'outlined'}
+            shape={'curved'}
+            label={'Button CTA'}
+            size={'mini'}
+            error={hasError}
+            disabled={disabled}
+          />
+        )}
       />
 
       <Text>{'E.2. Error Default with hint text'}</Text>
@@ -302,9 +323,16 @@ export const WithButtons = () => {
         placeholder={'Type something...'}
         hint={'This is a hint text to help user.'}
         error={'This is an error text to help user.'}
-        rightContent={
-          <Button variant={'outlined'} shape={'curved'} label={'Button CTA'} size={'mini'} />
-        }
+        rightContent={(hasError, disabled) => (
+          <Button
+            variant={'outlined'}
+            shape={'curved'}
+            label={'Button CTA'}
+            size={'mini'}
+            error={hasError}
+            disabled={disabled}
+          />
+        )}
       />
 
       <Text>{'E.3. Error Filled'}</Text>
@@ -313,9 +341,16 @@ export const WithButtons = () => {
         placeholder={'Type something...'}
         value={'Text Input'}
         error={'This is an error text to help user.'}
-        rightContent={
-          <Button variant={'outlined'} shape={'curved'} label={'Button CTA'} size={'mini'} />
-        }
+        rightContent={(hasError, disabled) => (
+          <Button
+            variant={'outlined'}
+            shape={'curved'}
+            label={'Button CTA'}
+            size={'mini'}
+            error={hasError}
+            disabled={disabled}
+          />
+        )}
       />
 
       <Text>{'E.4. Error Filled with hint text'}</Text>
@@ -325,9 +360,16 @@ export const WithButtons = () => {
         value={'Text Input'}
         hint={'This is a hint text to help user.'}
         error={'This is an error text to help user.'}
-        rightContent={
-          <Button variant={'outlined'} shape={'curved'} label={'Button CTA'} size={'mini'} />
-        }
+        rightContent={(hasError, disabled) => (
+          <Button
+            variant={'outlined'}
+            shape={'curved'}
+            label={'Button CTA'}
+            size={'mini'}
+            error={hasError}
+            disabled={disabled}
+          />
+        )}
       />
     </ScrollView>
   );
