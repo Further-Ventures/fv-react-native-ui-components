@@ -53,8 +53,12 @@ export default createUseStyles((theme) => ({
     alignSelf: 'flex-start',
     flex: 1,
   },
-  sideContent: {
+  rightContent: {
     marginLeft: 14,
+    padding: 2,
+  },
+  leftContent: {
+    marginRight: 14,
     padding: 2,
   },
 }));
