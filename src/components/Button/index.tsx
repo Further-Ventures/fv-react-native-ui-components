@@ -20,7 +20,6 @@ export interface IButton extends PressableProps {
   shape?: 'curved' | 'round' | 'flat';
   variant?: 'contained' | 'outlined' | 'empty';
   error?: boolean;
-  type?: 'submit' | 'reset';
   disabled?: boolean;
   icon?: IIconProps['name'];
   iconLeft?: IIconProps['name'];
@@ -90,7 +89,6 @@ const Button: React.FC<IButton> = ({
   disabled = false,
   onPress,
   pressedStyle,
-  type,
   textProps,
   iconProps,
   iconLeftProps,
@@ -104,14 +102,7 @@ const Button: React.FC<IButton> = ({
   const { theme } = useTheme();
 
   const handlePress = (e: GestureResponderEvent) => {
-    switch (type) {
-      case 'submit':
-        return submit();
-      case 'reset':
-        return reset();
-      default:
-        return onPress?.(e);
-    }
+    onPress?.(e);
   };
 
   const allIconsStyle = (name: string, pressed: boolean, position: 'left' | 'right') => {
@@ -144,7 +135,7 @@ const Button: React.FC<IButton> = ({
     ) {
       const newName =
         name || (position === 'left' && iconLeft) || (position === 'right' && iconRight) || '';
-
+      if (!newName) return null;
       return (
         <Icon {...allIconsStyle(newName, pressed, position)} {...iconProps} {...locationProps} />
       );

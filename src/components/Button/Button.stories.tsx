@@ -18,7 +18,34 @@ export default {
       },
     },
     icon: {
-      options: ['', 'info', 'settings'],
+      options: ['no_icon', 'info', 'settings'],
+      mapping: {
+        no_icon: '',
+        info: 'home',
+        settings: 'settings',
+      },
+      control: {
+        type: 'select',
+      },
+    },
+    iconLeft: {
+      options: ['no_icon', 'info', 'settings'],
+      mapping: {
+        no_icon: '',
+        info: 'home',
+        settings: 'settings',
+      },
+      control: {
+        type: 'select',
+      },
+    },
+    iconRight: {
+      options: ['no_icon', 'info', 'settings'],
+      mapping: {
+        no_icon: '',
+        info: 'home',
+        settings: 'settings',
+      },
       control: {
         type: 'select',
       },

@@ -48,7 +48,7 @@ const Template: ComponentStory<typeof Chip> = (args) => <Chip {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
-  label: 'Button CTA',
+  label: 'Chip',
   size: 'small',
   variant: 'contained',
   iconLeft: 'account_circle',

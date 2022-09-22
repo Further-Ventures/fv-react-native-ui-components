@@ -48,7 +48,7 @@ const Template: ComponentStory<typeof Tag> = (args) => <Tag {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
-  label: 'Button CTA',
+  label: 'Tag',
   size: 'small',
   variant: 'contained',
   iconLeft: 'account_circle',
