@@ -11,9 +11,9 @@
     "Tag": "tag",
     "TextLink": "textLink",
     "Input": "input",
-    "PasswordInput": "passwordInput"
+    "PasswordInput": "passwordInput",
     "Checkbox": "checkbox",
     "Radio": "radio",
-    "Switch": "switch",
+    "Switch": "switch"
   }
 }
