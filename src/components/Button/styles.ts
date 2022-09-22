@@ -1,6 +1,6 @@
-import {ViewStyle} from 'react-native';
-import {createUseStyles} from '../Theme';
-import {IButton, TSize} from './index';
+import { ViewStyle } from 'react-native';
+import { createUseStyles } from '../Theme';
+import { IButton, TSize } from './index';
 
 interface IButtonTypeStyle {
   button: ViewStyle;
@@ -16,13 +16,7 @@ const curvedRadius = {
 };
 
 export const useStyles = createUseStyles(
-  (
-    theme,
-    size: TSize,
-    variant: IButton['variant'],
-    error: boolean,
-    onlyIcon: boolean,
-  ) => {
+  (theme, size: TSize, variant: IButton['variant'], error: boolean, onlyIcon: boolean) => {
     //Generate different styles based on button type
     const buttonVariantStyle = (): IButtonTypeStyle => {
       const primaryStyle: IButtonTypeStyle = {
@@ -91,7 +85,7 @@ export const useStyles = createUseStyles(
       },
       mini: {
         ...(onlyIcon
-          ? {width: 24, height: 24}
+          ? { width: 24, height: 24 }
           : {
               paddingHorizontal: 8,
               paddingVertical: 4,
@@ -99,7 +93,7 @@ export const useStyles = createUseStyles(
       },
       small: {
         ...(onlyIcon
-          ? {width: 40, height: 40}
+          ? { width: 40, height: 40 }
           : {
               paddingHorizontal: 16,
               paddingVertical: 8,
@@ -107,7 +101,7 @@ export const useStyles = createUseStyles(
       },
       medium: {
         ...(onlyIcon
-          ? {width: 56, height: 56}
+          ? { width: 56, height: 56 }
           : {
               paddingHorizontal: 24,
               paddingVertical: 16,
@@ -115,7 +109,7 @@ export const useStyles = createUseStyles(
       },
       large: {
         ...(onlyIcon
-          ? {width: 72, height: 72}
+          ? { width: 72, height: 72 }
           : {
               paddingHorizontal: 32,
               paddingVertical: 24,
@@ -132,5 +126,5 @@ export const useStyles = createUseStyles(
         borderRadius: 0,
       },
     };
-  },
+  }
 );

@@ -1,6 +1,6 @@
-import {createUseStyles} from '../Theme';
+import { createUseStyles } from '../Theme';
 
-export default createUseStyles(theme => ({
+export default createUseStyles((theme) => ({
   container: {
     paddingVertical: 8,
     paddingHorizontal: 12,
@@ -30,8 +30,6 @@ export default createUseStyles(theme => ({
     borderColor: theme.error.main,
   },
   bottomContainer: {
-    paddingLeft: 12,
-    marginTop: 8,
     flexDirection: 'row',
     justifyContent: 'space-between',
   },

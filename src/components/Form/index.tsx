@@ -1,11 +1,5 @@
-import React, {
-  useContext,
-  useEffect,
-  useState,
-  forwardRef,
-  useImperativeHandle,
-} from 'react';
-import {isObjectEmpty} from '../../utils';
+import React, { useContext, useEffect, useState, forwardRef, useImperativeHandle } from 'react';
+import { isObjectEmpty } from '../../utils';
 
 export interface IFormActions {
   submit: () => void;
@@ -41,9 +35,8 @@ const defaultFormContextValues: IFormContext = {
   },
 };
 
-export const FormContext: React.Context<IFormContext> = React.createContext(
-  defaultFormContextValues,
-);
+export const FormContext: React.Context<IFormContext> =
+  React.createContext(defaultFormContextValues);
 
 export interface IFormProps {
   onSubmit?: (formData: any, formActions: IFormActions) => void;
@@ -72,7 +65,7 @@ const Form = forwardRef<IFormRef, IFormProps>(
       validationSchema,
       initialValues,
     },
-    ref,
+    ref
   ) => {
     const [formValues, setFormValues] = useState(initialValues || {});
     const [formErrors, setFormErrors] = useState({});
@@ -85,11 +78,11 @@ const Form = forwardRef<IFormRef, IFormProps>(
       let validationRes = {};
       if (validationSchema) {
         try {
-          validationSchema.validateSync(values, {abortEarly: false});
+          validationSchema.validateSync(values, { abortEarly: false });
         } catch (errors: any) {
           validationRes = errors.inner.reduce(
-            (a: any, v: any) => ({...a, [v.path]: v.message}),
-            {},
+            (a: any, v: any) => ({ ...a, [v.path]: v.message }),
+            {}
           );
         }
         setFormErrors(validationRes);
@@ -111,33 +104,30 @@ const Form = forwardRef<IFormRef, IFormProps>(
 
     const onResetFormWrapper = () => {
       setFormValues(() => initialValues || {});
-      setFormSessionId(id => id + 1);
+      setFormSessionId((id) => id + 1);
       setFormErrors({});
       setFormTouched({});
-      onReset && onReset(formValues);
+      onReset?.(formValues);
     };
 
     /** Set everything to "touched" to highlight errors on submit */
     const handleFormTouched = () =>
       setFormTouched(() =>
-        Object.keys(formValues).reduce(
-          (acc: any, key: string) => ({...acc, [key]: true}),
-          {},
-        ),
+        Object.keys(formValues).reduce((acc: any, key: string) => ({ ...acc, [key]: true }), {})
       );
 
     const setFormErrorsActionWrapper = (errors: any) => {
       handleFormTouched();
       setFormErrors(errors);
-      onError && onError(errors, formValues);
+      onError?.(errors, formValues);
     };
 
     const onSubmitFormWrapper = () => {
       if (Object.keys(formErrors).length > 0) {
         handleFormTouched();
-        onError && onError(formErrors, formValues);
+        onError?.(formErrors, formValues);
       } else {
-        onSubmit && onSubmit(formValues, formActions);
+        onSubmit?.(formValues, formActions);
       }
     };
 
@@ -148,14 +138,10 @@ const Form = forwardRef<IFormRef, IFormProps>(
       submit: onSubmitFormWrapper,
     };
 
-    const updateFormValue = (
-      name: string,
-      value: any,
-      init: boolean = false,
-    ) => {
+    const updateFormValue = (name: string, value: any, init = false) => {
       /** Setting new values in state */
       setFormValues((updatedFormValues: any) => {
-        const newFormValues = {...updatedFormValues};
+        const newFormValues = { ...updatedFormValues };
         newFormValues[name] = value;
 
         /** Validating new values */
@@ -163,16 +149,16 @@ const Form = forwardRef<IFormRef, IFormProps>(
         const isValid = isObjectEmpty(validationResult);
 
         /** Sending on change callback (if it was provided) */
-        !init && onChange && onChange(newFormValues, {...formActions, isValid});
+        !init && onChange && onChange(newFormValues, { ...formActions, isValid });
 
         return newFormValues;
       });
     };
 
     /** Updating field touched status (needed for a correct error display */
-    const updateFormTouched = (name: string, touched: boolean = true) => {
+    const updateFormTouched = (name: string, touched = true) => {
       setFormTouched((updatedFormTouched: any) => {
-        const newFormTouched = {...updatedFormTouched};
+        const newFormTouched = { ...updatedFormTouched };
         newFormTouched[name] = touched;
         setFormTouched(newFormTouched);
       });
@@ -189,7 +175,6 @@ const Form = forwardRef<IFormRef, IFormProps>(
     useEffect(() => {
       /** Running first validation on mount */
       validate(formValues);
-      // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (
@@ -209,10 +194,10 @@ const Form = forwardRef<IFormRef, IFormProps>(
         {children}
       </FormContext.Provider>
     );
-  },
+  }
 );
 
-export const useFormContext = (fieldName: string = 'unnamed') => {
+export const useFormContext = (fieldName = 'unnamed') => {
   const {
     updateFormValue,
     updateFormTouched,
@@ -224,11 +209,7 @@ export const useFormContext = (fieldName: string = 'unnamed') => {
   } = useContext(FormContext);
 
   return {
-    fieldError:
-      fieldName &&
-      formTouched &&
-      formTouched[fieldName] &&
-      formErrors[fieldName],
+    fieldError: fieldName && formTouched && formTouched[fieldName] && formErrors[fieldName],
     fieldValue: fieldName && formValues && formValues[fieldName],
     updateFormValue: formValues ? updateFormValue : () => {},
     updateFormTouched: formTouched ? updateFormTouched : () => {},
@@ -236,5 +217,7 @@ export const useFormContext = (fieldName: string = 'unnamed') => {
     formActions,
   };
 };
+
+Form.displayName = 'Form';
 
 export default Form;

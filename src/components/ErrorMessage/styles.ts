@@ -1,5 +1,5 @@
-import {createUseStyles} from '../Theme';
-import {IErrorMessage} from '.';
+import { createUseStyles } from '../Theme';
+import { IErrorMessage } from '.';
 
 export default createUseStyles((theme, margin: IErrorMessage['margin']) => ({
   container: {

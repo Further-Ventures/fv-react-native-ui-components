@@ -1,8 +1,8 @@
 import React from 'react';
-import {ComponentStory, ComponentMeta} from '@storybook/react-native';
+import { ComponentStory, ComponentMeta } from '@storybook/react-native';
 import Checkbox from '.';
 import CenterView from '../../storybook/preview/CenterView';
-import {Platform} from 'react-native';
+import { Platform } from 'react-native';
 import pkg from './package.json';
 
 export default {
@@ -38,9 +38,7 @@ export default {
   },
 } as ComponentMeta<typeof Checkbox>;
 
-const Template: ComponentStory<typeof Checkbox> = args => (
-  <Checkbox {...args} />
-);
+const Template: ComponentStory<typeof Checkbox> = (args) => <Checkbox {...args} />;
 
 export const CheckboxComponent = Template.bind({});
 CheckboxComponent.args = {

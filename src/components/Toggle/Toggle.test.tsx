@@ -1,14 +1,14 @@
 import React from 'react';
-import {render} from '@testing-library/react-native';
+import { render } from '@testing-library/react-native';
 import Elevation from '.';
-import {Text} from 'react-native';
+import { Text } from 'react-native';
 
 it('should render medium', () => {
   const label = 'Some Text';
-  const {getByText} = render(
+  const { getByText } = render(
     <Elevation>
       <Text>{label}</Text>
-    </Elevation>,
+    </Elevation>
   );
 
   const element = getByText(label).parent;
@@ -17,10 +17,10 @@ it('should render medium', () => {
 });
 it('should render extraLight', () => {
   const label = 'Some Text';
-  const {getByText} = render(
-    <Elevation variant="extraLight">
+  const { getByText } = render(
+    <Elevation variant='extraLight'>
       <Text>{label}</Text>
-    </Elevation>,
+    </Elevation>
   );
 
   const element = getByText(label).parent;
@@ -29,10 +29,10 @@ it('should render extraLight', () => {
 });
 it('should render light', () => {
   const label = 'Some Text';
-  const {getByText} = render(
-    <Elevation variant="light">
+  const { getByText } = render(
+    <Elevation variant='light'>
       <Text>{label}</Text>
-    </Elevation>,
+    </Elevation>
   );
 
   const element = getByText(label).parent;
@@ -41,10 +41,10 @@ it('should render light', () => {
 });
 it('should render heavy', () => {
   const label = 'Some Text';
-  const {getByText} = render(
-    <Elevation variant="heavy">
+  const { getByText } = render(
+    <Elevation variant='heavy'>
       <Text>{label}</Text>
-    </Elevation>,
+    </Elevation>
   );
 
   const element = getByText(label).parent;
@@ -53,10 +53,10 @@ it('should render heavy', () => {
 });
 it('should render extraHeavy', () => {
   const label = 'Some Text';
-  const {getByText} = render(
-    <Elevation variant="extraHeavy">
+  const { getByText } = render(
+    <Elevation variant='extraHeavy'>
       <Text>{label}</Text>
-    </Elevation>,
+    </Elevation>
   );
 
   const element = getByText(label).parent;

@@ -1,7 +1,7 @@
 import React from 'react';
-import useStyles, {sizeToHeightMap} from './styles';
-import {Text as RNText, TextProps, TextStyle} from 'react-native';
-import {getColorFromTheme, TPalette} from '../../utils/getColorFromTheme';
+import useStyles, { sizeToHeightMap } from './styles';
+import { Text as RNText, TextProps, TextStyle } from 'react-native';
+import { getColorFromTheme, TPalette } from '../../utils/getColorFromTheme';
 
 export interface IVariantBaseProps<TIsAnyColor = void> extends TextProps {
   variant: keyof ReturnType<typeof useStyles>;
@@ -25,9 +25,7 @@ export type IConditionalTextProps<TIsAnyColor = void> =
   | IVariantBaseProps<TIsAnyColor>
   | IManualControlProps<TIsAnyColor>;
 
-const Text = <TIsAnyColor extends unknown>(
-  props: IConditionalTextProps<TIsAnyColor>,
-) => {
+const Text = <TIsAnyColor,>(props: IConditionalTextProps<TIsAnyColor>) => {
   const {
     variant,
     style,
@@ -40,12 +38,10 @@ const Text = <TIsAnyColor extends unknown>(
     ...rest
   } = props;
   const styles = useStyles(
-    disabled
-      ? getColorFromTheme('text-disabled')
-      : getColorFromTheme<TIsAnyColor, true>(color),
+    disabled ? getColorFromTheme('text-disabled') : getColorFromTheme<TIsAnyColor, true>(color)
   );
   const variantStyles = variant ? styles[variant] : {};
-  const wrapStyle = {flexShrink: 1} as const;
+  const wrapStyle = { flexShrink: 1 } as const;
   const manualControlPropsToStyles = variant
     ? {}
     : {
@@ -62,15 +58,7 @@ const Text = <TIsAnyColor extends unknown>(
       };
 
   return (
-    <RNText
-      style={[
-        variantStyles,
-        manualControlPropsToStyles,
-        wrapStyle,
-        style || {},
-      ]}
-      {...rest}
-    >
+    <RNText style={[variantStyles, manualControlPropsToStyles, wrapStyle, style || {}]} {...rest}>
       {children}
     </RNText>
   );

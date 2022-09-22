@@ -1,5 +1,5 @@
-import {createUseStyles} from '../../Theme';
-import {TSize} from '../';
+import { createUseStyles } from '../../Theme';
+import { TSize } from '../';
 
 export const SWITCH_SIZE = {
   small: {

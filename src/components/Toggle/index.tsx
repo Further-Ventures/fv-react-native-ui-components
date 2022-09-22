@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import {
   StyleProp,
   View,
@@ -53,7 +53,7 @@ const Toggle: React.FC<IToggle> = ({
   const styles = useStyles(size, isChecked);
   const handlePress = () => {
     if (!disabled) {
-      setIsChecked(prev => !prev);
+      setIsChecked((prev) => !prev);
     }
   };
   const generateIcon = () => {
@@ -64,7 +64,7 @@ const Toggle: React.FC<IToggle> = ({
       return (
         <Icon
           name={type === 'default' ? 'check' : 'remove'}
-          color="primary-contrast2"
+          color='primary-contrast2'
           width={size === 'small' ? 12 : 14}
         />
       );
@@ -73,10 +73,7 @@ const Toggle: React.FC<IToggle> = ({
   };
   return (
     <View>
-      <Text
-        variant={size === 'small' ? 'small-regular' : 'caption-regular'}
-        disabled={disabled}
-      >
+      <Text variant={size === 'small' ? 'small-regular' : 'caption-regular'} disabled={disabled}>
         {heading}
       </Text>
       <View style={[styles.toggleWrapper]}>
@@ -86,12 +83,9 @@ const Toggle: React.FC<IToggle> = ({
           disabled={disabled}
           {...rest}
         >
-          <View style={[styles[horizontalPosition], {height: labelHeight}]}>
+          <View style={[styles[horizontalPosition], { height: labelHeight }]}>
             {variant === 'switch' ? (
-              <Switch
-                checked={isChecked}
-                style={[styles.switch, styles[verticalPosition]]}
-              />
+              <Switch checked={isChecked} style={[styles.switch, styles[verticalPosition]]} />
             ) : (
               <View
                 style={[
@@ -110,11 +104,7 @@ const Toggle: React.FC<IToggle> = ({
           </View>
         </TouchableWithoutFeedback>
         <View
-          style={
-            size === 'small'
-              ? styles.smallHorizontalSpacing
-              : styles.middleHorizontalSpacing
-          }
+          style={size === 'small' ? styles.smallHorizontalSpacing : styles.middleHorizontalSpacing}
         />
         <View>
           <TouchableWithoutFeedback
@@ -126,8 +116,8 @@ const Toggle: React.FC<IToggle> = ({
             <Text
               variant={size === 'small' ? 'label-14-regular' : 'p1-regular'}
               disabled={disabled}
-              onLayout={event => {
-                var {height} = event.nativeEvent.layout;
+              onLayout={(event) => {
+                const { height } = event.nativeEvent.layout;
                 setLabelHeight(height);
               }}
             >
@@ -137,15 +127,13 @@ const Toggle: React.FC<IToggle> = ({
           <View style={styles.smallVerticalSpacing} />
           <Text
             variant={size === 'small' ? 'label-14-regular' : 'p2-regular'}
-            color="text-hint"
+            color='text-hint'
             disabled={disabled}
           >
             {sentence}
           </Text>
 
-          {!disabled && !!error && (
-            <ErrorMessage error={error} margin={{left: 0, top: 8}} />
-          )}
+          {!disabled && !!error && <ErrorMessage error={error} margin={{ left: 0, top: 8 }} />}
         </View>
       </View>
     </View>

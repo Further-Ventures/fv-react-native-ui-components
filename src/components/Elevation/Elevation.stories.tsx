@@ -1,10 +1,10 @@
 import React from 'react';
-import {ComponentStory, ComponentMeta} from '@storybook/react-native';
-import Elevation from '.';
+import { ComponentStory, ComponentMeta } from '@storybook/react-native';
+import Elevation, { IElevationProps } from '.';
 import CenterView from '../../storybook/preview/CenterView';
-import {Platform, Text, View} from 'react-native';
+import { Platform, Text, View } from 'react-native';
 import pkg from './package.json';
-import {buildExcludeArgTypes} from '../../storybook/utils';
+import { buildExcludeArgTypes } from '../../storybook/utils';
 
 export default {
   title: 'Elevation',
@@ -20,9 +20,8 @@ export default {
   argTypes: buildExcludeArgTypes(['variant']),
 } as ComponentMeta<typeof Elevation>;
 
-const Template: ComponentStory<typeof Elevation> = ({children}) => (
+const Template: ComponentStory<typeof Elevation> = ({ children }: IElevationProps) => (
   <View
-    // eslint-disable-next-line react-native/no-inline-styles
     style={{
       alignItems: 'center',
       paddingTop: 20,
@@ -30,8 +29,7 @@ const Template: ComponentStory<typeof Elevation> = ({children}) => (
     }}
   >
     <Elevation
-      variant="extraLight"
-      // eslint-disable-next-line react-native/no-inline-styles
+      variant='extraLight'
       style={{
         margin: 25,
         width: 216,
@@ -44,8 +42,7 @@ const Template: ComponentStory<typeof Elevation> = ({children}) => (
       {children}
     </Elevation>
     <Elevation
-      variant="light"
-      // eslint-disable-next-line react-native/no-inline-styles
+      variant='light'
       style={{
         margin: 25,
         width: 216,
@@ -58,8 +55,7 @@ const Template: ComponentStory<typeof Elevation> = ({children}) => (
       {children}
     </Elevation>
     <Elevation
-      variant="medium"
-      // eslint-disable-next-line react-native/no-inline-styles
+      variant='medium'
       style={{
         margin: 25,
         width: 216,
@@ -72,8 +68,7 @@ const Template: ComponentStory<typeof Elevation> = ({children}) => (
       {children}
     </Elevation>
     <Elevation
-      variant="heavy"
-      // eslint-disable-next-line react-native/no-inline-styles
+      variant='heavy'
       style={{
         margin: 25,
         width: 216,
@@ -86,8 +81,7 @@ const Template: ComponentStory<typeof Elevation> = ({children}) => (
       {children}
     </Elevation>
     <Elevation
-      variant="extraHeavy"
-      // eslint-disable-next-line react-native/no-inline-styles
+      variant='extraHeavy'
       style={{
         margin: 25,
         width: 216,

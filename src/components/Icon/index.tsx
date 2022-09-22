@@ -1,8 +1,8 @@
 import React from 'react';
-import {View} from 'react-native';
-import {SvgProps} from 'react-native-svg';
+import { View } from 'react-native';
+import { SvgProps } from 'react-native-svg';
 
-import {getColorFromTheme, TPalette} from '../../utils/getColorFromTheme';
+import { getColorFromTheme, TPalette } from '../../utils/getColorFromTheme';
 
 export interface IIconProps<TIsAnyColor = void> extends SvgProps {
   filled?: boolean;
@@ -11,7 +11,7 @@ export interface IIconProps<TIsAnyColor = void> extends SvgProps {
   disabled?: boolean;
 }
 
-const Icon = <TIsAnyColor extends unknown>({
+const Icon = <TIsAnyColor,>({
   filled,
   name,
   width = 24,
@@ -26,9 +26,7 @@ const Icon = <TIsAnyColor extends unknown>({
     : require('./material-symbols/unfilled');
   const SvgContent =
     SvgRoot[name] ||
-    (color
-      ? require('./custom/social/dull')[name]
-      : require('./custom/social/colorfull')[name]) ||
+    (color ? require('./custom/social/dull')[name] : require('./custom/social/colorfull')[name]) ||
     require('./custom/payment')[name] ||
     require('./custom/other')[name];
 
@@ -38,11 +36,7 @@ const Icon = <TIsAnyColor extends unknown>({
         width={width}
         height={height || width}
         viewBox={SvgRoot[name] ? '0 0 48 48' : null}
-        fill={
-          disabled
-            ? getColorFromTheme('text-disabled')
-            : getColorFromTheme<TIsAnyColor>(color)
-        }
+        fill={disabled ? getColorFromTheme('text-disabled') : getColorFromTheme<TIsAnyColor>(color)}
         {...rest}
       />
     </View>

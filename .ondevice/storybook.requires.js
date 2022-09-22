@@ -36,6 +36,11 @@ const getStories = () => {
     require("../src/components/TextArea/TextArea.stories.tsx"),
     require("../src/components/Theme/Theme.stories.tsx"),
     require("../src/components/Toggle/Toggle.stories.tsx"),
+    require("../src/components/Button/Button.stories.tsx"),
+    require("../src/components/Chip/Chip.stories.tsx"),
+    require("../src/components/Tag/Tag.stories.tsx"),
+    require("../src/components/Input/Input.stories.tsx"),
+    require("../src/components/TextLink/TextLink.stories.tsx"),
   ];
 };
 

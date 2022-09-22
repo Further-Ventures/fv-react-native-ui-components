@@ -1,11 +1,11 @@
 import React from 'react';
-import {render} from '@testing-library/react-native';
+import { render } from '@testing-library/react-native';
 import Text from '.';
-import {sizeToHeightMap} from './styles';
+import { sizeToHeightMap } from './styles';
 
 it('should render child', () => {
   const children = 'word';
-  const screen = render(<Text variant="label-10-medium">{children}</Text>);
+  const screen = render(<Text variant='label-10-medium'>{children}</Text>);
   expect(screen.getByText(children)).toBeTruthy();
 });
 
@@ -14,9 +14,9 @@ it('should change color', () => {
   const testId = 'test-text';
   const children = 'word';
   const screen = render(
-    <Text testID={testId} variant="label-10-medium" color={color}>
+    <Text testID={testId} variant='label-10-medium' color={color}>
       {children}
-    </Text>,
+    </Text>
   );
   const text = screen.getByTestId(testId);
   const textStyles = text.props.style[0];
@@ -32,7 +32,7 @@ it('should change fontSize, fontWeight and lineHeight', () => {
   const screen = render(
     <Text testID={testId} size={size} weight={weight} height={height}>
       {children}
-    </Text>,
+    </Text>
   );
   const text = screen.getByTestId(testId);
   const textStyles = text.props.style[1];
@@ -48,7 +48,7 @@ it('should add default value to lineHeight if size is in sizeToHeightMap and hei
   const screen = render(
     <Text testID={testId} size={size}>
       {children}
-    </Text>,
+    </Text>
   );
   const text = screen.getByTestId(testId);
   const textStyles = text.props.style[1];
@@ -62,7 +62,7 @@ it('should add default value to lineHeight if size is NOT in sizeToHeightMap and
   const screen = render(
     <Text testID={testId} size={size}>
       {children}
-    </Text>,
+    </Text>
   );
   const text = screen.getByTestId(testId);
   const textStyles = text.props.style[1];

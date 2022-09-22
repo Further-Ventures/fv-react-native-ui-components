@@ -1,8 +1,8 @@
 import React from 'react';
-import {ComponentStory, ComponentMeta} from '@storybook/react-native';
+import { ComponentStory, ComponentMeta } from '@storybook/react-native';
 import Toggle from '.';
 import CenterView from '../../storybook/preview/CenterView';
-import {Platform} from 'react-native';
+import { Platform } from 'react-native';
 import pkg from './package.json';
 
 export default {
@@ -32,7 +32,7 @@ export default {
   },
 } as ComponentMeta<typeof Toggle>;
 
-const Template: ComponentStory<typeof Toggle> = args => <Toggle {...args} />;
+const Template: ComponentStory<typeof Toggle> = (args) => <Toggle {...args} />;
 
 export const ToggleComponent = Template.bind({});
 ToggleComponent.args = {

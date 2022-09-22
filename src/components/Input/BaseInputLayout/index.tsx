@@ -1,17 +1,10 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, { ReactElement, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import useStyles from './styles';
-import {
-  Pressable,
-  PressableProps,
-  View,
-  StyleProp,
-  ViewStyle,
-  Animated,
-} from 'react-native';
+import { Pressable, PressableProps, View, StyleProp, ViewStyle, Animated } from 'react-native';
 import HintMessage from '../../HintMessage';
 import ErrorMessage from '../../ErrorMessage';
-import Button from '../../Button';
-import {useTheme} from '../../Theme';
+
+type ContentFunc = (hasError: boolean, disabled?: boolean) => React.ReactElement;
 
 export interface IBaseInputLayoutProps extends PressableProps {
   label?: string;
@@ -20,7 +13,8 @@ export interface IBaseInputLayoutProps extends PressableProps {
   error?: string;
   disabled?: boolean;
   hint?: string;
-  sideContent?: React.ReactElement;
+  rightContent?: React.ReactElement | ContentFunc;
+  leftContent?: React.ReactElement | ContentFunc;
   maxValueLength?: number;
   currentValueLength?: number;
   showLength?: boolean;
@@ -44,48 +38,41 @@ const BaseInputLayout = React.forwardRef<View, IBaseInputLayoutProps>(
       style,
       disabled,
       hint,
-      sideContent,
+      rightContent,
+      leftContent,
       currentValueLength = 0,
       maxValueLength,
       showLength,
       ...rest
     },
-    ref,
+    ref
   ) => {
     const displaySmallLabel = Boolean(isFocused || currentValueLength > 0);
-    const labelAnim = useRef(new Animated.Value(displaySmallLabel ? 1 : 0))
-      .current;
-    const inputAnim = useRef(new Animated.Value(displaySmallLabel ? 1 : 0))
-      .current;
+    const labelAnim = useRef(new Animated.Value(displaySmallLabel ? 1 : 0)).current;
+    const inputAnim = useRef(new Animated.Value(displaySmallLabel ? 1 : 0)).current;
 
     const [inputSize, setInputSize] = useState<IInputSize>({
       width: 0,
       height: 0,
     });
 
-    const [rightContent, setRightContent] = useState(sideContent);
-
-    const {theme} = useTheme();
+    const hasError = Boolean(error);
 
     const styles = useStyles();
 
-    useEffect(() => {
-      if (React.isValidElement(sideContent) && sideContent?.type === Button) {
-        let borderColor = theme.primary.main;
-        if (error) {
-          borderColor = theme.error.dark;
-        } else if (disabled) {
-          borderColor = theme.grey.light;
-        }
+    const getSideContent = useCallback(
+      (sideContent?: ReactElement | ContentFunc): ReactElement | null => {
+        if (!sideContent) return null;
+        return typeof sideContent === 'function' ? sideContent(hasError, disabled) : sideContent;
+      },
+      [disabled, hasError]
+    );
 
-        const updatedContent = React.cloneElement(sideContent, {
-          style: {borderColor: borderColor},
-          error: Boolean(error),
-          disabled: Boolean(disabled),
-        });
-        setRightContent(updatedContent);
-      }
-    }, [sideContent, disabled, error, theme]);
+    const leftElement = useMemo(() => getSideContent(leftContent), [getSideContent, leftContent]);
+    const rightElement = useMemo(
+      () => getSideContent(rightContent),
+      [getSideContent, rightContent]
+    );
 
     useEffect(() => {
       Animated.timing(labelAnim, {
@@ -119,6 +106,7 @@ const BaseInputLayout = React.forwardRef<View, IBaseInputLayoutProps>(
           ref={ref}
           {...rest}
         >
+          {!!leftElement && <View style={styles.leftContent}>{leftElement}</View>}
           <View style={styles.mainContent}>
             {label && (
               <Animated.Text
@@ -128,8 +116,8 @@ const BaseInputLayout = React.forwardRef<View, IBaseInputLayoutProps>(
                   displaySmallLabel && styles.labelSmall,
                   {
                     transform: [
-                      {translateY: interpolate([0, -10])},
-                      {scale: interpolate([1, LABEL_SCALE])},
+                      { translateY: interpolate([0, -10]) },
+                      { scale: interpolate([1, LABEL_SCALE]) },
                       {
                         translateX: interpolate([
                           0,
@@ -139,29 +127,25 @@ const BaseInputLayout = React.forwardRef<View, IBaseInputLayoutProps>(
                     ],
                   },
                 ]}
-                onLayout={e => {
-                  const {layout} = e.nativeEvent;
+                onLayout={(e) => {
+                  const { layout } = e.nativeEvent;
                   setInputSize(layout);
                 }}
               >
                 {label}
               </Animated.Text>
             )}
-            <Animated.View
-              style={[styles.childrenContainer, {opacity: inputAnim}]}
-            >
+            <Animated.View style={[styles.childrenContainer, { opacity: inputAnim }]}>
               {children}
             </Animated.View>
           </View>
-          <View style={styles.sideContent}>{rightContent}</View>
+          {!!rightElement && <View style={styles.rightContent}>{rightElement}</View>}
         </Pressable>
         {!!hint && <HintMessage message={hint} disabled={disabled} />}
         {!!showLength && (
           <HintMessage
             message={
-              maxValueLength
-                ? `${currentValueLength} / ${maxValueLength}`
-                : `${currentValueLength}`
+              maxValueLength ? `${currentValueLength} / ${maxValueLength}` : `${currentValueLength}`
             }
             disabled={disabled}
           />
@@ -169,7 +153,9 @@ const BaseInputLayout = React.forwardRef<View, IBaseInputLayoutProps>(
         {!!error && <ErrorMessage error={error} />}
       </View>
     );
-  },
+  }
 );
+
+BaseInputLayout.displayName = 'BaseInputLayout';
 
 export default BaseInputLayout;

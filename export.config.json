@@ -1,5 +1,5 @@
 {
-  "name": "@further-ventures/fv-react-ui-components",
+  "name": "@further-ventures/fv-react-native-ui-components",
   "components": {
     "Theme": "theme",
     "Elevation": "elevation",
@@ -11,6 +11,7 @@
     "Tag": "tag",
     "Checkbox": "checkbox",
     "Radio": "radio",
-    "Switch": "Switch"
+    "Switch": "Switch",
+    "TextLink": "textLink"
   }
 }

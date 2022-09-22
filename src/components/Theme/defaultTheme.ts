@@ -1,5 +1,5 @@
 const GRADIENT_DEGREE = {
-  '45': {useAngle: true, angle: 45, angleCenter: {x: 0.5, y: 0.5}},
+  '45': { useAngle: true, angle: 45, angleCenter: { x: 0.5, y: 0.5 } },
 };
 export const defaultTheme = {
   //Will apply default font for ios and android(San Francisco on iOS and Roboto on Android)

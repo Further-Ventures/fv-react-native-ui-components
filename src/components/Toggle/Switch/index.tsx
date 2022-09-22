@@ -1,8 +1,8 @@
-import React, {useEffect, useRef} from 'react';
+import React, { useEffect, useRef } from 'react';
 import useStyles from './styles';
-import {View, Animated, StyleProp, ViewStyle} from 'react-native';
+import { View, Animated, StyleProp, ViewStyle } from 'react-native';
 
-import {TSize} from '../';
+import { TSize } from '../';
 
 interface ISwitch {
   isPressed?: boolean;
@@ -11,12 +11,7 @@ interface ISwitch {
   style?: StyleProp<ViewStyle>;
 }
 
-const Switch: React.FC<ISwitch> = ({
-  isPressed,
-  checked,
-  size = 'small',
-  style,
-}) => {
+const Switch: React.FC<ISwitch> = ({ isPressed, checked, size = 'small', style }) => {
   const toggleAnim = useRef(new Animated.Value(checked ? 1 : 0)).current;
   const styles = useStyles(size);
 
@@ -32,7 +27,6 @@ const Switch: React.FC<ISwitch> = ({
 
   useEffect(() => {
     runAnimation();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [checked]);
 
   return (

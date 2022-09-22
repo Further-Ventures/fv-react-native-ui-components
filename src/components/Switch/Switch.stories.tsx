@@ -1,8 +1,8 @@
 import React from 'react';
-import {ComponentStory, ComponentMeta} from '@storybook/react-native';
+import { ComponentStory, ComponentMeta } from '@storybook/react-native';
 import Switch from '.';
 import CenterView from '../../storybook/preview/CenterView';
-import {Platform} from 'react-native';
+import { Platform } from 'react-native';
 import pkg from './package.json';
 
 export default {
@@ -33,7 +33,7 @@ export default {
   },
 } as ComponentMeta<typeof Switch>;
 
-const Template: ComponentStory<typeof Switch> = args => <Switch {...args} />;
+const Template: ComponentStory<typeof Switch> = (args) => <Switch {...args} />;
 
 export const SwitchComponent = Template.bind({});
 SwitchComponent.args = {

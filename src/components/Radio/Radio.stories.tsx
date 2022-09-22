@@ -1,8 +1,8 @@
 import React from 'react';
-import {ComponentStory, ComponentMeta} from '@storybook/react-native';
+import { ComponentStory, ComponentMeta } from '@storybook/react-native';
 import Radio from '.';
 import CenterView from '../../storybook/preview/CenterView';
-import {Platform} from 'react-native';
+import { Platform } from 'react-native';
 import pkg from './package.json';
 
 export default {
@@ -33,7 +33,7 @@ export default {
   },
 } as ComponentMeta<typeof Radio>;
 
-const Template: ComponentStory<typeof Radio> = args => <Radio {...args} />;
+const Template: ComponentStory<typeof Radio> = (args) => <Radio {...args} />;
 
 export const RadioComponent = Template.bind({});
 RadioComponent.args = {
