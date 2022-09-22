@@ -22,16 +22,16 @@ export interface IButton extends PressableProps {
   error?: boolean;
   type?: 'submit' | 'reset';
   disabled?: boolean;
-  icon?: IIconProps['name'];
-  iconLeft?: IIconProps['name'];
-  iconRight?: IIconProps['name'];
+  icon?: IIconProps<false>['name'];
+  iconLeft?: IIconProps<false>['name'];
+  iconRight?: IIconProps<false>['name'];
   iconPosition?: 'left' | 'right';
   style?: StyleProp<ViewStyle>;
   pressedStyle?: StyleProp<ViewStyle>;
   textProps?: IManualControlProps;
-  iconProps?: Omit<IIconProps, 'name'>;
-  iconLeftProps?: Omit<IIconProps, 'name'>;
-  iconRightProps?: Omit<IIconProps, 'name'>;
+  iconProps?: Omit<IIconProps<false>, 'name'>;
+  iconLeftProps?: Omit<IIconProps<false>, 'name'>;
+  iconRightProps?: Omit<IIconProps<false>, 'name'>;
 }
 
 const getTextColor = ({
@@ -139,7 +139,7 @@ const Button: React.FC<IButton> = ({
     name: string | undefined,
     position: 'left' | 'right',
     pressed: boolean,
-    locationProps: Omit<IIconProps, 'name'> | undefined,
+    locationProps: Omit<IIconProps<false>, 'name'> | undefined,
   ) => {
     if (
       (name && iconPosition === position) ||
@@ -153,7 +153,7 @@ const Button: React.FC<IButton> = ({
         '';
 
       return (
-        <Icon
+        <Icon<true>
           {...allIconsStyle(newName, pressed, position)}
           {...iconProps}
           {...locationProps}
@@ -181,7 +181,7 @@ const Button: React.FC<IButton> = ({
         <>
           {generateIcon(icon, 'left', pressed, iconLeftProps)}
           {label ? (
-            <Text
+            <Text<true>
               size={textSize[size]}
               weight="500"
               color={getTextColor({theme, variant, disabled, error, pressed})}

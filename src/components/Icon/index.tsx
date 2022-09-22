@@ -2,20 +2,25 @@ import React from 'react';
 import {View} from 'react-native';
 import {SvgProps} from 'react-native-svg';
 
-export interface IIconProps extends SvgProps {
+import {getColorFromTheme, TPalette} from '../../utils/getColorFromTheme';
+
+export interface IIconProps<TIsAnyColor = void> extends SvgProps {
   filled?: boolean;
   name: string;
+  color?: TPalette<TIsAnyColor>;
+  disabled?: boolean;
 }
 
-const Icon: React.FC<IIconProps> = ({
+const Icon = <TIsAnyColor extends unknown>({
   filled,
   name,
   width = 24,
   height = 24,
-  color,
+  color = 'primary-contrast',
+  disabled = false,
   style,
   ...rest
-}) => {
+}: IIconProps<TIsAnyColor>) => {
   const SvgRoot = filled
     ? require('./material-symbols/filled')
     : require('./material-symbols/unfilled');
@@ -33,7 +38,11 @@ const Icon: React.FC<IIconProps> = ({
         width={width}
         height={height || width}
         viewBox={SvgRoot[name] ? '0 0 48 48' : null}
-        fill={color || null}
+        fill={
+          disabled
+            ? getColorFromTheme('text-disabled')
+            : getColorFromTheme<TIsAnyColor>(color)
+        }
         {...rest}
       />
     </View>

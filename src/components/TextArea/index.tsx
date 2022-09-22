@@ -89,7 +89,7 @@ const TextArea: React.FC<IManualControlProps> = props => {
               height={20}
               name="error"
               filled
-              color={theme.error.main}
+              color="error-main"
             />
             <ErrorMessage style={styles.errorMessage} error={errorText || ''} />
           </View>

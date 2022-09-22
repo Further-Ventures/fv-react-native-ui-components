@@ -23,15 +23,19 @@ if (parameters) {
 
 const getStories = () => {
   return [
+    require("../src/components/Button/Button.stories.tsx"),
+    require("../src/components/Checkbox copy/Checkbox.stories.tsx"),
+    require("../src/components/Checkbox/Checkbox.stories.tsx"),
+    require("../src/components/Chip/Chip.stories.tsx"),
     require("../src/components/Elevation/Elevation.stories.tsx"),
+    require("../src/components/Form/Form.stories.tsx"),
     require("../src/components/Icon/Icon.stories.tsx"),
-    require("../src/components/Theme/Theme.stories.tsx"),
+    require("../src/components/Input/Input.stories.tsx"),
+    require("../src/components/Tag/Tag.stories.tsx"),
     require("../src/components/Text/Text.stories.tsx"),
     require("../src/components/TextArea/TextArea.stories.tsx"),
-    require("../src/components/Button/Button.stories.tsx"),
-    require("../src/components/Chip/Chip.stories.tsx"),
-    require("../src/components/Tag/Tag.stories.tsx"),
-    require("../src/components/Input/Input.stories.tsx"),
+    require("../src/components/Theme/Theme.stories.tsx"),
+    require("../src/components/Toggle/Toggle.stories.tsx"),
   ];
 };
 

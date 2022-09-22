@@ -25,14 +25,14 @@ const ButtonBridge: React.FC<IButtonBridge> = props => {
   const styles = useStyles(size);
   const {theme} = useTheme();
 
-  const textColor = disabled ? theme.grey.main : theme.grey.dark;
+  const textColor = disabled ? 'grey-main' : 'grey-dark';
 
   const iconProps = {
     color: textColor,
     filled: true,
     width: size === 'large' ? 17 : 14,
     height: size === 'large' ? 17 : 14,
-  };
+  } as const;
 
   const pressedStyle = {
     backgroundColor: theme.grey.main,
