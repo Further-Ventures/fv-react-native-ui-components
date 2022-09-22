@@ -5,10 +5,12 @@
     "Elevation": "elevation",
     "Icon": "Icon",
     "Text": "text",
-    "TextArea": "texaArea",
+    "TextArea": "textArea",
     "Button": "button",
     "Chip": "chip",
     "Tag": "tag",
-    "TextLink": "textLink"
+    "TextLink": "textLink",
+    "Input": "input",
+    "PasswordInput": "passwordInput"
   }
 }

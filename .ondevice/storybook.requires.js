@@ -32,6 +32,7 @@ const getStories = () => {
     require("../src/components/Chip/Chip.stories.tsx"),
     require("../src/components/Tag/Tag.stories.tsx"),
     require("../src/components/Input/Input.stories.tsx"),
+    require("../src/components/PasswordInput/PasswordInput.stories.tsx"),
     require("../src/components/TextLink/TextLink.stories.tsx"),
   ];
 };
