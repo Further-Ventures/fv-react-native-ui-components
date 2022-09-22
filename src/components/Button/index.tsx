@@ -126,7 +126,7 @@ const Button: React.FC<IButton> = ({
     return {
       name: name || '',
       color: getTextColor({ theme, variant, disabled, error, pressed }),
-      width: size === 'mini' ? 13 : 20,
+      width: size === 'mini' ? 16 : 24,
       style: label ? margins[position] : {},
     };
   };
