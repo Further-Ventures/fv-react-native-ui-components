@@ -1,5 +1,5 @@
-import {createUseStyles} from '../Theme';
+import { createUseStyles } from '../Theme';
 
 export default createUseStyles(() => ({
-  default: {borderRadius: 4},
+  default: { borderRadius: 4 },
 }));

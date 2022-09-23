@@ -10,6 +10,9 @@
     "Button": "button",
     "Chip": "chip",
     "Tag": "tag",
+    "Checkbox": "checkbox",
+    "Radio": "radio",
+    "Switch": "Switch",
     "TextLink": "textLink"
   }
 }

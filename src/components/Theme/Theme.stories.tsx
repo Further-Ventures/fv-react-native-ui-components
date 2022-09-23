@@ -1,9 +1,9 @@
 import React from 'react';
-import {ComponentStory, ComponentMeta} from '@storybook/react-native';
-import ThemeChooser from '../../storybook/preview/ThemeChooser';
-import {defaultTheme} from './defaultTheme';
+import { ComponentStory, ComponentMeta } from '@storybook/react-native';
+import ThemeChooser, { IThemePreview } from '../../storybook/preview/ThemeChooser';
+import { defaultTheme } from './defaultTheme';
 import pkg from './package.json';
-import {ThemeProvider} from './index';
+import { ThemeProvider } from './index';
 import ThemePreview from '../../storybook/preview/ThemeChooser';
 
 export default {
@@ -14,7 +14,7 @@ export default {
   },
 } as ComponentMeta<typeof ThemeChooser>;
 
-const Template: ComponentStory<typeof ThemeChooser> = ({theme}) => {
+const Template: ComponentStory<typeof ThemeChooser> = ({ theme }: IThemePreview) => {
   return (
     <ThemeProvider initial={theme}>
       <ThemePreview theme={theme} />

@@ -1,9 +1,10 @@
 import React from 'react';
-import {ComponentStory, ComponentMeta} from '@storybook/react-native';
-import Text from '.';
+import { ComponentStory, ComponentMeta } from '@storybook/react-native';
+import Text, { IVariantBaseProps } from '.';
 import CenterView from '../../storybook/preview/CenterView';
 import TextView from '../../storybook/preview/Text';
-import {Platform} from 'react-native';
+import { getColorList } from '../../storybook/utils';
+import { Platform } from 'react-native';
 import pkg from './package.json';
 
 export default {
@@ -14,6 +15,14 @@ export default {
   args: {
     children: 'Text',
   },
+  argTypes: {
+    color: {
+      options: getColorList(true),
+      control: {
+        type: 'select',
+      },
+    },
+  },
   parameters: {
     pkg,
     controls: {
@@ -22,8 +31,8 @@ export default {
   },
 } as ComponentMeta<typeof Text>;
 
-const Template: ComponentStory<typeof Text> = args => <TextView {...args} />;
-const TemplateManual: ComponentStory<typeof Text> = args => <Text {...args} />;
+const Template: ComponentStory<typeof Text> = (args: IVariantBaseProps) => <TextView {...args} />;
+const TemplateManual: ComponentStory<typeof Text> = (args) => <Text {...args} />;
 
 export const Manual = TemplateManual.bind({});
 Manual.args = {
@@ -33,16 +42,18 @@ If you don't assign 'height' and 'weight' props, a proper value will be assigned
 Use 'variant' or manual sizing. But not both.`,
   size: 24,
   weight: '700',
-  color: 'gray',
+  color: 'primary-main',
+  disabled: false,
 };
-Manual.parameters = {controls: {exclude: ['variant']}};
+Manual.parameters = { controls: { exclude: ['variant'] } };
 
 export const Variants = Template.bind({});
 Variants.args = {
-  color: 'black',
+  color: 'primary-main',
+  disabled: false,
 };
 Variants.parameters = {
   controls: {
-    include: 'color',
+    include: ['color', 'disabled'],
   },
 };

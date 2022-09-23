@@ -1,13 +1,16 @@
-import {createUseStyles} from '../Theme';
+import { createUseStyles } from '../Theme';
+import { IErrorMessage } from '.';
 
-export default createUseStyles(theme => ({
+export default createUseStyles((theme, margin: IErrorMessage['margin']) => ({
   container: {
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'flex-start',
-    marginLeft: 12,
-    marginTop: 8,
+    marginLeft: margin?.left ?? 12,
+    marginTop: margin?.top ?? 8,
+    marginBottom: margin?.bottom ?? 0,
+    marginRight: margin?.right ?? 0,
   },
   error: {
     color: theme.error.dark,

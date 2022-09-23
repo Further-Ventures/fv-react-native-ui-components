@@ -1,6 +1,6 @@
 import React from 'react';
-import {ScrollView, View} from 'react-native';
-import Text, {IVariantBaseProps} from '../../../components/Text';
+import { ScrollView, View } from 'react-native';
+import Text, { IVariantBaseProps } from '../../../components/Text';
 import Divider from '../Divider';
 
 const figmaNameMap: Record<Readonly<IVariantBaseProps['variant']>, string> = {
@@ -32,10 +32,9 @@ const figmaNameMap: Record<Readonly<IVariantBaseProps['variant']>, string> = {
   'label-14-regular': 'UI Components/Label_14px/Regular',
   'label-14-bold': 'UI Components/Label_14px/Bold',
 };
-const TextPreview = ({color}: {color?: any}) => {
+const TextPreview = (props: Omit<IVariantBaseProps, 'variant'>) => {
   return (
     <ScrollView
-      // eslint-disable-next-line react-native/no-inline-styles
       contentContainerStyle={{
         paddingHorizontal: 20,
         paddingVertical: 40,
@@ -45,7 +44,7 @@ const TextPreview = ({color}: {color?: any}) => {
       <View>
         {Object.entries(figmaNameMap).map(([k, v]) => (
           <View key={k}>
-            <Text variant={k as IVariantBaseProps['variant']} color={color}>
+            <Text variant={k as IVariantBaseProps['variant']} {...props}>
               {k}: {v}
             </Text>
             <Divider />

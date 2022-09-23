@@ -1,7 +1,8 @@
 import React from 'react';
-import {ComponentStory, ComponentMeta} from '@storybook/react-native';
+import { ComponentStory, ComponentMeta } from '@storybook/react-native';
 import Chip from '.';
 import CenterView from '../../storybook/preview/CenterView';
+import { iconSelector } from '../../storybook/utils';
 import pkg from './package.json';
 
 export default {
@@ -24,18 +25,8 @@ export default {
         type: 'select',
       },
     },
-    iconLeft: {
-      options: ['', 'account_circle', 'home', 'settings'],
-      control: {
-        type: 'select',
-      },
-    },
-    iconRight: {
-      options: ['', 'cancel', 'home', 'settings'],
-      control: {
-        type: 'select',
-      },
-    },
+    iconLeft: iconSelector,
+    iconRight: iconSelector,
   },
   decorators: [CenterView],
   args: {},
@@ -44,11 +35,11 @@ export default {
   },
 } as ComponentMeta<typeof Chip>;
 
-const Template: ComponentStory<typeof Chip> = args => <Chip {...args} />;
+const Template: ComponentStory<typeof Chip> = (args) => <Chip {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
-  label: 'Button CTA',
+  label: 'Chip',
   size: 'small',
   variant: 'contained',
   iconLeft: 'account_circle',

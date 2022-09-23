@@ -1,8 +1,8 @@
 import React from 'react';
-import {ComponentStory, ComponentMeta} from '@storybook/react-native';
+import { ComponentStory, ComponentMeta } from '@storybook/react-native';
 import TextArea from '.';
 import CenterView from '../../storybook/preview/CenterView';
-import {Platform} from 'react-native';
+import { Platform } from 'react-native';
 import pkg from './package.json';
 
 export default {
@@ -16,12 +16,8 @@ export default {
   },
 } as ComponentMeta<typeof TextArea>;
 
-const Template: ComponentStory<typeof TextArea> = args => (
-  <TextArea {...args} />
-);
-const TemplateManual: ComponentStory<typeof TextArea> = args => (
-  <TextArea {...args} />
-);
+const Template: ComponentStory<typeof TextArea> = (args) => <TextArea {...args} />;
+const TemplateManual: ComponentStory<typeof TextArea> = (args) => <TextArea {...args} />;
 
 export const Manual = TemplateManual.bind({});
 Manual.args = {

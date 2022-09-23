@@ -1,43 +1,52 @@
 import React from 'react';
-import useStyles, {sizeToHeightMap} from './styles';
-import {Text as RNText, TextProps, TextStyle} from 'react-native';
+import useStyles, { sizeToHeightMap } from './styles';
+import { Text as RNText, TextProps, TextStyle } from 'react-native';
+import { getColorFromTheme, TPalette } from '../../utils/getColorFromTheme';
 
-export interface IVariantBaseProps extends TextProps {
+export interface IVariantBaseProps<TIsAnyColor = void> extends TextProps {
   variant: keyof ReturnType<typeof useStyles>;
   size?: never;
   weight?: never;
   height?: never;
-  color?: TextStyle['color'];
+  color?: TPalette<TIsAnyColor, true>;
+  disabled?: boolean;
 }
 
-export interface IManualControlProps extends TextProps {
+export interface IManualControlProps<TIsAnyColor = void> extends TextProps {
   variant?: never;
   size: TextStyle['fontSize'];
   weight?: TextStyle['fontWeight'];
   height?: TextStyle['lineHeight'];
-  color?: TextStyle['color'];
+  color?: TPalette<TIsAnyColor, true>;
+  disabled?: boolean;
 }
 
-export type IConditionalTextProps = IVariantBaseProps | IManualControlProps;
+export type IConditionalTextProps<TIsAnyColor = void> =
+  | IVariantBaseProps<TIsAnyColor>
+  | IManualControlProps<TIsAnyColor>;
 
-const Text: React.FC<IConditionalTextProps> = props => {
+const Text = <TIsAnyColor,>(props: IConditionalTextProps<TIsAnyColor>) => {
   const {
     variant,
     style,
     size,
     weight = '500',
     height,
-    color = '#000',
+    color = 'text-primary',
+    disabled = false,
     children,
     ...rest
   } = props;
-  const styles = useStyles(color);
+  const generatedColor = disabled
+    ? getColorFromTheme('text-disabled')
+    : getColorFromTheme<TIsAnyColor, true>(color);
+  const styles = useStyles(generatedColor);
   const variantStyles = variant ? styles[variant] : {};
-  const wrapStyle = {flexShrink: 1} as const;
+  const wrapStyle = { flexShrink: 1 } as const;
   const manualControlPropsToStyles = variant
     ? {}
     : {
-        color,
+        color: generatedColor,
         fontSize: size,
         fontWeight: weight,
         lineHeight:
@@ -50,15 +59,7 @@ const Text: React.FC<IConditionalTextProps> = props => {
       };
 
   return (
-    <RNText
-      style={[
-        variantStyles,
-        manualControlPropsToStyles,
-        wrapStyle,
-        style || {},
-      ]}
-      {...rest}
-    >
+    <RNText style={[variantStyles, manualControlPropsToStyles, wrapStyle, style || {}]} {...rest}>
       {children}
     </RNText>
   );

@@ -1,9 +1,4 @@
-import React, {
-  forwardRef,
-  useEffect,
-  useImperativeHandle,
-  useState,
-} from 'react';
+import React, { forwardRef, useEffect, useImperativeHandle, useState } from 'react';
 import useStyles from './styles';
 import {
   TextInput,
@@ -13,10 +8,13 @@ import {
   StyleProp,
   ViewStyle,
   View,
+  TextStyle,
+  Text,
 } from 'react-native';
-import {useFormContext} from '../Form';
-import BaseInputLayout, {IBaseInputLayoutProps} from './BaseInputLayout';
-import {useTheme} from '../Theme';
+import { useFormContext } from '../Form';
+import BaseInputLayout, { IBaseInputLayoutProps } from './BaseInputLayout';
+import { useTheme } from '../Theme';
+import { applyDigitMask } from './utils';
 
 export interface IInputProps extends TextInputProps {
   name?: string;
@@ -27,8 +25,12 @@ export interface IInputProps extends TextInputProps {
   style?: StyleProp<ViewStyle>;
   disabled?: boolean;
   controlled?: boolean;
-  sideContent?: IBaseInputLayoutProps['sideContent'];
+  rightContent?: IBaseInputLayoutProps['rightContent'];
+  leftContent?: IBaseInputLayoutProps['leftContent'];
   showLength?: boolean;
+  mask?: string;
+  prefix?: string;
+  prefixStyle?: StyleProp<TextStyle>;
 }
 
 const Input = forwardRef<TextInput, IInputProps>(
@@ -47,15 +49,19 @@ const Input = forwardRef<TextInput, IInputProps>(
       disabled,
       controlled,
       maxLength,
-      sideContent,
+      rightContent,
+      leftContent,
       showLength,
+      mask,
+      prefix,
+      prefixStyle,
       ...rest
     },
-    ref,
+    ref
   ) => {
     const [isFocused, setIsFocused] = useState(false);
     const inputRef = React.createRef<TextInput>();
-    const {theme} = useTheme();
+    const { theme } = useTheme();
 
     const styles = useStyles();
 
@@ -63,38 +69,34 @@ const Input = forwardRef<TextInput, IInputProps>(
 
     useImperativeHandle(ref, () => inputRef.current as TextInput);
 
-    const {
-      fieldError,
-      fieldValue,
-      unsetFormValue,
-      updateFormValue,
-      updateFormTouched,
-    } = useFormContext(name);
+    const { fieldError, fieldValue, unsetFormValue, updateFormValue, updateFormTouched } =
+      useFormContext(name);
 
     const initValue = fieldValue || value;
     const errorMessage = fieldError || error;
-    const [internalValue, setInternalValue] = React.useState<string>(initValue);
+    const [internalValue, setInternalValue] = React.useState<string>(
+      mask && initValue ? applyDigitMask(initValue, mask) : initValue
+    );
 
     /** Wrappers to merge form and props methods */
     const onChangeTextWrapper = (text: string) => {
       let nextValue = text;
 
-      setInternalValue(() => {
+      setInternalValue((prevValue) => {
+        if (mask) {
+          nextValue = prevValue.length >= text.length ? text : applyDigitMask(text, mask);
+        }
         return nextValue;
       });
 
       updateFormValue(name, nextValue);
       onChangeText?.(nextValue);
     };
-    const onFocusWrapper = (
-      e: NativeSyntheticEvent<TextInputFocusEventData>,
-    ) => {
+    const onFocusWrapper = (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
       setIsFocused(true);
       onFocus?.(e);
     };
-    const onBlurWrapper = (
-      e: NativeSyntheticEvent<TextInputFocusEventData>,
-    ) => {
+    const onBlurWrapper = (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
       setIsFocused(false);
       updateFormTouched(name, true);
       onBlur?.(e);
@@ -105,7 +107,6 @@ const Input = forwardRef<TextInput, IInputProps>(
       return () => {
         clearFormValueOnUnmount && unsetFormValue(name);
       };
-      // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (
@@ -120,9 +121,11 @@ const Input = forwardRef<TextInput, IInputProps>(
         maxValueLength={maxLength}
         showLength={showLength}
         currentValueLength={controlled ? value?.length : internalValue?.length}
-        sideContent={sideContent}
+        rightContent={rightContent}
+        leftContent={leftContent}
       >
         <View style={styles.inputContainer}>
+          {prefix && <Text style={[styles.prefix, prefixStyle]}>{prefix}</Text>}
           <TextInput
             ref={inputRef}
             style={[styles.input, disabled && styles.disabledInput]}
@@ -131,14 +134,16 @@ const Input = forwardRef<TextInput, IInputProps>(
             onChangeText={onChangeTextWrapper}
             onFocus={onFocusWrapper}
             placeholderTextColor={theme.text.disabled}
-            maxLength={maxLength}
+            maxLength={mask?.length || maxLength}
             editable={!disabled}
             {...rest}
           />
         </View>
       </BaseInputLayout>
     );
-  },
+  }
 );
+
+Input.displayName = 'Input';
 
 export default Input;

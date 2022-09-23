@@ -1,6 +1,6 @@
-import {createUseStyles} from '../Theme';
+import { createUseStyles } from '../Theme';
 
-export default createUseStyles(theme => ({
+export default createUseStyles((theme) => ({
   hint: {
     marginTop: 8,
     marginLeft: 12,

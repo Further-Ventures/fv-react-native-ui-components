@@ -1,7 +1,8 @@
 import React from 'react';
-import {ComponentStory, ComponentMeta} from '@storybook/react-native';
+import { ComponentStory, ComponentMeta } from '@storybook/react-native';
 import Button from '.';
 import CenterView from '../../storybook/preview/CenterView';
+import { iconSelector } from '../../storybook/utils';
 import pkg from './package.json';
 
 export default {
@@ -17,12 +18,16 @@ export default {
         type: 'select',
       },
     },
-    icon: {
-      options: ['', 'info', 'settings'],
+    icon: iconSelector,
+    iconPosition: {
+      options: ['left', 'right'],
+
       control: {
         type: 'select',
       },
     },
+    iconLeft: iconSelector,
+    iconRight: iconSelector,
     variant: {
       options: ['contained', 'outlined', 'empty'],
       control: {
@@ -43,7 +48,7 @@ export default {
   },
 } as ComponentMeta<typeof Button>;
 
-const Template: ComponentStory<typeof Button> = args => <Button {...args} />;
+const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;
 
 export const Contained = Template.bind({});
 Contained.args = {
@@ -52,6 +57,7 @@ Contained.args = {
   shape: 'flat',
   variant: 'contained',
   icon: 'info',
+  iconPosition: 'right',
   error: false,
   disabled: false,
 };
@@ -63,6 +69,7 @@ Outlined.args = {
   shape: 'flat',
   variant: 'outlined',
   icon: 'info',
+  iconPosition: 'right',
   error: false,
   disabled: false,
 };
@@ -73,6 +80,18 @@ OnlyIcon.args = {
   shape: 'flat',
   variant: 'contained',
   icon: 'info',
+  error: false,
+  disabled: false,
+};
+
+export const LeftAndRightIconProps = Template.bind({});
+LeftAndRightIconProps.args = {
+  label: 'Flexible props',
+  size: 'medium',
+  shape: 'flat',
+  variant: 'outlined',
+  iconLeft: 'info',
+  iconRight: 'settings',
   error: false,
   disabled: false,
 };

@@ -1,16 +1,13 @@
 import React from 'react';
-import ButtonBridge, {IButtonBridge} from '../ButtonBridge';
+import ButtonBridge, { IButtonBridge } from '../ButtonBridge';
 import useStyles from './styles';
 
 const Tag = (
-  props: Pick<
-    IButtonBridge,
-    'label' | 'size' | 'variant' | 'iconLeft' | 'iconRight' | 'disabled'
-  >,
+  props: Pick<IButtonBridge, 'label' | 'size' | 'variant' | 'iconLeft' | 'iconRight' | 'disabled'>
 ) => {
   const styles = useStyles();
 
-  return <ButtonBridge {...props} shape="round" style={styles.default} />;
+  return <ButtonBridge {...props} style={styles.default} />;
 };
 
 export default Tag;

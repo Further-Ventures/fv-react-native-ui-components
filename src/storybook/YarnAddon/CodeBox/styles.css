@@ -1,16 +1,16 @@
 .pre-wrapper {
-    border: 1px #000 solid;
-    border-radius: 4px;
-    background-color: #E4E7EC;
-    display: flex;
-    justify-content: space-between;
-    max-width: 700px;
+  border: 1px #000 solid;
+  border-radius: 4px;
+  background-color: #e4e7ec;
+  display: flex;
+  justify-content: space-between;
+  max-width: 700px;
 }
 .pre {
-    margin-top: 0;
-    margin-bottom: 0;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 .copy-container {
-    padding: 10px;
-    cursor: pointer;
+  padding: 10px;
+  cursor: pointer;
 }

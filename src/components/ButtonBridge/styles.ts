@@ -1,4 +1,4 @@
-import {createUseStyles} from '../Theme';
+import { createUseStyles } from '../Theme';
 
 export default createUseStyles((theme, size) => ({
   contained: {
@@ -18,18 +18,18 @@ export default createUseStyles((theme, size) => ({
   disabledOutlined: {
     backgroundColor: theme.background.primary,
   },
-  small: {paddingHorizontal: 10, paddingVertical: 0, height: 24},
-  large: {paddingHorizontal: 16, paddingVertical: 0, height: 30},
+  small: { paddingHorizontal: 10, paddingVertical: 0, height: 24 },
+  large: { paddingHorizontal: 16, paddingVertical: 0, height: 30 },
 
-  withIconLeft: size === 'small' ? {paddingLeft: 6} : {paddingLeft: 8},
-  withIconRight: size === 'small' ? {paddingRight: 6} : {paddingRight: 8},
+  withIconLeft: size === 'small' ? { paddingLeft: 6 } : { paddingLeft: 8 },
+  withIconRight: size === 'small' ? { paddingRight: 6 } : { paddingRight: 8 },
 
   iconRight: {
-    ...(size === 'large' && {marginLeft: 10}),
-    ...(size === 'small' && {marginLeft: 8}),
+    ...(size === 'large' && { marginLeft: 10 }),
+    ...(size === 'small' && { marginLeft: 8 }),
   },
   iconLeft: {
-    ...(size === 'large' && {marginRight: 10}),
-    ...(size === 'small' && {marginRight: 8}),
+    ...(size === 'large' && { marginRight: 10 }),
+    ...(size === 'small' && { marginRight: 8 }),
   },
 }));

@@ -1,46 +1,44 @@
 import * as React from 'react';
-import {ThemeType, useTheme} from '../../../components/Theme';
-import {ScrollView, View} from 'react-native';
+import { ThemeType, useTheme } from '../../../components/Theme';
+import { ScrollView, View } from 'react-native';
 import Divider from '../Divider';
 import Text from '../../../components/Text';
-import {useEffect} from 'react';
+import { useEffect } from 'react';
 
-const ThemePreview = ({theme}: {theme: ThemeType}) => {
-  const {updateTheme} = useTheme();
+export interface IThemePreview {
+  theme: ThemeType;
+}
+
+const ThemePreview = ({ theme }: IThemePreview) => {
+  const { updateTheme } = useTheme();
 
   useEffect(() => {
     updateTheme(theme);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [theme]);
 
   return (
     <ScrollView
-      // eslint-disable-next-line react-native/no-inline-styles
       contentContainerStyle={{
         paddingHorizontal: 20,
         paddingVertical: 40,
         paddingBottom: 200,
       }}
     >
-      {Object.entries(theme).map(t => {
+      {Object.entries(theme).map((t) => {
         const [header, colors] = t;
-        if (
-          ['fontFamily', 'gradient', 'default', 'secondary'].includes(header)
-        ) {
+        if (['fontFamily', 'gradient', 'default', 'secondary'].includes(header)) {
           return <React.Fragment key={header} />;
         }
         return (
           <React.Fragment key={header}>
-            <Text variant="h3-bold">{header}</Text>
+            <Text variant='h3-bold'>{header}</Text>
             {Object.entries(colors).map((c, i) => (
               <React.Fragment key={i}>
-                {/* eslint-disable-next-line react-native/no-inline-styles */}
-                <View style={{marginTop: 10}}>
-                  <Text variant="h4-medium" color={'grey'}>
+                <View style={{ marginTop: 10 }}>
+                  <Text variant='h4-medium' color={'grey'}>
                     {c[0]}: {JSON.stringify(c[1])}
                   </Text>
                   <View
-                    // eslint-disable-next-line react-native/no-inline-styles
                     style={{
                       width: 30,
                       height: 20,
