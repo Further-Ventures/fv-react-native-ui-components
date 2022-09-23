@@ -23,6 +23,7 @@ it('should not call onPress handler when disabled', () => {
   const screen = render(
     <Button label={label} onPress={onPress} disabled={true} />,
   );
+
   const button = screen.getByText(label);
   fireEvent.press(button);
   expect(onPress).not.toHaveBeenCalled();

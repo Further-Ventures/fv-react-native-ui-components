@@ -1,65 +1,63 @@
 import React from 'react';
 import {render} from '@testing-library/react-native';
-import Elevation from '.';
-import {Text} from 'react-native';
+import Loader from '.';
 
-it('should render medium', () => {
-  const label = 'Some Text';
-  const {getByText} = render(
-    <Elevation>
-      <Text>{label}</Text>
-    </Elevation>,
-  );
+it('should render rounded circular loader', () => {
+  const screen = render(<Loader />);
 
-  const element = getByText(label).parent;
-  expect(element?.props.style[1].shadowRadius).toBe(9);
-  expect(element?.props.style[1].elevation).toBe(13);
+  const container = screen.queryByTestId('@fv/CircularLoader-container');
+  expect(container).toBeDefined();
+
+  const svg = screen.queryByTestId('@fv/CircularLoader-svg');
+  const roundedSvg = screen.queryByTestId('@fv/CircularLoader-svg-rounded');
+  expect(svg).toBe(null);
+  expect(roundedSvg).toBeDefined();
 });
-it('should render extraLight', () => {
-  const label = 'Some Text';
-  const {getByText} = render(
-    <Elevation variant="extraLight">
-      <Text>{label}</Text>
-    </Elevation>,
-  );
+it('should render flat circular loader', () => {
+  const screen = render(<Loader flat={true} />);
 
-  const element = getByText(label).parent;
-  expect(element?.props.style[1].shadowRadius).toBe(3);
-  expect(element?.props.style[1].elevation).toBe(3);
+  const container = screen.queryByTestId('@fv/CircularLoader-container');
+  expect(container).toBeDefined();
+
+  const svg = screen.queryByTestId('@fv/CircularLoader-svg');
+  const roundedSvg = screen.queryByTestId('@fv/CircularLoader-svg-rounded');
+  expect(roundedSvg).toBe(null);
+  expect(svg).toBeDefined();
 });
-it('should render light', () => {
-  const label = 'Some Text';
-  const {getByText} = render(
-    <Elevation variant="light">
-      <Text>{label}</Text>
-    </Elevation>,
-  );
+it('should render flat circular progress', () => {
+  const screen = render(<Loader progress={50} flat={true} />);
 
-  const element = getByText(label).parent;
-  expect(element?.props.style[1].shadowRadius).toBe(7);
-  expect(element?.props.style[1].elevation).toBe(8);
+  const container = screen.queryByTestId('@fv/CircularLoader-container');
+  expect(container).toBeDefined();
+
+  const progressSvg = screen.queryByTestId('@fv/CircularLoader-svg-progress');
+  expect(progressSvg).toBeDefined();
 });
-it('should render heavy', () => {
-  const label = 'Some Text';
-  const {getByText} = render(
-    <Elevation variant="heavy">
-      <Text>{label}</Text>
-    </Elevation>,
-  );
 
-  const element = getByText(label).parent;
-  expect(element?.props.style[1].shadowRadius).toBe(13);
-  expect(element?.props.style[1].elevation).toBe(18);
+it('should render rounded bar loader', () => {
+  const screen = render(<Loader variant="bar" />);
+
+  const container = screen.queryByTestId('@fv/BarLoader-container');
+  expect(container).toBeDefined();
+
+  const svg = screen.queryByTestId('@fv/BarLoader-svg-rounded');
+  expect(svg).toBeDefined();
 });
-it('should render extraHeavy', () => {
-  const label = 'Some Text';
-  const {getByText} = render(
-    <Elevation variant="extraHeavy">
-      <Text>{label}</Text>
-    </Elevation>,
-  );
+it('should render flat bar loader', () => {
+  const screen = render(<Loader variant="bar" flat={true} />);
 
-  const element = getByText(label).parent;
-  expect(element?.props.style[1].shadowRadius).toBe(16);
-  expect(element?.props.style[1].elevation).toBe(23);
+  const container = screen.queryByTestId('@fv/BarLoader-container');
+  expect(container).toBeDefined();
+
+  const svg = screen.queryByTestId('@fv/BarLoader-svg');
+  expect(svg).toBeDefined();
+});
+it('should render flat bar progress', () => {
+  const screen = render(<Loader variant="bar" flat={true} progress={34} />);
+
+  const container = screen.queryByTestId('@fv/BarLoader-container');
+  expect(container).toBeDefined();
+
+  const svg = screen.queryByTestId('@fv/BarLoader-svg-progress');
+  expect(svg).toBeDefined();
 });

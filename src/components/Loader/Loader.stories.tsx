@@ -1,26 +1,21 @@
 import React from 'react';
 import {ComponentStory, ComponentMeta} from '@storybook/react-native';
-import Elevation from '.';
+import Loader from '.';
 import CenterView from '../../storybook/preview/CenterView';
-import {Platform, Text, View} from 'react-native';
+import {Platform, View} from 'react-native';
 import pkg from './package.json';
-import {buildExcludeArgTypes} from '../../storybook/utils';
 
 export default {
-  title: 'Elevation',
-  component: Elevation,
+  title: 'Loader',
+  component: Loader,
 
   decorators: Platform.OS === 'web' ? null : [CenterView],
-  args: {
-    children: <Text>some text</Text>,
-  },
   parameters: {
     pkg,
   },
-  argTypes: buildExcludeArgTypes(['variant']),
-} as ComponentMeta<typeof Elevation>;
+} as ComponentMeta<typeof Loader>;
 
-const Template: ComponentStory<typeof Elevation> = ({children}) => (
+const Template: ComponentStory<typeof Loader> = args => (
   <View
     // eslint-disable-next-line react-native/no-inline-styles
     style={{
@@ -29,77 +24,11 @@ const Template: ComponentStory<typeof Elevation> = ({children}) => (
       paddingBottom: 20,
     }}
   >
-    <Elevation
-      variant="extraLight"
-      // eslint-disable-next-line react-native/no-inline-styles
-      style={{
-        margin: 25,
-        width: 216,
-        height: 216,
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderRadius: 10,
-      }}
-    >
-      {children}
-    </Elevation>
-    <Elevation
-      variant="light"
-      // eslint-disable-next-line react-native/no-inline-styles
-      style={{
-        margin: 25,
-        width: 216,
-        height: 216,
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderRadius: 10,
-      }}
-    >
-      {children}
-    </Elevation>
-    <Elevation
-      variant="medium"
-      // eslint-disable-next-line react-native/no-inline-styles
-      style={{
-        margin: 25,
-        width: 216,
-        height: 216,
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderRadius: 10,
-      }}
-    >
-      {children}
-    </Elevation>
-    <Elevation
-      variant="heavy"
-      // eslint-disable-next-line react-native/no-inline-styles
-      style={{
-        margin: 25,
-        width: 216,
-        height: 216,
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderRadius: 10,
-      }}
-    >
-      {children}
-    </Elevation>
-    <Elevation
-      variant="extraHeavy"
-      // eslint-disable-next-line react-native/no-inline-styles
-      style={{
-        margin: 25,
-        width: 216,
-        height: 216,
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderRadius: 10,
-      }}
-    >
-      {children}
-    </Elevation>
+    <Loader {...args} />
   </View>
 );
 
-export const ElevationComponent = Template.bind({});
+export const LoaderComponent = Template.bind({});
+LoaderComponent.args = {
+  variant: 'circular',
+};

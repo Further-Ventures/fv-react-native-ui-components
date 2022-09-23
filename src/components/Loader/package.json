@@ -1,5 +1,5 @@
 {
-  "name": "@further-ventures/fv-react-ui-components.elevloaderation",
+  "name": "@further-ventures/fv-react-ui-components.loader",
   "version": "0.0.1",
   "peerDependencies": {
     "react-native": ">=0.68.0",
