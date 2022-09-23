@@ -7,7 +7,7 @@ const Tag = (
 ) => {
   const styles = useStyles();
 
-  return <ButtonBridge {...props} shape='round' style={styles.default} />;
+  return <ButtonBridge {...props} style={styles.default} />;
 };
 
 export default Tag;

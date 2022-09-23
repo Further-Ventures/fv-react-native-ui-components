@@ -73,7 +73,6 @@ export const useStyles = createUseStyles(
         justifyContent: 'center',
         alignSelf: 'baseline',
         flexDirection: 'row',
-        flexWrap: 'wrap',
         ...buttonVariantStyle().button,
       },
       buttonPressed: {
@@ -88,7 +87,7 @@ export const useStyles = createUseStyles(
           ? { width: 24, height: 24 }
           : {
               paddingHorizontal: 8,
-              paddingVertical: 4,
+              height: 24,
             }),
       },
       small: {
@@ -96,7 +95,7 @@ export const useStyles = createUseStyles(
           ? { width: 40, height: 40 }
           : {
               paddingHorizontal: 16,
-              paddingVertical: 8,
+              height: 40,
             }),
       },
       medium: {
@@ -104,7 +103,7 @@ export const useStyles = createUseStyles(
           ? { width: 56, height: 56 }
           : {
               paddingHorizontal: 24,
-              paddingVertical: 16,
+              height: 56,
             }),
       },
       large: {
@@ -112,7 +111,7 @@ export const useStyles = createUseStyles(
           ? { width: 72, height: 72 }
           : {
               paddingHorizontal: 32,
-              paddingVertical: 24,
+              height: 72,
             }),
       },
 

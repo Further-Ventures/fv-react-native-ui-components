@@ -10,12 +10,8 @@ const Template: FC<IFormProps> = (props) => (
   <Form {...props}>
     <Input name='email' placeholder='Email' label='Email' style={{ marginBottom: 20 }} />
     <Input name='password' placeholder='Password' label='Password' />
-    <Button type='submit' testID={submitButtonTestId}>
-      Submit
-    </Button>
-    <Button type='reset' testID={resetButtonTestId}>
-      Reset
-    </Button>
+    <Button testID={submitButtonTestId}>Submit</Button>
+    <Button testID={resetButtonTestId}>Reset</Button>
   </Form>
 );
 

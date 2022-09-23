@@ -48,8 +48,8 @@ const Template: ComponentStory<typeof Form> = ({
             justifyContent: 'space-around',
           }}
         >
-          <Button type='submit'>Submit</Button>
-          <Button type='reset'>Reset</Button>
+          <Button>Submit</Button>
+          <Button>Reset</Button>
         </View>
       </ScrollView>
     </Form>
@@ -168,8 +168,8 @@ export const ExternalControl = () => {
           justifyContent: 'space-around',
         }}
       >
-        <Button type='submit'>Login</Button>
-        <Button type='reset'>Reset</Button>
+        <Button>Login</Button>
+        <Button>Reset</Button>
       </View>
       <View
         style={{
@@ -212,10 +212,8 @@ export const DisabledSubmitButton = () => {
           justifyContent: 'space-around',
         }}
       >
-        <Button type='submit' disabled={disabled}>
-          Login
-        </Button>
-        <Button type='reset'>Reset</Button>
+        <Button disabled={disabled}>Login</Button>
+        <Button>Reset</Button>
       </View>
     </Form>
   );

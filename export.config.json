@@ -3,12 +3,15 @@
   "components": {
     "Theme": "theme",
     "Elevation": "elevation",
-    "Icon": "Icon",
+    "Icon": "icon",
     "Text": "text",
     "TextArea": "texaArea",
     "Button": "button",
     "Chip": "chip",
     "Tag": "tag",
+    "Checkbox": "checkbox",
+    "Radio": "radio",
+    "Switch": "Switch",
     "TextLink": "textLink"
   }
 }
