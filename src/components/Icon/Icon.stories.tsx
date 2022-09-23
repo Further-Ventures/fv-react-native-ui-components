@@ -3,6 +3,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react-native';
 import Icon from '.';
 import CenterView from '../../storybook/preview/CenterView';
 import IconView from '../../storybook/preview/Icon';
+import { getColorList } from '../../storybook/utils';
 import { Platform } from 'react-native';
 import pkg from './package.json';
 
@@ -14,10 +15,18 @@ export default {
   args: {
     children: 'Icon',
   },
+  argTypes: {
+    color: {
+      options: getColorList(),
+      control: {
+        type: 'select',
+      },
+    },
+  },
   parameters: {
     pkg,
     controls: {
-      include: ['width', 'filled', 'height', 'color'],
+      include: ['width', 'filled', 'height', 'color', 'disabled'],
     },
   },
 } as ComponentMeta<typeof Icon>;
@@ -29,5 +38,6 @@ Preview.args = {
   filled: true,
   width: 24,
   height: 24,
-  color: 'maroon',
+  color: 'error-main',
+  disabled: false,
 };

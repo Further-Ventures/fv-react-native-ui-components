@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import { useStyles } from './styles';
 import { useTheme, ThemeType } from '../Theme';
-import { useFormContext } from '../Form';
+// import { useFormContext } from '../Form';
 import Text, { IManualControlProps } from '../Text';
 import Icon, { IIconProps } from '../Icon';
 
@@ -95,9 +95,10 @@ const Button: React.FC<IButton> = ({
   iconRightProps,
   ...rest
 }) => {
-  const {
-    formActions: { submit, reset },
-  } = useFormContext();
+  // TODO - activate when form ready
+  // const {
+  //   formActions: { submit, reset },
+  // } = useFormContext();
   const styles = useStyles(size, variant, error, !label);
   const { theme } = useTheme();
 

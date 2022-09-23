@@ -3,7 +3,7 @@
   "components": {
     "Theme": "theme",
     "Elevation": "elevation",
-    "Icon": "Icon",
+    "Icon": "icon",
     "Text": "text",
     "TextArea": "texaArea",
     "Button": "button",

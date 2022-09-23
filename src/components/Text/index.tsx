@@ -37,15 +37,16 @@ const Text = <TIsAnyColor,>(props: IConditionalTextProps<TIsAnyColor>) => {
     children,
     ...rest
   } = props;
-  const styles = useStyles(
-    disabled ? getColorFromTheme('text-disabled') : getColorFromTheme<TIsAnyColor, true>(color)
-  );
+  const generatedColor = disabled
+    ? getColorFromTheme('text-disabled')
+    : getColorFromTheme<TIsAnyColor, true>(color);
+  const styles = useStyles(generatedColor);
   const variantStyles = variant ? styles[variant] : {};
   const wrapStyle = { flexShrink: 1 } as const;
   const manualControlPropsToStyles = variant
     ? {}
     : {
-        color,
+        color: generatedColor,
         fontSize: size,
         fontWeight: weight,
         lineHeight:

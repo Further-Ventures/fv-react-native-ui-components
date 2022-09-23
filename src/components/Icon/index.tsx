@@ -4,7 +4,7 @@ import { SvgProps } from 'react-native-svg';
 
 import { getColorFromTheme, TPalette } from '../../utils/getColorFromTheme';
 
-export interface IIconProps<TIsAnyColor = void> extends SvgProps {
+export interface IIconProps<TIsAnyColor = void> extends Omit<SvgProps, 'fill'> {
   filled?: boolean;
   name: string;
   color?: TPalette<TIsAnyColor>;
@@ -16,7 +16,7 @@ const Icon = <TIsAnyColor,>({
   name,
   width = 24,
   height = 24,
-  color = 'primary-contrast',
+  color,
   disabled = false,
   style,
   ...rest
@@ -29,7 +29,11 @@ const Icon = <TIsAnyColor,>({
     (color ? require('./custom/social/dull')[name] : require('./custom/social/colorfull')[name]) ||
     require('./custom/payment')[name] ||
     require('./custom/other')[name];
-  const fill = color ? { fill: color } : {};
+  const fill = color
+    ? {
+        fill: disabled ? getColorFromTheme('text-disabled') : getColorFromTheme<TIsAnyColor>(color),
+      }
+    : {};
   return (
     <View style={style}>
       <SvgContent
