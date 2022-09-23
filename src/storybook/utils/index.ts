@@ -10,3 +10,13 @@ export const buildExcludeArgTypes = (keys: string[]) => {
   });
   return argTypes;
 };
+
+export const iconSelector = {
+  options: ['no_icon', 'account_circle', 'home', 'settings', 'cancel'],
+  mapping: {
+    no_icon: '',
+  },
+  control: {
+    type: 'select',
+  },
+};

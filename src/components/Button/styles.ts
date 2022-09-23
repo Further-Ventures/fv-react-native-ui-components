@@ -73,7 +73,6 @@ export const useStyles = createUseStyles(
         justifyContent: 'center',
         alignSelf: 'baseline',
         flexDirection: 'row',
-        flexWrap: 'wrap',
         ...buttonVariantStyle().button,
       },
       buttonPressed: {
