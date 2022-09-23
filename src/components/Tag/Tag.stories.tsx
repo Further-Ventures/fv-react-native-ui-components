@@ -2,6 +2,7 @@ import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react-native';
 import Tag from '.';
 import CenterView from '../../storybook/preview/CenterView';
+import { iconSelector } from '../../storybook/utils';
 import pkg from './package.json';
 
 export default {
@@ -24,18 +25,8 @@ export default {
         type: 'select',
       },
     },
-    iconLeft: {
-      options: ['', 'account_circle', 'home', 'settings'],
-      control: {
-        type: 'select',
-      },
-    },
-    iconRight: {
-      options: ['', 'cancel', 'home', 'settings'],
-      control: {
-        type: 'select',
-      },
-    },
+    iconLeft: iconSelector,
+    iconRight: iconSelector,
   },
   decorators: [CenterView],
   args: {},
@@ -48,7 +39,7 @@ const Template: ComponentStory<typeof Tag> = (args) => <Tag {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
-  label: 'Button CTA',
+  label: 'Tag',
   size: 'small',
   variant: 'contained',
   iconLeft: 'account_circle',

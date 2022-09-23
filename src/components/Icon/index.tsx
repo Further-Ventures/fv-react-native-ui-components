@@ -29,14 +29,14 @@ const Icon = <TIsAnyColor,>({
     (color ? require('./custom/social/dull')[name] : require('./custom/social/colorfull')[name]) ||
     require('./custom/payment')[name] ||
     require('./custom/other')[name];
-
+  const fill = color ? { fill: color } : {};
   return (
     <View style={style}>
       <SvgContent
         width={width}
         height={height || width}
         viewBox={SvgRoot[name] ? '0 0 48 48' : null}
-        fill={disabled ? getColorFromTheme('text-disabled') : getColorFromTheme<TIsAnyColor>(color)}
+        {...fill}
         {...rest}
       />
     </View>
