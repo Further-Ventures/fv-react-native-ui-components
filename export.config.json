@@ -14,6 +14,7 @@
     "PasswordInput": "passwordInput",
     "Checkbox": "checkbox",
     "Radio": "radio",
-    "Switch": "switch"
+    "Switch": "switch",
+    "Toggle": "toggle"
   }
 }
