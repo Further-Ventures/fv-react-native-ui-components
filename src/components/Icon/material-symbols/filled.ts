@@ -13,3 +13,4 @@ export { default as account_circle } from '@material-symbols/svg-400/rounded/acc
 export { default as error } from '@material-symbols/svg-400/rounded/error-fill.svg';
 export { default as west } from '@material-symbols/svg-400/rounded/west-fill.svg';
 export { default as east } from '@material-symbols/svg-400/rounded/east-fill.svg';
+export { default as search } from '@material-symbols/svg-400/rounded/search-fill.svg';

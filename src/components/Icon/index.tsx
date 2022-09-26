@@ -29,6 +29,8 @@ const Icon = <TIsAnyColor,>({
     (color ? require('./custom/social/dull')[name] : require('./custom/social/colorfull')[name]) ||
     require('./custom/payment')[name] ||
     require('./custom/other')[name];
+
+  if (!SvgContent) throw new Error('Icon name not found');
   const fill = color
     ? {
         fill: disabled ? getColorFromTheme('text-disabled') : getColorFromTheme<TIsAnyColor>(color),

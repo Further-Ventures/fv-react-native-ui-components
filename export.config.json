@@ -12,6 +12,7 @@
     "Checkbox": "checkbox",
     "Radio": "radio",
     "Switch": "Switch",
-    "TextLink": "textLink"
+    "TextLink": "textLink",
+    "SearchBar":"searchBar"
   }
 }

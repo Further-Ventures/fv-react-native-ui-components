@@ -1,0 +1,11 @@
+{
+  "name": "@further-ventures/fv-react-native-ui-components.searchbar",
+  "version": "0.0.1",
+  "peerDependencies": {
+    "react-native": ">=0.68.0",
+    "react": ">=17.0.2",
+    "@further-ventures/fv-react-native-ui-components.form": ">=0.0.3",
+    "@further-ventures/fv-react-native-ui-components.input": ">=0.0.3",
+    "@further-ventures/fv-react-native-ui-components.theme": ">=0.0.1"
+  }
+}
