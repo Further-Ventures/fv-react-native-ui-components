@@ -20,7 +20,7 @@ const PasswordInput: React.FC<IPasswordInput> = ({ disabled, ...rest }) => {
       secureTextEntry={secured}
       rightContent={(hasError, disabled) => (
         <Pressable disabled={disabled} hitSlop={8} onPress={onToggleInput}>
-          <Icon
+          <Icon<true>
             filled
             width={20}
             color={disabled ? theme.text.disabled : theme.text.primary}
