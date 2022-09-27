@@ -24,7 +24,8 @@ const Template: ComponentStory<typeof SearchBar> = (args) => <SearchBar {...args
 
 export const Contained = Template.bind({});
 Contained.args = {
-  label: 'SearchBar CTA',
+  // label: 'SearchBar CTA',
+  placeholder: 'Placeholder',
   size: 'medium',
   shape: 'flat',
   variant: 'contained',

@@ -8,6 +8,7 @@ type ContentFunc = (hasError: boolean, disabled?: boolean) => React.ReactElement
 
 export interface IBaseInputLayoutProps extends PressableProps {
   label?: string;
+  size?: 'small' | 'medium';
   isFocused?: boolean;
   style?: StyleProp<ViewStyle>;
   error?: string;
@@ -33,6 +34,7 @@ const BaseInputLayout = React.forwardRef<View, IBaseInputLayoutProps>(
     {
       children,
       label,
+      size = 'medium',
       isFocused,
       error,
       style,
@@ -57,8 +59,9 @@ const BaseInputLayout = React.forwardRef<View, IBaseInputLayoutProps>(
     });
 
     const hasError = Boolean(error);
+    const hasLabel = Boolean(label);
 
-    const styles = useStyles();
+    const styles = useStyles(hasLabel, size);
 
     const getSideContent = useCallback(
       (sideContent?: ReactElement | ContentFunc): ReactElement | null => {
@@ -116,7 +119,7 @@ const BaseInputLayout = React.forwardRef<View, IBaseInputLayoutProps>(
                   displaySmallLabel && styles.labelSmall,
                   {
                     transform: [
-                      { translateY: interpolate([0, -10]) },
+                      { translateY: interpolate([0, -12]) },
                       { scale: interpolate([1, LABEL_SCALE]) },
                       {
                         translateX: interpolate([
@@ -135,7 +138,9 @@ const BaseInputLayout = React.forwardRef<View, IBaseInputLayoutProps>(
                 {label}
               </Animated.Text>
             )}
-            <Animated.View style={[styles.childrenContainer, { opacity: inputAnim }]}>
+            <Animated.View
+              style={[styles.childrenContainer, { opacity: hasLabel ? inputAnim : 1 }]}
+            >
               {children}
             </Animated.View>
           </View>

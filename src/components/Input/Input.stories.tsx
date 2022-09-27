@@ -118,7 +118,7 @@ export const WithIcon = () => {
       <Input
         label={'Label'}
         placeholder={'Type something...'}
-        rightContent={<Icon name='info' height={20} width={20} color='grey' />}
+        rightContent={<Icon name='info' height={20} width={20} color='grey-main' />}
       />
 
       <Text>{'A.1. Default with hint text'}</Text>
@@ -126,7 +126,7 @@ export const WithIcon = () => {
         label={'Label'}
         placeholder={'Type something...'}
         hint={'This is a hint text to help user.'}
-        rightContent={<Icon name='info' height={20} width={20} color='grey' />}
+        rightContent={<Icon name='info' height={20} width={20} color='grey-main' />}
       />
 
       <Text>{'B.1. Focus(Mobile)'}</Text>
@@ -135,7 +135,7 @@ export const WithIcon = () => {
         placeholder={'Type something...'}
         /* eslint-disable-next-line jsx-a11y/no-autofocus */
         autoFocus={true}
-        rightContent={<Icon name='info' height={20} width={20} color='grey' />}
+        rightContent={<Icon name='info' height={20} width={20} color='grey-main' />}
       />
 
       <Text>{'C.1. Filled'}</Text>
@@ -143,7 +143,7 @@ export const WithIcon = () => {
         label={'Label'}
         placeholder={'Type something...'}
         value={'Text Input'}
-        rightContent={<Icon name='info' height={20} width={20} color='grey' />}
+        rightContent={<Icon name='info' height={20} width={20} color='grey-main' />}
       />
 
       <Text>{'C.2. Filled with hint text'}</Text>
@@ -152,7 +152,7 @@ export const WithIcon = () => {
         placeholder={'Type something...'}
         value={'Text Input'}
         hint={'This is a hint text to help user.'}
-        rightContent={<Icon name='info' height={20} width={20} color='grey' />}
+        rightContent={<Icon name='info' height={20} width={20} color='grey-main' />}
       />
 
       <Text>{'D.1.Disabled'}</Text>
@@ -160,7 +160,7 @@ export const WithIcon = () => {
         label={'Label'}
         placeholder={'Type something...'}
         disabled={true}
-        rightContent={<Icon name='info' height={20} width={20} color='grey' />}
+        rightContent={<Icon name='info' height={20} width={20} color='grey-main' />}
       />
 
       <Text>{'D.2.Disabled with hint text'}</Text>
@@ -169,7 +169,7 @@ export const WithIcon = () => {
         placeholder={'Type something...'}
         hint={'This is a hint text to help user.'}
         disabled={true}
-        rightContent={<Icon name='info' height={20} width={20} color='grey' />}
+        rightContent={<Icon name='info' height={20} width={20} color='grey-main' />}
       />
 
       <Text>{'E.1. Error Default'}</Text>
@@ -177,7 +177,7 @@ export const WithIcon = () => {
         label={'Label'}
         placeholder={'Type something...'}
         error={'This is an error text to help user.'}
-        rightContent={<Icon name='info' height={20} width={20} color='grey' />}
+        rightContent={<Icon name='info' height={20} width={20} color='grey-main' />}
       />
 
       <Text>{'E.2. Error Default with hint text'}</Text>
@@ -186,7 +186,7 @@ export const WithIcon = () => {
         placeholder={'Type something...'}
         hint={'This is a hint text to help user.'}
         error={'This is an error text to help user.'}
-        rightContent={<Icon name='info' height={20} width={20} color='grey' />}
+        rightContent={<Icon name='info' height={20} width={20} color='grey-main' />}
       />
 
       <Text>{'E.3. Error Filled'}</Text>
@@ -195,7 +195,7 @@ export const WithIcon = () => {
         placeholder={'Type something...'}
         value={'Text Input'}
         error={'This is an error text to help user.'}
-        rightContent={<Icon name='info' height={20} width={20} color='grey' />}
+        rightContent={<Icon name='info' height={20} width={20} color='grey-main' />}
       />
 
       <Text>{'E.4. Error Filled with hint text'}</Text>
@@ -205,7 +205,7 @@ export const WithIcon = () => {
         value={'Text Input'}
         hint={'This is a hint text to help user.'}
         error={'This is an error text to help user.'}
-        leftContent={<Icon name='info' height={20} width={20} color='grey' />}
+        leftContent={<Icon name='info' height={20} width={20} color='grey- main' />}
       />
     </ScrollView>
   );
@@ -383,7 +383,7 @@ export const WithMask = () => (
       placeholder={'XXXX XXXX XXXX XXXX'}
       mask={'XXXX XXXX XXXX XXXX'}
       leftContent={<Icon name='mastercard' height={24} width={35} />}
-      rightContent={<Icon name='info' height={20} width={20} color='grey' />}
+      rightContent={<Icon name='info' height={20} width={20} color='grey-main' />}
     />
     <Text>{'Date Input'}</Text>
     <Input label={'Expiration date'} placeholder={'MM/YY'} mask={'XX/XX'} />
