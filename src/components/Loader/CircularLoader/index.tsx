@@ -120,12 +120,21 @@ const CircularLoader: React.FC<ICircularLoaderProps> = ({
         }`}
       >
         <AnimatedCircle
-          style={[styles.circle, !flat && styles.rounded, calculateProgress()]}
+          // @ts-ignore-next-line
+          style={[ calculateProgress()]}
           cx={DIAMETER}
           cy={DIAMETER}
           r={INNER_RADIUS}
           fill="none"
           strokeWidth="4"
+          stroke="red"
+          // strokeDasharray="0, 145"
+          // strokeDashoffset='1'
+          strokeLinecap='round'
+          // transitionProperty='all'
+          // transitionTimingFunction='ease-out'
+          // transitionDuration='300ms'
+
         />
       </Svg>
     </Animated.View>

@@ -2,8 +2,8 @@ import {createUseStyles} from '../../Theme';
 
 export default createUseStyles(theme => ({
   box: {
-    width: '48px',
-    height: '48px',
+    width: 48,
+    height: 48,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -13,17 +13,18 @@ export default createUseStyles(theme => ({
     transformOrigin: 'center',
   },
   circle: {
-    transitionProperty: 'all',
-    transitionTimingFunction: 'ease-out',
-    transitionDuration: '300ms',
-    stroke: theme.primary.main,
-    strokeDasharray: '0, 145',
-    strokeDashoffset: '1',
+    // transitionProperty: 'all',
+    // transitionTimingFunction: 'ease-out',
+    // transitionDuration: '300ms',
+    // stroke: theme.primary.main,
+    // strokeDasharray: '0, 145',
+    // strokeDashoffset: '1',
   },
   rounded: {
-    strokeLinecap: 'round',
+    // strokeLinecap: 'round',
   },
   progress: {
-    transform: 'rotate(270deg)',
+    // transform: 'rotate(270deg)',
   },
+  spin: {}
 }));
