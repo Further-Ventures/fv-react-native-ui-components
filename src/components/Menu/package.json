@@ -6,6 +6,7 @@
     "react": ">=17.0.2",
     "@further-ventures/fv-react-native-ui-components.theme": ">=0.0.5",
     "@further-ventures/fv-react-native-ui-components.icon": ">=0.0.1",
-    "@further-ventures/fv-react-native-ui-components.text": ">=0.0.1"
+    "@further-ventures/fv-react-native-ui-components.text": ">=0.0.1",
+    "react-native-popup-menu": ">=0.16.1"
   }
 }
