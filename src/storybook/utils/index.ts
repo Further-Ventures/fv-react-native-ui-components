@@ -1,5 +1,4 @@
 import { defaultTheme } from '../../components/Theme/defaultTheme';
-import * as icons from '../../components/Icon/list';
 import * as materialSymbols from '../../components/Icon/list/material-symbols';
 import * as customIcons from '../../components/Icon/list/custom';
 
@@ -27,7 +26,7 @@ export const getMaterialSymbols = () => ({
 });
 
 export const getCustomIcons = () => ({
-  options: ['', ...Object.keys(customIcons)],
+  options: ['no_icon', ...Object.keys(customIcons)],
   mapping: {
     no_icon: '',
   },
@@ -42,7 +41,7 @@ export const getColorList = (isText = false) => {
   if (isText) {
     inclusionThemeKeys.push('text', 'error', 'grey');
   }
-  const list = [''];
+  const list = ['no_color'];
   for (const key in defaultTheme) {
     if (!exceptionThemeKeys.includes(key)) {
       if (isText && !inclusionThemeKeys.includes(key)) {
