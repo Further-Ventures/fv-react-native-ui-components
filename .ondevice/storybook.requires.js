@@ -29,6 +29,7 @@ const getStories = () => {
     require("../src/components/Elevation/Elevation.stories.tsx"),
     require("../src/components/Icon/Icon.stories.tsx"),
     require("../src/components/Input/Input.stories.tsx"),
+    require("../src/components/Menu/Menu.stories.tsx"),
     require("../src/components/PasswordInput/PasswordInput.stories.tsx"),
     require("../src/components/Radio/Radio.stories.tsx"),
     require("../src/components/Switch/Switch.stories.tsx"),

@@ -15,6 +15,7 @@
     "Checkbox": "checkbox",
     "Radio": "radio",
     "Switch": "switch",
-    "Toggle": "toggle"
+    "Toggle": "toggle",
+    "Menu": "menu"
   }
 }
