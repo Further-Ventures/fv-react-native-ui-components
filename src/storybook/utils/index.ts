@@ -36,16 +36,6 @@ export const getCustomIcons = () => ({
   },
 });
 
-export const getIcons = () => ({
-  options: ['no_icon', ...Object.keys(icons)],
-  mapping: {
-    no_icon: '',
-  },
-  control: {
-    type: 'select',
-  },
-});
-
 export const getColorList = (isText = false) => {
   const exceptionThemeKeys = ['fontFamily', 'gradient'];
   const inclusionThemeKeys = [];
