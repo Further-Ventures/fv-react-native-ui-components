@@ -2,7 +2,6 @@ import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react-native';
 import SearchBar from '.';
 import CenterView from '../../storybook/preview/CenterView';
-import { iconSelector } from '../../storybook/utils';
 import pkg from './package.json';
 
 export default {
@@ -24,13 +23,12 @@ const Template: ComponentStory<typeof SearchBar> = (args) => <SearchBar {...args
 
 export const Contained = Template.bind({});
 Contained.args = {
-  // label: 'SearchBar CTA',
+  info: 'This is an info text',
   placeholder: 'Placeholder',
-  size: 'medium',
-  shape: 'flat',
-  variant: 'contained',
-  icon: 'info',
-  iconPosition: 'right',
-  error: false,
+  dropdownItems: [
+    { icon: 'account_circle', text: 'Item 1' },
+    { icon: 'account_circle', text: 'Item 1' },
+    { icon: 'account_circle', text: 'Item 1' },
+  ],
   disabled: false,
 };

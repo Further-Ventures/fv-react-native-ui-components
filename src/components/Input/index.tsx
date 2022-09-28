@@ -82,6 +82,7 @@ const Input = forwardRef<TextInput, IInputProps>(
 
     /** Wrappers to merge form and props methods */
     const onChangeTextWrapper = (text: string) => {
+      if (disabled) return;
       let nextValue = text;
 
       setInternalValue((prevValue) => {
