@@ -23,11 +23,6 @@ export default {
       control: { type: 'select' },
       options: ['thin', 'thick'],
     },
-    placement: {
-      label: 'preferred placement',
-      control: { type: 'select' },
-      options: ['bottom', 'top', 'left', 'right'],
-    },
   },
 } as ComponentMeta<typeof Menu>;
 
@@ -35,20 +30,19 @@ const Template: ComponentStory<typeof Menu> = (args) => <Menu {...args} />;
 
 type TriggerPosition = { style: StyleProp<ViewStyle> };
 
-const triggerCenter: TriggerPosition = { style: { width: 50, height: 50, alignSelf: 'center' } };
+const triggerCenter: TriggerPosition = { style: { alignSelf: 'center' } };
 const triggerBottom: TriggerPosition = {
-  style: { width: 50, height: 50, alignSelf: 'center', bottom: 10, position: 'absolute' },
+  style: { alignSelf: 'center', bottom: 10, position: 'absolute' },
 };
 const triggerTop: TriggerPosition = {
-  style: { width: 50, height: 50, alignSelf: 'center', top: 10, position: 'absolute' },
+  style: { alignSelf: 'center', top: 10, position: 'absolute' },
 };
 const baseData = { data: ['Save', 'Restore', 'Delete', 'Undo'] };
 
 const baseArgs: Partial<IMenu> = {
-  trigger: <View style={{ backgroundColor: 'red', width: '100%', height: '100%' }} />,
-  itemWidth: 'small',
+  trigger: <View style={{ backgroundColor: 'red', width: 50, height: 50 }} />,
+  itemWidth: 'medium',
   itemHeight: 'thick',
-  placement: 'bottom',
   onSelect: (label) => alert(`label: ${label}`),
 };
 

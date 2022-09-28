@@ -55,7 +55,6 @@
     "react-copy-to-clipboard": "^5.1.0",
     "react-jss": "^10.9.0",
     "react-native": "0.68.0",
-    "react-native-popup-menu": "0.16.1",
     "react-native-svg": "^13.1.0",
     "react-native-svg-transformer": "^1.0.0",
     "webpack": "^5.72.1",
