@@ -21,28 +21,26 @@ const Icon = <TIsAnyColor,>({
   style,
   ...rest
 }: IIconProps<TIsAnyColor>) => {
+  if (!name) return null;
   const SvgRoot = filled
-    ? require('./material-symbols/filled')
-    : require('./material-symbols/unfilled');
+    ? require('./list/material-symbols/filled')
+    : require('./list/material-symbols/unfilled');
   const SvgContent =
     SvgRoot[name] ||
-    (color ? require('./custom/social/dull')[name] : require('./custom/social/colorfull')[name]) ||
-    require('./custom/payment')[name] ||
-    require('./custom/other')[name];
+    (color
+      ? require('./list/custom/social/dull')[name]
+      : require('./list/custom/social/colorfull')[name]) ||
+    require('./list/custom/payment')[name] ||
+    require('./list/custom/other')[name];
   const fill = color
     ? {
         fill: disabled ? getColorFromTheme('text-disabled') : getColorFromTheme<TIsAnyColor>(color),
       }
     : {};
+  const viewBox = SvgRoot[name] ? { viewBox: '0 0 48 48' } : {};
   return (
     <View style={style}>
-      <SvgContent
-        width={width}
-        height={height || width}
-        viewBox={SvgRoot[name] ? '0 0 48 48' : null}
-        {...fill}
-        {...rest}
-      />
+      <SvgContent width={width} height={height || width} {...viewBox} {...fill} {...rest} />
     </View>
   );
 };

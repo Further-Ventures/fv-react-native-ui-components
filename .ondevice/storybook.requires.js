@@ -37,7 +37,6 @@ const getStories = () => {
     require("../src/components/TextArea/TextArea.stories.tsx"),
     require("../src/components/TextLink/TextLink.stories.tsx"),
     require("../src/components/Theme/Theme.stories.tsx"),
-    require("../src/components/Toggle/Toggle.stories.tsx"),
   ];
 };
 

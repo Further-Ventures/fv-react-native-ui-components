@@ -3,7 +3,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react-native';
 import Icon from '.';
 import CenterView from '../../storybook/preview/CenterView';
 import IconView from '../../storybook/preview/Icon';
-import { getColorList } from '../../storybook/utils';
+import { getColorList, getMaterialSymbols, getCustomIcons } from '../../storybook/utils';
 import { Platform } from 'react-native';
 import pkg from './package.json';
 
@@ -12,32 +12,49 @@ export default {
   component: Icon,
 
   decorators: Platform.OS === 'web' ? null : [CenterView],
-  args: {
-    children: 'Icon',
-  },
+  args: {},
   argTypes: {
-    color: {
-      options: getColorList(),
-      control: {
-        type: 'select',
-      },
-    },
+    color: getColorList(),
   },
   parameters: {
     pkg,
     controls: {
-      include: ['width', 'filled', 'height', 'color', 'disabled'],
+      include: ['width', 'filled', 'height', 'color', 'disabled', 'name'],
     },
   },
 } as ComponentMeta<typeof Icon>;
 
-const Template: ComponentStory<typeof Icon> = (args) => <IconView {...args} />;
+const TemplatePreview: ComponentStory<typeof Icon> = (args) => <IconView {...args} />;
+const TemplateManual: ComponentStory<typeof Icon> = (args) => <Icon {...args} />;
 
-export const Preview = Template.bind({});
+export const Preview = TemplatePreview.bind({});
 Preview.args = {
   filled: true,
   width: 24,
   height: 24,
   color: 'error-main',
   disabled: false,
+};
+
+export const MaterialSymbol = TemplateManual.bind({});
+MaterialSymbol.args = {
+  filled: true,
+  width: 24,
+  height: 24,
+  name: 'home',
+  color: 'text-primary',
+  disabled: false,
+};
+MaterialSymbol.argTypes = {
+  name: getMaterialSymbols(),
+};
+
+export const CustomIcons = TemplateManual.bind({});
+CustomIcons.args = {
+  width: 34,
+  height: 24,
+  name: 'paypal',
+};
+CustomIcons.argTypes = {
+  name: getCustomIcons(),
 };
