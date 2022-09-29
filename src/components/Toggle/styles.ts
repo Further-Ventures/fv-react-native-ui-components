@@ -6,8 +6,8 @@ export default createUseStyles((theme, size: IToggle['size'], checked: boolean) 
     alignSelf: 'baseline',
   },
   toggleWrapper: {
-    marginTop: 12,
-    flexDirection: 'row',
+    height: size === 'small' ? 17 : 27,
+    justifyContent: 'center',
   },
   toggle: {
     borderWidth: checked ? 0 : 1,
@@ -15,7 +15,6 @@ export default createUseStyles((theme, size: IToggle['size'], checked: boolean) 
     backgroundColor: checked ? theme.primary.main : theme.primary.contrast2,
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 5,
   },
   checkbox: { borderRadius: size === 'small' ? 4 : 6 },
   checkboxCircle: { borderRadius: size === 'small' ? 16 : 20 },
@@ -27,7 +26,10 @@ export default createUseStyles((theme, size: IToggle['size'], checked: boolean) 
     backgroundColor: theme.primary.contrast2,
   },
   switch: {
-    marginTop: 5,
+    // marginTop: 5,
+  },
+  textWrapper: {
+    flex: 1,
   },
 
   small: {
@@ -58,6 +60,7 @@ export default createUseStyles((theme, size: IToggle['size'], checked: boolean) 
   middleVerticalSpacing: { height: 12 },
   smallHorizontalSpacing: { width: 8 },
   middleHorizontalSpacing: { width: 12 },
-  middle: { alignSelf: 'center' },
+  largeHorizontalSpacing: { width: 16 },
+  middle: { justifyContent: 'center' },
   top: {},
 }));

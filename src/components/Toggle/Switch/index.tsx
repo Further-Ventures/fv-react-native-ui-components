@@ -4,16 +4,23 @@ import { View, Animated, StyleProp, ViewStyle } from 'react-native';
 
 import { TSize } from '../';
 
-interface ISwitch {
+export interface ISwitch {
   isPressed?: boolean;
   checked?: boolean;
   size?: TSize;
+  disabled?: boolean;
   style?: StyleProp<ViewStyle>;
 }
 
-const Switch: React.FC<ISwitch> = ({ isPressed, checked, size = 'small', style }) => {
+const Switch: React.FC<ISwitch> = ({
+  isPressed,
+  checked,
+  size = 'small',
+  disabled = false,
+  style,
+}) => {
   const toggleAnim = useRef(new Animated.Value(checked ? 1 : 0)).current;
-  const styles = useStyles(size);
+  const styles = useStyles(size, disabled);
 
   const runAnimation = () => {
     const animValue = {

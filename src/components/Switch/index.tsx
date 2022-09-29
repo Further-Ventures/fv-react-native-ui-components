@@ -1,7 +1,7 @@
 import React from 'react';
 import Toggle, { IToggle } from '../Toggle';
 
-export interface ISwitch extends Omit<IToggle, 'variant' | 'type'> {}
+export interface ISwitch extends Omit<IToggle, 'variant' | 'type' | 'error'> {}
 
 const Switch: React.FC<ISwitch> = ({ ...rest }) => {
   return <Toggle {...rest} variant={'switch'} />;
