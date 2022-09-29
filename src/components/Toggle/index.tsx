@@ -24,7 +24,7 @@ export interface IToggle extends TouchableWithoutFeedbackProps {
   verticalPosition?: 'top' | 'middle';
   error?: string;
   disabled?: boolean;
-  checked?: boolean;
+  defaultChecked?: boolean;
 
   heading?: string;
   label?: string;
@@ -41,14 +41,14 @@ const Toggle: React.FC<IToggle> = ({
   verticalPosition = 'top',
   error,
   disabled = false,
-  checked = false,
+  defaultChecked = false,
   heading = '',
   label = '',
   sentence = '',
   style,
   ...rest
 }) => {
-  const [isChecked, setIsChecked] = useState(checked);
+  const [isChecked, setIsChecked] = useState(defaultChecked);
   const [labelHeight, setLabelHeight] = useState(0);
   const styles = useStyles(size, isChecked);
   const handlePress = () => {
@@ -71,28 +71,41 @@ const Toggle: React.FC<IToggle> = ({
     }
     return null;
   };
+
+  const getSpaceBetweenToggleAndText = () => {
+    if (horizontalPosition === 'right') {
+      return styles.largeHorizontalSpacing;
+    }
+    if (size === 'medium') {
+      if (variant === 'switch') {
+        return styles.middleHorizontalSpacing;
+      }
+    }
+    return styles.smallHorizontalSpacing;
+  };
+
   return (
     <View>
       <Text variant={size === 'small' ? 'small-regular' : 'caption-regular'} disabled={disabled}>
         {heading}
       </Text>
-      <View style={[styles.toggleWrapper]}>
+      <View style={styles.middleVerticalSpacing} />
+      <View style={[styles[horizontalPosition]]}>
         <TouchableWithoutFeedback
           onPress={handlePress}
           style={[styles.touchableWrapper]}
           disabled={disabled}
           {...rest}
         >
-          <View style={[styles[horizontalPosition], { height: labelHeight }]}>
+          <View style={[styles.toggleWrapper, { height: labelHeight }, styles[verticalPosition]]}>
             {variant === 'switch' ? (
-              <Switch checked={isChecked} style={[styles.switch, styles[verticalPosition]]} />
+              <Switch checked={isChecked} style={[styles.switch]} size={size} disabled={disabled} />
             ) : (
               <View
                 style={[
                   styles.toggle,
                   styles[size],
                   styles[variant],
-                  styles[verticalPosition],
                   !!error && styles.error,
                   disabled && styles.disabled,
                   style,
@@ -103,10 +116,8 @@ const Toggle: React.FC<IToggle> = ({
             )}
           </View>
         </TouchableWithoutFeedback>
-        <View
-          style={size === 'small' ? styles.smallHorizontalSpacing : styles.middleHorizontalSpacing}
-        />
-        <View>
+        <View style={getSpaceBetweenToggleAndText()} />
+        <View style={styles.textWrapper}>
           <TouchableWithoutFeedback
             onPress={handlePress}
             style={styles.touchableWrapper}
