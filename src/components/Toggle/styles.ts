@@ -25,9 +25,7 @@ export default createUseStyles((theme, size: IToggle['size'], checked: boolean) 
     borderRadius: size === 'small' ? 6 : 8,
     backgroundColor: theme.primary.contrast2,
   },
-  switch: {
-    // marginTop: 5,
-  },
+  switch: {},
   textWrapper: {
     flex: 1,
   },
