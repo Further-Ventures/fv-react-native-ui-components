@@ -13,21 +13,6 @@ export default {
     pkg,
   },
   argTypes: {
-    label: {
-      control: {
-        type: 'string',
-      },
-    },
-    hint: {
-      control: {
-        type: 'string',
-      },
-    },
-    error: {
-      control: {
-        type: 'string',
-      },
-    },
     disabled: {
       control: {
         type: 'boolean',
