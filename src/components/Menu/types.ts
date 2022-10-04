@@ -14,16 +14,23 @@ export interface IItemData {
   disabled?: boolean;
 }
 
+export interface IMenuPosition {
+  top: number;
+  left: number;
+}
+
+export interface IMenuRef {
+  open: () => void;
+  close: () => void;
+}
+
 export interface IMenu extends PressableProps {
-  trigger: ReactNode;
+  trigger?: ReactNode;
+  disabledTriggerPress?: boolean;
   itemWidth?: ItemWidth;
   itemHeight?: ItemHeight;
   data: Array<IItemData | string>;
   renderItem?: (item: IItemData) => ReactNode;
   onSelect: (label: string) => void;
-}
-
-export interface IMenuPosition {
-  top: number;
-  left: number;
+  onVisibleChange?: (visible: boolean) => void;
 }

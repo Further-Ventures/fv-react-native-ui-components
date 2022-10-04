@@ -15,7 +15,6 @@ export default {
   },
   argTypes: {
     itemWidth: {
-      description: 'overwritten description 2',
       control: { type: 'select' },
       options: ['small', 'medium', 'large'],
     },
