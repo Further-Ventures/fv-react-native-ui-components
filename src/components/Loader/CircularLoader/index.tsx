@@ -37,14 +37,7 @@ const CircularLoader: React.FC<ICircularLoaderProps> = ({ flat = false, progress
     });
   };
 
-  const animateRotation = () => {
-    Animated.loop(animate(loopAnimation, 1)).start((event) => {
-      if (event.finished) {
-        console.log(1111111);
-        animateRotation();
-      }
-    });
-  };
+  const animateRotation = () => Animated.loop(animate(loopAnimation, 1)).start();
   useEffect(() => {
     if (!isProgress) {
       animatePath();
