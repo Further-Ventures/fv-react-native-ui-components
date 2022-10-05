@@ -35,7 +35,7 @@ const ThemePreview = ({ theme }: IThemePreview) => {
             {Object.entries(colors).map((c, i) => (
               <React.Fragment key={i}>
                 <View style={{ marginTop: 10 }}>
-                  <Text variant='h4-medium' color={'grey'}>
+                  <Text variant='h4-medium' color={'grey-dark'}>
                     {c[0]}: {JSON.stringify(c[1])}
                   </Text>
                   <View
