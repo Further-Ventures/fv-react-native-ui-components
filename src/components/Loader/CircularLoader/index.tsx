@@ -1,8 +1,9 @@
 import React, { useEffect, useRef } from 'react';
-import { Animated, Easing } from 'react-native';
+import { Animated } from 'react-native';
 import Svg, { Circle } from 'react-native-svg';
 import { useTheme } from '../../Theme';
 import useStyles from './styles';
+import { animate } from '../common/functions';
 
 interface ICircularLoaderProps {
   progress?: number;
@@ -12,28 +13,8 @@ interface ICircularLoaderProps {
 const DIAMETER = 48;
 const STROKE_WIDTH = 4;
 const INNER_RADIUS = DIAMETER / 2 /* radius */ - STROKE_WIDTH / 2;
-const ANIMATION_TIME = 1000;
 
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
-const animate = (
-  value: Animated.Value | Animated.ValueXY,
-  toValue:
-    | number
-    | Animated.Value
-    | Animated.ValueXY
-    | {
-        x: number;
-        y: number;
-      }
-    | Animated.AnimatedInterpolation
-) => {
-  return Animated.timing(value, {
-    toValue: toValue,
-    duration: ANIMATION_TIME,
-    easing: Easing.linear,
-    useNativeDriver: true,
-  });
-};
 
 const CircularLoader: React.FC<ICircularLoaderProps> = ({ flat = false, progress = -1 }) => {
   const styles = useStyles();

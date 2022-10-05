@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
-import { Animated, Easing, View } from 'react-native';
+import { Animated, View } from 'react-native';
 import { useTheme } from '../../Theme';
+import { animate } from '../common/functions';
 
 interface IBarLoaderProps {
   progress?: number;
@@ -10,27 +11,6 @@ interface IBarLoaderProps {
 const WIDTH = 240;
 const HEIGHT = 4;
 const ACTIVE_INDICATOR_WIDTH = 112;
-const ANIMATION_TIME = 1000;
-
-const animate = (
-  value: Animated.Value | Animated.ValueXY,
-  toValue:
-    | number
-    | Animated.Value
-    | Animated.ValueXY
-    | {
-        x: number;
-        y: number;
-      }
-    | Animated.AnimatedInterpolation
-) => {
-  return Animated.timing(value, {
-    toValue: toValue,
-    duration: ANIMATION_TIME,
-    easing: Easing.linear,
-    useNativeDriver: true,
-  });
-};
 
 const BarLoader: React.FC<IBarLoaderProps> = ({ flat = false, progress = -1 }) => {
   const isProgress = progress >= 0 && progress <= 100;
