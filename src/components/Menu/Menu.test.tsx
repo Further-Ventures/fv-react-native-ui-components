@@ -9,7 +9,7 @@ it('displays content', () => {
   const { getByTestId, getByText } = render(
     <Menu
       testID={testId}
-      data={[content]}
+      listItems={[content]}
       trigger={<View style={{ width: 50, height: 50 }} />}
       onSelect={jest.fn}
     />

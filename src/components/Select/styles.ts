@@ -1,6 +1,5 @@
 import { createUseStyles } from '../Theme';
-import { ItemWidth } from '../Menu/types';
-import { getWidth } from '../Menu/styles';
+import { getWidth, ItemWidth } from '../../utils/itemSize';
 
 export default createUseStyles((theme, itemWidth: ItemWidth) => ({
   input: {

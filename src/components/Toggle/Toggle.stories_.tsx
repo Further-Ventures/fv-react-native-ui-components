@@ -59,7 +59,7 @@ ToggleComponent.args = {
   type: 'intermediate',
   error: 'This is a hint text to help user',
   disabled: false,
-  defaultChecked: false,
+  checked: false,
   verticalPosition: 'middle',
   horizontalPosition: 'left',
   heading: 'Circle Check heading',
