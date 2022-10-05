@@ -25,11 +25,11 @@ export default createUseStyles((theme, size) => ({
   withIconRight: size === 'small' ? { paddingRight: 6 } : { paddingRight: 8 },
 
   iconRight: {
-    ...(size === 'large' && { marginLeft: 10 }),
-    ...(size === 'small' && { marginLeft: 8 }),
+    ...(size === 'large' && { marginLeft: 8 }),
+    ...(size === 'small' && { marginLeft: 6 }),
   },
   iconLeft: {
-    ...(size === 'large' && { marginRight: 10 }),
-    ...(size === 'small' && { marginRight: 8 }),
+    ...(size === 'large' && { marginRight: 8 }),
+    ...(size === 'small' && { marginRight: 6 }),
   },
 }));
