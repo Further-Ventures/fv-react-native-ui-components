@@ -1,13 +1,22 @@
 import React from 'react';
-import {ComponentStory, ComponentMeta} from '@storybook/react-native';
+import { ComponentStory, ComponentMeta } from '@storybook/react-native';
 import Loader from '.';
 import CenterView from '../../storybook/preview/CenterView';
-import {Platform, View} from 'react-native';
+import { Platform } from 'react-native';
 import pkg from './package.json';
 
 export default {
   title: 'Loader',
   component: Loader,
+  argTypes: {
+    variant: {
+      options: ['circular', 'bar'],
+
+      control: {
+        type: 'select',
+      },
+    },
+  },
 
   decorators: Platform.OS === 'web' ? null : [CenterView],
   parameters: {
@@ -15,20 +24,11 @@ export default {
   },
 } as ComponentMeta<typeof Loader>;
 
-const Template: ComponentStory<typeof Loader> = args => (
-  <View
-    // eslint-disable-next-line react-native/no-inline-styles
-    style={{
-      alignItems: 'center',
-      paddingTop: 20,
-      paddingBottom: 20,
-    }}
-  >
-    <Loader {...args} />
-  </View>
-);
+const Template: ComponentStory<typeof Loader> = (args) => <Loader {...args} />;
 
 export const LoaderComponent = Template.bind({});
 LoaderComponent.args = {
-  variant: 'circular',
+  variant: 'bar',
+  flat: false,
+  progress: -1,
 };

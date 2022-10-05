@@ -1,5 +1,5 @@
 import React from 'react';
-import {render} from '@testing-library/react-native';
+import { render } from '@testing-library/react-native';
 import Loader from '.';
 
 it('should render rounded circular loader', () => {
@@ -35,7 +35,7 @@ it('should render flat circular progress', () => {
 });
 
 it('should render rounded bar loader', () => {
-  const screen = render(<Loader variant="bar" />);
+  const screen = render(<Loader variant='bar' />);
 
   const container = screen.queryByTestId('@fv/BarLoader-container');
   expect(container).toBeDefined();
@@ -44,7 +44,7 @@ it('should render rounded bar loader', () => {
   expect(svg).toBeDefined();
 });
 it('should render flat bar loader', () => {
-  const screen = render(<Loader variant="bar" flat={true} />);
+  const screen = render(<Loader variant='bar' flat={true} />);
 
   const container = screen.queryByTestId('@fv/BarLoader-container');
   expect(container).toBeDefined();
@@ -53,7 +53,7 @@ it('should render flat bar loader', () => {
   expect(svg).toBeDefined();
 });
 it('should render flat bar progress', () => {
-  const screen = render(<Loader variant="bar" flat={true} progress={34} />);
+  const screen = render(<Loader variant='bar' flat={true} progress={34} />);
 
   const container = screen.queryByTestId('@fv/BarLoader-container');
   expect(container).toBeDefined();
