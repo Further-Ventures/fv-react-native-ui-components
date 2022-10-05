@@ -30,14 +30,16 @@ const getStories = () => {
     require("../src/components/Icon/Icon.stories.tsx"),
     require("../src/components/Loader/Loader.stories.tsx"),
     require("../src/components/Input/Input.stories.tsx"),
+    require("../src/components/Menu/Menu.stories.tsx"),
+    require("../src/components/PasswordInput/PasswordInput.stories.tsx"),
     require("../src/components/Radio/Radio.stories.tsx"),
+    require("../src/components/Select/Select.stories.tsx"),
     require("../src/components/Switch/Switch.stories.tsx"),
     require("../src/components/Tag/Tag.stories.tsx"),
     require("../src/components/Text/Text.stories.tsx"),
     require("../src/components/TextArea/TextArea.stories.tsx"),
     require("../src/components/TextLink/TextLink.stories.tsx"),
     require("../src/components/Theme/Theme.stories.tsx"),
-    require("../src/components/Toggle/Toggle.stories.tsx"),
   ];
 };
 

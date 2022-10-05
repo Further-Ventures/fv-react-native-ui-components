@@ -2,7 +2,7 @@ import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react-native';
 import Button from '.';
 import CenterView from '../../storybook/preview/CenterView';
-import { iconSelector } from '../../storybook/utils';
+import { getMaterialSymbols } from '../../storybook/utils';
 import pkg from './package.json';
 
 export default {
@@ -18,7 +18,7 @@ export default {
         type: 'select',
       },
     },
-    icon: iconSelector,
+    icon: getMaterialSymbols(),
     iconPosition: {
       options: ['left', 'right'],
 
@@ -26,8 +26,8 @@ export default {
         type: 'select',
       },
     },
-    iconLeft: iconSelector,
-    iconRight: iconSelector,
+    iconLeft: getMaterialSymbols(),
+    iconRight: getMaterialSymbols(),
     variant: {
       options: ['contained', 'outlined', 'empty'],
       control: {

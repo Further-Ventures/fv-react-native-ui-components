@@ -1,5 +1,6 @@
 import { createUseStyles } from '../../Theme';
 import { TSize } from '../';
+import { ISwitch } from '.';
 
 export const SWITCH_SIZE = {
   small: {
@@ -18,11 +19,11 @@ export const SWITCH_SIZE = {
   },
 };
 
-export default createUseStyles((theme, size: TSize) => ({
+export default createUseStyles((theme, size: TSize, disabled: ISwitch['disabled']) => ({
   container: {
     width: SWITCH_SIZE[size].width,
     height: SWITCH_SIZE[size].height,
-    backgroundColor: theme.grey.main,
+    backgroundColor: disabled ? theme.grey.main : theme.grey.light,
     borderRadius: 12,
     padding: 2,
   },
@@ -30,7 +31,7 @@ export default createUseStyles((theme, size: TSize) => ({
     width: SWITCH_SIZE[size].circle.size,
     height: SWITCH_SIZE[size].circle.size,
     borderRadius: 10,
-    backgroundColor: theme.background.primary,
+    backgroundColor: disabled ? theme.grey.extraLight : theme.primary.contrast2,
   },
   pressedUncheckedContainer: {
     backgroundColor: theme.grey.light,
