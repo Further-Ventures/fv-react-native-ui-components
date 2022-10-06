@@ -15,7 +15,7 @@ const Icon = <TIsAnyColor,>({
   filled,
   name,
   width = 24,
-  height = 24,
+  height,
   color,
   disabled = false,
   style,
