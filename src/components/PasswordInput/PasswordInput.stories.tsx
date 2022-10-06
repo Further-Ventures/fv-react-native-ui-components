@@ -20,10 +20,14 @@ export default {
     },
     showLength: {},
   },
+  args: {
+    label: 'Label',
+    error: '',
+  },
 } as ComponentMeta<typeof PasswordInput>;
 
 const Template: ComponentStory<typeof PasswordInput> = (args) => (
-  <PasswordInput label='Password' placeholder='Enter password' {...args} />
+  <PasswordInput placeholder='Enter password' {...args} />
 );
 export const Default = Template.bind({});
 export const Hint = Template.bind({});
