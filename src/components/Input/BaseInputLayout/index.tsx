@@ -114,6 +114,7 @@ const BaseInputLayout = React.forwardRef<View, IBaseInputLayoutProps>(
           <View style={styles.mainContent}>
             {!!label && (
               <Animated.Text
+                numberOfLines={1}
                 style={[
                   styles.label,
                   disabled && styles.labelDisabled,
@@ -125,7 +126,7 @@ const BaseInputLayout = React.forwardRef<View, IBaseInputLayoutProps>(
                       {
                         translateX: interpolate([
                           0,
-                          (inputSize.width * 0.75 - inputSize.width) / 2,
+                          (-inputSize.width * (1 - LABEL_SCALE)) / LABEL_SCALE / 2,
                         ]),
                       },
                     ],
