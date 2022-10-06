@@ -11,6 +11,7 @@ import Icon from '../Icon';
 import Text from '../Text';
 import Switch from './Switch';
 import ErrorMessage from '../ErrorMessage';
+import { useToggle } from './useToggle';
 
 export type TToggleType = 'default' | 'intermediate';
 export type TVariant = 'switch' | 'checkbox' | 'radio' | 'checkboxCircle';
@@ -24,13 +25,18 @@ export interface IToggle extends TouchableWithoutFeedbackProps {
   verticalPosition?: 'top' | 'middle';
   error?: string;
   disabled?: boolean;
-  defaultChecked?: boolean;
+  checked?: boolean;
 
   heading?: string;
   label?: string;
   sentence?: string;
 
   style?: StyleProp<ViewStyle>;
+
+  name?: string;
+  onChange?: (checked?: boolean) => void;
+  clearFormValueOnUnmount?: boolean;
+  controlled?: boolean;
 }
 
 const Toggle: React.FC<IToggle> = ({
@@ -41,21 +47,31 @@ const Toggle: React.FC<IToggle> = ({
   verticalPosition = 'top',
   error,
   disabled = false,
-  defaultChecked = false,
+  checked = false,
   heading = '',
   label = '',
   sentence = '',
   style,
+  name,
+  onChange,
+  clearFormValueOnUnmount,
+  controlled,
   ...rest
 }) => {
-  const [isChecked, setIsChecked] = useState(defaultChecked);
   const [labelHeight, setLabelHeight] = useState(0);
+
+  const { internalValue, onChangeWrapper, errorMessage } = useToggle({
+    name,
+    error,
+    onChange,
+    checked,
+    clearFormValueOnUnmount,
+  });
+
+  const isChecked = controlled ? checked : internalValue;
+
   const styles = useStyles(size, isChecked);
-  const handlePress = () => {
-    if (!disabled) {
-      setIsChecked((prev) => !prev);
-    }
-  };
+
   const generateIcon = () => {
     if (isChecked) {
       if (variant === 'radio') {
@@ -92,7 +108,7 @@ const Toggle: React.FC<IToggle> = ({
       <View style={styles.middleVerticalSpacing} />
       <View style={[styles[horizontalPosition]]}>
         <TouchableWithoutFeedback
-          onPress={handlePress}
+          onPress={onChangeWrapper}
           style={[styles.touchableWrapper]}
           disabled={disabled}
           {...rest}
@@ -119,7 +135,7 @@ const Toggle: React.FC<IToggle> = ({
         <View style={getSpaceBetweenToggleAndText()} />
         <View style={styles.textWrapper}>
           <TouchableWithoutFeedback
-            onPress={handlePress}
+            onPress={onChangeWrapper}
             style={styles.touchableWrapper}
             disabled={disabled}
             {...rest}
@@ -144,7 +160,9 @@ const Toggle: React.FC<IToggle> = ({
             {sentence}
           </Text>
 
-          {!disabled && !!error && <ErrorMessage error={error} margin={{ left: 0, top: 8 }} />}
+          {!disabled && !!errorMessage && (
+            <ErrorMessage error={errorMessage} margin={{ left: 0, top: 8 }} />
+          )}
         </View>
       </View>
     </View>

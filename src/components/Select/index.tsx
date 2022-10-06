@@ -47,12 +47,12 @@ const Select = <T,>({
 
   const getLabelByValue = () =>
     items.find((optionItem) => optionItem.value === selectedValue)?.label ?? label ?? '';
-  const getValueByLabel = (label: string) => items.find((item) => item.label === label)?.value;
 
-  const onSelect = (label: string) => {
-    const selected = getValueByLabel(label);
-    selected !== undefined && onChange(selected);
-    updateFormValue(name, selected);
+  const onSelect = (selected: number[]) => {
+    if (selected.length && selected[0] !== undefined) {
+      onChange(items[selected[0]].value);
+      updateFormValue(name, selected);
+    }
   };
 
   const onVisibleChange = (visible: boolean) => {
@@ -77,7 +77,7 @@ const Select = <T,>({
       itemHeight={itemHeight}
       ref={menuRef}
       disabledTriggerPress
-      data={data}
+      listItems={data}
     >
       <BaseInputLayout
         ref={inputRef}

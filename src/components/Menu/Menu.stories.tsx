@@ -4,6 +4,8 @@ import CenterView from '../../storybook/preview/CenterView';
 import { ComponentStory, ComponentMeta } from '@storybook/react-native';
 import pkg from './package.json';
 import Menu from '.';
+import { IListItem } from '../List';
+import Icon from '../Icon';
 import { IMenu } from './types';
 
 export default {
@@ -22,6 +24,10 @@ export default {
       control: { type: 'select' },
       options: ['thin', 'thick'],
     },
+    selection: {
+      control: { type: 'select' },
+      options: ['none', 'check-icon', 'check-box'],
+    },
   },
 } as ComponentMeta<typeof Menu>;
 
@@ -36,13 +42,28 @@ const triggerBottom: TriggerPosition = {
 const triggerTop: TriggerPosition = {
   style: { alignSelf: 'center', top: 10, position: 'absolute' },
 };
-const baseData = { data: ['Save', 'Restore', 'Delete', 'Undo'] };
+
+const renderIcon =
+  (name: string) =>
+  // eslint-disable-next-line react/display-name
+  ({ disabled }: { disabled?: boolean }) =>
+    <Icon color={'text-secondary'} disabled={disabled} name={name} />;
+
+const baseData = { listItems: ['Save', 'Restore', 'Delete', 'Undo'] };
+const iconsData: { listItems: IListItem[] } = {
+  listItems: [
+    { title: 'Save', leftContent: renderIcon('info') },
+    { title: 'Restore', leftContent: renderIcon('cancel') },
+    { title: 'Delete', leftContent: renderIcon('error') },
+    { title: 'Disabled', leftContent: renderIcon('error'), disabled: true },
+  ],
+};
 
 const baseArgs: Partial<IMenu> = {
   trigger: <View style={{ backgroundColor: 'red', width: 50, height: 50 }} />,
   itemWidth: 'medium',
   itemHeight: 'thick',
-  onSelect: (label) => alert(`label: ${label}`),
+  onSelect: (selected) => alert(`selected index: ${selected}`),
 };
 
 export const Default = Template.bind({});
@@ -70,21 +91,21 @@ export const WithIcons = Template.bind({});
 WithIcons.args = {
   ...baseArgs,
   ...triggerCenter,
-  data: [
-    { label: 'Save', iconProps: { name: 'info' } },
-    { label: 'Restore', iconProps: { name: 'cancel' } },
-    {
-      label: 'Delete',
-      iconProps: { name: 'error', color: 'error-main' },
-      labelProps: { color: 'error-main' },
-    },
-    { label: 'Disabled', iconProps: { name: 'error' }, disabled: true },
-  ],
+  ...baseData,
+  ...iconsData,
 };
 
 export const BigList = Template.bind({});
 BigList.args = {
   ...baseArgs,
   ...triggerCenter,
-  data: Array.from(Array(30).keys()).map((v) => 'Option' + v),
+  listItems: Array.from(Array(30).keys()).map((v) => 'Option' + v),
+};
+
+export const Selection = Template.bind({});
+Selection.args = {
+  ...baseArgs,
+  ...triggerCenter,
+  ...baseData,
+  selection: 'check-icon',
 };

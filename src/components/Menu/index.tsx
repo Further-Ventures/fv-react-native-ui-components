@@ -1,10 +1,10 @@
 import React, { forwardRef, useImperativeHandle, useRef, useState } from 'react';
-import { IItemData, IMenu, IMenuPosition, IMenuRef } from './types';
-import useStyles, { getHeight, getWidth } from './styles';
-import Icon from '../Icon';
-import Text, { IConditionalTextProps } from '../Text';
-import { Modal, Pressable, ScrollView, TextStyle, useWindowDimensions, View } from 'react-native';
+import { IMenu, IMenuPosition, IMenuRef } from './types';
+import useStyles from './styles';
+import { Modal, Pressable, useWindowDimensions, View } from 'react-native';
 import Elevation from '../Elevation';
+import List from '../List';
+import { getHeight, getWidth } from '../../utils/itemSize';
 
 const MENU_SCREEN_FACTOR = 0.4;
 const MENU_OFFSET = 8;
@@ -16,11 +16,11 @@ const Menu = forwardRef<IMenuRef, IMenu>(
       disabledTriggerPress,
       itemWidth = 'medium',
       itemHeight = 'thick',
-      data,
       onSelect,
       onVisibleChange,
-      renderItem: customRenderItem,
       children,
+      listItems,
+      selection,
       ...rest
     },
     ref
@@ -34,7 +34,7 @@ const Menu = forwardRef<IMenuRef, IMenu>(
     const styles = useStyles(itemWidth, itemHeight, menuPosition);
     const triggerRef = useRef<View>(null);
 
-    const menuHeight = data.length * getHeight(itemHeight);
+    const menuHeight = listItems.length * getHeight(itemHeight);
     const menuWidth = getWidth(itemWidth);
     const shrinkMenuHeight = Math.min(menuHeight, windowHeight * MENU_SCREEN_FACTOR);
 
@@ -74,48 +74,25 @@ const Menu = forwardRef<IMenuRef, IMenu>(
       close: handleClose,
     }));
 
-    const renderItem = ({ label, iconProps, labelProps, disabled }: IItemData) => {
-      const textProps: IConditionalTextProps | { size: TextStyle['fontSize'] } = {
-        size: 16,
-        ...labelProps,
-      };
-      return (
-        <Pressable
-          key={label}
-          style={({ pressed }) => [styles.item, pressed && styles.itemPressed]}
-          disabled={disabled}
-          onPress={() => {
-            onSelect(label);
-            handleClose();
-          }}
-        >
-          {iconProps && (
-            <Icon
-              key={label}
-              width={20}
-              style={styles.icon}
-              color='text-primary'
-              {...iconProps}
-              disabled={disabled}
-            />
-          )}
-          <Text {...textProps} disabled={disabled}>
-            {label}
-          </Text>
-        </Pressable>
-      );
+    const onSelectWrapper = (selected: number[]) => {
+      onSelect?.(selected);
+      if (selection !== 'check-icon' && selection !== 'check-box') {
+        handleClose();
+      }
     };
 
     const renderItems = () => {
-      const render = customRenderItem ? customRenderItem : renderItem;
-      const items = data.map((item) => render(typeof item === 'string' ? { label: item } : item));
       const useScroll = menuHeight > windowHeight * MENU_SCREEN_FACTOR;
-      if (useScroll) {
-        return (
-          <ScrollView style={{ maxHeight: windowHeight * MENU_SCREEN_FACTOR }}>{items}</ScrollView>
-        );
-      }
-      return items;
+      return (
+        <List
+          listItems={listItems}
+          itemHeight={itemHeight}
+          onSelect={onSelectWrapper}
+          scrollEnabled={useScroll}
+          style={useScroll && { maxHeight: windowHeight * MENU_SCREEN_FACTOR }}
+          selection={selection}
+        />
+      );
     };
 
     const renderContext = () => (
