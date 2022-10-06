@@ -1,7 +1,7 @@
 import { createUseStyles } from '../../Theme';
 import { ItemHeight } from '../../../utils/itemSize';
 
-export default createUseStyles((theme, itemHeight: ItemHeight, disabled: boolean) => ({
+export default createUseStyles((theme, itemHeight: ItemHeight) => ({
   listItem: {
     paddingHorizontal: 16,
     paddingVertical: itemHeight === 'thin' ? 10 : 12,
@@ -13,19 +13,9 @@ export default createUseStyles((theme, itemHeight: ItemHeight, disabled: boolean
     backgroundColor: theme.grey.light,
   },
   label: {
-    color: disabled ? theme.text.disabled : theme.text.hint,
-    fontSize: 12,
     marginBottom: 8,
   },
-  title: {
-    color: disabled ? theme.text.disabled : theme.text.secondary,
-    fontWeight: '500',
-    fontSize: 16,
-  },
   subtitle: {
-    color: disabled ? theme.text.disabled : theme.text.hint,
-    fontWeight: '400',
-    fontSize: 14,
     marginTop: 8,
   },
   leftContent: {

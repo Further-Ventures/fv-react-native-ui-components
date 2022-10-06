@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { Pressable, StyleProp, Text, View, ViewStyle } from 'react-native';
+import { Pressable, StyleProp, View, ViewStyle } from 'react-native';
 import useStyles from './styles';
 import { ItemHeight } from '../../../utils/itemSize';
 import Checkbox from '../../Checkbox';
 import Icon from '../../Icon';
+import Text from '../../Text';
 
 type ContentFunc = ({ disabled }: { disabled?: boolean; checked?: boolean }) => React.ReactNode;
 
@@ -35,11 +36,11 @@ const ListItem: React.FC<IBaseListItem> = ({
   disabled,
   ...rest
 }) => {
-  const styles = useStyles(itemHeight, !!disabled);
-  const [isChecked, setChecked] = useState(checked);
+  const styles = useStyles(itemHeight);
+  const [isChecked, setIsChecked] = useState(checked);
 
   const onPressWrapper = () => {
-    selection && selection !== 'none' && setChecked(!isChecked);
+    selection && selection !== 'none' && setIsChecked(!isChecked);
     onPress?.();
   };
 
@@ -86,9 +87,29 @@ const ListItem: React.FC<IBaseListItem> = ({
       <View style={styles.content}>
         {renderLeftContent()}
         <View style={styles.textContent}>
-          {!!label && <Text style={styles.label}>{label}</Text>}
-          <Text style={styles.title}>{title}</Text>
-          {!!subtitle && <Text style={styles.subtitle}>{subtitle}</Text>}
+          {!!label && (
+            <Text
+              variant='caption-regular'
+              color='text-hint'
+              disabled={disabled}
+              style={styles.label}
+            >
+              {label}
+            </Text>
+          )}
+          <Text variant='p2-medium' color='text-secondary' disabled={disabled}>
+            {title}
+          </Text>
+          {!!subtitle && (
+            <Text
+              variant='label-14-regular'
+              color='text-hint'
+              disabled={disabled}
+              style={styles.subtitle}
+            >
+              {subtitle}
+            </Text>
+          )}
         </View>
       </View>
       {renderRightContent()}
