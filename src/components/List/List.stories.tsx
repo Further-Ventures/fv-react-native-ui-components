@@ -90,7 +90,17 @@ WithLeftAndRightContent.args = {
 
 export const WithSelection = Template.bind({});
 WithSelection.args = {
+  selection: 'check-box',
+  listItems: listItems.map((item) => ({
+    ...item,
+    subtitle,
+  })),
+};
+
+export const Prechecked = Template.bind({});
+Prechecked.args = {
   selection: 'check-icon',
+  initialSelected: [0, 2],
   listItems: listItems.map((item) => ({
     ...item,
     subtitle,

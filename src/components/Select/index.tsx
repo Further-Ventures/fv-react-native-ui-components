@@ -1,24 +1,17 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
-import BaseInputLayout, { IBaseInputLayoutProps } from '../Input/BaseInputLayout';
+import React, { useMemo, useRef } from 'react';
+import BaseInputLayout from '../Input/BaseInputLayout';
 import Icon from '../Icon';
 import Menu from '../Menu';
-import { IMenu, IMenuRef } from '../Menu/types';
-import { useFormContext } from '../Form';
+import { IMenuRef } from '../Menu/types';
 import useStyles from './styles';
 import { View } from 'react-native';
+import useSelect from '../MultiSelect/useSelect';
 
-interface ISelectItem<T> {
-  label: string;
-  value: T;
-}
+import { IMultiSelect } from '../MultiSelect';
 
-export interface ISelect<T> extends IBaseInputLayoutProps, Pick<IMenu, 'itemWidth' | 'itemHeight'> {
-  items: ISelectItem<T>[];
+export interface ISelect<T> extends Omit<IMultiSelect<T>, 'onChange' | 'values'> {
   onChange: (value: T) => void;
   value?: T;
-  label?: string;
-  name?: string;
-  clearFormValueOnUnmount?: boolean;
 }
 
 const Select = <T,>({
@@ -38,36 +31,28 @@ const Select = <T,>({
   const menuRef = useRef<IMenuRef>(null);
   const inputRef = useRef<View>(null);
   const styles = useStyles(itemWidth);
-  const { fieldError, fieldValue, unsetFormValue, updateFormValue, updateFormTouched } =
-    useFormContext(name);
-  const errorMessage = fieldError || error;
-  const selectedValue = fieldValue ?? value;
-  const [isOpened, setOpened] = useState(false);
-  const data = useMemo(() => items.map((item) => item.label), [items]);
 
-  const getLabelByValue = () =>
-    items.find((optionItem) => optionItem.value === selectedValue)?.label ?? label ?? '';
+  const data = useMemo(() => items.map((item) => item.label), [items]);
+  const {
+    errorMessage,
+    isOpened,
+    labels,
+    getValuesBySelectedIndexes,
+    onVisibleChange,
+    updateFormValue,
+  } = useSelect({
+    name,
+    items,
+    values: value !== undefined ? [value] : undefined,
+    error,
+    clearFormValueOnUnmount,
+  });
 
   const onSelect = (selected: number[]) => {
-    if (selected.length && selected[0] !== undefined) {
-      onChange(items[selected[0]].value);
-      updateFormValue(name, selected);
-    }
+    const selectedValues = getValuesBySelectedIndexes(selected);
+    onChange(selectedValues[0]);
+    updateFormValue(name, selectedValues[0]);
   };
-
-  const onVisibleChange = (visible: boolean) => {
-    setOpened(visible);
-    if (!visible) {
-      updateFormTouched(name, true);
-    }
-  };
-
-  useEffect(() => {
-    updateFormValue(name, selectedValue, true);
-    return () => {
-      clearFormValueOnUnmount && unsetFormValue(name);
-    };
-  }, []);
 
   return (
     <Menu
@@ -90,7 +75,7 @@ const Select = <T,>({
             name={isOpened ? 'arrow_drop_up' : 'arrow_drop_down'}
           />
         }
-        label={getLabelByValue()}
+        label={labels?.[0] ?? label}
         style={[styles.input, style]}
         error={isOpened ? undefined : errorMessage}
         hint={isOpened ? undefined : hint}

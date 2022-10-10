@@ -41,7 +41,7 @@ export const SwitchComponent = Template.bind({});
 SwitchComponent.args = {
   size: 'medium',
   disabled: false,
-  defaultChecked: true,
+  checked: true,
   verticalPosition: 'top',
   horizontalPosition: 'left',
   heading: 'Toggle heading',
