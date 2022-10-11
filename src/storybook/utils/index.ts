@@ -64,3 +64,36 @@ export const getColorList = (isText = false) => {
     },
   };
 };
+
+export const checkboxArgTypes = {
+  size: {
+    options: ['small', 'medium'],
+    control: {
+      type: 'select',
+    },
+  },
+  type: {
+    options: ['default', 'intermediate'],
+    control: {
+      type: 'select',
+    },
+  },
+  variant: {
+    options: ['default', 'circle'],
+    control: {
+      type: 'select',
+    },
+  },
+  verticalPosition: {
+    options: ['top', 'middle'],
+    control: {
+      type: 'select',
+    },
+  },
+  horizontalPosition: {
+    options: ['left', 'right'],
+    control: {
+      type: 'select',
+    },
+  },
+};

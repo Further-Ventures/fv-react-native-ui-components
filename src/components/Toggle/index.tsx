@@ -26,13 +26,10 @@ export interface IToggle extends TouchableWithoutFeedbackProps {
   error?: string;
   disabled?: boolean;
   checked?: boolean;
-
   heading?: string;
   label?: string;
   sentence?: string;
-
   style?: StyleProp<ViewStyle>;
-
   name?: string;
   onChange?: (checked?: boolean) => void;
   clearFormValueOnUnmount?: boolean;
@@ -100,15 +97,33 @@ const Toggle: React.FC<IToggle> = ({
     return styles.smallHorizontalSpacing;
   };
 
+  const handlePress = () => {
+    // LayoutAnimation.configureNext({
+    //   duration: 500,
+    //   create: { type: 'easeOut', property: 'opacity' },
+    //   update: { type: 'easeOut', springDamping: 0.4 },
+    //   delete: { type: 'easeOut', property: 'opacity' },
+    // });
+    onChangeWrapper();
+  };
+
   return (
     <View>
-      <Text variant={size === 'small' ? 'small-regular' : 'caption-regular'} disabled={disabled}>
-        {heading}
-      </Text>
-      <View style={styles.middleVerticalSpacing} />
+      {!!heading && (
+        <>
+          <Text
+            variant={size === 'small' ? 'small-regular' : 'caption-regular'}
+            disabled={disabled}
+          >
+            {heading}
+          </Text>
+
+          <View style={styles.middleVerticalSpacing} />
+        </>
+      )}
       <View style={[styles[horizontalPosition]]}>
         <TouchableWithoutFeedback
-          onPress={onChangeWrapper}
+          onPress={handlePress}
           style={[styles.touchableWrapper]}
           disabled={disabled}
           {...rest}
@@ -151,14 +166,19 @@ const Toggle: React.FC<IToggle> = ({
               {label}
             </Text>
           </TouchableWithoutFeedback>
-          <View style={styles.smallVerticalSpacing} />
-          <Text
-            variant={size === 'small' ? 'label-14-regular' : 'p2-regular'}
-            color='text-hint'
-            disabled={disabled}
-          >
-            {sentence}
-          </Text>
+
+          {!!sentence && (
+            <>
+              <View style={styles.smallVerticalSpacing} />
+              <Text
+                variant={size === 'small' ? 'label-14-regular' : 'p2-regular'}
+                color='text-hint'
+                disabled={disabled}
+              >
+                {sentence}
+              </Text>
+            </>
+          )}
 
           {!disabled && !!errorMessage && (
             <ErrorMessage error={errorMessage} margin={{ left: 0, top: 8 }} />
