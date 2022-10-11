@@ -54,6 +54,8 @@ const Select = <T,>({
     updateFormValue(name, selectedValues[0]);
   };
 
+  const onTriggerPress = () => menuRef.current?.open();
+
   return (
     <Menu
       onSelect={onSelect}
@@ -67,7 +69,7 @@ const Select = <T,>({
       <BaseInputLayout
         ref={inputRef}
         isFocused={isOpened}
-        onPress={menuRef.current?.open}
+        onPress={onTriggerPress}
         rightContent={
           <Icon
             width={20}

@@ -83,6 +83,8 @@ const MultiSelect = <T,>({
     onSelect(newSelectedValues);
   };
 
+  const onTriggerPress = () => menuRef.current?.open();
+
   const renderSelectedList = () => {
     return (
       <Text numberOfLines={1} variant={'p2-regular'} color={'text-primary'}>
@@ -139,7 +141,7 @@ const MultiSelect = <T,>({
         currentValueLength={labels.length}
         ref={inputRef}
         isFocused={isOpened}
-        onPress={menuRef.current?.open}
+        onPress={onTriggerPress}
         style={styles.input}
         rightContent={
           <Icon
