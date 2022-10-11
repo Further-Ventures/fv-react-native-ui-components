@@ -7,12 +7,9 @@ it('displays content', () => {
   const content = 'Text inside menu';
   const testId = 'menu-id';
   const { getByTestId, getByText } = render(
-    <Menu
-      testID={testId}
-      listItems={[content]}
-      trigger={<View style={{ width: 50, height: 50 }} />}
-      onSelect={jest.fn}
-    />
+    <Menu listItems={[content]} onSelect={jest.fn}>
+      <View testID={testId} style={{ width: 50, height: 50 }} />
+    </Menu>
   );
   fireEvent.press(getByTestId(testId));
   getByText(content);

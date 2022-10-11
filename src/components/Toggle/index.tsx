@@ -98,12 +98,6 @@ const Toggle: React.FC<IToggle> = ({
   };
 
   const handlePress = () => {
-    // LayoutAnimation.configureNext({
-    //   duration: 500,
-    //   create: { type: 'easeOut', property: 'opacity' },
-    //   update: { type: 'easeOut', springDamping: 0.4 },
-    //   delete: { type: 'easeOut', property: 'opacity' },
-    // });
     onChangeWrapper();
   };
 
@@ -149,23 +143,25 @@ const Toggle: React.FC<IToggle> = ({
         </TouchableWithoutFeedback>
         <View style={getSpaceBetweenToggleAndText()} />
         <View style={styles.textWrapper}>
-          <TouchableWithoutFeedback
-            onPress={onChangeWrapper}
-            style={styles.touchableWrapper}
-            disabled={disabled}
-            {...rest}
-          >
-            <Text
-              variant={size === 'small' ? 'label-14-regular' : 'p1-regular'}
+          {!!label && (
+            <TouchableWithoutFeedback
+              onPress={onChangeWrapper}
+              style={styles.touchableWrapper}
               disabled={disabled}
-              onLayout={(event) => {
-                const { height } = event.nativeEvent.layout;
-                setLabelHeight(height);
-              }}
+              {...rest}
             >
-              {label}
-            </Text>
-          </TouchableWithoutFeedback>
+              <Text
+                variant={size === 'small' ? 'label-14-regular' : 'p1-regular'}
+                disabled={disabled}
+                onLayout={(event) => {
+                  const { height } = event.nativeEvent.layout;
+                  setLabelHeight(height);
+                }}
+              >
+                {label}
+              </Text>
+            </TouchableWithoutFeedback>
+          )}
 
           {!!sentence && (
             <>

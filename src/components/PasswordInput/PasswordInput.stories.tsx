@@ -23,12 +23,11 @@ export default {
   args: {
     label: 'Label',
     error: '',
+    placeholder: 'Enter password',
   },
 } as ComponentMeta<typeof PasswordInput>;
 
-const Template: ComponentStory<typeof PasswordInput> = (args) => (
-  <PasswordInput placeholder='Enter password' {...args} />
-);
+const Template: ComponentStory<typeof PasswordInput> = (args) => <PasswordInput {...args} />;
 export const Default = Template.bind({});
 export const Hint = Template.bind({});
 Hint.args = {

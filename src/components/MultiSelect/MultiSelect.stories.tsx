@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react-native';
-import Select from '.';
-import CenterView from '../../storybook/preview/CenterView';
 import { Platform } from 'react-native';
+import CenterView from '../../storybook/preview/CenterView';
+import { ComponentMeta, ComponentStory } from '@storybook/react-native';
+import MultiSelect from './index';
 import pkg from './package.json';
+import React, { useState } from 'react';
 
 const options = [
   { label: 'Option 1', value: 1 },
@@ -14,8 +14,8 @@ const options = [
 ];
 
 export default {
-  title: 'Select',
-  component: Select,
+  title: 'MultiSelect',
+  component: MultiSelect,
   decorators: Platform.OS === 'web' ? null : [CenterView],
   parameters: {
     pkg,
@@ -29,17 +29,27 @@ export default {
       control: { type: 'select' },
       options: ['thin', 'thick'],
     },
+    selection: {
+      control: { type: 'select' },
+      options: ['check-icon', 'check-box'],
+    },
+    selectedType: {
+      control: { type: 'select' },
+      options: ['text', 'tag'],
+    },
   },
   args: {
-    itemWidth: 'medium',
+    itemWidth: 'large',
     itemHeight: 'thick',
+    selectedType: 'text',
+    selection: 'check-icon',
     label: 'Label',
   },
-} as ComponentMeta<typeof Select>;
+} as ComponentMeta<typeof MultiSelect>;
 
-const Template: ComponentStory<typeof Select> = (args) => {
-  const [value, setValue] = useState<number | undefined>(undefined);
-  return <Select {...args} items={options} value={value} onChange={setValue} />;
+const Template: ComponentStory<typeof MultiSelect> = (args) => {
+  const [values, setValues] = useState<number[] | undefined>(undefined);
+  return <MultiSelect {...args} items={options} values={values} onChange={setValues} />;
 };
 
 export const Default = Template.bind({});

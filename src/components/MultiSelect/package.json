@@ -1,5 +1,5 @@
 {
-  "name": "@further-ventures/fv-react-native-ui-components.select",
+  "name": "@further-ventures/fv-react-native-ui-components.multiselect",
   "version": "0.0.1",
   "peerDependencies": {
     "react-native": ">=0.68.0",
@@ -7,7 +7,6 @@
     "@further-ventures/fv-react-native-ui-components.input": ">=0.0.1",
     "@further-ventures/fv-react-native-ui-components.menu": ">=0.0.1",
     "@further-ventures/fv-react-native-ui-components.theme": ">=0.0.5",
-    "@further-ventures/fv-react-native-ui-components.form": ">=0.0.1",
-    "@further-ventures/fv-react-native-ui-components.multiselect": ">=0.0.1"
+    "@further-ventures/fv-react-native-ui-components.form": ">=0.0.1"
   }
 }
