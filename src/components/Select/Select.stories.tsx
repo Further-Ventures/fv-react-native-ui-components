@@ -33,12 +33,13 @@ export default {
   args: {
     itemWidth: 'medium',
     itemHeight: 'thick',
+    label: 'Label',
   },
 } as ComponentMeta<typeof Select>;
 
 const Template: ComponentStory<typeof Select> = (args) => {
   const [value, setValue] = useState<number | undefined>(undefined);
-  return <Select {...args} label='Label' items={options} value={value} onChange={setValue} />;
+  return <Select {...args} items={options} value={value} onChange={setValue} />;
 };
 
 export const Default = Template.bind({});

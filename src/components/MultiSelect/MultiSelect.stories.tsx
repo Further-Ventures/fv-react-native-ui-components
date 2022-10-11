@@ -43,14 +43,13 @@ export default {
     itemHeight: 'thick',
     selectedType: 'text',
     selection: 'check-icon',
+    label: 'Label',
   },
 } as ComponentMeta<typeof MultiSelect>;
 
 const Template: ComponentStory<typeof MultiSelect> = (args) => {
   const [values, setValues] = useState<number[] | undefined>(undefined);
-  return (
-    <MultiSelect {...args} label='Label' items={options} values={values} onChange={setValues} />
-  );
+  return <MultiSelect {...args} items={options} values={values} onChange={setValues} />;
 };
 
 export const Default = Template.bind({});
