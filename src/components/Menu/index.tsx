@@ -12,7 +12,6 @@ const MENU_OFFSET = 8;
 const Menu = forwardRef<IMenuRef, IMenu>(
   (
     {
-      trigger,
       disabledTriggerPress,
       itemWidth = 'medium',
       itemHeight = 'thick',
@@ -91,6 +90,7 @@ const Menu = forwardRef<IMenuRef, IMenu>(
           scrollEnabled={useScroll}
           style={useScroll && { maxHeight: windowHeight * MENU_SCREEN_FACTOR }}
           selection={selection}
+          {...rest}
         />
       );
     };
@@ -105,8 +105,8 @@ const Menu = forwardRef<IMenuRef, IMenu>(
     );
 
     return (
-      <Pressable {...rest} ref={triggerRef} onPress={() => !disabledTriggerPress && handleOpen()}>
-        {trigger || children}
+      <Pressable ref={triggerRef} onPress={() => !disabledTriggerPress && handleOpen()}>
+        {children}
         {renderContext()}
       </Pressable>
     );

@@ -1,4 +1,3 @@
-import { ReactNode } from 'react';
 import { IList } from '../List';
 
 export type ItemWidth = 'small' | 'medium' | 'large';
@@ -14,7 +13,6 @@ export interface IMenuRef {
 }
 
 export interface IMenu extends IList {
-  trigger?: ReactNode;
   disabledTriggerPress?: boolean;
   itemWidth?: ItemWidth;
   onVisibleChange?: (visible: boolean) => void;

@@ -3,7 +3,10 @@ import ButtonBridge, { IButtonBridge } from '../ButtonBridge';
 import useStyles from './styles';
 
 const Tag = (
-  props: Pick<IButtonBridge, 'label' | 'size' | 'variant' | 'iconLeft' | 'iconRight' | 'disabled'>
+  props: Pick<
+    IButtonBridge,
+    'label' | 'size' | 'variant' | 'iconLeft' | 'iconRight' | 'disabled' | 'onPress'
+  >
 ) => {
   const styles = useStyles();
 

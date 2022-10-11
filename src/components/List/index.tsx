@@ -9,6 +9,7 @@ export interface IList extends Omit<FlatListProps<IListItem>, 'data' | 'renderIt
   listItems: IListItem[] | string[];
   itemHeight?: ItemHeight;
   selection?: 'none' | 'check-icon' | 'check-box';
+  initialSelected?: number[];
   onSelect?: (selected: number[]) => void;
 }
 
@@ -20,13 +21,17 @@ const List: React.FC<IList> = ({
   listItems,
   itemHeight = 'thick',
   selection,
+  initialSelected,
   onSelect,
   ...rest
 }) => {
-  const [checkedItems, setCheckedItems] = useState<Set<string>>(new Set());
   const items = useMemo(
     () => (isListItems(listItems) ? listItems : listItems.map((i) => ({ title: i }))),
     [listItems]
+  );
+
+  const [checkedItems, setCheckedItems] = useState<Set<string>>(
+    new Set(initialSelected?.map((i) => items[i].title))
   );
 
   const onPressWrapper = (item: IListItem, index: number) => {
@@ -58,6 +63,7 @@ const List: React.FC<IList> = ({
       <ListItem
         selection={selection}
         {...item}
+        initialChecked={initialSelected?.includes(index)}
         itemHeight={itemHeight}
         onPress={() => onPressWrapper(item, index)}
       />

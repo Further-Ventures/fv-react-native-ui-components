@@ -1,12 +1,13 @@
 import React from 'react';
-import { Platform, StyleProp, View, ViewStyle } from 'react-native';
+import { Dimensions, Platform, View } from 'react-native';
 import CenterView from '../../storybook/preview/CenterView';
 import { ComponentStory, ComponentMeta } from '@storybook/react-native';
 import pkg from './package.json';
 import Menu from '.';
 import { IListItem } from '../List';
 import Icon from '../Icon';
-import { IMenu } from './types';
+
+const dimensions = Dimensions.get('window');
 
 export default {
   title: 'Menu',
@@ -29,19 +30,12 @@ export default {
       options: ['none', 'check-icon', 'check-box'],
     },
   },
+  args: {
+    itemWidth: 'medium',
+    itemHeight: 'thick',
+    onSelect: (selected) => alert(`selected index: ${selected}`),
+  },
 } as ComponentMeta<typeof Menu>;
-
-const Template: ComponentStory<typeof Menu> = (args) => <Menu {...args} />;
-
-type TriggerPosition = { style: StyleProp<ViewStyle> };
-
-const triggerCenter: TriggerPosition = { style: { alignSelf: 'center' } };
-const triggerBottom: TriggerPosition = {
-  style: { alignSelf: 'center', bottom: 10, position: 'absolute' },
-};
-const triggerTop: TriggerPosition = {
-  style: { alignSelf: 'center', top: 10, position: 'absolute' },
-};
 
 const renderIcon =
   (name: string) =>
@@ -59,53 +53,73 @@ const iconsData: { listItems: IListItem[] } = {
   ],
 };
 
-const baseArgs: Partial<IMenu> = {
-  trigger: <View style={{ backgroundColor: 'red', width: 50, height: 50 }} />,
-  itemWidth: 'medium',
-  itemHeight: 'thick',
-  onSelect: (selected) => alert(`selected index: ${selected}`),
+const centerPosition = {
+  style: {
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+} as const;
+
+const bottomPosition = {
+  style: {
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+  },
+} as const;
+
+const topPosition = {
+  style: {
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+  },
+} as const;
+
+const Template: ComponentStory<typeof Menu> = (args) => {
+  const { style, ...rest } = args;
+  return (
+    <View style={[style, Platform.OS === 'web' ? dimensions : { width: '100%', height: '100%' }]}>
+      <Menu {...rest}>
+        <View style={{ backgroundColor: 'red', width: 50, height: 50 }} />
+      </Menu>
+    </View>
+  );
 };
 
-export const Default = Template.bind({});
-Default.args = {
-  ...baseArgs,
-  ...triggerCenter,
+export const Default = Template.bind(null, {
+  ...centerPosition,
   ...baseData,
-};
+});
 
-export const Top = Template.bind({});
-Top.args = {
-  ...baseArgs,
-  ...triggerTop,
+export const Top = Template.bind(null, {
+  ...topPosition,
   ...baseData,
-};
+});
 
-export const Bottom = Template.bind({});
-Bottom.args = {
-  ...baseArgs,
-  ...triggerBottom,
+export const Bottom = Template.bind(null, {
+  ...bottomPosition,
   ...baseData,
-};
+});
 
-export const WithIcons = Template.bind({});
-WithIcons.args = {
-  ...baseArgs,
-  ...triggerCenter,
+export const WithIcons = Template.bind(null, {
+  ...centerPosition,
   ...baseData,
   ...iconsData,
-};
+});
 
-export const BigList = Template.bind({});
-BigList.args = {
-  ...baseArgs,
-  ...triggerCenter,
+export const BigList = Template.bind(null, {
+  ...centerPosition,
   listItems: Array.from(Array(30).keys()).map((v) => 'Option' + v),
-};
+});
 
-export const Selection = Template.bind({});
-Selection.args = {
-  ...baseArgs,
-  ...triggerCenter,
+export const Selection = Template.bind(null, {
+  ...centerPosition,
   ...baseData,
   selection: 'check-icon',
-};
+});
+
+export const Preselected = Template.bind(null, {
+  ...centerPosition,
+  ...baseData,
+  selection: 'check-icon',
+  initialSelected: [0, 2],
+});

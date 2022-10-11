@@ -17,7 +17,7 @@ export interface IBaseListItem {
   onPress?: () => void;
   testID?: string;
   style?: StyleProp<ViewStyle>;
-  checked?: boolean;
+  initialChecked?: boolean;
   itemHeight: ItemHeight;
   selection?: 'none' | 'check-icon' | 'check-box';
   disabled?: boolean;
@@ -30,14 +30,14 @@ const ListItem: React.FC<IBaseListItem> = ({
   rightContent,
   leftContent,
   onPress,
-  checked,
+  initialChecked,
   itemHeight,
   selection,
   disabled,
   ...rest
 }) => {
   const styles = useStyles(itemHeight);
-  const [isChecked, setIsChecked] = useState(checked);
+  const [isChecked, setIsChecked] = useState(initialChecked);
 
   const onPressWrapper = () => {
     selection && selection !== 'none' && setIsChecked(!isChecked);

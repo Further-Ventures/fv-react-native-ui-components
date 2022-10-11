@@ -102,9 +102,11 @@ const Toggle: React.FC<IToggle> = ({
 
   return (
     <View>
-      <Text variant={size === 'small' ? 'small-regular' : 'caption-regular'} disabled={disabled}>
-        {heading}
-      </Text>
+      {!!heading && (
+        <Text variant={size === 'small' ? 'small-regular' : 'caption-regular'} disabled={disabled}>
+          {heading}
+        </Text>
+      )}
       <View style={styles.middleVerticalSpacing} />
       <View style={[styles[horizontalPosition]]}>
         <TouchableWithoutFeedback
@@ -134,31 +136,35 @@ const Toggle: React.FC<IToggle> = ({
         </TouchableWithoutFeedback>
         <View style={getSpaceBetweenToggleAndText()} />
         <View style={styles.textWrapper}>
-          <TouchableWithoutFeedback
-            onPress={onChangeWrapper}
-            style={styles.touchableWrapper}
-            disabled={disabled}
-            {...rest}
-          >
-            <Text
-              variant={size === 'small' ? 'label-14-regular' : 'p1-regular'}
+          {!!label && (
+            <TouchableWithoutFeedback
+              onPress={onChangeWrapper}
+              style={styles.touchableWrapper}
               disabled={disabled}
-              onLayout={(event) => {
-                const { height } = event.nativeEvent.layout;
-                setLabelHeight(height);
-              }}
+              {...rest}
             >
-              {label}
-            </Text>
-          </TouchableWithoutFeedback>
+              <Text
+                variant={size === 'small' ? 'label-14-regular' : 'p1-regular'}
+                disabled={disabled}
+                onLayout={(event) => {
+                  const { height } = event.nativeEvent.layout;
+                  setLabelHeight(height);
+                }}
+              >
+                {label}
+              </Text>
+            </TouchableWithoutFeedback>
+          )}
           <View style={styles.smallVerticalSpacing} />
-          <Text
-            variant={size === 'small' ? 'label-14-regular' : 'p2-regular'}
-            color='text-hint'
-            disabled={disabled}
-          >
-            {sentence}
-          </Text>
+          {!!sentence && (
+            <Text
+              variant={size === 'small' ? 'label-14-regular' : 'p2-regular'}
+              color='text-hint'
+              disabled={disabled}
+            >
+              {sentence}
+            </Text>
+          )}
 
           {!disabled && !!errorMessage && (
             <ErrorMessage error={errorMessage} margin={{ left: 0, top: 8 }} />
