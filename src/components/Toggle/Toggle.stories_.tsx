@@ -14,6 +14,12 @@ export default {
     onPress: {
       action: 'pressed the button',
     },
+    type: {
+      options: ['default', 'intermediate'],
+      control: {
+        type: 'select',
+      },
+    },
     size: {
       options: ['small', 'medium'],
       control: {
@@ -21,7 +27,19 @@ export default {
       },
     },
     variant: {
-      options: ['checkbox', 'radio', 'checkboxCircle'],
+      options: ['checkbox', 'radio', 'checkboxCircle', 'switch'],
+      control: {
+        type: 'select',
+      },
+    },
+    verticalPosition: {
+      options: ['top', 'middle'],
+      control: {
+        type: 'select',
+      },
+    },
+    horizontalPosition: {
+      options: ['left', 'right'],
       control: {
         type: 'select',
       },
@@ -43,9 +61,8 @@ ToggleComponent.args = {
   disabled: false,
   checked: false,
   verticalPosition: 'middle',
+  horizontalPosition: 'left',
   heading: 'Circle Check heading',
-  label:
-    'Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label ',
-  sentence:
-    'Write a Radio button sentence here Write a Radio button sentence here Write a Radio button sentence here',
+  label: 'Label ',
+  sentence: 'Write a toggle sentence here',
 };

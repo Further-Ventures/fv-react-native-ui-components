@@ -11,6 +11,7 @@ import Icon from '../Icon';
 import Text from '../Text';
 import Switch from './Switch';
 import ErrorMessage from '../ErrorMessage';
+import { useToggle } from './useToggle';
 
 export type TToggleType = 'default' | 'intermediate';
 export type TVariant = 'switch' | 'checkbox' | 'radio' | 'checkboxCircle';
@@ -31,6 +32,11 @@ export interface IToggle extends TouchableWithoutFeedbackProps {
   sentence?: string;
 
   style?: StyleProp<ViewStyle>;
+
+  name?: string;
+  onChange?: (checked?: boolean) => void;
+  clearFormValueOnUnmount?: boolean;
+  controlled?: boolean;
 }
 
 const Toggle: React.FC<IToggle> = ({
@@ -46,16 +52,26 @@ const Toggle: React.FC<IToggle> = ({
   label = '',
   sentence = '',
   style,
+  name,
+  onChange,
+  clearFormValueOnUnmount,
+  controlled,
   ...rest
 }) => {
-  const [isChecked, setIsChecked] = useState(checked);
   const [labelHeight, setLabelHeight] = useState(0);
+
+  const { internalValue, onChangeWrapper, errorMessage } = useToggle({
+    name,
+    error,
+    onChange,
+    checked,
+    clearFormValueOnUnmount,
+  });
+
+  const isChecked = controlled ? checked : internalValue;
+
   const styles = useStyles(size, isChecked);
-  const handlePress = () => {
-    if (!disabled) {
-      setIsChecked((prev) => !prev);
-    }
-  };
+
   const generateIcon = () => {
     if (isChecked) {
       if (variant === 'radio') {
@@ -71,28 +87,43 @@ const Toggle: React.FC<IToggle> = ({
     }
     return null;
   };
+
+  const getSpaceBetweenToggleAndText = () => {
+    if (horizontalPosition === 'right') {
+      return styles.largeHorizontalSpacing;
+    }
+    if (size === 'medium') {
+      if (variant === 'switch') {
+        return styles.middleHorizontalSpacing;
+      }
+    }
+    return styles.smallHorizontalSpacing;
+  };
+
   return (
     <View>
-      <Text variant={size === 'small' ? 'small-regular' : 'caption-regular'} disabled={disabled}>
-        {heading}
-      </Text>
-      <View style={[styles.toggleWrapper]}>
+      {!!heading && (
+        <Text variant={size === 'small' ? 'small-regular' : 'caption-regular'} disabled={disabled}>
+          {heading}
+        </Text>
+      )}
+      <View style={styles.middleVerticalSpacing} />
+      <View style={[styles[horizontalPosition]]}>
         <TouchableWithoutFeedback
-          onPress={handlePress}
+          onPress={onChangeWrapper}
           style={[styles.touchableWrapper]}
           disabled={disabled}
           {...rest}
         >
-          <View style={[styles[horizontalPosition], { height: labelHeight }]}>
+          <View style={[styles.toggleWrapper, { height: labelHeight }, styles[verticalPosition]]}>
             {variant === 'switch' ? (
-              <Switch checked={isChecked} style={[styles.switch, styles[verticalPosition]]} />
+              <Switch checked={isChecked} style={[styles.switch]} size={size} disabled={disabled} />
             ) : (
               <View
                 style={[
                   styles.toggle,
                   styles[size],
                   styles[variant],
-                  styles[verticalPosition],
                   !!error && styles.error,
                   disabled && styles.disabled,
                   style,
@@ -103,37 +134,41 @@ const Toggle: React.FC<IToggle> = ({
             )}
           </View>
         </TouchableWithoutFeedback>
-        <View
-          style={size === 'small' ? styles.smallHorizontalSpacing : styles.middleHorizontalSpacing}
-        />
-        <View>
-          <TouchableWithoutFeedback
-            onPress={handlePress}
-            style={styles.touchableWrapper}
-            disabled={disabled}
-            {...rest}
-          >
-            <Text
-              variant={size === 'small' ? 'label-14-regular' : 'p1-regular'}
+        <View style={getSpaceBetweenToggleAndText()} />
+        <View style={styles.textWrapper}>
+          {!!label && (
+            <TouchableWithoutFeedback
+              onPress={onChangeWrapper}
+              style={styles.touchableWrapper}
               disabled={disabled}
-              onLayout={(event) => {
-                const { height } = event.nativeEvent.layout;
-                setLabelHeight(height);
-              }}
+              {...rest}
             >
-              {label}
-            </Text>
-          </TouchableWithoutFeedback>
+              <Text
+                variant={size === 'small' ? 'label-14-regular' : 'p1-regular'}
+                disabled={disabled}
+                onLayout={(event) => {
+                  const { height } = event.nativeEvent.layout;
+                  setLabelHeight(height);
+                }}
+              >
+                {label}
+              </Text>
+            </TouchableWithoutFeedback>
+          )}
           <View style={styles.smallVerticalSpacing} />
-          <Text
-            variant={size === 'small' ? 'label-14-regular' : 'p2-regular'}
-            color='text-hint'
-            disabled={disabled}
-          >
-            {sentence}
-          </Text>
+          {!!sentence && (
+            <Text
+              variant={size === 'small' ? 'label-14-regular' : 'p2-regular'}
+              color='text-hint'
+              disabled={disabled}
+            >
+              {sentence}
+            </Text>
+          )}
 
-          {!disabled && !!error && <ErrorMessage error={error} margin={{ left: 0, top: 8 }} />}
+          {!disabled && !!errorMessage && (
+            <ErrorMessage error={errorMessage} margin={{ left: 0, top: 8 }} />
+          )}
         </View>
       </View>
     </View>

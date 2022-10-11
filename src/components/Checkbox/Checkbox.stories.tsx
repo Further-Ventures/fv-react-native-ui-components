@@ -11,11 +11,14 @@ export default {
 
   decorators: Platform.OS === 'web' ? null : [CenterView],
   argTypes: {
-    onPress: {
-      action: 'pressed the button',
-    },
     size: {
       options: ['small', 'medium'],
+      control: {
+        type: 'select',
+      },
+    },
+    type: {
+      options: ['default', 'intermediate'],
       control: {
         type: 'select',
       },
@@ -32,6 +35,12 @@ export default {
         type: 'select',
       },
     },
+    horizontalPosition: {
+      options: ['left', 'right'],
+      control: {
+        type: 'select',
+      },
+    },
   },
   parameters: {
     pkg,
@@ -42,16 +51,15 @@ const Template: ComponentStory<typeof Checkbox> = (args) => <Checkbox {...args} 
 
 export const CheckboxComponent = Template.bind({});
 CheckboxComponent.args = {
-  size: 'medium',
   variant: 'default',
   type: 'default',
+  size: 'medium',
   error: 'This is a hint text to help user',
   disabled: false,
   checked: false,
   verticalPosition: 'top',
-  heading: 'Circle Check heading',
-  label:
-    'Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label ',
-  sentence:
-    'Write a Radio button sentence here Write a Radio button sentence here Write a Radio button sentence here',
+  horizontalPosition: 'left',
+  heading: 'Check heading',
+  label: 'Label here',
+  sentence: 'Write  sentence here',
 };

@@ -2,10 +2,10 @@ import React from 'react';
 import { ScrollView, View, StyleSheet, Text } from 'react-native';
 import Icon, { IIconProps } from '../../../components/Icon';
 import Divider from '../Divider';
-import * as filledIcons from '../../../components/Icon/material-symbols/filled';
-import * as social from '../../../components/Icon/custom/social/colorfull';
-import * as payment from '../../../components/Icon/custom/payment';
-import * as other from '../../../components/Icon/custom/other';
+import * as filledIcons from '../../../components/Icon/list/material-symbols/filled';
+import * as social from '../../../components/Icon/list/custom/social/colorfull';
+import * as payment from '../../../components/Icon/list/custom/payment';
+import * as other from '../../../components/Icon/list/custom/other';
 
 const IconPreview = (props: IIconProps) => {
   return (

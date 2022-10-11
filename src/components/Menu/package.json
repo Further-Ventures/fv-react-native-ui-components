@@ -1,0 +1,13 @@
+{
+  "name": "@further-ventures/fv-react-native-ui-components.menu",
+  "version": "0.0.1",
+  "peerDependencies": {
+    "react-native": ">=0.68.0",
+    "react": ">=17.0.2",
+    "@further-ventures/fv-react-native-ui-components.theme": ">=0.0.5",
+    "@further-ventures/fv-react-native-ui-components.icon": ">=0.0.1",
+    "@further-ventures/fv-react-native-ui-components.text": ">=0.0.1",
+    "@further-ventures/fv-react-native-ui-components.elevation": ">=0.0.1",
+    "@further-ventures/fv-react-native-ui-components.list": ">=0.0.1"
+  }
+}

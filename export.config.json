@@ -3,16 +3,21 @@
   "components": {
     "Theme": "theme",
     "Elevation": "elevation",
-    "Icon": "icon",
+    "Icon": "Icon",
+    "Loader": "loader",
     "Text": "text",
-    "TextArea": "texaArea",
+    "TextArea": "textArea",
     "Button": "button",
     "Chip": "chip",
     "Tag": "tag",
+    "TextLink": "textLink",
+    "Input": "input",
+    "PasswordInput": "passwordInput",
     "Checkbox": "checkbox",
     "Radio": "radio",
     "Switch": "Switch",
-    "TextLink": "textLink",
-    "SearchBar":"searchBar"
+    "SearchBar": "searchBar",
+    "Toggle": "toggle",
+    "Menu": "menu"
   }
 }

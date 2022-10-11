@@ -11,18 +11,20 @@ export default {
 
   decorators: Platform.OS === 'web' ? null : [CenterView],
   argTypes: {
-    onPress: {
-      action: 'pressed the button',
-    },
     size: {
       options: ['small', 'medium'],
       control: {
         type: 'select',
       },
     },
-
     verticalPosition: {
       options: ['top', 'middle'],
+      control: {
+        type: 'select',
+      },
+    },
+    horizontalPosition: {
+      options: ['left', 'right'],
       control: {
         type: 'select',
       },
@@ -38,13 +40,11 @@ const Template: ComponentStory<typeof Switch> = (args) => <Switch {...args} />;
 export const SwitchComponent = Template.bind({});
 SwitchComponent.args = {
   size: 'medium',
-  error: 'This is a hint text to help user',
   disabled: false,
-  checked: false,
+  checked: true,
   verticalPosition: 'top',
-  heading: 'Circle Check heading',
-  label:
-    'Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label ',
-  sentence:
-    'Write a Radio button sentence here Write a Radio button sentence here Write a Radio button sentence here',
+  horizontalPosition: 'left',
+  heading: 'Toggle heading',
+  label: 'Label here',
+  sentence: 'Write a sentence here',
 };

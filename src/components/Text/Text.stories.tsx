@@ -16,12 +16,7 @@ export default {
     children: 'Text',
   },
   argTypes: {
-    color: {
-      options: getColorList(true),
-      control: {
-        type: 'select',
-      },
-    },
+    color: getColorList(true),
   },
   parameters: {
     pkg,
