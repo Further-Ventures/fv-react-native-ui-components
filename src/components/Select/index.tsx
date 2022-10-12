@@ -9,7 +9,7 @@ import useSelect from '../MultiSelect/useSelect';
 
 import { IMultiSelect } from '../MultiSelect';
 
-export interface ISelect<T> extends Omit<IMultiSelect<T>, 'onChange' | 'values'> {
+export interface ISelect<T> extends Omit<IMultiSelect<T>, 'onChange' | 'values' | 'selectedType'> {
   onChange: (value: T) => void;
   value?: T;
 }
