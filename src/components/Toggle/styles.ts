@@ -1,7 +1,7 @@
 import { createUseStyles } from '../Theme';
 import { IToggle } from '.';
 
-export default createUseStyles((theme, size: IToggle['size'], checked: boolean) => ({
+export default createUseStyles((theme, size: IToggle['size'], isChecked: boolean) => ({
   touchableWrapper: {
     alignSelf: 'baseline',
   },
@@ -10,9 +10,9 @@ export default createUseStyles((theme, size: IToggle['size'], checked: boolean) 
     justifyContent: 'center',
   },
   toggle: {
-    borderWidth: checked ? 0 : 1,
+    borderWidth: isChecked ? 0 : 1,
     borderColor: theme.grey.main,
-    backgroundColor: checked ? theme.primary.main : theme.primary.contrast2,
+    backgroundColor: isChecked ? theme.primary.main : theme.primary.contrast2,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -40,7 +40,7 @@ export default createUseStyles((theme, size: IToggle['size'], checked: boolean) 
   },
   error: {
     borderColor: theme.error.main,
-    backgroundColor: checked ? theme.error.main : theme.primary.contrast2,
+    backgroundColor: isChecked ? theme.error.main : theme.primary.contrast2,
   },
   errorText: {
     flexDirection: 'row',

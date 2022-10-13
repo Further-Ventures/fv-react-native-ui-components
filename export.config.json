@@ -14,6 +14,7 @@
     "Input": "input",
     "PasswordInput": "passwordInput",
     "Checkbox": "checkbox",
+    "CheckboxGroup": "checkboxgroup",
     "Radio": "radio",
     "Switch": "switch",
     "Toggle": "toggle",
