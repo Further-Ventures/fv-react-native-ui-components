@@ -1,35 +1,35 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react-native';
-import Checkbox from '.';
+import CheckboxGroup from '.';
 import CenterView from '../../storybook/preview/CenterView';
 import { checkboxArgTypes } from '../../storybook/utils';
 import { Platform } from 'react-native';
 import pkg from './package.json';
 
 export default {
-  title: 'Checkbox',
-  component: Checkbox,
+  title: 'CheckboxGroup',
+  component: CheckboxGroup,
 
   decorators: Platform.OS === 'web' ? null : [CenterView],
   argTypes: checkboxArgTypes,
+
   parameters: {
     pkg,
   },
-} as ComponentMeta<typeof Checkbox>;
+} as ComponentMeta<typeof CheckboxGroup>;
 
-const Template: ComponentStory<typeof Checkbox> = (args) => <Checkbox {...args} />;
+const Template: ComponentStory<typeof CheckboxGroup> = (args) => <CheckboxGroup {...args} />;
 
-export const CheckboxComponent = Template.bind({});
-CheckboxComponent.args = {
+export const CheckboxGroupComponent = Template.bind({});
+CheckboxGroupComponent.args = {
+  header: { name: 'header', label: 'header' },
+  checkboxes: [
+    { name: 'first', label: 'first child' },
+    { name: 'second', label: 'second child' },
+  ],
   variant: 'default',
-  type: 'default',
   size: 'medium',
-  error: 'This is a hint text to help user',
   disabled: false,
-  checked: false,
   verticalPosition: 'top',
   horizontalPosition: 'left',
-  heading: 'Check heading',
-  label: 'Label here',
-  sentence: 'Write  sentence here',
 };

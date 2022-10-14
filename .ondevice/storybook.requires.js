@@ -20,6 +20,7 @@ const getStories = () => {
   return [
     require('../src/components/Button/Button.stories.tsx'),
     require('../src/components/Checkbox/Checkbox.stories.tsx'),
+    require('../src/components/CheckboxGroup/CheckboxGroup.stories.tsx'),
     require('../src/components/Chip/Chip.stories.tsx'),
     require('../src/components/Elevation/Elevation.stories.tsx'),
     require('../src/components/Icon/Icon.stories.tsx'),
@@ -30,7 +31,6 @@ const getStories = () => {
     require('../src/components/MultiSelect/MultiSelect.stories.tsx'),
     require('../src/components/PasswordInput/PasswordInput.stories.tsx'),
     require('../src/components/Radio/Radio.stories.tsx'),
-    require('../src/components/SearchBar/SearchBar.stories.tsx'),
     require('../src/components/Select/Select.stories.tsx'),
     require('../src/components/Switch/Switch.stories.tsx'),
     require('../src/components/Tag/Tag.stories.tsx'),
