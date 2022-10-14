@@ -4,12 +4,13 @@ import useStyles from './styles';
 import { ItemHeight } from '../../../utils/itemSize';
 import Checkbox from '../../Checkbox';
 import Icon from '../../Icon';
-import Text from '../../Text';
+import Text, { IVariantBaseProps } from '../../Text';
 
 type ContentFunc = ({ disabled }: { disabled?: boolean; checked?: boolean }) => React.ReactNode;
 
 export interface IBaseListItem {
   title: string;
+  titleVariant?: IVariantBaseProps['variant'];
   subtitle?: string;
   label?: string;
   leftContent?: React.ReactNode | ContentFunc;
@@ -21,11 +22,14 @@ export interface IBaseListItem {
   itemHeight: ItemHeight;
   selection?: 'none' | 'check-icon' | 'check-box';
   disabled?: boolean;
+  // Disable text rendering. We still need the title prop because it's used as a key in the list
+  onlyCustomContent?: boolean;
 }
 
 const ListItem: React.FC<IBaseListItem> = ({
   label,
   title,
+  titleVariant,
   subtitle,
   rightContent,
   leftContent,
@@ -34,6 +38,7 @@ const ListItem: React.FC<IBaseListItem> = ({
   itemHeight,
   selection,
   disabled,
+  onlyCustomContent,
   ...rest
 }) => {
   const styles = useStyles(itemHeight);
@@ -54,7 +59,7 @@ const ListItem: React.FC<IBaseListItem> = ({
     }
     if (leftContent) {
       return (
-        <View style={styles.leftContent}>
+        <View style={!onlyCustomContent && styles.leftContent}>
           {typeof leftContent === 'function'
             ? leftContent({ disabled, checked: isChecked })
             : leftContent}
@@ -86,31 +91,33 @@ const ListItem: React.FC<IBaseListItem> = ({
     >
       <View style={styles.content}>
         {renderLeftContent()}
-        <View style={styles.textContent}>
-          {!!label && (
-            <Text
-              variant='caption-regular'
-              color='text-hint'
-              disabled={disabled}
-              style={styles.label}
-            >
-              {label}
+        {!onlyCustomContent && (
+          <View style={styles.textContent}>
+            {!!label && (
+              <Text
+                variant='caption-regular'
+                color='text-hint'
+                disabled={disabled}
+                style={styles.label}
+              >
+                {label}
+              </Text>
+            )}
+            <Text variant={titleVariant || 'p2-regular'} color='text-secondary' disabled={disabled}>
+              {title}
             </Text>
-          )}
-          <Text variant='p2-medium' color='text-secondary' disabled={disabled}>
-            {title}
-          </Text>
-          {!!subtitle && (
-            <Text
-              variant='label-14-regular'
-              color='text-hint'
-              disabled={disabled}
-              style={styles.subtitle}
-            >
-              {subtitle}
-            </Text>
-          )}
-        </View>
+            {!!subtitle && (
+              <Text
+                variant='label-14-regular'
+                color='text-hint'
+                disabled={disabled}
+                style={styles.subtitle}
+              >
+                {subtitle}
+              </Text>
+            )}
+          </View>
+        )}
       </View>
       {renderRightContent()}
     </Pressable>

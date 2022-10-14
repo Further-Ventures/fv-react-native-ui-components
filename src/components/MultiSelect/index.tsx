@@ -1,13 +1,11 @@
 import React, { useMemo, useRef } from 'react';
-import Menu from '../Menu';
+import Menu, { IMenu, IMenuRef } from '../Menu';
 import Text from '../Text';
 import Tag from '../Tag';
-import { IMenu, IMenuRef } from '../Menu/types';
-import BaseInputLayout, { IBaseInputLayoutProps } from '../Input/BaseInputLayout';
+import { IBaseInputLayoutProps } from '../Input/BaseInputLayout';
 import { View } from 'react-native';
 import useSelect from './useSelect';
-import Icon from '../Icon';
-import useStyles from './styles';
+import SelectInputLayout from './SelectInputLayout';
 
 export interface ISelectItem<T> {
   label: string;
@@ -44,8 +42,6 @@ const MultiSelect = <T,>({
   ...rest
 }: IMultiSelect<T>) => {
   const menuRef = useRef<IMenuRef>(null);
-  const inputRef = useRef<View>(null);
-  const styles = useStyles(itemWidth);
 
   const data = useMemo(() => items.map((item) => item.label), [items]);
   const {
@@ -117,7 +113,7 @@ const MultiSelect = <T,>({
   };
 
   const renderSelected = () => {
-    if (!labels.length) return <View style={styles.divider} />;
+    if (!labels.length) return null;
     if (selectedType === 'tag') {
       return renderSelectedChips();
     }
@@ -136,27 +132,19 @@ const MultiSelect = <T,>({
       selection={selection}
       initialSelected={getSelectedIndexes()}
     >
-      <BaseInputLayout
+      <SelectInputLayout
+        isOpened={isOpened}
+        itemWidth={itemWidth}
         disabled={disabled}
         currentValueLength={labels.length}
-        ref={inputRef}
-        isFocused={isOpened}
         onPress={onTriggerPress}
-        style={styles.input}
-        rightContent={
-          <Icon
-            width={20}
-            color='grey-dark'
-            name={isOpened ? 'arrow_drop_up' : 'arrow_drop_down'}
-          />
-        }
         label={label}
-        error={isOpened ? undefined : errorMessage}
-        hint={isOpened ? undefined : hint}
+        error={errorMessage}
+        hint={hint}
         {...rest}
       >
         {renderSelected()}
-      </BaseInputLayout>
+      </SelectInputLayout>
     </Menu>
   );
 };

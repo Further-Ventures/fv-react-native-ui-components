@@ -4,6 +4,13 @@ import Select from '.';
 import CenterView from '../../storybook/preview/CenterView';
 import { Platform } from 'react-native';
 import pkg from './package.json';
+import Icon from '../Icon';
+
+const renderIcon =
+  (name: string) =>
+  // eslint-disable-next-line react/display-name
+  ({ disabled }: { disabled: boolean }) =>
+    <Icon width={40} height={30} color={'text-secondary'} disabled={disabled} name={name} />;
 
 const options = [
   { label: 'Option 1', value: 1 },
@@ -11,6 +18,14 @@ const options = [
   { label: 'Option 3', value: 3 },
   { label: 'Option 4', value: 4 },
   { label: 'Option 5', value: 5 },
+];
+
+const iconOptions = [
+  { content: renderIcon('info'), value: 1 },
+  { content: renderIcon('cancel'), value: 2 },
+  { content: renderIcon('error'), value: 3 },
+  { content: renderIcon('info'), value: 4 },
+  { content: renderIcon('cancel'), value: 5 },
 ];
 
 export default {
@@ -34,12 +49,14 @@ export default {
     itemWidth: 'medium',
     itemHeight: 'thick',
     label: 'Label',
+    disabled: false,
+    items: options,
   },
 } as ComponentMeta<typeof Select>;
 
 const Template: ComponentStory<typeof Select> = (args) => {
-  const [value, setValue] = useState<number | undefined>(undefined);
-  return <Select {...args} items={options} value={value} onChange={setValue} />;
+  const [value, setValue] = useState<number | unknown>(args.value);
+  return <Select {...args} value={value} onChange={setValue} />;
 };
 
 export const Default = Template.bind({});
@@ -57,4 +74,10 @@ Error.args = {
 export const Disabled = Template.bind({});
 Disabled.args = {
   disabled: true,
+};
+
+export const OnlyIcons = Template.bind({});
+OnlyIcons.args = {
+  items: iconOptions,
+  value: 1,
 };

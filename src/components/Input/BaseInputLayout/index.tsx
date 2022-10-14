@@ -1,10 +1,16 @@
-import React, { ReactElement, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { ReactNode, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import useStyles from './styles';
 import { Pressable, PressableProps, View, StyleProp, ViewStyle, Animated } from 'react-native';
 import HintMessage from '../../HintMessage';
 import ErrorMessage from '../../ErrorMessage';
 
-type ContentFunc = (hasError: boolean, disabled?: boolean) => React.ReactElement;
+export type ContentFunc = ({
+  hasError,
+  disabled,
+}: {
+  hasError?: boolean;
+  disabled?: boolean;
+}) => ReactNode;
 
 export interface IBaseInputLayoutProps extends PressableProps {
   label?: string;
@@ -13,8 +19,8 @@ export interface IBaseInputLayoutProps extends PressableProps {
   error?: string;
   disabled?: boolean;
   hint?: string;
-  rightContent?: React.ReactElement | ContentFunc;
-  leftContent?: React.ReactElement | ContentFunc;
+  rightContent?: ReactNode | ContentFunc;
+  leftContent?: ReactNode | ContentFunc;
   maxValueLength?: number;
   currentValueLength?: number;
   showLength?: boolean;
@@ -62,12 +68,14 @@ const BaseInputLayout = React.forwardRef<View, IBaseInputLayoutProps>(
 
     const hasError = Boolean(error);
 
-    const styles = useStyles();
+    const styles = useStyles(!!label || !!children);
 
     const getSideContent = useCallback(
-      (sideContent?: ReactElement | ContentFunc): ReactElement | null => {
+      (sideContent?: ReactNode | ContentFunc): ReactNode | null => {
         if (!sideContent) return null;
-        return typeof sideContent === 'function' ? sideContent(hasError, disabled) : sideContent;
+        return typeof sideContent === 'function'
+          ? sideContent({ hasError, disabled })
+          : sideContent;
       },
       [disabled, hasError]
     );
@@ -98,13 +106,14 @@ const BaseInputLayout = React.forwardRef<View, IBaseInputLayoutProps>(
       });
 
     return (
-      <View style={style}>
+      <View>
         <Pressable
           style={[
             styles.baseInput,
             isFocused && styles.baseInputFocused,
             !!error && styles.error,
             disabled && styles.baseInputDisabled,
+            style,
           ]}
           disabled={disabled}
           ref={ref}

@@ -5,7 +5,7 @@ const inputConstants = {
   BORDER_WIDTH: 1,
 };
 
-export default createUseStyles((theme) => ({
+export default createUseStyles((theme, isMainContentExist: boolean) => ({
   baseInput: {
     borderWidth: inputConstants.BORDER_WIDTH,
     borderColor: theme.grey.main,
@@ -15,6 +15,7 @@ export default createUseStyles((theme) => ({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+    minHeight: 56,
   },
   baseInputFocused: {
     borderColor: theme.primary.main,
@@ -54,11 +55,11 @@ export default createUseStyles((theme) => ({
     flex: 1,
   },
   rightContent: {
-    marginLeft: 14,
+    marginLeft: isMainContentExist ? 14 : 0,
     padding: 2,
   },
   leftContent: {
-    marginRight: 14,
+    marginRight: isMainContentExist ? 14 : 0,
     padding: 2,
   },
 }));

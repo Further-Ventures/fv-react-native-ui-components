@@ -19,7 +19,7 @@ export default createUseStyles((theme, itemHeight: ItemHeight) => ({
     marginTop: 8,
   },
   leftContent: {
-    marginRight: 18,
+    marginRight: 14,
   },
   content: {
     flexDirection: 'row',

@@ -40,7 +40,7 @@ export default {
 const renderIcon =
   (name: string) =>
   // eslint-disable-next-line react/display-name
-  ({ disabled }: { disabled?: boolean }) =>
+  (hasError: boolean, disabled: boolean) =>
     <Icon color={'text-secondary'} disabled={disabled} name={name} />;
 
 const baseData = { listItems: ['Save', 'Restore', 'Delete', 'Undo'] };
@@ -85,41 +85,55 @@ const Template: ComponentStory<typeof Menu> = (args) => {
   );
 };
 
-export const Default = Template.bind(null, {
+export const Default = Template.bind({});
+Default.args = {
   ...centerPosition,
   ...baseData,
-});
+};
 
-export const Top = Template.bind(null, {
+export const Top = Template.bind({});
+Top.args = {
   ...topPosition,
   ...baseData,
-});
+};
 
-export const Bottom = Template.bind(null, {
+export const Bottom = Template.bind({});
+Bottom.args = {
   ...bottomPosition,
   ...baseData,
-});
+};
 
-export const WithIcons = Template.bind(null, {
+export const WithIcons = Template.bind({});
+WithIcons.args = {
   ...centerPosition,
   ...baseData,
   ...iconsData,
-});
+};
 
-export const BigList = Template.bind(null, {
+export const BigList = Template.bind({});
+BigList.args = {
   ...centerPosition,
   listItems: Array.from(Array(30).keys()).map((v) => 'Option' + v),
-});
+};
 
-export const Selection = Template.bind(null, {
+export const Selection = Template.bind({});
+Selection.args = {
   ...centerPosition,
   ...baseData,
   selection: 'check-icon',
-});
+};
 
-export const Preselected = Template.bind(null, {
+export const Preselected = Template.bind({});
+Preselected.args = {
   ...centerPosition,
   ...baseData,
   selection: 'check-icon',
   initialSelected: [0, 2],
-});
+};
+
+export const OnlyIcons = Template.bind({});
+OnlyIcons.args = {
+  onlyCustomContent: true,
+  ...centerPosition,
+  ...iconsData,
+};
