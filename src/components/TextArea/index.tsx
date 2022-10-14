@@ -12,7 +12,6 @@ import { useTheme } from '../Theme';
 import ErrorMessage from '../ErrorMessage';
 
 export interface IManualControlProps extends TextInputProps {
-  error?: boolean;
   errorText?: string;
   disabled?: boolean;
   textLimit?: number;

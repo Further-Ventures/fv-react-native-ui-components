@@ -5,27 +5,30 @@ import { SvgProps } from 'react-native-svg';
 import { getColorFromTheme, TPalette } from '../../utils/getColorFromTheme';
 
 export interface IIconProps<TIsAnyColor = void> extends Omit<SvgProps, 'fill'> {
+  name?: string;
+  source?: NodeRequire;
   filled?: boolean;
-  name: string;
   color?: TPalette<TIsAnyColor>;
   disabled?: boolean;
 }
 
 const Icon = <TIsAnyColor,>({
   filled,
-  name,
+  name = 'question_mark',
   width = 24,
   height,
   color,
   disabled = false,
+  source,
   style,
   ...rest
 }: IIconProps<TIsAnyColor>) => {
-  if (!name) return null;
+  if (!name && !source) return null;
   const SvgRoot = filled
     ? require('./list/material-symbols/filled')
     : require('./list/material-symbols/unfilled');
   const SvgContent =
+    source ||
     SvgRoot[name] ||
     (color
       ? require('./list/custom/social/dull')[name]

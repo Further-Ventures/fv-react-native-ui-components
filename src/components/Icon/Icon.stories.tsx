@@ -57,4 +57,28 @@ CustomIcons.args = {
 };
 CustomIcons.argTypes = {
   name: getCustomIcons(),
+  color: {
+    table: {
+      disable: true,
+    },
+  },
+  filled: {
+    table: {
+      disable: true,
+    },
+  },
+  disabled: {
+    table: {
+      disable: true,
+    },
+  },
+};
+
+export const WithSourceProp = TemplateManual.bind({});
+WithSourceProp.args = {
+  source: require('@material-symbols/svg-400/rounded/visibility_off-fill.svg').default,
+  width: 24,
+  height: 24,
+  color: 'error-main',
+  disabled: false,
 };

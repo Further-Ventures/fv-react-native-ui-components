@@ -26,9 +26,17 @@ export default {
 
 const Template: ComponentStory<typeof Loader> = (args) => <Loader {...args} />;
 
-export const LoaderComponent = Template.bind({});
-LoaderComponent.args = {
+export const Bar = Template.bind({});
+Bar.args = {
   variant: 'bar',
   flat: false,
   progress: -1,
+};
+
+export const Circular = Template.bind({});
+Circular.args = {
+  variant: 'circular',
+  flat: false,
+  progress: -1,
+  size: 48,
 };
