@@ -17,7 +17,7 @@ export interface IMultiSelect<T>
     Pick<IMenu, 'itemWidth' | 'itemHeight'> {
   items: ISelectItem<T>[];
   label?: string;
-  selection: Exclude<IMenu['selection'], 'none'>;
+  selection?: Exclude<IMenu['selection'], 'none'>;
   values?: T[];
   onChange: (selected: T[]) => void;
   selectedType?: 'text' | 'tag';
