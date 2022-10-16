@@ -5,7 +5,7 @@ import { IMultiSelect } from './index';
 interface IUseSelect<T>
   extends Pick<
     IMultiSelect<T>,
-    'items' | 'values' | 'error' | 'name' | 'clearFormValueOnUnmount'
+    'items' | 'values' | 'error' | 'name' | 'clearFormValueOnUnmount' | 'onVisibleChange'
   > {}
 
 const useSelect = <T>({
@@ -14,6 +14,7 @@ const useSelect = <T>({
   values,
   error,
   clearFormValueOnUnmount,
+  onVisibleChange,
 }: IUseSelect<T>) => {
   const { fieldError, fieldValue, unsetFormValue, updateFormValue, updateFormTouched } =
     useFormContext(name);
@@ -32,8 +33,9 @@ const useSelect = <T>({
   const getValuesBySelectedIndexes = (selected: number[]) => selected.map((i) => items[i].value);
   const getSelectedIndexes = () => selectedValues.map((v) => items.findIndex((i) => v === i.value));
 
-  const onVisibleChange = (visible: boolean) => {
+  const setVisible = (visible: boolean) => {
     setOpened(visible);
+    onVisibleChange?.(visible);
     if (!visible) {
       updateFormTouched(name, true);
     }
@@ -52,7 +54,7 @@ const useSelect = <T>({
     labels,
     getValuesBySelectedIndexes,
     getSelectedIndexes,
-    onVisibleChange,
+    setVisible,
     updateFormValue,
   };
 };

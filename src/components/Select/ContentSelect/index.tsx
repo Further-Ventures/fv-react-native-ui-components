@@ -12,7 +12,7 @@ const ContentSelect = <T,>({
   clearFormValueOnUnmount,
   error,
   hint,
-  style,
+  onVisibleChange,
   ...rest
 }: IContentSelect<T>) => {
   const menuRef = useRef<IMenuRef>(null);
@@ -24,13 +24,14 @@ const ContentSelect = <T,>({
     leftContent: item.content,
   }));
 
-  const { errorMessage, isOpened, getValuesBySelectedIndexes, onVisibleChange, updateFormValue } =
+  const { errorMessage, isOpened, getValuesBySelectedIndexes, setVisible, updateFormValue } =
     useSelect({
       name,
       items: data,
       values: [value],
       error,
       clearFormValueOnUnmount,
+      onVisibleChange,
     });
 
   const selectedContent = items.find((i) => i.value === value)?.content;
@@ -45,7 +46,7 @@ const ContentSelect = <T,>({
   return (
     <Menu
       onSelect={onSelect}
-      onVisibleChange={onVisibleChange}
+      onVisibleChange={setVisible}
       ref={menuRef}
       disabledTriggerPress
       listItems={data}

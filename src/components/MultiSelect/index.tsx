@@ -14,7 +14,7 @@ export interface ISelectItem<T> {
 
 export interface IMultiSelect<T>
   extends IBaseInputLayoutProps,
-    Pick<IMenu, 'itemWidth' | 'itemHeight'> {
+    Pick<IMenu, 'itemWidth' | 'itemHeight' | 'onVisibleChange'> {
   items: ISelectItem<T>[];
   label?: string;
   selection?: Exclude<IMenu['selection'], 'none'>;
@@ -39,6 +39,7 @@ const MultiSelect = <T,>({
   selection = 'check-icon',
   selectedType,
   disabled,
+  onVisibleChange,
   ...rest
 }: IMultiSelect<T>) => {
   const menuRef = useRef<IMenuRef>(null);
@@ -50,7 +51,7 @@ const MultiSelect = <T,>({
     labels,
     getValuesBySelectedIndexes,
     getSelectedIndexes,
-    onVisibleChange,
+    setVisible,
     updateFormValue,
   } = useSelect({
     name,
@@ -58,6 +59,7 @@ const MultiSelect = <T,>({
     values,
     error,
     clearFormValueOnUnmount,
+    onVisibleChange,
   });
 
   let maxTagRenderCount = 3;
@@ -123,7 +125,7 @@ const MultiSelect = <T,>({
   return (
     <Menu
       onSelect={onSelect}
-      onVisibleChange={onVisibleChange}
+      onVisibleChange={setVisible}
       itemWidth={itemWidth}
       itemHeight={itemHeight}
       ref={menuRef}

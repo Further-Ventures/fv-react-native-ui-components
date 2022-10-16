@@ -1,5 +1,5 @@
 import React from 'react';
-import { ISelect, IContentSelectItem } from './types';
+import { ISelect, IContentSelectItem, IContentSelect } from './types';
 import { isContentSelect } from './utils';
 import ContentSelect from './ContentSelect';
 import RegularSelect from './RegularSelect';
@@ -10,4 +10,4 @@ const Select = <T,>(props: ISelect<T>) =>
 Select.displayName = 'Select';
 
 export default Select;
-export type { IContentSelectItem, ISelect };
+export type { IContentSelectItem, ISelect, IContentSelect };

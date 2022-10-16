@@ -16,6 +16,7 @@ const Select = <T,>({
   error,
   style,
   hint,
+  onVisibleChange,
   ...rest
 }: IRegularSelect<T>) => {
   const menuRef = useRef<IMenuRef>(null);
@@ -26,7 +27,7 @@ const Select = <T,>({
     isOpened,
     labels,
     getValuesBySelectedIndexes,
-    onVisibleChange,
+    setVisible,
     updateFormValue,
   } = useSelect({
     name,
@@ -34,6 +35,7 @@ const Select = <T,>({
     values: value !== undefined ? [value] : undefined,
     error,
     clearFormValueOnUnmount,
+    onVisibleChange,
   });
 
   const onSelect = (selected: number[]) => {
@@ -47,7 +49,7 @@ const Select = <T,>({
   return (
     <Menu
       onSelect={onSelect}
-      onVisibleChange={onVisibleChange}
+      onVisibleChange={setVisible}
       itemWidth={itemWidth}
       itemHeight={itemHeight}
       ref={menuRef}

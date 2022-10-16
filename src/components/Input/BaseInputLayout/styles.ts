@@ -56,10 +56,8 @@ export default createUseStyles((theme, isMainContentExist: boolean) => ({
   },
   rightContent: {
     marginLeft: isMainContentExist ? 14 : 0,
-    padding: 2,
   },
   leftContent: {
     marginRight: isMainContentExist ? 14 : 0,
-    padding: 2,
   },
 }));
