@@ -122,7 +122,13 @@ const Toggle: React.FC<IToggle> = ({
           disabled={disabled}
           {...rest}
         >
-          <View style={[styles.toggleWrapper, { height: labelHeight }, styles[verticalPosition]]}>
+          <View
+            style={[
+              styles.toggleWrapper,
+              labelHeight > 0 && { height: labelHeight },
+              styles[verticalPosition],
+            ]}
+          >
             {variant === 'switch' ? (
               <Switch checked={isChecked} style={[styles.switch]} size={size} disabled={disabled} />
             ) : (
@@ -141,7 +147,7 @@ const Toggle: React.FC<IToggle> = ({
             )}
           </View>
         </TouchableWithoutFeedback>
-        <View style={getSpaceBetweenToggleAndText()} />
+        {!!label && <View style={getSpaceBetweenToggleAndText()} />}
         <View style={styles.textWrapper}>
           {!!label && (
             <TouchableWithoutFeedback

@@ -52,7 +52,9 @@ const ListItem: React.FC<IBaseListItem> = ({
   const renderLeftContent = () => {
     if (selection === 'check-box') {
       return (
-        <View style={styles.leftContent}>
+        <View
+          style={[{ justifyContent: 'flex-start', backgroundColor: 'red' }, styles.leftContent]}
+        >
           <Checkbox controlled checked={isChecked} onChange={onPressWrapper} disabled={disabled} />
         </View>
       );
