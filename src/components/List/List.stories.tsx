@@ -37,6 +37,12 @@ export default {
       control: { type: 'select' },
       options: ['none', 'check-icon', 'check-box'],
     },
+    initialSelected: {
+      control: false,
+    },
+    onlyCustomContent: {
+      control: false,
+    },
   },
   args: {
     itemHeight: 'thick',
