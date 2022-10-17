@@ -27,6 +27,9 @@ export default {
   component: List,
   parameters: {
     pkg,
+    controls: {
+      exclude: ['initialSelected', 'onlyCustomContent', 'onSelect'],
+    },
   },
   argTypes: {
     itemHeight: {
@@ -36,12 +39,6 @@ export default {
     selection: {
       control: { type: 'select' },
       options: ['none', 'check-icon', 'check-box'],
-    },
-    initialSelected: {
-      control: false,
-    },
-    onlyCustomContent: {
-      control: false,
     },
   },
   args: {
