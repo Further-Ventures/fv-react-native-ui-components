@@ -27,6 +27,9 @@ export default {
   component: List,
   parameters: {
     pkg,
+    controls: {
+      exclude: ['initialSelected', 'onlyCustomContent', 'onSelect'],
+    },
   },
   argTypes: {
     itemHeight: {

@@ -36,7 +36,7 @@ const Template: ComponentStory<typeof Input> = (args: IInputProps & { buttonText
   if (buttonText) {
     return (
       <Input
-        rightContent={(hasError, disabled) => (
+        rightContent={({ hasError, disabled }) => (
           <Button
             variant={'outlined'}
             shape={'curved'}

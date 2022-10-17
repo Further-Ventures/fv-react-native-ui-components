@@ -19,7 +19,10 @@ export default createUseStyles((theme, itemHeight: ItemHeight) => ({
     marginTop: 8,
   },
   leftContent: {
-    marginRight: 18,
+    marginRight: 14,
+  },
+  checkbox: {
+    paddingTop: 3,
   },
   content: {
     flexDirection: 'row',
