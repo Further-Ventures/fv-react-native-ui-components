@@ -44,6 +44,7 @@ export default {
     selectedType: 'text',
     selection: 'check-icon',
     label: 'Label',
+    dividerEnabled: false,
   },
 } as ComponentMeta<typeof MultiSelect>;
 
