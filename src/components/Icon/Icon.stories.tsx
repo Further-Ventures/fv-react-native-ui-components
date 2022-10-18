@@ -1,10 +1,11 @@
 import React from 'react';
+import { Platform } from 'react-native';
 import { ComponentStory, ComponentMeta } from '@storybook/react-native';
 import Icon from '.';
 import CenterView from '../../storybook/preview/CenterView';
 import IconView from '../../storybook/preview/Icon';
 import { getColorList, getMaterialSymbols, getCustomIcons } from '../../storybook/utils';
-import { Platform } from 'react-native';
+import { buildExcludeArgTypes } from '../../storybook/utils';
 import pkg from './package.json';
 
 export default {
@@ -57,21 +58,7 @@ CustomIcons.args = {
 };
 CustomIcons.argTypes = {
   name: getCustomIcons(),
-  color: {
-    table: {
-      disable: true,
-    },
-  },
-  filled: {
-    table: {
-      disable: true,
-    },
-  },
-  disabled: {
-    table: {
-      disable: true,
-    },
-  },
+  argTypes: buildExcludeArgTypes(['color', 'filled', 'disabled']),
 };
 
 export const WithSourceProp = TemplateManual.bind({});
