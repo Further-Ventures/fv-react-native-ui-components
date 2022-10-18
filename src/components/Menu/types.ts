@@ -14,6 +14,6 @@ export interface IMenuRef {
 
 export interface IMenu extends IList {
   disabledTriggerPress?: boolean;
-  itemWidth?: ItemWidth;
+  itemWidth?: ItemWidth | number;
   onVisibleChange?: (visible: boolean) => void;
 }

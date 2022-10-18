@@ -1,15 +1,21 @@
-import React, { useState } from 'react';
+import React, { forwardRef, useEffect, useState, useRef, useImperativeHandle } from 'react';
 import { View, TouchableOpacity } from 'react-native';
 import Input, { IInputProps } from '../Input';
 import Icon, { IIconProps } from '../Icon';
 import Text from '../Text';
-import Elevation from '../Elevation';
+import Menu from '../Menu';
+import { IMenu } from '../Menu/types';
+
+import { IMenuRef } from '../Menu/types';
+
+import Loader from '../Loader';
 import useStyles from './styles';
 
 export type TDropdownItem = {
   icon?: IIconProps['name'];
-  text?: string;
+  title: string;
 };
+
 export interface ISearchBar
   extends Omit<
     IInputProps,
@@ -25,34 +31,95 @@ export interface ISearchBar
   > {
   info?: string;
   dropdownItems?: TDropdownItem[];
+  loading?: boolean;
 }
 
-const SearchBar = ({ disabled, info, dropdownItems, ...rest }: ISearchBar) => {
-  const styles = useStyles();
-  const [value, setValue] = useState('');
-  const handleReset = () => setValue('');
-  const handleChange = (e: string) => setValue(e);
-  return (
-    <View style={styles.wrapper}>
-      <Input
-        disabled={disabled}
-        controlled={true}
-        value={value}
-        onChangeText={handleChange}
-        {...rest}
-        leftContent={(_, disabled) => <Icon name='search' color='text-hint' disabled={disabled} />}
-        rightContent={
-          <>
-            {value ? (
-              <TouchableOpacity disabled={disabled} onPress={handleReset}>
-                <Icon name='cancel' filled color='text-hint' />
-              </TouchableOpacity>
-            ) : null}
-          </>
-        }
-        size='small'
-      />
-      {!disabled && (
+const renderIcon =
+  (name: string) =>
+  // eslint-disable-next-line react/display-name
+  ({ disabled }: { disabled?: boolean }) =>
+    <Icon filled color='text-primary' disabled={disabled} name={name} />;
+
+const SearchBar = forwardRef<IMenuRef, ISearchBar>(
+  ({ disabled, info, dropdownItems, loading = false, onChangeText, ...rest }, ref) => {
+    const styles = useStyles();
+    const menuRef = useRef<IMenuRef>(null);
+    const [value, setValue] = useState('');
+    const [inputWidth, setInputWidth] = useState(0);
+    const handleReset = () => setValue('');
+    const handleChange = (e: string) => {
+      setValue(e);
+      onChangeText?.(e);
+    };
+    const listItems: IMenu['listItems'] = dropdownItems?.map(({ title, icon }) => ({
+      title,
+      ...(icon ? { leftContent: renderIcon(icon) } : {}),
+    })) || [{ title: 'Add title' }];
+    useEffect(() => {
+      if (disabled) {
+        closeMenu();
+      }
+    }, [disabled]);
+    const generateRightContent = () => {
+      if (loading) {
+        return <Loader variant='circular' size={16} />;
+      }
+      if (value) {
+        return (
+          <TouchableOpacity disabled={disabled} onPress={handleReset}>
+            <Icon name='cancel' filled color='text-hint' />
+          </TouchableOpacity>
+        );
+      }
+    };
+
+    const openMenu = () => {
+      menuRef.current?.open();
+    };
+
+    const closeMenu = () => {
+      menuRef.current?.close();
+    };
+
+    useImperativeHandle(ref, () => ({
+      open: openMenu,
+      close: closeMenu,
+    }));
+
+    const handleMenuSelect = (index: number[]) => {
+      setValue(listItems?.[index[0]]?.title);
+    };
+
+    return (
+      <>
+        <Menu
+          ref={menuRef}
+          onSelect={handleMenuSelect}
+          itemWidth={inputWidth}
+          itemHeight='thick'
+          listItems={listItems}
+        >
+          <View
+            style={styles.wrapper}
+            onLayout={(e) => {
+              const { layout } = e.nativeEvent;
+              setInputWidth(layout.width);
+            }}
+          >
+            <Input
+              disabled={disabled}
+              controlled={true}
+              value={value}
+              {...rest}
+              onChangeText={handleChange}
+              leftContent={(_, disabled) => (
+                <Icon name='search' color='text-hint' disabled={disabled} />
+              )}
+              rightContent={generateRightContent()}
+              size='small'
+            />
+          </View>
+        </Menu>
         <View style={styles.bottomContent}>
           {!!info && (
             <View style={styles.infoTextWrapper}>
@@ -61,21 +128,10 @@ const SearchBar = ({ disabled, info, dropdownItems, ...rest }: ISearchBar) => {
               </Text>
             </View>
           )}
-          {!!dropdownItems?.length && (
-            <Elevation variant='light' style={styles.dropdown}>
-              {dropdownItems.map(({ icon, text }, i) => (
-                <View key={i} style={styles.dropdownItem}>
-                  {!!icon && <Icon name={icon} color='text-primary' filled />}
-                  <View style={styles.dropdownText}>
-                    <Text variant='p2-regular'>{text}</Text>
-                  </View>
-                </View>
-              ))}
-            </Elevation>
-          )}
         </View>
-      )}
-    </View>
-  );
-};
+      </>
+    );
+  }
+);
+SearchBar.displayName = 'SearchBar';
 export default SearchBar;
