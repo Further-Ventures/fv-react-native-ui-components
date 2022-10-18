@@ -18,6 +18,7 @@ export interface IList extends Omit<FlatListProps<IListItem>, 'data' | 'renderIt
   initialSelected?: number[];
   onSelect?: (selected: number[]) => void;
   onlyCustomContent?: boolean;
+  dividerEnabled?: boolean;
 }
 
 function isListItems(list: IListItem[] | string[]): list is IListItem[] {
@@ -32,6 +33,7 @@ const List: React.FC<IList> = ({
   initialSelected,
   onSelect,
   onlyCustomContent,
+  dividerEnabled,
   ...rest
 }) => {
   const items = useMemo(
@@ -70,6 +72,7 @@ const List: React.FC<IList> = ({
   const renderItem: ListRenderItem<IListItem> = ({ item, index }) => {
     return (
       <ListItem
+        dividerEnabled={dividerEnabled}
         selection={selection}
         {...item}
         initialChecked={initialSelected?.includes(index)}
