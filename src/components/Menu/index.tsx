@@ -19,6 +19,7 @@ const Menu = forwardRef<IMenuRef, IMenu>(
       children,
       listItems,
       selection,
+      onlyCustomContent,
       ...rest
     },
     ref
@@ -29,7 +30,7 @@ const Menu = forwardRef<IMenuRef, IMenu>(
     });
     const [visible, setVisible] = useState(false);
     const { height: windowHeight, width: windowWidth } = useWindowDimensions();
-    const styles = useStyles(itemWidth, itemHeight, menuPosition);
+    const styles = useStyles(itemWidth, itemHeight, menuPosition, onlyCustomContent);
     const triggerRef = useRef<View>(null);
 
     const menuHeight = listItems.length * getHeight(itemHeight);
@@ -90,6 +91,7 @@ const Menu = forwardRef<IMenuRef, IMenu>(
           scrollEnabled={useScroll}
           style={useScroll && { maxHeight: windowHeight * MENU_SCREEN_FACTOR }}
           selection={selection}
+          onlyCustomContent={onlyCustomContent}
           {...rest}
         />
       );
@@ -124,3 +126,4 @@ const Menu = forwardRef<IMenuRef, IMenu>(
 Menu.displayName = 'Menu';
 
 export default Menu;
+export type { IMenu, IMenuRef };

@@ -112,7 +112,7 @@ const SearchBar = forwardRef<IMenuRef, ISearchBar>(
               value={value}
               {...rest}
               onChangeText={handleChange}
-              leftContent={(_, disabled) => (
+              leftContent={(_: any, disabled: boolean) => (
                 <Icon name='search' color='text-hint' disabled={disabled} />
               )}
               rightContent={generateRightContent()}

@@ -2,15 +2,22 @@ import React, { useMemo, useState } from 'react';
 import { FlatListProps, FlatList, ListRenderItem } from 'react-native';
 import { ItemHeight } from '../../utils/itemSize';
 import ListItem, { IBaseListItem } from './ListItem';
+import { IVariantBaseProps } from '../Text';
 
-export interface IListItem extends Omit<IBaseListItem, 'selection' | 'checked' | 'itemHeight'> {}
+export interface IListItem
+  extends Omit<
+    IBaseListItem,
+    'selection' | 'checked' | 'itemHeight' | 'onlyCustomContent' | 'titleVariant'
+  > {}
 
 export interface IList extends Omit<FlatListProps<IListItem>, 'data' | 'renderItem'> {
   listItems: IListItem[] | string[];
   itemHeight?: ItemHeight;
+  titleVariant?: IVariantBaseProps['variant'];
   selection?: 'none' | 'check-icon' | 'check-box';
   initialSelected?: number[];
   onSelect?: (selected: number[]) => void;
+  onlyCustomContent?: boolean;
 }
 
 function isListItems(list: IListItem[] | string[]): list is IListItem[] {
@@ -20,9 +27,11 @@ function isListItems(list: IListItem[] | string[]): list is IListItem[] {
 const List: React.FC<IList> = ({
   listItems,
   itemHeight = 'thick',
+  titleVariant,
   selection,
   initialSelected,
   onSelect,
+  onlyCustomContent,
   ...rest
 }) => {
   const items = useMemo(
@@ -65,7 +74,9 @@ const List: React.FC<IList> = ({
         {...item}
         initialChecked={initialSelected?.includes(index)}
         itemHeight={itemHeight}
+        titleVariant={titleVariant}
         onPress={() => onPressWrapper(item, index)}
+        onlyCustomContent={onlyCustomContent}
       />
     );
   };

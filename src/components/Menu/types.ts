@@ -1,7 +1,6 @@
 import { IList } from '../List';
+import { ItemWidth } from '../../utils/itemSize';
 
-export type ItemWidth = 'small' | 'medium' | 'large';
-export type ItemHeight = 'thin' | 'thick';
 export interface IMenuPosition {
   top: number;
   left: number;

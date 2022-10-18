@@ -23,8 +23,8 @@ export default {
 
 const Template: ComponentStory<typeof SearchBar> = (args) => <SearchBarPreview {...args} />;
 
-export const Contained = Template.bind({});
-Contained.args = {
+export const Default = Template.bind({});
+Default.args = {
   info: 'This is an info text',
   placeholder: 'Placeholder',
   dropdownItems: [

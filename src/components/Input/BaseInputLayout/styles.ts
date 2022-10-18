@@ -20,7 +20,12 @@ const contentMargin = {
 } as const;
 
 export default createUseStyles(
-  (theme, hasLabel, size: Required<IBaseInputLayoutProps>['size']) => ({
+  (
+    theme,
+    hasLabel: boolean,
+    inputExists: boolean,
+    size: Required<IBaseInputLayoutProps>['size']
+  ) => ({
     baseInput: {
       height: height[size],
       borderWidth: inputConstants.BORDER_WIDTH,
@@ -72,11 +77,12 @@ export default createUseStyles(
       alignSelf: 'flex-start',
       flex: 1,
     },
+
     rightContent: {
-      marginLeft: contentMargin[size],
+      marginLeft: inputExists ? contentMargin[size] : 0,
     },
     leftContent: {
-      marginRight: contentMargin[size],
+      marginRight: inputExists ? contentMargin[size] : 0,
     },
   })
 );

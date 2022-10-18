@@ -1,10 +1,15 @@
 import { createUseStyles } from '../Theme';
-import { ItemHeight, ItemWidth } from './types';
 import { IMenuPosition } from './types';
-import { getWidth } from '../../utils/itemSize';
+import { getWidth, ItemHeight, ItemWidth } from '../../utils/itemSize';
 
 export default createUseStyles(
-  (theme, itemWidth: ItemWidth | number, itemHeight: ItemHeight, menuPosition: IMenuPosition) => ({
+  (
+    theme,
+    itemWidth: ItemWidth,
+    itemHeight: ItemHeight,
+    menuPosition: IMenuPosition,
+    onlyCustomContent?: boolean
+  ) => ({
     overlay: {
       position: 'absolute',
       top: -100,
@@ -16,7 +21,7 @@ export default createUseStyles(
     dropdown: {
       ...menuPosition,
       zIndex: 101,
-      width: getWidth(itemWidth),
+      width: onlyCustomContent ? undefined : getWidth(itemWidth),
       position: 'absolute',
       borderRadius: 8,
     },
