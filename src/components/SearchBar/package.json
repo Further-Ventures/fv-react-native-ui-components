@@ -6,7 +6,10 @@
     "react": ">=17.0.2",
     "@further-ventures/fv-react-native-ui-components.form": ">=0.0.1",
     "@further-ventures/fv-react-native-ui-components.input": ">=0.0.1",
+    "@further-ventures/fv-react-native-ui-components.icon": ">=0.0.1",
+    "@further-ventures/fv-react-native-ui-components.text": ">=0.0.1",
     "@further-ventures/fv-react-native-ui-components.menu": ">=0.0.1",
+    "@further-ventures/fv-react-native-ui-components.loader": ">=0.0.1",
     "@further-ventures/fv-react-native-ui-components.theme": ">=0.0.1"
   }
 }

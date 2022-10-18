@@ -4,11 +4,9 @@ import Input, { IInputProps } from '../Input';
 import Icon, { IIconProps } from '../Icon';
 import Text from '../Text';
 import Menu from '../Menu';
-import { IMenu } from '../Menu/types';
-
-import { IMenuRef } from '../Menu/types';
-
 import Loader from '../Loader';
+import { IMenu, IMenuRef } from '../Menu/types';
+
 import useStyles from './styles';
 
 export type TDropdownItem = {
