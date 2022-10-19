@@ -25,7 +25,7 @@ export interface IBaseInputLayoutProps extends PressableProps {
   maxValueLength?: number;
   currentValueLength?: number;
   showLength?: boolean;
-  onFocusAnimationEnabled?: boolean;
+  isFocusAnimationEnabled?: boolean;
 }
 
 export interface IInputSize {
@@ -52,13 +52,13 @@ const BaseInputLayout = React.forwardRef<View, IBaseInputLayoutProps>(
       currentValueLength = 0,
       maxValueLength,
       showLength,
-      onFocusAnimationEnabled,
+      isFocusAnimationEnabled,
       ...rest
     },
     ref
   ) => {
     const displaySmallLabel = Boolean(
-      (onFocusAnimationEnabled && isFocused) || currentValueLength > 0
+      (isFocusAnimationEnabled && isFocused) || currentValueLength > 0
     );
     const labelAnim = useRef(new Animated.Value(displaySmallLabel ? 1 : 0)).current;
     const inputAnim = useRef(new Animated.Value(displaySmallLabel ? 1 : 0)).current;

@@ -40,6 +40,7 @@ const SelectInputLayout: FC<ISelectInputLayout> = ({
       label={label}
       error={isOpened ? undefined : error}
       hint={isOpened ? undefined : hint}
+      isFocusAnimationEnabled={false}
       {...rest}
     >
       {children}

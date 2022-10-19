@@ -6,6 +6,7 @@ import CenterView from '../../storybook/preview/CenterView';
 import { Platform } from 'react-native';
 import pkg from './package.json';
 import Icon from '../Icon';
+import { buildExcludeArgTypes } from '../../storybook/utils';
 
 export default {
   title: 'Input',
@@ -20,6 +21,19 @@ export default {
         type: 'boolean',
       },
     },
+    ...buildExcludeArgTypes([
+      'leftContent',
+      'rightContent',
+      'style',
+      'prefixStyle',
+      'showLength',
+      'controlled',
+      'currentValueLength',
+      'maxValueLength',
+      'onVisibleChange',
+      'clearFormValueOnUnmount',
+      'name',
+    ]),
   },
   args: {
     label: 'Label',
