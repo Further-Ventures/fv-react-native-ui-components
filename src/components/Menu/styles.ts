@@ -20,9 +20,9 @@ export default createUseStyles(
     },
     dropdown: {
       ...menuPosition,
-      zIndex: 101,
       width: onlyCustomContent ? undefined : getWidth(itemWidth),
       position: 'absolute',
+      backgroundColor: theme.background.primary,
       borderRadius: 8,
     },
     highZ: { zIndex: 1000 },

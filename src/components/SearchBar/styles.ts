@@ -2,7 +2,7 @@ import { createUseStyles } from '../Theme';
 
 export default createUseStyles(() => ({
   wrapper: {},
-  bottomContent: {},
+  bottomContent: { zIndex: -1 },
   dropdown: {
     position: 'absolute',
     top: 0,

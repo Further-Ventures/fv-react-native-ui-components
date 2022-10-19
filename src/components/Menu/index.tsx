@@ -109,11 +109,7 @@ const Menu = forwardRef<IMenuRef, IMenu>(
 
     return (
       <>
-        <Pressable
-          style={styles.highZ}
-          ref={triggerRef}
-          onPress={() => !disabledTriggerPress && handleOpen()}
-        >
+        <Pressable ref={triggerRef} onPress={() => !disabledTriggerPress && handleOpen()}>
           {children}
           {renderContext()}
         </Pressable>
