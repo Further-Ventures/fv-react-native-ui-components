@@ -5,6 +5,7 @@ import CenterView from '../../storybook/preview/CenterView';
 import { Platform } from 'react-native';
 import pkg from './package.json';
 import Icon from '../Icon';
+import { buildExcludeArgTypes } from '../../storybook/utils';
 
 const renderIcon =
   (name: string) =>
@@ -44,6 +45,19 @@ export default {
       control: { type: 'select' },
       options: ['thin', 'thick'],
     },
+    ...buildExcludeArgTypes([
+      'leftContent',
+      'rightContent',
+      'onChange',
+      'style',
+      'showLength',
+      'currentValueLength',
+      'maxValueLength',
+      'onVisibleChange',
+      'isFocusAnimationEnabled',
+      'clearFormValueOnUnmount',
+      'name',
+    ]),
   },
   args: {
     itemWidth: 'medium',
@@ -69,7 +83,7 @@ Hint.args = {
 
 export const Error = Template.bind({});
 Error.args = {
-  error: 'This is a error.',
+  error: 'This is an error.',
 };
 
 export const Disabled = Template.bind({});

@@ -127,7 +127,7 @@ const Input = forwardRef<TextInput, IInputProps>(
         currentValueLength={controlled ? value?.length : internalValue?.length}
         rightContent={rightContent}
         leftContent={leftContent}
-        onFocusAnimationEnabled
+        isFocusAnimationEnabled
       >
         <View style={styles.inputContainer}>
           {prefix && <Text style={[styles.prefix, prefixStyle]}>{prefix}</Text>}

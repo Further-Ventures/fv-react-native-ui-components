@@ -4,6 +4,7 @@ import { ComponentMeta, ComponentStory } from '@storybook/react-native';
 import MultiSelect from './index';
 import pkg from './package.json';
 import React, { useState } from 'react';
+import { buildExcludeArgTypes } from '../../storybook/utils';
 
 const options = [
   { label: 'Option 1', value: 1 },
@@ -37,6 +38,19 @@ export default {
       control: { type: 'select' },
       options: ['text', 'tag'],
     },
+    ...buildExcludeArgTypes([
+      'leftContent',
+      'rightContent',
+      'onChange',
+      'style',
+      'showLength',
+      'currentValueLength',
+      'maxValueLength',
+      'onVisibleChange',
+      'isFocusAnimationEnabled',
+      'clearFormValueOnUnmount',
+      'name',
+    ]),
   },
   args: {
     itemWidth: 'large',
