@@ -24,7 +24,8 @@ export interface IBaseListItem {
   disabled?: boolean;
   // Disable text rendering. We still need the title prop because it's used as a key in the list
   onlyCustomContent?: boolean;
-  dividerEnabled?: boolean;
+  dividerBottomEnabled?: boolean;
+  dividerTopEnabled?: boolean;
 }
 
 const ListItem: React.FC<IBaseListItem> = ({
@@ -40,7 +41,8 @@ const ListItem: React.FC<IBaseListItem> = ({
   selection,
   disabled,
   onlyCustomContent,
-  dividerEnabled,
+  dividerBottomEnabled,
+  dividerTopEnabled,
   ...rest
 }) => {
   const styles = useStyles(itemHeight);
@@ -88,6 +90,7 @@ const ListItem: React.FC<IBaseListItem> = ({
 
   return (
     <>
+      {dividerTopEnabled && renderDivider()}
       <Pressable
         style={({ pressed }) => [styles.listItem, pressed && styles.pressed]}
         onPress={onPressWrapper}
@@ -130,7 +133,7 @@ const ListItem: React.FC<IBaseListItem> = ({
         </View>
         {renderRightContent()}
       </Pressable>
-      {dividerEnabled && renderDivider()}
+      {dividerBottomEnabled && renderDivider()}
     </>
   );
 };

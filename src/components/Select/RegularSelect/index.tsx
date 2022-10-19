@@ -17,7 +17,7 @@ const Select = <T,>({
   style,
   hint,
   onVisibleChange,
-  dividerEnabled,
+  dividerBottomEnabled,
   ...rest
 }: IRegularSelect<T>) => {
   const menuRef = useRef<IMenuRef>(null);
@@ -56,7 +56,7 @@ const Select = <T,>({
       ref={menuRef}
       disabledTriggerPress
       listItems={data}
-      dividerEnabled={dividerEnabled}
+      dividerBottomEnabled={dividerBottomEnabled}
     >
       <SelectInputLayout
         isOpened={isOpened}
