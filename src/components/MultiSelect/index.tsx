@@ -14,7 +14,7 @@ export interface ISelectItem<T> {
 
 export interface IMultiSelect<T>
   extends IBaseInputLayoutProps,
-    Pick<IMenu, 'itemWidth' | 'itemHeight' | 'onVisibleChange'> {
+    Pick<IMenu, 'itemWidth' | 'itemHeight' | 'onVisibleChange' | 'dividerEnabled'> {
   items: ISelectItem<T>[];
   label?: string;
   selection?: Exclude<IMenu['selection'], 'none'>;
@@ -40,6 +40,7 @@ const MultiSelect = <T,>({
   selectedType,
   disabled,
   onVisibleChange,
+  dividerEnabled,
   ...rest
 }: IMultiSelect<T>) => {
   const menuRef = useRef<IMenuRef>(null);
@@ -133,6 +134,7 @@ const MultiSelect = <T,>({
       listItems={data}
       selection={selection}
       initialSelected={getSelectedIndexes()}
+      dividerEnabled={dividerEnabled}
     >
       <SelectInputLayout
         isOpened={isOpened}

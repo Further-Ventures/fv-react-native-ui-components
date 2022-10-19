@@ -24,6 +24,7 @@ export interface IBaseListItem {
   disabled?: boolean;
   // Disable text rendering. We still need the title prop because it's used as a key in the list
   onlyCustomContent?: boolean;
+  dividerEnabled?: boolean;
 }
 
 const ListItem: React.FC<IBaseListItem> = ({
@@ -39,6 +40,7 @@ const ListItem: React.FC<IBaseListItem> = ({
   selection,
   disabled,
   onlyCustomContent,
+  dividerEnabled,
   ...rest
 }) => {
   const styles = useStyles(itemHeight);
@@ -82,45 +84,54 @@ const ListItem: React.FC<IBaseListItem> = ({
     return null;
   };
 
+  const renderDivider = () => <View style={styles.divider} />;
+
   return (
-    <Pressable
-      style={({ pressed }) => [styles.listItem, pressed && styles.pressed]}
-      onPress={onPressWrapper}
-      disabled={disabled}
-      {...rest}
-    >
-      <View style={styles.content}>
-        {renderLeftContent()}
-        {!onlyCustomContent && (
-          <View style={styles.textContent}>
-            {!!label && (
+    <>
+      <Pressable
+        style={({ pressed }) => [styles.listItem, pressed && styles.pressed]}
+        onPress={onPressWrapper}
+        disabled={disabled}
+        {...rest}
+      >
+        <View style={styles.content}>
+          {renderLeftContent()}
+          {!onlyCustomContent && (
+            <View style={styles.textContent}>
+              {!!label && (
+                <Text
+                  variant='caption-regular'
+                  color='text-hint'
+                  disabled={disabled}
+                  style={styles.label}
+                >
+                  {label}
+                </Text>
+              )}
               <Text
-                variant='caption-regular'
-                color='text-hint'
+                variant={titleVariant || 'p2-regular'}
+                color='text-secondary'
                 disabled={disabled}
-                style={styles.label}
               >
-                {label}
+                {title}
               </Text>
-            )}
-            <Text variant={titleVariant || 'p2-regular'} color='text-secondary' disabled={disabled}>
-              {title}
-            </Text>
-            {!!subtitle && (
-              <Text
-                variant='label-14-regular'
-                color='text-hint'
-                disabled={disabled}
-                style={styles.subtitle}
-              >
-                {subtitle}
-              </Text>
-            )}
-          </View>
-        )}
-      </View>
-      {renderRightContent()}
-    </Pressable>
+              {!!subtitle && (
+                <Text
+                  variant='label-14-regular'
+                  color='text-hint'
+                  disabled={disabled}
+                  style={styles.subtitle}
+                >
+                  {subtitle}
+                </Text>
+              )}
+            </View>
+          )}
+        </View>
+        {renderRightContent()}
+      </Pressable>
+      {dividerEnabled && renderDivider()}
+    </>
   );
 };
 

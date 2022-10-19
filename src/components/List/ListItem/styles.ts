@@ -30,4 +30,9 @@ export default createUseStyles((theme, itemHeight: ItemHeight) => ({
   textContent: {
     justifyContent: 'center',
   },
+  divider: {
+    backgroundColor: theme.grey.light,
+    height: 1,
+    width: '100%',
+  },
 }));

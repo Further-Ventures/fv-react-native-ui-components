@@ -33,6 +33,7 @@ export default {
   args: {
     itemWidth: 'medium',
     itemHeight: 'thick',
+    dividerEnabled: false,
     onSelect: (selected) => alert(`selected index: ${selected}`),
   },
 } as ComponentMeta<typeof Menu>;

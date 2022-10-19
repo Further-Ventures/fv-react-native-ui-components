@@ -1,6 +1,6 @@
 import React from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react-native';
-import Input, { IInputProps } from '.';
+import Input from '.';
 import Button from '../Button';
 import CenterView from '../../storybook/preview/CenterView';
 import { Platform } from 'react-native';
@@ -27,29 +27,10 @@ export default {
     hint: 'This is a hint text to help user.',
     error: '',
     disabled: false,
-    buttonText: '',
   },
 } as ComponentMeta<typeof Input>;
 
-const Template: ComponentStory<typeof Input> = (args: IInputProps & { buttonText?: string }) => {
-  const { buttonText } = args;
-  if (buttonText) {
-    return (
-      <Input
-        rightContent={({ hasError, disabled }) => (
-          <Button
-            variant={'outlined'}
-            shape={'curved'}
-            label={buttonText}
-            size={'mini'}
-            error={hasError}
-            disabled={disabled}
-          />
-        )}
-        {...args}
-      />
-    );
-  }
+const Template: ComponentStory<typeof Input> = (args) => {
   return <Input {...args} />;
 };
 
@@ -64,8 +45,17 @@ WithLeftIcon.args = {
 };
 export const WithButton = Template.bind({});
 WithButton.args = {
-  buttonText: 'Button CTA',
-} as any;
+  rightContent: ({ hasError, disabled }) => (
+    <Button
+      variant={'outlined'}
+      shape={'curved'}
+      label={'Button CTA'}
+      size={'mini'}
+      error={hasError}
+      disabled={disabled}
+    />
+  ),
+};
 
 export const Numeric = Template.bind({});
 Numeric.args = {

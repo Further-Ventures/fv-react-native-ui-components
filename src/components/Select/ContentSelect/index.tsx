@@ -13,6 +13,7 @@ const ContentSelect = <T,>({
   error,
   hint,
   onVisibleChange,
+  dividerEnabled,
   ...rest
 }: IContentSelect<T>) => {
   const menuRef = useRef<IMenuRef>(null);
@@ -51,6 +52,7 @@ const ContentSelect = <T,>({
       disabledTriggerPress
       listItems={data}
       onlyCustomContent={true}
+      dividerEnabled={dividerEnabled}
     >
       <SelectInputLayout
         isOpened={isOpened}
