@@ -44,7 +44,8 @@ export default {
   args: {
     itemHeight: 'thick',
     selection: 'none',
-    dividerEnabled: false,
+    dividerBottomEnabled: false,
+    dividerTopEnabled: false,
     onSelect,
   },
 } as ComponentMeta<typeof List>;

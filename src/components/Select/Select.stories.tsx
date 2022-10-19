@@ -51,7 +51,7 @@ export default {
     label: 'Label',
     disabled: false,
     items: options,
-    dividerEnabled: false,
+    dividerBottomEnabled: false,
   },
 } as ComponentMeta<typeof Select>;
 
