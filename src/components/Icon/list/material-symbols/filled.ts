@@ -13,6 +13,8 @@ export { default as account_circle } from '@material-symbols/svg-400/rounded/acc
 export { default as error } from '@material-symbols/svg-400/rounded/error-fill.svg';
 export { default as west } from '@material-symbols/svg-400/rounded/west-fill.svg';
 export { default as east } from '@material-symbols/svg-400/rounded/east-fill.svg';
+export { default as search } from '@material-symbols/svg-400/rounded/search-fill.svg';
 export { default as visibility } from '@material-symbols/svg-400/rounded/visibility-fill.svg';
 export { default as visibility_off } from '@material-symbols/svg-400/rounded/visibility_off-fill.svg';
+export { default as question_mark } from '@material-symbols/svg-400/rounded/question_mark-fill.svg';
 export { default as credit_card } from '@material-symbols/svg-400/rounded/credit_card-fill.svg';

@@ -19,6 +19,7 @@ import { applyDigitMask } from './utils';
 export interface IInputProps extends TextInputProps {
   name?: string;
   label?: string;
+  size?: IBaseInputLayoutProps['size'];
   clearFormValueOnUnmount?: boolean;
   hint?: string;
   error?: string | boolean;
@@ -44,6 +45,7 @@ const Input = forwardRef<TextInput, IInputProps>(
       error,
       value = '',
       label,
+      size = 'medium',
       hint,
       style,
       disabled,
@@ -80,6 +82,7 @@ const Input = forwardRef<TextInput, IInputProps>(
 
     /** Wrappers to merge form and props methods */
     const onChangeTextWrapper = (text: string) => {
+      if (disabled) return;
       let nextValue = text;
 
       setInternalValue((prevValue) => {
@@ -114,6 +117,7 @@ const Input = forwardRef<TextInput, IInputProps>(
         style={style}
         label={label}
         isFocused={isFocused}
+        size={size}
         onPress={handleFocus}
         error={errorMessage}
         disabled={disabled}
@@ -129,6 +133,8 @@ const Input = forwardRef<TextInput, IInputProps>(
           {prefix && <Text style={[styles.prefix, prefixStyle]}>{prefix}</Text>}
           <TextInput
             ref={inputRef}
+            multiline={true}
+            numberOfLines={10}
             style={[styles.input, disabled && styles.disabledInput]}
             value={controlled ? value : internalValue}
             onBlur={onBlurWrapper}

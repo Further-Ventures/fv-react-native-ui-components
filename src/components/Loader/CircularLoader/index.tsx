@@ -8,18 +8,21 @@ import { animate } from '../common/functions';
 interface ICircularLoaderProps {
   progress?: number;
   flat?: boolean;
+  size?: number;
 }
-
-const DIAMETER = 48;
-const STROKE_WIDTH = 4;
-const INNER_RADIUS = DIAMETER / 2 /* radius */ - STROKE_WIDTH / 2;
 
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
 
-const CircularLoader: React.FC<ICircularLoaderProps> = ({ flat = false, progress = -1 }) => {
+const CircularLoader: React.FC<ICircularLoaderProps> = ({
+  flat = false,
+  progress = -1,
+  size = 48,
+}) => {
   const styles = useStyles();
   const isProgress = progress >= 0 && progress <= 100;
   const { theme } = useTheme();
+  const STROKE_WIDTH = Math.round(size / 12);
+  const INNER_RADIUS = size / 2 /* radius */ - STROKE_WIDTH / 2;
   const circum = INNER_RADIUS * Math.PI * 2;
   const LONGEST = (circum * 3) / 4;
   const SHORTEST = (circum * 1) / 4;
@@ -27,7 +30,7 @@ const CircularLoader: React.FC<ICircularLoaderProps> = ({ flat = false, progress
   const loopAnimation = useRef(new Animated.Value(0)).current;
 
   const animatePath = () => {
-    Animated.sequence([
+    return Animated.sequence([
       animate(pathLengthAnimation, SHORTEST),
       animate(pathLengthAnimation, LONGEST),
     ]).start((event) => {
@@ -38,6 +41,7 @@ const CircularLoader: React.FC<ICircularLoaderProps> = ({ flat = false, progress
   };
 
   const animateRotation = () => Animated.loop(animate(loopAnimation, 1)).start();
+
   useEffect(() => {
     if (!isProgress) {
       animatePath();
@@ -66,7 +70,7 @@ const CircularLoader: React.FC<ICircularLoaderProps> = ({ flat = false, progress
 
   return (
     <Animated.View style={[styles.wrapper, rotationStyle]}>
-      <Svg width={DIAMETER} height={DIAMETER}>
+      <Svg width={size} height={size}>
         <AnimatedCircle
           stroke={theme.primary.main}
           fill='none'

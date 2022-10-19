@@ -11,13 +11,20 @@ export default createUseStyles(
     onlyCustomContent?: boolean
   ) => ({
     overlay: {
-      width: '100%',
-      height: '100%',
+      position: 'absolute',
+      top: -100,
+      bottom: -100,
+      left: -100,
+      right: -100,
+      zIndex: 100,
     },
     dropdown: {
       ...menuPosition,
       width: onlyCustomContent ? undefined : getWidth(itemWidth),
       position: 'absolute',
+      backgroundColor: theme.background.primary,
+      borderRadius: 8,
     },
+    highZ: { zIndex: 1000 },
   })
 );

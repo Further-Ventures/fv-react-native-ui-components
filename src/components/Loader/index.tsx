@@ -7,6 +7,7 @@ import BarLoader from './BarLoader';
 export interface ILoaderComponents {
   progress?: number;
   flat?: boolean;
+  size?: number;
 }
 interface ILoaderProps extends ILoaderComponents {
   variant?: 'circular' | 'bar';

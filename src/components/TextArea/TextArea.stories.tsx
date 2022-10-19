@@ -17,26 +17,18 @@ export default {
 } as ComponentMeta<typeof TextArea>;
 
 const Template: ComponentStory<typeof TextArea> = (args) => <TextArea {...args} />;
-const TemplateManual: ComponentStory<typeof TextArea> = (args) => <TextArea {...args} />;
 
-export const Manual = TemplateManual.bind({});
+export const Manual = Template.bind({});
 Manual.args = {
   name: 'Name',
   disabled: false,
   errorText: 'Sample error',
   placeholder: 'Placeholder',
-  value: '',
   textLimit: 10,
 };
 
-export const WithValue = Template.bind({});
-WithValue.args = {
-  value: 'Sample text',
-};
-
-export const WithValueHint = Template.bind({});
-WithValueHint.args = {
-  value: 'Sample text',
+export const WithHint = Template.bind({});
+WithHint.args = {
   textLimit: 100,
 };
 

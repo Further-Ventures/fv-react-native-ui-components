@@ -1,13 +1,12 @@
 import React, { forwardRef, useImperativeHandle, useRef, useState } from 'react';
 import { IMenu, IMenuPosition, IMenuRef } from './types';
 import useStyles from './styles';
-import { Modal, Pressable, useWindowDimensions, View } from 'react-native';
+import { Pressable, useWindowDimensions, View } from 'react-native';
 import Elevation from '../Elevation';
 import List from '../List';
 import { getHeight, getWidth } from '../../utils/itemSize';
 
 const MENU_SCREEN_FACTOR = 0.4;
-const MENU_OFFSET = 8;
 
 const Menu = forwardRef<IMenuRef, IMenu>(
   (
@@ -41,16 +40,17 @@ const Menu = forwardRef<IMenuRef, IMenu>(
     const measureTrigger = () => {
       triggerRef.current?.measure((x, y, width, height, pageX, pageY) => {
         const xOverlap = Math.max(pageX + menuWidth - windowWidth, 0);
-        const left = pageX - xOverlap;
+        const left = xOverlap;
+        const top = height;
         if (pageY + height + shrinkMenuHeight < windowHeight) {
           // set to bottom
           setMenuPosition({
-            top: pageY + height + MENU_OFFSET,
+            top,
             left,
           });
         } else {
           // set to top
-          setMenuPosition({ top: pageY - shrinkMenuHeight - MENU_OFFSET, left });
+          setMenuPosition({ top: -1 * shrinkMenuHeight, left });
         }
       });
     };
@@ -98,19 +98,23 @@ const Menu = forwardRef<IMenuRef, IMenu>(
     };
 
     const renderContext = () => (
-      <Modal visible={visible} transparent animationType='none'>
-        <Pressable style={styles.overlay} onPress={handleClose} />
-        <Elevation variant='extraLight' style={styles.dropdown}>
-          {renderItems()}
-        </Elevation>
-      </Modal>
+      <>
+        {visible && (
+          <Elevation variant='extraLight' style={styles.dropdown}>
+            {renderItems()}
+          </Elevation>
+        )}
+      </>
     );
 
     return (
-      <Pressable ref={triggerRef} onPress={() => !disabledTriggerPress && handleOpen()}>
-        {children}
-        {renderContext()}
-      </Pressable>
+      <>
+        <Pressable ref={triggerRef} onPress={() => !disabledTriggerPress && handleOpen()}>
+          {children}
+          {renderContext()}
+        </Pressable>
+        {visible && <Pressable style={styles.overlay} onPress={handleClose} />}
+      </>
     );
   }
 );

@@ -17,6 +17,7 @@
     "CheckboxGroup": "checkboxgroup",
     "Radio": "radio",
     "Switch": "switch",
+    "SearchBar": "searchbar",
     "Toggle": "toggle",
     "Menu": "menu"
   }
