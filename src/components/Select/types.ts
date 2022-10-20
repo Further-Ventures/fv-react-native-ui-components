@@ -4,8 +4,9 @@ import { ContentFunc } from '../Input/BaseInputLayout';
 
 export interface IRegularSelect<T>
   extends Omit<IMultiSelect<T>, 'onChange' | 'values' | 'selectedType'> {
-  onChange: (value: T) => void;
+  onChange: (value: T | undefined) => void;
   value?: T;
+  noneLabel?: string;
 }
 
 export interface IContentSelectItem<T> {

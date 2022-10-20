@@ -43,7 +43,6 @@ const SearchBar = forwardRef<IMenuRef, ISearchBar>(
     const styles = useStyles();
     const menuRef = useRef<IMenuRef>(null);
     const [value, setValue] = useState('');
-    const [menuIsOpen, setMenuIsOpen] = useState(false);
 
     const [inputWidth, setInputWidth] = useState(0);
     const handleReset = () => setValue('');
