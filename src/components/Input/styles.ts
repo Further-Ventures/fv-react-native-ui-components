@@ -1,3 +1,4 @@
+import { Platform } from 'react-native';
 import { createUseStyles } from '../Theme';
 
 export default createUseStyles((theme) => ({
@@ -14,7 +15,7 @@ export default createUseStyles((theme) => ({
     flex: 1,
     textAlignVertical: 'top',
     width: '100%',
-    outlineStyle: 'none',
+    ...(Platform.OS === 'web' ? { outlineStyle: 'none' } : {}),
   },
   disabledInput: {
     color: theme.text.disabled,

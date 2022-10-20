@@ -1,4 +1,4 @@
-import React, { forwardRef, useImperativeHandle, useRef, useState } from 'react';
+import React, { forwardRef, useImperativeHandle, useRef, useState, useEffect } from 'react';
 import { IMenu, IMenuPosition, IChildrenPosition, IMenuRef } from './types';
 import useStyles from './styles';
 import { Pressable, useWindowDimensions, View } from 'react-native';
@@ -62,8 +62,12 @@ const Menu = forwardRef<IMenuRef, IMenu>(
       });
     };
 
+    useEffect(() => {
+      measureTrigger();
+    }, []);
+
     const onVisibleChangeWrapper = (visible: boolean) => {
-      setTimeout(() => setVisible(visible), 10);
+      setVisible(visible);
       onVisibleChange?.(visible);
     };
 
