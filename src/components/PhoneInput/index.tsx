@@ -1,19 +1,17 @@
 import React, { createRef, forwardRef, useImperativeHandle, useState } from 'react';
 import Input, { IInputProps } from '../Input';
 import { NativeSyntheticEvent, TextInput, TextInputFocusEventData } from 'react-native';
-import Select, { IContentSelect } from '../Select';
+import { IContentSelectItem } from '../Select';
+import ContentSelect from '../Select/ContentSelect';
 import useStyles from './styles';
 
-export interface IPhoneInput extends IInputProps, Pick<IContentSelect<string>, 'items'> {
-  phonePrefixValue: string;
-  onPhonePrefixChange: IContentSelect<string>['onChange'];
+export interface IPhoneInput extends IInputProps {
+  icon: IContentSelectItem<void>['content'];
+  onSelectPress?: () => void;
 }
 
 const PhoneInput = forwardRef<TextInput, IPhoneInput>(
-  (
-    { items, phonePrefixValue, onPhonePrefixChange, onFocus, onBlur, disabled, error, ...rest },
-    ref
-  ) => {
+  ({ icon, onSelectPress, onFocus, onBlur, disabled, error, ...rest }, ref) => {
     const inputRef = createRef<TextInput>();
     useImperativeHandle(ref, () => inputRef.current as TextInput);
 
@@ -38,17 +36,15 @@ const PhoneInput = forwardRef<TextInput, IPhoneInput>(
         ref={inputRef}
         disabled={disabled}
         error={error}
-        prefix={phonePrefixValue}
         {...rest}
         leftContent={
-          <Select
+          <ContentSelect
+            onPress={onSelectPress}
             disabled={disabled}
             style={styles.select}
             onVisibleChange={setIsSelectFocused}
             isFocused={(isInputFocused || isSelectFocused) && !error}
-            items={items}
-            onChange={onPhonePrefixChange}
-            value={phonePrefixValue}
+            leftContent={icon}
           />
         }
       />

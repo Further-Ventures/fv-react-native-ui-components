@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Icon from '../Icon';
-import { Platform } from 'react-native';
+import { Alert, Platform } from 'react-native';
 import CenterView from '../../storybook/preview/CenterView';
 import { ComponentMeta, ComponentStory } from '@storybook/react-native';
 import PhoneInput from './index';
@@ -11,11 +11,6 @@ const renderIcon =
   // eslint-disable-next-line react/display-name
   ({ disabled }: { disabled: boolean }) =>
     <Icon width={40} height={30} color={'text-secondary'} disabled={disabled} name={name} />;
-
-const iconOptions = [
-  { content: renderIcon('info'), value: '+917' },
-  { content: renderIcon('cancel'), value: '+380' },
-];
 
 export default {
   title: 'PhoneInput',
@@ -38,14 +33,29 @@ export default {
     hint: 'This is a hint text to help user.',
     error: '',
     disabled: false,
-    buttonText: '',
-    items: iconOptions,
   },
 } as ComponentMeta<typeof PhoneInput>;
 
+const countries = [
+  { icon: renderIcon('info'), prefix: '+917' },
+  { icon: renderIcon('cancel'), prefix: '+380' },
+];
+
 const Template: ComponentStory<typeof PhoneInput> = (args) => {
-  const [value, setValue] = useState('+917');
-  return <PhoneInput {...args} phonePrefixValue={value} onPhonePrefixChange={setValue} />;
+  const [index, setIndex] = useState(0);
+  return (
+    <PhoneInput
+      {...args}
+      prefix={countries[index].prefix}
+      icon={countries[index].icon}
+      onSelectPress={() => {
+        Alert.alert('Choose country', '', [
+          { text: 'UAE', onPress: () => setIndex(0) },
+          { text: 'UKR', onPress: () => setIndex(1) },
+        ]);
+      }}
+    />
+  );
 };
 
 export const Default = Template.bind({});

@@ -14,9 +14,10 @@ export interface IContentSelectItem<T> {
   value: T;
 }
 
-export interface IContentSelect<T> extends Omit<IRegularSelect<T>, 'items' | 'label'> {
-  items: IContentSelectItem<T>[];
-  value: T;
+export interface IContentSelect<T> extends Omit<IRegularSelect<T>, 'items' | 'label' | 'onChange'> {
+  onChange?: (value: T | undefined) => void;
+  items?: IContentSelectItem<T>[];
+  value?: T;
 }
 
 export type ISelect<T> = IRegularSelect<T> | IContentSelect<T>;
