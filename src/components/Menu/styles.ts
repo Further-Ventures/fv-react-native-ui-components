@@ -1,22 +1,26 @@
+import { Dimensions } from 'react-native';
 import { createUseStyles } from '../Theme';
-import { IMenuPosition } from './types';
+import { IMenuPosition, IChildrenPosition } from './types';
 import { getWidth, ItemHeight, ItemWidth } from '../../utils/itemSize';
 
+const { width, height } = Dimensions.get('window');
 export default createUseStyles(
   (
     theme,
     itemWidth: ItemWidth,
     itemHeight: ItemHeight,
     menuPosition: IMenuPosition,
-    onlyCustomContent?: boolean
+    onlyCustomContent?: boolean,
+    childrenPosition?: IChildrenPosition
   ) => ({
     overlay: {
       position: 'absolute',
-      top: -100,
-      bottom: -100,
-      left: -100,
-      right: -100,
+      width,
+      height,
+      left: -(childrenPosition?.pageX || 0),
+      top: -(childrenPosition?.pageY || 0),
       zIndex: 100,
+      backgroundColor: 'rgba(0,0,0,.4)',
     },
     dropdown: {
       ...menuPosition,

@@ -1,5 +1,5 @@
 import React, { forwardRef, useImperativeHandle, useRef, useState } from 'react';
-import { IMenu, IMenuPosition, IMenuRef } from './types';
+import { IMenu, IMenuPosition, IChildrenPosition, IMenuRef } from './types';
 import useStyles from './styles';
 import { Pressable, useWindowDimensions, View } from 'react-native';
 import Elevation from '../Elevation';
@@ -28,9 +28,16 @@ const Menu = forwardRef<IMenuRef, IMenu>(
       top: 0,
       left: 0,
     });
+    const [childrenPosition, setChildrenPosition] = useState<IChildrenPosition>({});
     const [visible, setVisible] = useState(false);
     const { height: windowHeight, width: windowWidth } = useWindowDimensions();
-    const styles = useStyles(itemWidth, itemHeight, menuPosition, onlyCustomContent);
+    const styles = useStyles(
+      itemWidth,
+      itemHeight,
+      menuPosition,
+      onlyCustomContent,
+      childrenPosition
+    );
     const triggerRef = useRef<View>(null);
 
     const menuHeight = listItems.length * getHeight(itemHeight);
@@ -39,24 +46,24 @@ const Menu = forwardRef<IMenuRef, IMenu>(
 
     const measureTrigger = () => {
       triggerRef.current?.measure((x, y, width, height, pageX, pageY) => {
-        const xOverlap = Math.max(pageX + menuWidth - windowWidth, 0);
-        const left = xOverlap;
-        const top = height;
+        const xOverlap = pageX + menuWidth - windowWidth;
+        const left = -xOverlap > 0 ? 0 : -xOverlap;
+        setChildrenPosition({ pageX, pageY });
         if (pageY + height + shrinkMenuHeight < windowHeight) {
           // set to bottom
           setMenuPosition({
-            top,
+            top: 0,
             left,
           });
         } else {
           // set to top
-          setMenuPosition({ top: -1 * shrinkMenuHeight, left });
+          setMenuPosition({ bottom: height, left });
         }
       });
     };
 
     const onVisibleChangeWrapper = (visible: boolean) => {
-      setVisible(visible);
+      setTimeout(() => setVisible(visible), 10);
       onVisibleChange?.(visible);
     };
 
@@ -108,13 +115,13 @@ const Menu = forwardRef<IMenuRef, IMenu>(
     );
 
     return (
-      <>
+      <View>
         <Pressable ref={triggerRef} onPress={() => !disabledTriggerPress && handleOpen()}>
           {children}
-          {renderContext()}
         </Pressable>
+        <View style={styles.highZ}>{renderContext()}</View>
         {visible && <Pressable style={styles.overlay} onPress={handleClose} />}
-      </>
+      </View>
     );
   }
 );
