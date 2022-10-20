@@ -2,8 +2,14 @@ import { IList } from '../List';
 import { ItemWidth } from '../../utils/itemSize';
 
 export interface IMenuPosition {
-  top: number;
-  left: number;
+  top?: number;
+  bottom?: number;
+  left?: number;
+}
+
+export interface IChildrenPosition {
+  pageX?: number;
+  pageY?: number;
 }
 
 export interface IMenuRef {
