@@ -47,7 +47,7 @@ const Menu = forwardRef<IMenuRef, IMenu>(
     const measureTrigger = () => {
       triggerRef.current?.measure((x, y, width, height, pageX, pageY) => {
         const xOverlap = pageX + menuWidth - windowWidth;
-        const left = -xOverlap > 0 ? 0 : -xOverlap;
+        const left = Math.min(-xOverlap, 0);
         setChildrenPosition({ pageX, pageY });
         if (pageY + height + shrinkMenuHeight < windowHeight) {
           // set to bottom
