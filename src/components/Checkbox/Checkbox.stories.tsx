@@ -24,7 +24,7 @@ CheckboxComponent.args = {
   variant: 'default',
   type: 'default',
   size: 'medium',
-  error: 'This is a hint text to help user',
+  error: '',
   disabled: false,
   checked: false,
   verticalPosition: 'top',
