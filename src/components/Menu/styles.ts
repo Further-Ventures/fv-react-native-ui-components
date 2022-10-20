@@ -20,7 +20,6 @@ export default createUseStyles(
       left: -(childrenPosition?.pageX || 0),
       top: -(childrenPosition?.pageY || 0),
       zIndex: 100,
-      backgroundColor: 'rgba(0,0,0,.4)',
     },
     dropdown: {
       ...menuPosition,
