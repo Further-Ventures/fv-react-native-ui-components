@@ -74,7 +74,7 @@ export default createUseStyles(
       color: theme.text.disabled,
     },
     mainContent: {
-      alignSelf: 'flex-start',
+      alignSelf: 'stretch',
       flex: 1,
     },
 

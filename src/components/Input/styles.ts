@@ -14,6 +14,7 @@ export default createUseStyles((theme) => ({
     flex: 1,
     textAlignVertical: 'top',
     width: '100%',
+    outlineStyle: 'none',
   },
   disabledInput: {
     color: theme.text.disabled,

@@ -9,13 +9,11 @@ import pkg from './package.json';
 export default {
   title: 'SearchBar',
   component: SearchBar,
-  argTypes: {
-    onPress: {
-      action: 'pressed the SearchBar',
-    },
-  },
+  argTypes: {},
   decorators: [CenterView],
-  args: {},
+  args: {
+    include: ['info', 'placeholder', 'dropdownItems', 'disabled', 'loading'],
+  },
   parameters: {
     pkg,
   },
