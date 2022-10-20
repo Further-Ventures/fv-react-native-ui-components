@@ -24,7 +24,7 @@ CheckboxComponent.args = {
   variant: 'default',
   type: 'default',
   size: 'medium',
-  error: 'This is a hint text to help user',
+  error: '',
   disabled: false,
   checked: false,
   verticalPosition: 'top',
@@ -32,4 +32,22 @@ CheckboxComponent.args = {
   heading: 'Check heading',
   label: 'Label here',
   sentence: 'Write  sentence here',
+  controlled: true,
+};
+CheckboxComponent.parameters = {
+  controls: {
+    include: [
+      'variant',
+      'type',
+      'size',
+      'error',
+      'disabled',
+      'checked',
+      'verticalPosition',
+      'horizontalPosition',
+      'heading',
+      'label',
+      'sentence',
+    ],
+  },
 };

@@ -22,7 +22,7 @@ export const Manual = Template.bind({});
 Manual.args = {
   name: 'Name',
   disabled: false,
-  errorText: 'Sample error',
+  errorText: '',
   placeholder: 'Placeholder',
   textLimit: 10,
 };

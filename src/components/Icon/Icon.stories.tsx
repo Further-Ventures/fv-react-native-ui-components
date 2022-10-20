@@ -58,8 +58,8 @@ CustomIcons.args = {
 };
 CustomIcons.argTypes = {
   name: getCustomIcons(),
-  argTypes: buildExcludeArgTypes(['color', 'filled', 'disabled']),
 };
+CustomIcons.parameters = { controls: { exclude: ['color', 'filled', 'disabled'] } };
 
 export const WithSourceProp = TemplateManual.bind({});
 WithSourceProp.args = {

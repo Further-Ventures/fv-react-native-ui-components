@@ -133,8 +133,8 @@ const Input = forwardRef<TextInput, IInputProps>(
           {prefix && <Text style={[styles.prefix, prefixStyle]}>{prefix}</Text>}
           <TextInput
             ref={inputRef}
-            multiline={true}
-            numberOfLines={10}
+            multiline={false}
+            numberOfLines={1}
             style={[styles.input, disabled && styles.disabledInput]}
             value={controlled ? value : internalValue}
             onBlur={onBlurWrapper}

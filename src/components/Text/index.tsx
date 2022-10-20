@@ -2,6 +2,7 @@ import React from 'react';
 import useStyles, { sizeToHeightMap } from './styles';
 import { Text as RNText, TextProps, TextStyle } from 'react-native';
 import { getColorFromTheme, TPalette } from '../../utils/getColorFromTheme';
+import { useTheme } from '../Theme';
 
 export interface IVariantBaseProps<TIsAnyColor = void> extends TextProps {
   variant: keyof ReturnType<typeof useStyles>;
@@ -37,18 +38,44 @@ const Text = <TIsAnyColor,>(props: IConditionalTextProps<TIsAnyColor>) => {
     children,
     ...rest
   } = props;
+  const { theme } = useTheme();
   const generatedColor = disabled
     ? getColorFromTheme('text-disabled')
     : getColorFromTheme<TIsAnyColor, true>(color);
+  const generateFontFamily = (): string => {
+    switch (weight) {
+      case '100':
+        return theme.fontFamily.thin;
+      case '200':
+        return theme.fontFamily.light;
+      case '300':
+        return theme.fontFamily.light;
+      case '400':
+        return theme.fontFamily.regular;
+      case '500':
+        return theme.fontFamily.medium;
+      case '600':
+        return theme.fontFamily.bold;
+      case '700':
+        return theme.fontFamily.bold;
+      case '800':
+        return theme.fontFamily.heavy;
+      case '900':
+        return theme.fontFamily.black;
+      default:
+        return theme.fontFamily.regular;
+    }
+  };
   const styles = useStyles(generatedColor);
-  const variantStyles = variant ? styles[variant] : {};
   const wrapStyle = { flexShrink: 1 } as const;
-  const manualControlPropsToStyles = variant
+  const variantStyles = variant ? styles[variant] : {};
+  const manualStyles = variant
     ? {}
     : {
         color: generatedColor,
         fontSize: size,
         fontWeight: weight,
+        fontFamily: generateFontFamily(),
         lineHeight:
           height ||
           (size && size in sizeToHeightMap
@@ -57,9 +84,8 @@ const Text = <TIsAnyColor,>(props: IConditionalTextProps<TIsAnyColor>) => {
             ? size + Math.trunc(size / 2)
             : 10),
       };
-
   return (
-    <RNText style={[variantStyles, manualControlPropsToStyles, wrapStyle, style || {}]} {...rest}>
+    <RNText style={[variantStyles, manualStyles, wrapStyle, style || {}]} {...rest}>
       {children}
     </RNText>
   );
