@@ -40,8 +40,8 @@ const BaseInputLayout = React.forwardRef<View, IBaseInputLayoutProps>(
   (
     {
       children,
-      label,
       size = 'medium',
+      label,
       isFocused,
       error,
       style,

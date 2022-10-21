@@ -18,8 +18,8 @@ import { applyDigitMask } from './utils';
 
 export interface IInputProps extends TextInputProps {
   name?: string;
-  label?: string;
   size?: IBaseInputLayoutProps['size'];
+  label?: string;
   clearFormValueOnUnmount?: boolean;
   hint?: string;
   error?: string | boolean;
@@ -38,6 +38,7 @@ const Input = forwardRef<TextInput, IInputProps>(
   (
     {
       name = 'input',
+      size = 'medium',
       onChangeText,
       onFocus,
       onBlur,
@@ -45,7 +46,6 @@ const Input = forwardRef<TextInput, IInputProps>(
       error,
       value = '',
       label,
-      size = 'medium',
       hint,
       style,
       disabled,
@@ -114,10 +114,10 @@ const Input = forwardRef<TextInput, IInputProps>(
 
     return (
       <BaseInputLayout
+        size={size}
         style={style}
         label={label}
         isFocused={isFocused}
-        size={size}
         onPress={handleFocus}
         error={errorMessage}
         disabled={disabled}
