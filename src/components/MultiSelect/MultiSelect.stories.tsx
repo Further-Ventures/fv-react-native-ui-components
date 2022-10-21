@@ -50,6 +50,9 @@ export default {
       'isFocusAnimationEnabled',
       'clearFormValueOnUnmount',
       'name',
+      'size',
+      'items',
+      'values',
     ]),
   },
   args: {

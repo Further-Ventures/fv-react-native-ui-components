@@ -25,11 +25,6 @@ export default createUseStyles((theme) => ({
     flexDirection: 'row',
   },
   prefix: {
-    fontFamily: theme.fontFamily.regular,
-    fontWeight: '400',
-    fontSize: 16,
-    lineHeight: 24,
-    color: theme.text.primary,
     top: 2,
     marginRight: 8,
   },

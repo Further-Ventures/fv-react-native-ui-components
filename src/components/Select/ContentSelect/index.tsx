@@ -18,12 +18,13 @@ const ContentSelect = <T,>({
 }: IContentSelect<T>) => {
   const menuRef = useRef<IMenuRef>(null);
 
-  const data = items.map((item, i) => ({
-    label: i.toString(),
-    title: i.toString(),
-    value: item.value,
-    leftContent: item.content,
-  }));
+  const data =
+    items?.map((item, i) => ({
+      label: i.toString(),
+      title: i.toString(),
+      value: item.value,
+      leftContent: item.content,
+    })) || [];
 
   const { errorMessage, isOpened, getValuesBySelectedIndexes, setVisible, updateFormValue } =
     useSelect({
@@ -35,11 +36,11 @@ const ContentSelect = <T,>({
       onVisibleChange,
     });
 
-  const selectedContent = items.find((i) => i.value === value)?.content;
+  const selectedContent = items?.find((i) => i.value === value)?.content;
 
   const onSelect = (selected: number[]) => {
     const selectedValues = getValuesBySelectedIndexes(selected);
-    onChange(selectedValues[0]);
+    onChange?.(selectedValues[0]);
     updateFormValue(name, selectedValues[0]);
   };
   const onTriggerPress = () => menuRef.current?.open();

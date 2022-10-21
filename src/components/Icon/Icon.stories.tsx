@@ -5,7 +5,6 @@ import Icon from '.';
 import CenterView from '../../storybook/preview/CenterView';
 import IconView from '../../storybook/preview/Icon';
 import { getColorList, getMaterialSymbols, getCustomIcons } from '../../storybook/utils';
-import { buildExcludeArgTypes } from '../../storybook/utils';
 import pkg from './package.json';
 
 export default {
