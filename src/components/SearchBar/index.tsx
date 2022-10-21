@@ -27,7 +27,6 @@ export interface ISearchBar
     | 'prefix'
     | 'prefixStyle'
   > {
-  info?: string;
   dropdownItems?: TDropdownItem[];
   loading?: boolean;
 }
@@ -39,7 +38,7 @@ const renderIcon =
     <Icon filled color='text-primary' disabled={disabled} name={name} />;
 
 const SearchBar = forwardRef<IMenuRef, ISearchBar>(
-  ({ disabled, info, dropdownItems, loading = false, onChangeText, ...rest }, ref) => {
+  ({ disabled, dropdownItems, loading = false, onChangeText, hint, ...rest }, ref) => {
     const styles = useStyles();
     const menuRef = useRef<IMenuRef>(null);
     const [value, setValue] = useState('');
@@ -122,10 +121,10 @@ const SearchBar = forwardRef<IMenuRef, ISearchBar>(
           </View>
         </Menu>
         <View style={styles.bottomContent}>
-          {!!info && (
+          {!!hint && (
             <View style={styles.infoTextWrapper}>
               <Text variant='label-14-regular' color='text-hint'>
-                {info}
+                {hint}
               </Text>
             </View>
           )}
