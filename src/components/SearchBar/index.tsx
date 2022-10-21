@@ -118,7 +118,6 @@ const SearchBar = forwardRef<IMenuRef, ISearchBar>(
                 <Icon name='search' color='text-hint' disabled={disabled} />
               )}
               rightContent={generateRightContent()}
-              size='small'
             />
           </View>
         </Menu>
