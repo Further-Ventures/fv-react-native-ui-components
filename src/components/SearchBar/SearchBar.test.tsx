@@ -3,9 +3,9 @@ import { render, fireEvent } from '@testing-library/react-native';
 import SearchBar from '.';
 
 it('should be rendered', () => {
-  const info = 'info';
-  const { getByText } = render(<SearchBar info={info} />);
-  expect(getByText(info)).toBeTruthy();
+  const hint = 'hint';
+  const { getByText } = render(<SearchBar hint={hint} />);
+  expect(getByText(hint)).toBeTruthy();
 });
 
 it('should call onChangeText handler', () => {
