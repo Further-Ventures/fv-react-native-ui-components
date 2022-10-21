@@ -11,9 +11,7 @@ export default {
   component: TextLink,
 
   decorators: Platform.OS === 'web' ? null : [CenterView],
-  args: {
-    controls: { include: ['children', 'variant', 'disabled', 'icon', 'iconPosition'] },
-  },
+  args: {},
   argTypes: {
     icon: getIcons(['download', 'arrow_back']),
     iconPosition: {
@@ -31,6 +29,7 @@ export default {
   },
   parameters: {
     pkg,
+    controls: { include: ['children', 'variant', 'disabled', 'icon', 'iconPosition'] },
   },
 } as ComponentMeta<typeof TextLink>;
 

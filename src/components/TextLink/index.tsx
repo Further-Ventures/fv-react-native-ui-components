@@ -45,11 +45,13 @@ const TextLink: React.FC<ITextLink> = (props) => {
 
   const generateIcon = (position: ITextLink['iconPosition']) => {
     if (!!icon && iconPosition === position) {
+      const size = ['p1-regular', 'p2-regular'].includes(variant) ? 24 : 20;
       return (
         <Icon
           name={icon}
           color={visitedState ? 'primary-dark' : 'primary-main'}
-          height={['p1-regular', 'p2-regular'].includes(variant) ? 24 : 20}
+          height={size}
+          width={size}
           disabled={disabled}
           style={iconPosition === 'left' ? { marginRight: 4 } : { marginLeft: 4 }}
         />
