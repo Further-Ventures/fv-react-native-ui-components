@@ -3,7 +3,7 @@ import { IMultiSelect } from '../MultiSelect';
 import { ContentFunc } from '../Input/BaseInputLayout';
 
 export interface IRegularSelect<T>
-  extends Omit<IMultiSelect<T>, 'onChange' | 'values' | 'selectedType'> {
+  extends Omit<IMultiSelect<T>, 'onChange' | 'values' | 'selectedType' | 'selection'> {
   onChange: (value: T | undefined) => void;
   value?: T;
   noneLabel?: string;
