@@ -33,6 +33,7 @@ export default {
       'onVisibleChange',
       'clearFormValueOnUnmount',
       'name',
+      'size',
     ]),
   },
   args: {
