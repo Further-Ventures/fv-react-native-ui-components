@@ -96,7 +96,7 @@ const MultiSelect = <T,>({
     return (
       <View style={{ flexDirection: 'row' }}>
         {labels.slice(0, maxTagRenderCount).map((label) => (
-          <View key={label} style={{ marginHorizontal: 3, marginVertical: 1 }}>
+          <View key={label} style={{ marginHorizontal: 3 }}>
             <Tag
               variant={'outlined'}
               iconRight={'cancel'}

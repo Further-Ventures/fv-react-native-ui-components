@@ -45,8 +45,6 @@ export default createUseStyles(
     childrenContainer: {
       flex: 1,
       marginBottom: hasLabel ? 6 : 0,
-      // marginTop: hasLabel? 0:26,
-      // flexDirection: 'column',
       alignItems: 'flex-start',
       justifyContent: hasLabel ? 'flex-end' : 'center',
     },

@@ -9,8 +9,8 @@ import {
   ViewStyle,
   View,
   TextStyle,
-  Text,
 } from 'react-native';
+import Text from '../Text';
 import { useFormContext } from '../Form';
 import BaseInputLayout, { IBaseInputLayoutProps } from './BaseInputLayout';
 import { useTheme } from '../Theme';
@@ -130,7 +130,16 @@ const Input = forwardRef<TextInput, IInputProps>(
         isFocusAnimationEnabled
       >
         <View style={styles.inputContainer}>
-          {prefix && <Text style={[styles.prefix, prefixStyle]}>{prefix}</Text>}
+          {!!prefix && (
+            <Text
+              variant='p2-regular'
+              color='text-primary'
+              disabled={disabled}
+              style={[styles.prefix, prefixStyle]}
+            >
+              {prefix}
+            </Text>
+          )}
           <TextInput
             ref={inputRef}
             multiline={false}
