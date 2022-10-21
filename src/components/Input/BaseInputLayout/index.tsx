@@ -14,6 +14,7 @@ export type ContentFunc = ({
 
 export interface IBaseInputLayoutProps extends PressableProps {
   label?: string;
+  size?: 'small' | 'medium';
   isFocused?: boolean;
   style?: StyleProp<ViewStyle>;
   error?: string;
@@ -39,6 +40,7 @@ const BaseInputLayout = React.forwardRef<View, IBaseInputLayoutProps>(
   (
     {
       children,
+      size = 'medium',
       label,
       isFocused,
       error,
@@ -69,7 +71,7 @@ const BaseInputLayout = React.forwardRef<View, IBaseInputLayoutProps>(
     const hasError = Boolean(error);
     const hasLabel = Boolean(label);
 
-    const styles = useStyles(!!label, !!label || !!children);
+    const styles = useStyles(!!label, !!label || !!children, size);
 
     const getSideContent = useCallback(
       (sideContent?: ReactNode | ContentFunc): ReactNode | null => {
