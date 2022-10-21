@@ -11,11 +11,10 @@ export default {
   component: SearchBar,
   argTypes: {},
   decorators: [CenterView],
-  args: {
-    include: ['info', 'placeholder', 'dropdownItems', 'disabled', 'loading'],
-  },
+  args: {},
   parameters: {
     pkg,
+    controls: { include: ['hint', 'placeholder', 'dropdownItems', 'disabled', 'loading'] },
   },
 } as ComponentMeta<typeof SearchBar>;
 
@@ -23,7 +22,7 @@ const Template: ComponentStory<typeof SearchBar> = (args) => <SearchBarPreview {
 
 export const Default = Template.bind({});
 Default.args = {
-  info: 'This is an info text',
+  hint: 'This is a hint text',
   placeholder: 'Placeholder',
   dropdownItems: [
     { icon: 'account_circle', title: 'Item 1' },
