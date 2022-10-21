@@ -1,5 +1,4 @@
 import { createUseStyles } from '../../Theme';
-import { IBaseInputLayoutProps } from '.';
 
 const inputConstants = {
   OUTLINE_SIZE: 8,
