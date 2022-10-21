@@ -18,3 +18,5 @@ export { default as visibility } from '@material-symbols/svg-400/rounded/visibil
 export { default as visibility_off } from '@material-symbols/svg-400/rounded/visibility_off-fill.svg';
 export { default as question_mark } from '@material-symbols/svg-400/rounded/question_mark-fill.svg';
 export { default as credit_card } from '@material-symbols/svg-400/rounded/credit_card-fill.svg';
+export { default as download } from '@material-symbols/svg-400/rounded/download-fill.svg';
+export { default as arrow_back } from '@material-symbols/svg-400/rounded/arrow_back-fill.svg';

@@ -3,6 +3,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react-native';
 import TextLink from '.';
 import CenterView from '../../storybook/preview/CenterView';
 import { Platform } from 'react-native';
+import { getIcons } from '../../storybook/utils';
 import pkg from './package.json';
 
 export default {
@@ -10,10 +11,19 @@ export default {
   component: TextLink,
 
   decorators: Platform.OS === 'web' ? null : [CenterView],
-  args: {},
+  args: {
+    controls: { include: ['children', 'variant', 'disabled', 'icon', 'iconPosition'] },
+  },
   argTypes: {
-    icon: {
-      options: ['default', 'left', 'right'],
+    icon: getIcons(['download', 'arrow_back']),
+    iconPosition: {
+      options: ['left', 'right'],
+      control: {
+        type: 'select',
+      },
+    },
+    variant: {
+      options: ['p1-regular', 'p2-regular', 'description-medium', 'caption-regular'],
       control: {
         type: 'select',
       },
@@ -24,35 +34,31 @@ export default {
   },
 } as ComponentMeta<typeof TextLink>;
 
-const Template: ComponentStory<typeof TextLink> = (args) => <TextLink {...args} />;
 const TemplateManual: ComponentStory<typeof TextLink> = (args) => <TextLink {...args} />;
 
 export const Manual = TemplateManual.bind({});
 Manual.args = {
-  children: 'Name',
+  children: 'Text link',
+  variant: 'p1-regular',
   disabled: false,
-  icon: 'default',
+  icon: '',
+  iconPosition: 'right',
 };
 
-export const Default = Template.bind({});
-Default.args = {
-  children: 'Text link',
-};
-
-export const Disabled = Template.bind({});
+export const Disabled = TemplateManual.bind({});
 Disabled.args = {
+  children: 'Text link',
+  variant: 'p1-regular',
   disabled: true,
-  children: 'Text link',
+  icon: '',
+  iconPosition: 'right',
 };
 
-export const WithIconLeft = Template.bind({});
-WithIconLeft.args = {
-  icon: 'left',
+export const WithIcon = TemplateManual.bind({});
+WithIcon.args = {
   children: 'Text link',
-};
-
-export const WithIconRight = Template.bind({});
-WithIconRight.args = {
-  icon: 'right',
-  children: 'Text link',
+  variant: 'p1-regular',
+  disabled: false,
+  icon: 'download',
+  iconPosition: 'right',
 };

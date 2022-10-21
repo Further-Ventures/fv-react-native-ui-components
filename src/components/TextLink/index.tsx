@@ -1,20 +1,39 @@
 import React, { useState } from 'react';
 import useStyles from './styles';
-import { TextProps, Pressable } from 'react-native';
-import Text from '../Text';
-import Icon from '../Icon';
+import { Pressable } from 'react-native';
+import Text, { IVariantBaseProps } from '../Text';
+import Icon, { IIconProps } from '../Icon';
 
-export interface IManualControlProps extends TextProps {
-  icon?: 'default' | 'left' | 'right';
+export interface ITextLink extends Omit<IVariantBaseProps, 'variant'> {
+  variant?: 'p1-regular' | 'p2-regular' | 'description-medium' | 'caption-regular';
+  iconPosition?: 'left' | 'right';
+  icon?: IIconProps['name'];
   disabled?: boolean;
+  visited?: boolean;
   children: React.ReactNode;
   onPress: () => void;
 }
 
-const TextLink: React.FC<IManualControlProps> = (props) => {
-  const { disabled = false, icon, onPress, children, ...other } = props;
+const TextLink: React.FC<ITextLink> = (props) => {
+  const {
+    disabled = false,
+    visited = null,
+    icon,
+    onPress,
+    iconPosition = 'right',
+    children,
+    variant = 'p1-regular',
+    ...rest
+  } = props;
   const [showUnderline, setShowUnderline] = useState(false);
+  const [isVisited, setIsVisited] = useState(false);
   const styles = useStyles();
+  const visitedState = visited ?? isVisited;
+
+  const handlePress = () => {
+    setIsVisited(true);
+    onPress?.();
+  };
 
   const onPressIn = () => {
     setShowUnderline(true);
@@ -24,25 +43,39 @@ const TextLink: React.FC<IManualControlProps> = (props) => {
     setShowUnderline(false);
   };
 
+  const generateIcon = (position: ITextLink['iconPosition']) => {
+    if (!!icon && iconPosition === position) {
+      return (
+        <Icon
+          name={icon}
+          color={visitedState ? 'primary-dark' : 'primary-main'}
+          height={['p1-regular', 'p2-regular'].includes(variant) ? 24 : 20}
+          disabled={disabled}
+          style={iconPosition === 'left' ? { marginRight: 4 } : { marginLeft: 4 }}
+        />
+      );
+    }
+  };
+
   return (
     <Pressable
       style={styles.container}
       disabled={disabled}
       onPressIn={onPressIn}
       onPressOut={onPressOut}
-      onPress={onPress}
+      onPress={handlePress}
     >
-      {icon === 'left' ? <Icon name='west' color='primary-main' height={20} /> : null}
+      {generateIcon('left')}
       <Text
-        variant='p2-regular'
-        color='primary-main'
+        variant={variant}
+        color={visitedState ? 'primary-dark' : 'primary-main'}
         disabled={disabled}
-        style={[styles.text, showUnderline && styles.underline]}
-        {...other}
+        style={[(showUnderline || visitedState) && styles.underline]}
+        {...rest}
       >
         {children}
       </Text>
-      {icon === 'right' ? <Icon name='east' color='primary-main' height={20} /> : null}
+      {generateIcon('right')}
     </Pressable>
   );
 };

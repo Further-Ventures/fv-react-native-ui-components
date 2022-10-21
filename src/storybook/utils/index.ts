@@ -15,6 +15,16 @@ export const buildExcludeArgTypes = (keys: string[]) => {
   return argTypes;
 };
 
+export const getIcons = (icons: string[]) => ({
+  options: ['no_icon', ...icons],
+  mapping: {
+    no_icon: '',
+  },
+  control: {
+    type: 'select',
+  },
+});
+
 export const getMaterialSymbols = () => ({
   options: ['no_icon', ...Object.keys(materialSymbols)],
   mapping: {
