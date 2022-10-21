@@ -16,7 +16,7 @@ type TJoin<T extends string[], D extends string> = T extends []
     : never
   : string;
 type TDefaultThemeColor = Omit<typeof defaultTheme, 'fontFamily'>;
-type TDefaultThemeTextColor = Pick<TDefaultThemeColor, 'text' | 'error' | 'grey'>;
+type TDefaultThemeTextColor = Pick<TDefaultThemeColor, 'text' | 'error' | 'grey' | 'primary'>;
 export type TPalette<TIsAnyColor = void, TOnlyText = void> = TIsAnyColor extends true
   ? string
   : TJoin<

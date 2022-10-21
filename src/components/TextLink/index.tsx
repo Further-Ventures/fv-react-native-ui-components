@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import useStyles from './styles';
-import { Text, TextProps, TouchableOpacity } from 'react-native';
+import { TextProps, Pressable } from 'react-native';
+import Text from '../Text';
 import Icon from '../Icon';
 
 export interface IManualControlProps extends TextProps {
@@ -24,7 +25,7 @@ const TextLink: React.FC<IManualControlProps> = (props) => {
   };
 
   return (
-    <TouchableOpacity
+    <Pressable
       style={styles.container}
       disabled={disabled}
       onPressIn={onPressIn}
@@ -33,13 +34,16 @@ const TextLink: React.FC<IManualControlProps> = (props) => {
     >
       {icon === 'left' ? <Icon name='west' color='primary-main' height={20} /> : null}
       <Text
-        style={[styles.text, showUnderline && styles.underline, disabled && styles.disabled]}
+        variant='p2-regular'
+        color='primary-main'
+        disabled={disabled}
+        style={[styles.text, showUnderline && styles.underline]}
         {...other}
       >
         {children}
       </Text>
       {icon === 'right' ? <Icon name='east' color='primary-main' height={20} /> : null}
-    </TouchableOpacity>
+    </Pressable>
   );
 };
 
