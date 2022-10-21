@@ -18,6 +18,7 @@ export default {
   decorators: Platform.OS === 'web' ? null : [CenterView],
   parameters: {
     pkg,
+    controls: { include: ['label', 'placeholder', 'mask', 'hint', 'error', 'disabled'] },
   },
   argTypes: {
     disabled: {
